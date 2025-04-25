@@ -17,7 +17,9 @@ found at [this link](https://madis.ncep.noaa.gov/data_application.shtml).
 <br><br>
 In order to fill out this form, you need to provide an IP address that you will be FTPing from.
 After consulting with Tufts Technology Services, we filled out the form with following information, 
-Please note that some of this information is specific to our role as students at Tufts University:
+Please note that some of this information is specific to our role as students at Tufts University. 
+Specifically, the IP address is the range of IP addresses that would be used to access the data while
+logged into the HPC cluster.
 <br>
 - address: 177 College Ave, Medford, MA 02155 
 - comms_type: ftp 
