@@ -10,6 +10,28 @@ directions in the API documentation to ensure all necessary libraries are create
 If you have a conda environment you are using for running Python scripts, we recommend 
 installing netCDF4 in that environment. 
 <br><br>
+You technically need to [apply for a MADIS account](https://madis.ncep.noaa.gov/data_application.shtml) 
+to access [the data](https://madis.ncep.noaa.gov/madis_datasets.shtml), which we specifically wanted 
+in order to access the Aircraft Observations data. Other data options can be 
+found at [this link](https://madis.ncep.noaa.gov/data_application.shtml). 
+<br><br>
+In order to fill out this form, you need to provide an IP address that you will be FTPing from.
+After consulting with Tufts Technology Services, we filled out the form with following information, 
+Please note that some of this information is specific to our role as students at Tufts University:
+<br>
+- address: 177 College Ave, Medford, MA 02155 
+- comms_type: ftp 
+- host_name: n/a (please see remarks) 
+- host_ip_address: IP addresses will be in the range: 130.64.116.64 - 130.64.116.79
+- organization_name: Tufts University Department of Computer Science 
+- organization_type: education 
+- intended_use: The data will be used to help in the validation steps of a turbulence prediction model, which is being created for a Computer Science Senior Capstone group project.  
+- request_type: archive 
+- aircraft: y 
+- aircraft-profiles: y 
+
+*While waiting for our account to get approved, we were given the anonymous data access methods which are used in the script below.*
+<br><br>
 From there, we've made a script called `get_madis_data.py` that takes in time 
 and location information, and uses that information to extract relevant MADIS data from the archive at
 https://madis-data.ncep.noaa.gov/madisPublic1/data/ using File Transfer Protocol (FTP). It then prints
