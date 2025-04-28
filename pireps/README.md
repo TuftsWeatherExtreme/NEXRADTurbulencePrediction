@@ -62,10 +62,13 @@ We used Iowa State University's archive of Pilot Reports found
 to acquire all of the PIREPs we used in our project. The backend 
 documentation for this resource can be found 
 [here](https://mesonet.agron.iastate.edu/cgi-bin/request/gis/pireps.py?help). 
+
+### pireps_playground.ipynb
 A simple [pireps_playground.ipynb](pireps_playground.ipynb) script can be used
-to download a month's worth of data from this archive. One such csv can be found
-in [raw_pirep_data](raw_pirep_data/2025/01_raw_pireps.csv). This script
-displays some of how we manipulate the pirep data before using it.
+to download a month's worth of data from this archive.
+This script displays some of how we manipulate the pirep data before using it.
+A singular csv representing the raw data from the archive for January 2025 can 
+be found in [raw_pirep_data](raw_pirep_data/2025/01_raw_pireps.csv). 
 
 ## clean_pireps.py
 We have a useful script called [clean_pireps.py](clean_pireps.py) that can 
@@ -84,6 +87,7 @@ and will output these pireps to a file called
  (`L`), medium (`M`), or heavy (`H`) and add this as a column 
  called `Plane Weight`. 
 
+### get_all_clean_pireps.py
 The script [get_all_clean_pireps.py](get_all_clean_pireps.py) runs the 
 [clean_pireps.py](clean_pireps.py) script to download the data for all
  months and years from 2003-2024. This script has been parallelized to be 
@@ -95,6 +99,7 @@ The script [get_all_clean_pireps.py](get_all_clean_pireps.py) runs the
  script to retrieve the closest radars (More info on this script can be found
  in the [radars README](/radars/README.md)).
 
+### collapse.sh
 There is a simple bash script called [collapse.sh](collapse.sh) that collapses 
 all the cleaned pirep data into a single file called
 [clean_pirep_data/cleaned_pireps.csv](clean_pirep_data/cleaned_pireps.csv). It

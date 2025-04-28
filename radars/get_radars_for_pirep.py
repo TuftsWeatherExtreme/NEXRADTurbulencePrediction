@@ -1,5 +1,3 @@
-#!/usr/bin/env /opt/homebrew/Caskroom/miniconda/base/envs/capstone_env/bin/python
-# coding: utf-8
 
 import pandas as pd
 import numpy as np

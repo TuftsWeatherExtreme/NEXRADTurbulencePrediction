@@ -1,9 +1,13 @@
 # clean_pireps.py
 # Authors: Team Celestial Blue
-# Date: 11/11/24
+# Last Modified: 4/28/25
 # Purpose: This script takes an input pireps data file and cleans it to be a csv
 #          with only the pireps which contain reports of turbulence, removing
-#          extraneous columns
+#          extraneous columns, adding plane weight, and ensuring all location
+#          data is valid
+# Run with `python clean_pireps.py -month MONTH -year YEAR [-o {FILE/STDOUT}]`
+
+
 # GET request calls script here:
 # https://github.com/akrherz/iem/blob/main/pylib/iemweb/request/gis/pireps.py#L33
 # Instructions here:

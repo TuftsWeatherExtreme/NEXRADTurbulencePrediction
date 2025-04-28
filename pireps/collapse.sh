@@ -1,5 +1,9 @@
 #!/bin/bash
-# Simple script to collapse all of the csv files into 1 large csv file
+# Authors: Team Celestial Blue
+# Last Modified: 4/28/25
+# Purpose: This script collapses all the cleaned pireps in clean_pirep_data
+#          into a single large output file clean_pirep_data/cleaned_pireps.csv
+# Run with `bash collapse.sh`
 
 DIRNAME=$(dirname "$0")
 CLEAN_PIREP_PATH="$DIRNAME/clean_pirep_data"

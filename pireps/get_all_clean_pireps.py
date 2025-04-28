@@ -1,5 +1,10 @@
-# Small script to run clean_pireps on all valid months and years to store
-# the cleaned pireps locally
+# get_all_clean_pireps.py
+# Authors: Team Celestial Blue
+# Last Modified: 4/28/25
+# Purpose: Small script to run clean_pireps on all valid months and years to
+#          store the cleaned pireps locally
+# Run with `python get_all_clean_pireps.py`
+
 
 import numpy as np
 import os
