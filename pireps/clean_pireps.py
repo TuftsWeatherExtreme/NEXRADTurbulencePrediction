@@ -100,7 +100,8 @@ eprint(f"Request was {len(r.content)/1024/1024:.2f} Mb")
 
 eprint("Attempting to create dataframe from csv file")
 
-pireps = pd.read_csv(StringIO(r.text), on_bad_lines='warn')
+# Skips any malformatted lines while reading the csv
+pireps = pd.read_csv(StringIO(r.text), on_bad_lines='skip')
 
 eprint("Successfully created dataframe from CSV file")
 
@@ -242,8 +243,6 @@ eprint(f"We dropped {len_before_drop_na_fl - len(only_turb_pireps_w_altitude)}/{
 plane_weight_dict = pd.read_csv(os.path.join(DIRNAME, "../plane_weights/plane_weight_dictionary.csv"))
 final_df = pd.merge(only_turb_pireps_w_altitude, plane_weight_dict, on = 'AIRCRAFT', how = 'left').drop(columns='Unnamed: 0')
 final_df = final_df.rename(columns={"Turbulence_Category": "Plane Weight"})
-
-eprint(final_df.columns)
 
 eprint(f"Writing {len(final_df)} pireps with altitude and turbulence to csv")
 # Output the cleaned pireps to either a csv output file or stdout
