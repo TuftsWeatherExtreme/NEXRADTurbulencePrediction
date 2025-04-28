@@ -62,21 +62,27 @@ We used Iowa State University's archive of Pilot Reports found
 to acquire all of the PIREPs we used in our project. The backend 
 documentation for this resource can be found 
 [here](https://mesonet.agron.iastate.edu/cgi-bin/request/gis/pireps.py?help). 
+A simple [pireps_playground.ipynb](pireps_playground.ipynb) script can be used
+to download a month's worth of data from this archive. One such csv can be found
+in [raw_pirep_data](raw_pirep_data/2025/01_raw_pireps.csv). This script
+displays some of how we manipulate the pirep data before using it.
+
+## clean_pireps.py
 We have a useful script called [clean_pireps.py](clean_pireps.py) that can 
 be run with the following contract:
 
 ```
 Usage: python clean_pireps.py -month MONTH -year YEAR [-o {FILE/STDOUT}]
 ```
-This script will download PIREPs from a particular month and year and can 
-output these pireps to a file called 
+This script will download PIREPs from a particular month and year, clean them,
+and will output these pireps to a file called 
 [clean_pirep_data/{YEAR}/{MONTH_NUM}_turb_pireps.csv](clean_pirep_data/2025/03_turb_pireps.csv)
  with `-o FILE` or to standard output with `-o STDOUT`. All pireps downloaded 
  from this script will contain turbulence data and latitude, longitude, and 
  altitude data that we can successfully parse. Additionally, we determine the 
  weight of each plane that reported the PIREP as either unknown (`U`), light 
  (`L`), medium (`M`), or heavy (`H`) and add this as a column 
- called `Plane Weight`.
+ called `Plane Weight`. 
 
 The script [get_all_clean_pireps.py](get_all_clean_pireps.py) runs the 
 [clean_pireps.py](clean_pireps.py) script to download the data for all
@@ -86,8 +92,11 @@ The script [get_all_clean_pireps.py](get_all_clean_pireps.py) runs the
  which runs both the [clean_pireps.py](clean_pireps.py) script and then 
  pipes the output directly to the 
  [get_radars_for_pirep.py](get_radars_for_pirep.py) 
- script to retrieve the closest radars.
+ script to retrieve the closest radars (More info on this script can be found
+ in the [radars README](/radars/README.md)).
 
-There is a simple bash script called (collapse.sh)[collapse.sh] that collapses the cleaned pirep data into
+There is a simple bash script called [collapse.sh](collapse.sh) that collapses 
+all the cleaned pirep data into a single file called
+[clean_pirep_data/cleaned_pireps.csv] (clean_pirep_data/cleaned_pireps.csv). It
+can be run with `bash collapse.sh`. 
 
-More info on this can be found in the (radars)[/radars] folder

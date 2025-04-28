@@ -1,0 +1,29 @@
+name: Clean Notebooks
+
+on:
+  pull_request:
+    branches: ["main"]
+  
+
+jobs:
+  clean_notebooks:
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: Checkout current branch
+       uses: actions/checkout@v4
+       with:
+         ref: ${{ github.head_ref }}
+         fetch-depth: 0
+     - name: Clear all .ipynb outputs
+       run: |
+        pip install jupyterlab
+        find "." -type f -name "*.ipynb" | 
+        while read filename; do
+          echo "Clearing output for file: $filename";
+          jupyter nbconvert --clear-output --inplace "$filename";
+        done;
+       shell: bash
+     - name: Commit all modified .ipynb files to branch
+       uses: stefanzweifel/git-auto-commit-action@v4
+    
