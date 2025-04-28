@@ -97,6 +97,6 @@ The script [get_all_clean_pireps.py](get_all_clean_pireps.py) runs the
 
 There is a simple bash script called [collapse.sh](collapse.sh) that collapses 
 all the cleaned pirep data into a single file called
-[clean_pirep_data/cleaned_pireps.csv] (clean_pirep_data/cleaned_pireps.csv). It
+[clean_pirep_data/cleaned_pireps.csv](clean_pirep_data/cleaned_pireps.csv). It
 can be run with `bash collapse.sh`. 
 
