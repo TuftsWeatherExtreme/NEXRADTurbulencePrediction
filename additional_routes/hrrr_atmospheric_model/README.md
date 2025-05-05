@@ -8,9 +8,14 @@ Every 15 minutes, the model assimilates radar data that adds detail to the When 
 As of writing, we’re currently on the 4th edition of the model. This version was released in December 2020. 
 <br><br>
 
+## Accessing HRRR Data
+After trying several other libraries, we had the most success in using the Herbie library to access HRRR data, but did not end up using the data in our final project.
+<br><br>
 This Notebook demonstrates the use of the [Herbie](https://herbie.readthedocs.io/en/stable/#) library in order to retrieve and obtain data from an HRRR model, which is a high-resolution weather model that provides forecasts for the continental United States. 
 <br><br>
-After trying several other libraries, we had the most success in using the Herbie library to access HRRR data, but did not end up using the data in our final project.
+
+## Usage:
+- ran `conda install -c conda-forge herbie-data`, then ran this notebook.
 
 
 ## What Data the Model Provides
