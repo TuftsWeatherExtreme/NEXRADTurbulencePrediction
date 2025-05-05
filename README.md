@@ -10,7 +10,7 @@ This directory includes two key files that work together to train and evaluate  
 
 ### Purpose
 
-This script is designed to submit a job to an HPC cluster using the SLURM workload manager.  
+This script is designed to submit a job to the HPC cluster using the SLURM workload manager.  
 It activates the necessary computing modules and environment using `load_modules.sh`, and runs `train_and_test_model.py` with three 
 arguments: 
 1. model_type: Type of model to train (linear or hybrid).
