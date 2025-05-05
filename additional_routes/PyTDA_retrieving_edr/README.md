@@ -19,6 +19,6 @@ We thus edited the library to handle this case gracefully by calculating EDR wit
     1. This may result in the error error "ModuleNotFoundError: No module named 'Cython'", which is resolved by running `pip install Cython` (installation can be verified via `pip show Cython`)
     2. Then `python -m pip install .` can be run again to install PyTDA
 
-## Example Usage
+### Example Usage
 After setting up the environment, and installing a modified version of the PyTDA installation, you can use the library to calculate EDR in a given radar sweeps.
 The example code in `calculate_edr.py` demonstrates how to use the PyTDA library to calculate EDR from radar data.
