@@ -8,7 +8,7 @@
 # It also saves the best model to a file.
 # Usage: This should be run using train_and_test_model.sh as:
 # python source train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]
-# Example: python source hpc_scripts/train_and_test_model.sh hybrid mse 42
+# Example: source train_and_test_model.sh hybrid mse 42
 
 import torch 
 import torch.nn as nn
