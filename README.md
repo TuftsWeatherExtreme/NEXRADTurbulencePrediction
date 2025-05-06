@@ -9,7 +9,7 @@ This directory includes our overarching python script for training and evaluatin
 ## Usage: 
 This should be run using `train_and_test_model.sh` as:
 `source train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]`
-- Example: `source train_and_test_model.sh hybrid mse 42`
+- Example: `sbatch hpc_scripts/model_training/train_and_test_model.sh hybrid mse 42`
 
 ## SLURM Job Script: train_and_test_model.sh (Bash)
 
