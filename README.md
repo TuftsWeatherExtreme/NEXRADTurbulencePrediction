@@ -8,8 +8,8 @@ This directory includes two key files that work together to train and evaluate m
 
 ## Usage: 
 This should be run using `train_and_test_model.sh` as:
-`python source train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]`
-- Example: `python source hpc_scripts/train_and_test_model.sh hybrid mse 42`
+`source train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]`
+- Example: `source hpc_scripts/train_and_test_model.sh hybrid mse 42`
 
 ## SLURM Job Script: train_and_test_model.sh (Bash)
 
