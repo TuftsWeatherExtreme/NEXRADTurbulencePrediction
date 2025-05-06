@@ -1,7 +1,7 @@
 
 # Training and Testing the Model
 
-This directory includes two key files that work together to train and evaluate  models on the HPC cluster
+This directory includes two key files that work together to train and evaluate models on the HPC cluster, which is a High Performance Computing Cluster. In our project, we used the [Tufts HPC cluster](https://it.tufts.edu/high-performance-computing).
 
 - `train_and_test_model.sh` (Bash script): Submits jobs to the cluster and allocates resources.
 - `train_and_test_model.py` (Python script): Trains, cross-validates, and tests models on the dataloader.
