@@ -5,7 +5,7 @@
 # Description: This script trains and evaluates a model using K-Fold cross-validation.
 # It supports both linear and hybrid models, and allows for different loss functions.
 # It also saves checkpoints during training and evaluates the best model on a test set.
-# It also saves the best model to a file.
+# It also saves the best model to trained_model_outputs/<timestamp>_best_<model_type>_mse_model_w_seed_<SEED>.pth
 # Usage: This should be run using train_and_test_model.sh as:
 # python source train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]
 # Example: source train_and_test_model.sh hybrid mse 42
