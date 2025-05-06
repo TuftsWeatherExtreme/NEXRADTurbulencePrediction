@@ -6,8 +6,8 @@
 # It supports both linear and hybrid models, and allows for different loss functions.
 # It also saves checkpoints during training and evaluates the best model on a test set.
 # It also saves the best model to a file.
-# Usage: This should be run using hpc_scripts/train_and_test_model.sh as:
-# python source hpc_scripts/train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]
+# Usage: This should be run using train_and_test_model.sh as:
+# python source train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]
 # Example: python source hpc_scripts/train_and_test_model.sh hybrid mse 42
 
 import torch 
