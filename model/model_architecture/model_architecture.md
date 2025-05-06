@@ -35,5 +35,10 @@ In our 3D convolutional layers, we use a `3×3×3` kernel. You can think of a ke
 
 Using a 3×3×3 kernel helps the model detect local patterns in the atmosphere—like clusters of high reflectivity or sudden changes. Increasing the kernel size could make the model notice more overaching patters, but risks losing specificity with respect to certain regions. Decreasing the kernel size may have the opposite effect, where small local trends are emphasized over wider turbulence trends.
 
+#### Hybrid Model vs. Hybrid Model 1-out
+There are two different files for our hybrid model. One is standard and uses a one-hot encoding for the response variable (turbulence). However, when computing MAE, one-hot encoding doesn't quite work. To remedy this, we created a new file called hybrid_model_1out.py that converts the response variable from a one-hot encoded variable to a numerical value between 0-9 so that MAE can be calculated. If one wants to use the hybrid model and measure its performance using MAE, then they should use the corresponding scripts that will run hybrid_model_1out.py.  
+
+It is important to keep in mind that the hybrid_model_1out architecture uses a regressor instead of a classifier, as we are converting the response variable to continouous in order to measure the error.
+
 #### Output
 The final output is a 10-class prediction corresponding to turbulence severity levels. This assumes a 0–9 scale for negative turbulence, the 7 turbulence classes and an extra allowance of two categories for plane weight scaling. This can be modified by changing the variable `NUM_CLASSES_TO_LEARN`.
