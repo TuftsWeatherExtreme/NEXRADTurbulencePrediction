@@ -6,6 +6,11 @@ This directory includes two key files that work together to train and evaluate m
 - `train_and_test_model.sh` (Bash script): Submits jobs to the cluster and allocates resources.
 - `train_and_test_model.py` (Python script): Trains, cross-validates, and tests models on the dataloader.
 
+## Usage: 
+This should be run using `train_and_test_model.sh` as:
+`python source train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]`
+- Example: `python source hpc_scripts/train_and_test_model.sh hybrid mse 42`
+
 ## SLURM Job Script: train_and_test_model.sh (Bash)
 
 ### Purpose
