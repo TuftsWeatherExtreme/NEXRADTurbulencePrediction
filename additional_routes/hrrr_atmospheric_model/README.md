@@ -3,11 +3,11 @@
 - `hrrr_model.ipynb`: Jupyter Notebook demonstrating the use of the Herbie library to retrieve and obtain data from an HRRR model.
 
 ## Background
-The HRRR model is an hourly updated weather model that uses [radar-reflectivity data, cloud analysis, and a variety of other weather observations to forecast various atmospheric conditions](https://journals.ametsoc.org/view/journals/wefo/37/8/WAF-D-21-0151.1.xml). The HRRR model specializes in predicting precipitation, and it also predicts thunderstorms and severe weather events. 
+The HRRR model is an hourly-updating weather model that uses [radar-reflectivity data, cloud analysis, and a variety of other weather observations to forecast various atmospheric conditions](https://journals.ametsoc.org/view/journals/wefo/37/8/WAF-D-21-0151.1.xml). The HRRR model specializes in predicting precipitation, including thunderstorms and severe weather events. 
 <br>
 Every 15 minutes, the model assimilates radar data that adds detail to the forecasts. When it came out in 2014, it had 4x higher resolution (3km grids, 1 hr refresh) than previously used models. The model makes predictions for >95 million grid points over the Continental United States (CONUS) and requires a lot of computing power. The grid points are not cartesian, but rather a lambert-conformal projection system (https://github.com/blaylockbk/Herbie/discussions/45#discussioncomment-2161984) 
 <br>
-As of writing, we’re currently on the 4th edition of the model. This version was released in December 2020. 
+As of writing, The HRRR model is on its fourth edition. This version was released in December 2020. 
 <br>
 
 ## Accessing HRRR Model Runs:
@@ -30,8 +30,7 @@ The model forecasts many different types of data, including reflectivity.
 There is a possibility of calculating EDR data from other model products however.
 
 ### Other Data (could be relevant to turbulence):
-ChatGPT says that from the list of variables we are able to get from the 
-data, the following are relevant to turbulence:
+The following fields from the data are relevant to turbulence:
 - UGRD: U-Component of Wind
 - VGRD: V-Component of Wind
 - VUCSH: Vertical U-Component Shear
