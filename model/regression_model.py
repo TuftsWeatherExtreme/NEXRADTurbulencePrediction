@@ -1,3 +1,7 @@
+# regression_model.py
+# Team Celestial Blue
+# Spring 2025
+
 import torch
 from torch import nn
 from torch.utils.data import Dataset, DataLoader
