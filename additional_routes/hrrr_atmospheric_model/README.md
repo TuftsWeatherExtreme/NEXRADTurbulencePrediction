@@ -58,3 +58,7 @@ xarray Dataset.
 
 ## Notes on Other Models:
 According to the paper "Feasibility Study on Using High Resolution Numerical Models to Forecast Severe Aircraft Turbulence Associated with Thunderstorms" by Donald W. McCann, high-resolution numerical models (examples given were ARW which is 4km and NMM which is 5km) do a better job of predicting pilot reports of turbulence then lower resolution models (RUC2 which is 13km). 
+
+## What Went Wrong:
+- We were unable to get EDR data from the HRRR model
+- We also did not have time / did not fully explore using the HRRR model's forecasted reflectivity values as model inputs
