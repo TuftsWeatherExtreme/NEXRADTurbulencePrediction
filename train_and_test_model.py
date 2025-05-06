@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 from regression_model import LinearClassifierModel
 from hybrid_model_1_out import HybridModel1Out
+from hybrid_model import HybridModel
 import torch.optim as optim
 from torch.utils.data import DataLoader
 import numpy as np
@@ -166,8 +167,10 @@ def main():
     global MODEL_CHECKPOINT_PATH
     MODEL_CHECKPOINT_PATH = os.path.join(output_dir, f"{sys.argv[1]}_{LOSS_TYPE}_{SEED}_model_checkpoint.pth")
 
-    if sys.argv[1] == "hybrid":
+    if sys.argv[1] == "hybrid" and (LOSS_TYPE == "mse"or LOSS_TYPE == "mae"):
         Model = HybridModel1Out
+    elif sys.argv[1] == "hybrid" and LOSS_TYPE == "nll":
+        Model = HybridModel
     
     # load in pickled dataset from file and instantiate DataLoader Object
     dataset = torch.load('dataloader_2008_2025.pth', weights_only=False) # load in saved dataset
