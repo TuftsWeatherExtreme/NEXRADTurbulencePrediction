@@ -18,9 +18,9 @@ This diretcory contains all the work we did exploring methods and datasets that 
 This directory contains executable files which run the models and scripts we wrote. The executables here are meant to be run on high-performance compute nodes.
 
 ## Contacts
-For any questions, you can reach out to the following people:
-Leo Kaluzhny - leo.kaluzhny@gmail.com 
-Sam Hecht - shechtor18@gmail.com 
-Julia Zelevinsky - julia.zelevinsky@gmail.com
-Richard Diamond - richarddiamond.3@gmail.com 
-Charlotte Versavel - charlotteversavel21@gmail.com
+For any questions, you can reach out to the following people:  
+Leo Kaluzhny - leo.kaluzhny@gmail.com  
+Sam Hecht - shechtor18@gmail.com  
+Julia Zelevinsky - julia.zelevinsky@gmail.com  
+Richard Diamond - richarddiamond.3@gmail.com   
+Charlotte Versavel - charlotteversavel21@gmail.com  
