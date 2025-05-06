@@ -1,3 +1,13 @@
+# Team Celestial Blue
+# Last Mododified: 05/06/2025
+# Description: This script trains and evaluates a model using K-Fold cross-validation.
+# It supports both linear and hybrid models, and allows for different loss functions.
+# It also saves checkpoints during training and evaluates the best model on a test set.
+# It also saves the best model to a file.
+# Usage: This should be run using hpc_scripts/train_and_test_model.sh as:
+# python source hpc_scripts/train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]
+# Example: python source hpc_scripts/train_and_test_model.sh hybrid mse 42
+
 import torch 
 import torch.nn as nn
 from regression_model import LinearClassifierModel
