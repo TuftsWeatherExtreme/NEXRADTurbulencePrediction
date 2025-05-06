@@ -12,7 +12,7 @@ The model directory contains our models, including a hybrid model that is, as of
 The data preprocessing directory contains all the files we used to put together our datasets. This includes all the work we did to scrape PIREPs (our repsonse variable), NEXRAD data (our input data) and plane weights (used for scaling our response variable)
 
 ### Additional Routes
-This diretcory contains all the work we did exploring methods and datasets that didn't make it into our model for various reasons. since incoorporating the data in this folder into the model may significantly improve performance, all the reasons we were unable to use the data are documented, with the idea that if they were solved, new helpful data would be unlocked. 
+This directory contains all the work we did exploring methods and datasets that didn't make it into our model for various reasons. since incoorporating the data in this folder into the model may significantly improve performance, all the reasons we were unable to use the data are documented, with the idea that if they were solved, new helpful data would be unlocked. 
 
 ### HPC Scripts
 This directory contains executable files which run the models and scripts we wrote. The executables here are meant to be run on high-performance compute nodes.
