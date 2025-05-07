@@ -42,16 +42,16 @@ All of the compressed inputs we trained our model on can be found
 *Note: It's possible not all of the data in this folder was from radar scans that occurred prior to the PIREP's report. This was fixed later but not all data was recomputed*
 
 ### Additional Routes
-This directory contains all the work we did exploring methods and datasets 
+The [Additional Routes](/additional_routes/) directory contains all the work we did exploring methods and datasets 
 that didn't make it into our model for various reasons. Since incorporating 
 the data in this folder into the model may significantly improve performance, 
 all the reasons we were unable to use the data are documented, with the idea 
 that if they were solved, new helpful data could be utilized.
 
 ### HPC Scripts
-This directory contains executable files which run the models and scripts we 
-wrote. The executables here are meant to be run on high-performance compute 
-nodes. They all use SLURM and can be run with `sbatch`.
+The [HPC Scripts](/hpc_scripts) directory contains executable files which run
+the models and scripts we wrote. The executables here are meant to be run on
+high-performance compute nodes. They all use SLURM and can be run with `sbatch`.
 
 ## Contacts
 For any questions, you can reach out to the following people:  
