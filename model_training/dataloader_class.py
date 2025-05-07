@@ -1,6 +1,10 @@
 # dataloader_class.py
-# Team Celestial Blue
+# Authors: Team Celestial Blue
 # Spring 2025
+# Overview: Defines a dataloader class to store all model inputs with fast access time
+# Usage: python create_datasets.py <dataloder_name> [existing_dataloader]
+#       dataloader_name: Desired name for dataloader to generate
+#       existing_dataloader: Optionally can include dataloader to add to
 
 import torch 
 import glob
@@ -10,7 +14,6 @@ import os
 import xarray as xr
 import numpy as np
 import shutil
-import time
 
 
 def decompress_tar_xz(filepath, extract_path):
@@ -33,16 +36,20 @@ def decompress_tar_xz(filepath, extract_path):
         print(f"An unexpected error occurred: {e}")
 
 
-class RadarDataLoader(Dataset):  # TODO: could be RadarDataSet?
+class RadarDataLoader(Dataset):
   
   def __init__(self, dir_path, old_data=None): 
     """
-    __init__() loads all the net cdf file
-    for right now, just one month's worth
-    Note that net cdf files must be generated using the script grid_to_netcdf.py
+    __init__() loads all the netcdf files from compressed model inputs
+    Note that net cdf files must be generated using radar_data_to_model_input
+    and be compressed using tar xz compression. 
+
+    There is optionally the choice to add to an existing dataloader (using old_data)
+    or can start fresh if None is specified.
     """
     print("Calling init")
     self.data = [] 
+
     # If we are given old_data, start by loading this
     if (old_data is not None):
         self.data = [radar_data for radar_data in old_data]
@@ -58,11 +65,11 @@ class RadarDataLoader(Dataset):  # TODO: could be RadarDataSet?
         print("Finished decompressing! Time to add to dataloader")
         for filename in os.listdir(specific_dirname):
             filepath = os.path.join(specific_dirname, filename)
-            # print("About to read filepath: " + filepath)
             if os.path.isfile(filepath):  # Ensure it's a file
                 nc_file = xr.open_dataset(filepath)
                 attrs_arr = np.array(list(nc_file.attrs.values()))
-                #get attributes (lat,long,) from netcdf file and cast them to floats
+
+                # get attributes (lat,long,) from netcdf file and cast them to floats
                 # does not keep last element because that is TURB, which is being used as label
                 features = attrs_arr[:-1].astype(float)
 
@@ -72,34 +79,36 @@ class RadarDataLoader(Dataset):  # TODO: could be RadarDataSet?
                 #concatenate attributes array with flatted grid-like data
                 features = np.concatenate((features, flattened_data))
                 
-                # Single Category Encoding:
+                # Single Category Encoding for pilot reported turbulence level
                 label = int(attrs_arr[-1])
 
                 features = torch.tensor(features, dtype=torch.float32) 
+                
+                # To account for all the cells with undetectable reflectivity, we set a reflectivity value out of range (-32 dBz)
                 features = torch.nan_to_num(features, nan=-32.0)
                 
                 self.data.append((features, label))
 
                 count += 1
-                if count % 10000 == 0:
+                if count % 1000 == 0:
                     print(f'Finished {count} total files')
-                    print(f'Read file: {filename}')
+        
         print("Removing subcontents of directory: " + specific_dirname)
+
         shutil.rmtree(specific_dirname, ignore_errors=True)
 
   def __len__(self): 
     """
     __len__() returns the number of rows in the dataset.
     """
-    # Return the total number of samples in the dataset 
-    # This is the number of PIREPS that we have
+
+    # This represents the number of model inputs in all of the compressed files
     return len(self.data) 
 
   def __getitem__(self, idx): 
     """
-    __getitem__ accepts an index (idx), and retrieves the features and labels 
-    from the data of all netcdf files, and converts them into tensors.
-    TODO: do we want to do some caching / saving of already loaded in items?
+    __getitem__ accepts an index (idx) and retrieves the corresponding features
+    and label for that input
     """
 
     return self.data[idx]
