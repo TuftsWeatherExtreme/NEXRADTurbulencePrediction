@@ -37,6 +37,8 @@ import sys
 NUM_EPOCHS = 5 
 BATCH_SIZE = 2000
 NUM_FOLDS = 6
+# TODO: Set DATALOADER_PATH to dataloader we want to use for training
+DATALOADER_PATH = "dataloader.pth"
 
 terminate_training = False
 loss_is_nll = False
@@ -193,7 +195,7 @@ def main():
         Model = HybridModel
     
     # load in pickled dataset from file and instantiate DataLoader Object
-    dataset = torch.load('dataloader_2008_2025.pth', weights_only=False) # load in saved dataset
+    dataset = torch.load(DATALOADER_PATH, weights_only=False) # load in saved dataset
 
 
     # Split dataset 
