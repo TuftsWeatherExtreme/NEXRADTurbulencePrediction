@@ -1,8 +1,9 @@
 #!/bin/bash -l
 
 # template.sh
-# Team Celestial Blue
+# Authors: Team Celestial Blue
 # Spring 2025
+# Overview: Provide insight and an overarching framework for creating sbatch scripts
 
 #SBATCH -J job_name                 # Job name
 #SBATCH --time=02-00:00:00          # Requested time (dd-hh:mm:ss)

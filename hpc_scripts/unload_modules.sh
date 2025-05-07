@@ -1,8 +1,11 @@
 #!/bin/bash
 
 # unload_modules.sh
-# Team Celestial Blue
+# Authors: Team Celestial Blue
 # Spring 2025
+# Overview: Purge all modules and deactive specified environment.
+# Run as `source unload_modules.sh`
+
 
 echo "Deactivating conda environment (if any)"
 conda deactivate >& /dev/null

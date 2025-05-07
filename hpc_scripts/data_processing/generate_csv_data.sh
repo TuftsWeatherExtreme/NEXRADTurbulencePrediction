@@ -1,8 +1,13 @@
 #!/bin/bash -l
 
 # generate_csv_data.sh
-# Team Celestial Blue
+# Authors: Team Celestial Blue
 # Spring 2025
+# Overview: Generate all pirep and corresponding NEXRAD csv data to be used to 
+# generate model inputs
+# Note: YEARS and MONTHS can be changed to generate for all combinations specified. 
+# The job array size should be adjusted accordingly.
+
 
 #SBATCH -J csv_gen
 #SBATCH --time=03-00:00:00

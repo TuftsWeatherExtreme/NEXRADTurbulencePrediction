@@ -1,8 +1,9 @@
 #!/bin/bash -l
 
 # train_and_test_model.sh
-# Team Celestial Blue
+# Authors: Team Celestial Blue
 # Spring 2025
+# Overview: Run train_and_test_model on using GPU resources
 
 #SBATCH -J train_and_test_model
 #SBATCH --time=02-00:00:00

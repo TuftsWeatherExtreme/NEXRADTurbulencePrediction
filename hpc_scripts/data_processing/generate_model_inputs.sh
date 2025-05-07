@@ -1,8 +1,9 @@
 #!/bin/bash -l
 
-# generate_model_inputs
-# Team Celestial Blue
+# generate_model_inputs.sh
+# Authors: Team Celestial Blue
 # Spring 2025
+# Overview: Generate all compressed model inputs by gridding radar data from split csv data sets. 
 
 #SBATCH -J generate_model_inputs       
 #SBATCH --time=02-00:00:00   
@@ -27,7 +28,7 @@ echo "Making directory $OUTPUT_DIR/$idx"
 mkdir -p $OUTPUT_DIR/$idx
 
 echo "Running radar_data_to_model_input on $REPO_PATH/radars/split_radar_data/part_"$idx".csv"
-python3 $REPO_PATH/radars/radar_data_to_model_input.py $REPO_PATH/radars/split_radar_data/part_"$idx".csv $idx
+python3 $REPO_PATH/radars/radar_data_to_model_input.py $REPO_PATH/radars/split_radar_data/part_"$idx".csv $OUTPUT_DIR/$idx
 
 echo "Finished running radar_data_to_model_input.py on part! Compressing output directory into $OUTPUT_DIR/compressed/$idx.tar.xz"
 tar -cvJf $OUTPUT_DIR/compressed/$idx.tar.xz -C "$OUTPUT_DIR" "$idx"

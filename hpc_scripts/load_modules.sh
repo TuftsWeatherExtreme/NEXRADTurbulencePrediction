@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # load_modules.sh
-# Team Celestial Blue
+# Authors: Team Celestial Blue
 # Spring 2025
+# Overview: Load all modules and active specified environment.
+# Important: Must be run as `source load_modules.sh`
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     echo "Error: Please run this script as: source ${0}"
