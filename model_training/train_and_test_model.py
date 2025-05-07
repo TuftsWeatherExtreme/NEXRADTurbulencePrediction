@@ -43,18 +43,39 @@ DATALOADER_PATH = "dataloader.pth"
 terminate_training = False
 loss_is_nll = False
 
+def usage():
+    print("Usage: python train_and_test_model.py [linear|hybrid] [LOSS_TYPE] [SEED]")
+    print("linear: Train a linear classifier")
+    print("hybrid: Train a hybrid classifier")
+    print("LOSS_TYPE: loss function to use (e.g., mse, mae, nll)")
+    print("SEED: seed for splitting dataset and saving model checkpoint")
+    exit(1)
+
+if len(sys.argv) != 4 or (sys.argv[1] != "linear" and sys.argv[1] != "hybrid"):
+    usage()
+try:
+    LOSS_TYPE = sys.argv[2]
+    SEED = int(sys.argv[3])
+except:
+    usage()
+    raise f"Could not cast {sys.argv[3]} to an int"
+
+
 
 # output to timestamped file
-output_dir = "trained_model_outputs"
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+DIRNAME = os.path.dirname(sys.argv[0])
+OUTPUT_DIR = os.path.join(DIRNAME, "trained_model_outputs")
+if not os.path.exists(OUTPUT_DIR):
+    os.makedirs(OUTPUT_DIR)
 
-MODEL_CHECKPOINT_PATH = ""
 curr_time = time.time()
 formatted_curr_date = datetime.datetime.fromtimestamp(curr_time).isoformat()
 
-output_file_path = os.path.join(output_dir, formatted_curr_date + "results.txt")
-output_file = open(output_file_path, "a")
+MODEL_CHECKPOINT_PATH = os.path.join(OUTPUT_DIR, f"{sys.argv[1]}_{LOSS_TYPE}_{SEED}_model_checkpoint.pth")
+OUTPUT_FILENAME = os.path.join(OUTPUT_DIR, formatted_curr_date + f"_best_{sys.argv[1]}_{LOSS_TYPE}_model_w_seed_{SEED}")
+RESULTS_FILEPATH = OUTPUT_FILENAME + "_results.txt"
+RESULTS_FILE = open(RESULTS_FILEPATH, "a")
+MODEL_FILEPATH = OUTPUT_FILENAME + ".pth"
 
 device = torch.device("cpu")
 if torch.cuda.is_available(): 
@@ -127,7 +148,7 @@ def train_model(model, epoch, train_loader, optimizer, loss_fn, verbose=False):
 
         if verbose and batch_num % 100 == 100 - 1:    # print every 100 mini-batches
             output_str = f'[Epoch: {epoch}, Batch_num: {batch_num + 1:5d}] avg training loss per batch: {running_train_loss / 100:.3f}'
-            output_file.write(output_str)
+            RESULTS_FILE.write(output_str)
             print(output_str)
             print(f"On batch: {batch_num + 1}, train_loss: {loss.item()}, running train loss: {running_train_loss}")
             running_train_loss = 0.0
@@ -166,29 +187,13 @@ def train_and_eval_epoch(model, epoch, train_loader, val_loader, optimizer, loss
 
     return avg_valid_loss_epoch
 
-def usage():
-    print("Usage: python train_and_test_model.py [linear|hybrid] [LOSS_TYPE] [SEED]")
-    print("linear: Train a linear classifier")
-    print("hybrid: Train a hybrid classifier")
-    print("LOSS_TYPE: loss function to use (e.g., mse, mae, nll)")
-    print("SEED: seed for splitting dataset and saving model checkpoint")
-    exit(1)
+
 
 
 def main():
-    if len(sys.argv) != 4 or (sys.argv[1] != "linear" and sys.argv[1] != "hybrid"):
-        usage()
-    try:
-        LOSS_TYPE = sys.argv[2]
-        SEED = int(sys.argv[3])
-    except:
-        usage()
-        raise f"Could not cast {sys.argv[3]} to an int"
 
     Model = LinearClassifierModel
-    global MODEL_CHECKPOINT_PATH
-    MODEL_CHECKPOINT_PATH = os.path.join(output_dir, f"{sys.argv[1]}_{LOSS_TYPE}_{SEED}_model_checkpoint.pth")
-
+    
     if sys.argv[1] == "hybrid" and (LOSS_TYPE == "mse"or LOSS_TYPE == "mae"):
         Model = HybridModel1Out
     elif sys.argv[1] == "hybrid" and LOSS_TYPE == "nll":
@@ -367,10 +372,10 @@ def main():
     print(f"The false negative rate is: {num_false_negative}/{len(test_dataset)}, or {num_false_negative/len(test_dataset) * 100}%")
 
     # Save the best model
-    torch.save(best_model.state_dict(), os.path.join(output_dir, formatted_curr_date + f"_best_{sys.argv[1]}_mse_model_w_seed_{SEED}.pth"))
+    torch.save(best_model.state_dict(), MODEL_FILEPATH)
     # Remove the checkpoint file
     os.remove(MODEL_CHECKPOINT_PATH)
+    RESULTS_FILE.close()
 
 if __name__ == "__main__":
     main()
-    output_file.close()
