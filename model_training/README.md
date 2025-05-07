@@ -25,16 +25,15 @@ adding to existing dataloder or starting from scratch and saves the dataloader t
 **Description**: Custom RadarDataLoader class to store all model inputs built off a PyTorch dataset.
 
 **Usage**: `from dataloader_class import RadarDataLoader`
-- Provides access to the RadarDataLoader class
+- Provides access to the RadarDataLoader class for use.
 
 **Dependencies**:
 - [Dataloader Class](dataloader_class.py)
 
 **Notes**:
-- We designed this class to optimize for a slower initialization but faster 'get_item` time. This meant
-we did the proecssing into features and label during initialization to be able to get fast indexing.
+- We designed this class to optimize for a slower initialization but faster 'get_item` time. This meant we did the proecssing into features and label during initialization to be able to get fast indexing.
 - Note that in order to maintain the benefits of compression, we ensure that only one compressed file is decompressed at a time.
-- There are currently prints to standard output to give progress updates (specifically in the init). After every 1000 inputs added to the dataloader, the total count of items added is reported.
+- There are currently prints to standard output to give progress updates (specifically in the `init` function). After every 1000 inputs added to the dataloader, the total count of items added is reported.
 
 
 ## Training and Testing the Model - [train_and_test_model.py](train_and_test_model.py)
