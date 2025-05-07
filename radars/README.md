@@ -159,7 +159,9 @@ object. Then, it will call the `create_grid` function exported from
 the pilot report we're computing on.
 
 After calling `create_grid`, we will output the reflectivity data to a NetCDF
-file. Some of these files can be found in [model_inputs](model_inputs).
+file. Some of these files can be found in [model_inputs](model_inputs). If
+no reflectivity data is found around a particular pilot report, this script
+does not output a NetCDF file.
 
 ### [create_grid.py](create_grid.py)
 This function is based on the PyART function 

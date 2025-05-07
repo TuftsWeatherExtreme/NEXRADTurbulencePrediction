@@ -3,7 +3,7 @@
 # train_and_test_model.sh
 # Authors: Team Celestial Blue
 # Spring 2025
-# Overview: Run train_and_test_model on using GPU resources
+# Overview: Run train_and_test_model on HPC using GPU resources
 
 #SBATCH -J train_and_test_model
 #SBATCH --time=02-00:00:00
