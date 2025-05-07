@@ -29,7 +29,7 @@ Notes:
 - [Data Processing](./data_processing/README.md) and [Model Training](./model_training/README.md) each contain descriptions for each script and their dependencies. 
 
 ### [template.sh](template.sh)
-Provides a template with annotated notes about the sbatch options that we have set up. This script shows the overall structure for running a script. This template includes options for running with a job array if desired.
+Provides a template with annotated notes about the sbatch options that we have set up. This script shows the overall structure for submitting a script to the HPC. This template includes options for running with a job array if desired.
 
 Additional useful options:
 - If you would like to instantiate an array of jobs, the `--array` option can be used.
@@ -51,7 +51,7 @@ Usage: `sbatch template.sh`, or more generally: `sbatch [script].sh`
 
 ## Setup
 
-To create an environment that matches ours, you can setup a conda environment listed in [env_req](#env_req). 
+To create an environment that matches ours, you can setup the conda environment listed in [env_req](#env_req). 
 
 The following environment variables need to be set up for all scripts to work: 
 
