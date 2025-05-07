@@ -55,8 +55,8 @@ high-performance compute nodes. They all use SLURM and can be run with `sbatch`.
 
 ## Contacts
 For any questions, you can reach out to the creators of this project:  
-* Leo Kaluzhny - [leo.kaluzhny@gmail.com](mailto:leo.kaluzhny@gmail.com)
-* Sam Hecht - [shechtor18@gmail.com](mailto:shechtor18@gmail.com)
-* Julia Zelevinsky - [julia.zelevinsky@gmail.com](mailto:julia.zelevinsky@gmail.com)
-* Richard Diamond - [richarddiamond.3@gmail.com](mailto:richarddiamond.3@gmail.com)
-* Charlotte Versavel - [charlotteversavel21@gmail.com](mailto:charlotteversavel21@gmail.com)
+* Leo Kaluzhny (CS '25) - [leo.kaluzhny@gmail.com](mailto:leo.kaluzhny@gmail.com)
+* Sam Hecht (CS '25) - [shechtor18@gmail.com](mailto:shechtor18@gmail.com)
+* Julia Zelevinsky (CS '25) - [julia.zelevinsky@gmail.com](mailto:julia.zelevinsky@gmail.com)
+* Richard Diamond (DS '25) - [richarddiamond.3@gmail.com](mailto:richarddiamond.3@gmail.com)
+* Charlotte Versavel (CS '25) - [charlotteversavel21@gmail.com](mailto:charlotteversavel21@gmail.com)
