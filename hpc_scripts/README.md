@@ -1,19 +1,18 @@
 # HPC Scripts
 
 ## Overview
-To conduct data processing and model training, we utilized the Tufts High Performance Computing Cluster for parallel computing and access to powerful computing resources. This was essential for saving time and handle the large amounts of data.
+To conduct data processing and model training, we utilized the Tufts High Performance Computing Cluster for parallel computing and access to powerful computing resources. This was essential for saving time while handling the large amounts of data processing needed. This also allowed us to utilize GPUs when training/testing our model. We created SLURM sbatch scripts provided in this directory to achieve these goals.
 
 Dave Lillethun, advisor of the Tufts Senior Capstone for 2024-2025, requested access for our team, and we ultimately had a quota of 150 GB allocated for our project. 
 
-We used SLURM sbatch scripts that are provided in this directory.
+Overarchingly, any sbatch script can be generally run as:
+**Usage:** `sbatch [script].sh [any command line args]`
+This provides consistent specification on what nodes to request, time and memory requirements, where to save output, and more and also a script for what to run once the node has been allocated. 
 
-Any sbatch script can be generally run as:
-Usage: `sbatch [script].sh [any command line args]`
-
-To request a node individually and get command line access:
-Usage (non-GPU): `srun -p batch -n 1 --mem=32g -t 1-0 --pty bash`
-Usage (with GPU): `srun -p preempt -n 8 --mem=32g -t 1-0 --gres=gpu:l40:1 --pty bash`
-Any of those parameters can be changed depending on what is desired. Those options are documented [here](https://rtguides.it.tufts.edu/hpc/slurm/interactive.html).
+While our ultimate scripts were formatted as batch scripts, to request a node individually and get command line access:
+- Usage (non-GPU): `srun -p batch -n 1 --mem=32g -t 1-0 --pty bash`
+- Usage (with GPU): `srun -p preempt -n 8 --mem=32g -t 1-0 --gres=gpu:l40:1 --pty bash`
+_Any of those parameters can be changed depending on what is desired. Those options are documented [here](https://rtguides.it.tufts.edu/hpc/slurm/interactive.html)._ 
 
 ## Contents
 
