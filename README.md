@@ -1,6 +1,6 @@
 # NEXRADTurbulencePrediction
 
-![Project Poster](poster.pdf)
+![Project Poster](poster.png)
 
 ## Overview
 This repository hosts code and documentation originally created in the 2024-25 academic year by a team of Tufts Students, as part of a capstone project sponsored by WeatherExtreme Ltd. The aim of the project is to build a model that predicts clear-air turbulence (CAT) and displays that information on a website with a clean user interface.
