@@ -118,9 +118,11 @@ reflectivity above this cutoff in the given VO6 file.
 #### Usage
 ```
 python reflect_over_cutoff.py <input_file> <cutoff>
-# for example:
-python reflect_over_cutoff.py raw_radar_data/KJGX20240131_235419_V06 20
 ```
+As an example, if we wanted to find all of the reflectivity values above **20**dBZ
+in the radar file `raw_radar_data/KJGX20240131_235419_V06`, we would run
+`python reflect_over_cutoff.py raw_radar_data/KJGX20240131_235419_V06 20`
+
 
 ## Gridding the data - [radar_data_to_model_input.py](radar_data_to_model_input.py)
 The next step in our data pipeline involves gridding our NEXRAD data around
