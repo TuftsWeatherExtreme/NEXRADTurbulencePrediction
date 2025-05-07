@@ -2,13 +2,21 @@
 # Team Celestial Blue
 # Spring 2025
 # Last Mododified: 05/06/2025
-# Description: This script trains and evaluates a model using K-Fold cross-validation.
-# It supports both linear and hybrid models, and allows for different loss functions.
-# It also saves checkpoints during training and evaluates the best model on a test set.
-# It also saves the best model to trained_model_outputs/<timestamp>_best_<model_type>_mse_model_w_seed_<SEED>.pth
-# Usage: This should be run using train_and_test_model.sh as:
-# python source train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]
-# Example: source train_and_test_model.sh hybrid mse 42
+# Description: This script trains and evaluates a model using K-Fold 
+#   cross-validation.
+#   Features: 
+#    - Supports both linear and hybrid models, and allows for different 
+#   loss functions.
+#    - Saves checkpoints during training to allow for seamless resumption
+#       if interrupted while training
+#    - Determines the best model and evaluates it on a held-out test set
+#    - Saves the best model to 
+#       trained_model_outputs/{timestamp}_best_{model_type}_mse_model_w_seed_{SEED}.pth
+# 
+# Usage: We recommend running this script with train_and_test_model.sh on the HPC as follows:
+#   sbatch train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]
+# Example: sbatch train_and_test_model.sh hybrid mse 42
+
 
 import torch 
 import torch.nn as nn
@@ -355,12 +363,6 @@ def main():
     print(f"Accuracy is: {num_correct}/{len(test_dataset)}, or {num_correct/len(test_dataset) * 100}%")
     print(f"The false positive rate is: {num_false_positive}/{len(test_dataset)}, or {num_false_positive/len(test_dataset) * 100}%")
     print(f"The false negative rate is: {num_false_negative}/{len(test_dataset)}, or {num_false_negative/len(test_dataset) * 100}%")
-
-
-    # print(f"Best model loss on validation: {min(l2_loss_list)}\n")
-    # print(f"len(test_dataloader) is {len(test_dataloader)}")
-    # avg_test_loss = running_test_loss / len(test_dataloader)
-    # print(f"Best model loss on test: {avg_test_loss:.4f}\n")
 
     # Save the best model
     torch.save(best_model.state_dict(), os.path.join(output_dir, formatted_curr_date + f"_best_{sys.argv[1]}_mse_model_w_seed_{SEED}.pth"))
