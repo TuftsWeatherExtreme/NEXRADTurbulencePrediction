@@ -19,7 +19,7 @@
 cd $REPO_PATH
 source $REPO_PATH/hpc_scripts/load_modules.sh
 
-OUTPUT_DIR=$REPO_PATH/model_inputs"
+OUTPUT_DIR=$REPO_PATH/model_inputs
 
 idx=$(printf "%03d" ${SLURM_ARRAY_TASK_ID})
 echo "Operating on $idx"

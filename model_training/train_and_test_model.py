@@ -15,9 +15,18 @@
 
 import torch 
 import torch.nn as nn
-from regression_model import LinearClassifierModel
-from hybrid_model_1_out import HybridModel1Out
-from hybrid_model import HybridModel
+import os
+import sys
+
+# output to timestamped file
+DIRNAME = os.path.dirname(sys.argv[0])
+
+# Append to sys path to import scale_turbulence from plane_weights
+sys.path.append(os.path.join(DIRNAME, "..",))
+
+from model_architecture.regression_model import LinearClassifierModel
+from model_architecture.hybrid_model_1_out import HybridModel1Out
+from model_architecture.hybrid_model import HybridModel
 import torch.optim as optim
 from torch.utils.data import DataLoader
 import numpy as np
@@ -25,9 +34,7 @@ import time, datetime
 from dataloader_class import RadarDataLoader
 from sklearn.model_selection import KFold
 from torch.utils.data import Subset
-import os
 import torch.nn.functional as F
-import sys
 
 NUM_EPOCHS = 5 
 BATCH_SIZE = 2000
@@ -56,8 +63,7 @@ except:
     raise f"Could not cast {sys.argv[3]} to an int"
 
 
-# output to timestamped file
-DIRNAME = os.path.dirname(sys.argv[0])
+
 OUTPUT_DIR = os.path.join(DIRNAME, "trained_model_outputs")
 if not os.path.exists(OUTPUT_DIR):
     os.makedirs(OUTPUT_DIR)
