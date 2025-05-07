@@ -35,8 +35,8 @@ def get_file_time(filename, date):
     "YEAR/MONTH/DAY/SITE_CODE/{SITE_CODE}{YEAR}{MONTH}{DAY}_{HHMMSS}_VO6"
     "2024/12/05/KAKQ/KAKQ20241205_001256_V06"
     # Split to get just the {HHMMSS} part of the string and put these values in a datetime
-    filetime = filename['Key'].split("_")[1]
-    if (len(filename) > 30 or filetime == "NEXRAD"):
+    filetime = filename.split("_")[1]
+    if (".tar" in filename or "MDM" in filename or filetime == "NEXRAD"):
         return None
     hour = int(filetime[:2])
     minute = int(filetime[2:4])
@@ -85,16 +85,17 @@ def get_closest_sites(pireps_df):
     return pireps_df
 
 
-def get_nexrad_basename(file):
+def get_nexrad_basename(filename):
     """
     Purpose: Given a file object as returned from a call to s3.list_objects_v2,
         this returns the base name of the nexrad file
     Arguments:
-        file - A file object returned from a call to s3.list_objects_v2
+        filename - A filename from an object returned from a call to 
+            s3.list_objects_v2
     Returns:
         A string representing the basename of the file object
     """
-    filename = file["Key"].rsplit("/", 1)[-1]
+    filename = filename.rsplit("/", 1)[-1]
     # Remove _MDM from the end of the file if it exists
     if "_MDM" in filename:
         filename = filename[:filename.index("_MDM")]
@@ -123,10 +124,9 @@ async def s3_list_nexrad_files(date: datetime, site: str, session) -> tuple:
         filetimes = []
         if len(files) != 0:
             # Generate a list of (datetimes, nexrad filename) for all listed objects with valid file times
-            filetimes = [(dt, get_nexrad_basename(file)) for file in files if (dt := get_file_time(file, date)) is not None]
+            filetimes = [(dt, get_nexrad_basename(file['Key'])) for file in files if (dt := get_file_time(file['Key'], date)) is not None]
         
         return ((date, site), filetimes)
-        # return ((date, site), [(get_file_time(file, date), file["Key"].rsplit("/", 1)[-1]) for file in files if (dt := get_file_time(file, date))]) if files else ((date, site), [])
 
 
 async def batch_list_nexrad_times(unique_requests: set) -> dict:
@@ -318,7 +318,7 @@ async def main():
 
     # Takes around 5 minutes to process
     eprint("Getting times for all nexrad files. This may take up to 5 minutes")
-    eprint(f"About to perform {len(nexrad_times_dict)} requests to S3 bucket...")
+    eprint(f"About to perform {len(unique_requests)} requests to S3 bucket...")
     nexrad_times_dict = await batch_list_nexrad_times(unique_requests)
     eprint("Processing complete")
 
@@ -333,6 +333,7 @@ async def main():
     pireps_df.to_csv(output, index=False)
     eprint("Done!")
 
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
-loop.run_until_complete(main())
+if __name__ == "__main__":
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(main())

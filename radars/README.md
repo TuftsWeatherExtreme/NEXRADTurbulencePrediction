@@ -16,7 +16,7 @@ Where `YEAR`, `MONTH`, and `DAY` are numerical, e.g., `YEAR = 2025`,
 of the 159 NEXRAD site codes. These are all 4 capital letters that begin with
 'K'. For example, `KBUF` is the site code of the radar for Buffalo, New York.
 
-## Processing the Data w/ [get_radars_for_pirep.py](get_radars_for_pirep.py)
+## Processing the Data - [get_radars_for_pirep.py](get_radars_for_pirep.py)
 We wrote a helpful script called 
 [get_radars_for_pirep.py](get_radars_for_pirep.py) which accepts a csv of pilot
 reports (produced from [clean_pireps.py](/pireps/clean_pireps.py)) and 
@@ -34,6 +34,11 @@ filename (the `HHMMSS` portion) to determine the most recent radar scan for
 each pilot report, for each of the 5 spatially closest radars. Once we determine
 which file represents the most recent radar scan, we store the file path to the
 file in the s3 bucket in our csv.
+
+### Prerequisites
+This script needs to be able to perform AWS queries, and thus the user running
+this script must have set up AWS access keys. If not, an error will occur
+on the call to `list_objects_v2` during execution.
 
 ### Usage
 Run with
@@ -95,9 +100,9 @@ That is, 23:54:19 on January 31st for the KJGX station.
 We use [PyART](https://arm-doe.github.io/pyart/index.html) to read NEXRAD data. 
 To install PyART, you can run `pip install arm_pyart` 
 (NOT `pip install pyart`!). PyART has a ton of useful functions and classes
-for manipulating, accessing, and visualizing the radar data. One of these
+for manipulating, accessing, and visualizing the radar data. Some of these
 downloaded radar files can be found in 
-[raw_radar_data](raw_radar_data/KJGX20240131_235419_V06).
+[raw_radar_data](raw_radar_data).
 
 ### [reflect_over_cutoff.py](reflect_over_cutoff.py)
 To get our bearings with the `Radar` object provided by PyART, we wrote
@@ -111,7 +116,7 @@ reflectivity above this cutoff in the given VO6 file.
 python reflect_over_cutoff.py raw_radar_data/KJGX20240131_235419_V06 20
 ```
 
-## Gridding the data [create_grid.py](create_grid.py)
+## Gridding the data - [radar_data_to_model_input.py](radar_data_to_model_input.py)
 The next step in our data pipeline involves gridding our NEXRAD data around
 a particular pilot report. After running 
 [clean_pireps.py](../pireps/clean_pireps.py) and sending the output to
@@ -119,3 +124,75 @@ a particular pilot report. After running
 data to grid our nexrad data around a pilot report to create an input to our
 machine learning model.
 
+### Prerequisites
+Before we can run [radar_data_to_model_input.py](radar_data_to_model_input.py),
+it is important to combine and then split all of the csvs generated with pireps
+and their closest radars in [pirep_with_radar_data](pirep_with_radar_data).
+The [collapse.sh](collapse.sh) script can be used to combine all of the csvs
+into a single csv (run with `bash collapse.sh`). Then, the 
+[split_csv.py](split_csv.py) script can be run to split the csv into the
+desired number of even parts. This script can be run with the following 
+arguments:
+```
+python split_csv.py <input_file> <output_dir> <num_parts>
+```
+Once this has been completed, the data can be processed in parallel. An example
+output that has split the data for the 2 months in 
+[pirep_with_radar_data/](pirep_with_radar_data) can be found in 
+[split_radar_data/](split_radar_data).
+
+### Usage
+To run the [radar_data_to_model_input.py](radar_data_to_model_input.py)
+program to create model inputs, it expects an input filename and output
+directory on the command line:
+```
+Usage: python radar_data_to_model_input.py <input_file> <output_dir>
+```
+This file will use the closest file to query aws and download the radar
+object. Then, it will call the `create_grid` function exported from
+[create_grid.py](create_grid.py) to create a grid of reflectivity data around
+the pilot report we're computing on.
+
+After calling `create_grid`, we will output the reflectivity data to a NetCDF
+file. Some of these files can be found in [model_inputs](model_inputs).
+
+### [create_grid.py](create_grid.py)
+This function is based on the PyART function 
+[grid_from_radars](https://arm-doe.github.io/pyart/API/generated/pyart.map.grid_from_radars.html)
+ These decisions were somewhat arbitrary.
+The [example_create_grid.py](example_create_grid.py) script demonstrates how
+the `create_grid` function can be called. This script is hardcoded to use
+the a pirep in the 
+[split_radar_data/part_001.csv](split_radar_data/part_001.csv) file.
+
+Our implementation of the function is very robust, but for the purposes of our
+project, we chose to use a grid of size 16x16x10 that represented
+a 0.25ºx0.25ºx10000ft volume of air.
+
+Unfortunately, the vast majority of values in the cells of most grids are NAN.
+For the one in the example, only 25 of the 2560 grid cells are populated with
+reflectivity values. This was the most populated grid in the first 20 produced
+from the grid function.
+
+Some possible improvements could come from using composite reflectivity which
+finds the highest reflectivity in a column of altitude, rather than attempting
+to find data within our smaller grids. Additionally, we could choose to only
+use grids that are not so sparsely populated. It was unclear whether any of
+the grids we created were densely populated with reflectivity values.
+
+Either way, since we call this `create_grid.py` function on
+every single pirep to create our input data, it was important to optimize this
+function. It was profiled and now runs in about 0.1-0.2s on a node on the HPC.
+
+### [quiet_pyart.py](quiet_pyart.py)
+
+This file can be imported as PyART to silence the print statement that comes
+with importing PyART. For example:
+```
+import quiet_pyart as pyart
+```
+will effectively import PyART without the print statement.
+
+### [ryan_example.ipynb](ryan_example.ipynb)
+This script was provided by our sponsors as an initial visualization tool for
+reflectivity data. 

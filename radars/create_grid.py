@@ -7,25 +7,13 @@
 
 # Import useful libraries
 import numpy as np
-import sys
 import os
-from contextlib import contextmanager
 from haversine import haversine, haversine_vector
 import math
 import inspect
 from typing import Union
 import xarray as xr
-@contextmanager
-def quiet():
-    sys.stdout = sys.stderr = open(os.devnull, "w")
-    try:
-        yield
-    finally:
-        sys.stdout = sys.__stdout__
-        sys.stderr = sys.__stderr__
-
-with quiet():
-   import pyart
+import quiet_pyart as pyart
 
 
 def get_barnes2_weights(dist2: np.typing.ArrayLike, r2: np.float32) -> np.typing.ArrayLike:
