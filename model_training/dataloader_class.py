@@ -2,9 +2,7 @@
 # Authors: Team Celestial Blue
 # Spring 2025
 # Overview: Defines a dataloader class to store all model inputs with fast access time
-# Usage: python create_datasets.py <dataloder_name> [existing_dataloader]
-#       dataloader_name: Desired name for dataloader to generate
-#       existing_dataloader: Optionally can include dataloader to add to
+# Note: assumes that filepath is to a directory of tar xz compressed model inputs
 
 import torch 
 import glob

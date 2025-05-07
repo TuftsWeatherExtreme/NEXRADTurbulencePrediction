@@ -12,11 +12,6 @@
 #    - Determines the best model and evaluates it on a held-out test set
 #    - Saves the best model to 
 #       trained_model_outputs/{timestamp}_best_{model_type}_mse_model_w_seed_{SEED}.pth
-# 
-# Usage: We recommend running this script with train_and_test_model.sh on the HPC as follows:
-#   sbatch train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]
-# Example: sbatch train_and_test_model.sh hybrid mse 42
-
 
 import torch 
 import torch.nn as nn
@@ -59,7 +54,6 @@ try:
 except:
     usage()
     raise f"Could not cast {sys.argv[3]} to an int"
-
 
 
 # output to timestamped file
