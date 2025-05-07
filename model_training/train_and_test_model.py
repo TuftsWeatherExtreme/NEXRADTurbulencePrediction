@@ -1,14 +1,22 @@
 # train_and_test_model.py
 # Team Celestial Blue
 # Spring 2025
-# Last Mododified: 05/06/2025
-# Description: This script trains and evaluates a model using K-Fold cross-validation.
-# It supports both linear and hybrid models, and allows for different loss functions.
-# It also saves checkpoints during training and evaluates the best model on a test set.
-# It also saves the best model to trained_model_outputs/<timestamp>_best_<model_type>_mse_model_w_seed_<SEED>.pth
-# Usage: This should be run using train_and_test_model.sh as:
-# python source train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]
-# Example: source train_and_test_model.sh hybrid mse 42
+# Last Modified: 05/06/2025
+# Description: This script trains and evaluates a model using K-Fold 
+#   cross-validation.
+#   Features: 
+#    - Supports both linear and hybrid models, and allows for different 
+#   loss functions.
+#    - Saves checkpoints during training to allow for seamless resumption
+#       if interrupted while training
+#    - Determines the best model and evaluates it on a held-out test set
+#    - Saves the best model to 
+#       trained_model_outputs/{timestamp}_best_{model_type}_mse_model_w_seed_{SEED}.pth
+# 
+# Usage: We recommend running this script with train_and_test_model.sh on the HPC as follows:
+#   sbatch train_and_test_model.sh [hybrid|linear] [LOSS_FN] [SEED]
+# Example: sbatch train_and_test_model.sh hybrid mse 42
+
 
 import torch 
 import torch.nn as nn
@@ -29,22 +37,45 @@ import sys
 NUM_EPOCHS = 5 
 BATCH_SIZE = 2000
 NUM_FOLDS = 6
+# TODO: Set DATALOADER_PATH to dataloader we want to use for training
+DATALOADER_PATH = "dataloader.pth"
 
 terminate_training = False
 loss_is_nll = False
 
+def usage():
+    print("Usage: python train_and_test_model.py [linear|hybrid] [LOSS_TYPE] [SEED]")
+    print("linear: Train a linear classifier")
+    print("hybrid: Train a hybrid classifier")
+    print("LOSS_TYPE: loss function to use (e.g., mse, mae, nll)")
+    print("SEED: seed for splitting dataset and saving model checkpoint")
+    exit(1)
+
+if len(sys.argv) != 4 or (sys.argv[1] != "linear" and sys.argv[1] != "hybrid"):
+    usage()
+try:
+    LOSS_TYPE = sys.argv[2]
+    SEED = int(sys.argv[3])
+except:
+    usage()
+    raise f"Could not cast {sys.argv[3]} to an int"
+
+
 
 # output to timestamped file
-output_dir = "trained_model_outputs"
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+DIRNAME = os.path.dirname(sys.argv[0])
+OUTPUT_DIR = os.path.join(DIRNAME, "trained_model_outputs")
+if not os.path.exists(OUTPUT_DIR):
+    os.makedirs(OUTPUT_DIR)
 
-MODEL_CHECKPOINT_PATH = ""
 curr_time = time.time()
 formatted_curr_date = datetime.datetime.fromtimestamp(curr_time).isoformat()
 
-output_file_path = os.path.join(output_dir, formatted_curr_date + "results.txt")
-output_file = open(output_file_path, "a")
+MODEL_CHECKPOINT_PATH = os.path.join(OUTPUT_DIR, f"{sys.argv[1]}_{LOSS_TYPE}_{SEED}_model_checkpoint.pth")
+OUTPUT_FILENAME = os.path.join(OUTPUT_DIR, formatted_curr_date + f"_best_{sys.argv[1]}_{LOSS_TYPE}_model_w_seed_{SEED}")
+RESULTS_FILEPATH = OUTPUT_FILENAME + "_results.txt"
+RESULTS_FILE = open(RESULTS_FILEPATH, "a")
+MODEL_FILEPATH = OUTPUT_FILENAME + ".pth"
 
 device = torch.device("cpu")
 if torch.cuda.is_available(): 
@@ -117,7 +148,7 @@ def train_model(model, epoch, train_loader, optimizer, loss_fn, verbose=False):
 
         if verbose and batch_num % 100 == 100 - 1:    # print every 100 mini-batches
             output_str = f'[Epoch: {epoch}, Batch_num: {batch_num + 1:5d}] avg training loss per batch: {running_train_loss / 100:.3f}'
-            output_file.write(output_str)
+            RESULTS_FILE.write(output_str)
             print(output_str)
             print(f"On batch: {batch_num + 1}, train_loss: {loss.item()}, running train loss: {running_train_loss}")
             running_train_loss = 0.0
@@ -156,36 +187,20 @@ def train_and_eval_epoch(model, epoch, train_loader, val_loader, optimizer, loss
 
     return avg_valid_loss_epoch
 
-def usage():
-    print("Usage: python train_and_test_model.py [linear|hybrid] [LOSS_TYPE] [SEED]")
-    print("linear: Train a linear classifier")
-    print("hybrid: Train a hybrid classifier")
-    print("LOSS_TYPE: loss function to use (e.g., mse, mae, nll)")
-    print("SEED: seed for splitting dataset and saving model checkpoint")
-    exit(1)
+
 
 
 def main():
-    if len(sys.argv) != 4 or (sys.argv[1] != "linear" and sys.argv[1] != "hybrid"):
-        usage()
-    try:
-        LOSS_TYPE = sys.argv[2]
-        SEED = int(sys.argv[3])
-    except:
-        usage()
-        raise f"Could not cast {sys.argv[3]} to an int"
 
     Model = LinearClassifierModel
-    global MODEL_CHECKPOINT_PATH
-    MODEL_CHECKPOINT_PATH = os.path.join(output_dir, f"{sys.argv[1]}_{LOSS_TYPE}_{SEED}_model_checkpoint.pth")
-
+    
     if sys.argv[1] == "hybrid" and (LOSS_TYPE == "mse"or LOSS_TYPE == "mae"):
         Model = HybridModel1Out
     elif sys.argv[1] == "hybrid" and LOSS_TYPE == "nll":
         Model = HybridModel
     
     # load in pickled dataset from file and instantiate DataLoader Object
-    dataset = torch.load('dataloader_2008_2025.pth', weights_only=False) # load in saved dataset
+    dataset = torch.load(DATALOADER_PATH, weights_only=False) # load in saved dataset
 
 
     # Split dataset 
@@ -356,17 +371,11 @@ def main():
     print(f"The false positive rate is: {num_false_positive}/{len(test_dataset)}, or {num_false_positive/len(test_dataset) * 100}%")
     print(f"The false negative rate is: {num_false_negative}/{len(test_dataset)}, or {num_false_negative/len(test_dataset) * 100}%")
 
-
-    # print(f"Best model loss on validation: {min(l2_loss_list)}\n")
-    # print(f"len(test_dataloader) is {len(test_dataloader)}")
-    # avg_test_loss = running_test_loss / len(test_dataloader)
-    # print(f"Best model loss on test: {avg_test_loss:.4f}\n")
-
     # Save the best model
-    torch.save(best_model.state_dict(), os.path.join(output_dir, formatted_curr_date + f"_best_{sys.argv[1]}_mse_model_w_seed_{SEED}.pth"))
+    torch.save(best_model.state_dict(), MODEL_FILEPATH)
     # Remove the checkpoint file
     os.remove(MODEL_CHECKPOINT_PATH)
+    RESULTS_FILE.close()
 
 if __name__ == "__main__":
     main()
-    output_file.close()
