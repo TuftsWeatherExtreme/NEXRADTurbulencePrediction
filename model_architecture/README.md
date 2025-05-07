@@ -3,23 +3,26 @@
 ## Linear Classification Model
 
 
-#### Usage
+### Usage
 This python file, regression_model.py should not be directly run, rather it should be run using the train_linear_model.py script on a high-performance computing node.
 
-#### Overview
+### Overview
 
 This model is rather simplistic and features a linear regression of all 2564 features, including the 4 linear features (altitude, latitude, longitude, time since last NEXRAD scan) and 2560 reflectivity values shaped in a 16x16x10 grid. This model will not perform very well, and exists more as a proof of concept. It is unlikely that a linear classifier will outperform a neural network given the complexity of this task.
 
 ## Hybrid Model
 
-#### Usage
-This python file, hybrid_model.py should not be directly run, rather it should be run using the train_hybrid_model.py script on a high-performance computing node.
+### Usage
+This python file, [hybrid_model.py](hybrid_model.py) should not be directly run,
+rather it should be run using the 
+[train_and_test_model.py](/model_training/train_and_test_model.py) script on a 
+high-performance computing node.
 
 
-#### Motivation
+### Motivation
 Forecasting turbulence requires integrating both atmospheric grid data and location-specific data (such as coordinates and time). This model was designed to merge these two information sources via a hybrid architecture, combining a fully-connected neural network with a 3D convolutional neural network (3D CNN). The goal is to take full advantage of spatial structure in the atmospheric data while still leveraging linear features.
 
-#### Overview
+### Overview
 This script defines a PyTorch model called `HybridModel`, structured to handle two different types of input:
 
 1. **Linear Features**: These include 4 scalar values—latitude, longitude, altitude, and time delta since last NEXRAD scan. This can be modified by changing the `NUM_LINEAR_FEATURES` variable.
@@ -35,10 +38,15 @@ In our 3D convolutional layers, we use a `3×3×3` kernel. You can think of a ke
 
 Using a 3×3×3 kernel helps the model detect local patterns in the atmosphere—like clusters of high reflectivity or sudden changes. Increasing the kernel size could make the model notice more overaching patters, but risks losing specificity with respect to certain regions. Decreasing the kernel size may have the opposite effect, where small local trends are emphasized over wider turbulence trends.
 
-#### Hybrid Model vs. Hybrid Model 1-out
+### Hybrid Model vs. Hybrid Model 1-out
 There are two different files for our hybrid model. One is standard and uses a one-hot encoding for the response variable (turbulence). However, when computing MAE, one-hot encoding doesn't quite work. To remedy this, we created a new file called hybrid_model_1out.py that converts the response variable from a one-hot encoded variable to a numerical value between 0-9 so that MAE can be calculated. If one wants to use the hybrid model and measure its performance using MAE, then they should use the corresponding scripts that will run hybrid_model_1out.py.  
 
 It is important to keep in mind that the hybrid_model_1out architecture uses a regressor instead of a classifier, as we are converting the response variable to continouous in order to measure the error.
 
-#### Output
+### Output
 The final output is a 10-class prediction corresponding to turbulence severity levels. This assumes a 0–9 scale for negative turbulence, the 7 turbulence classes and an extra allowance of two categories for plane weight scaling. This can be modified by changing the variable `NUM_CLASSES_TO_LEARN`.
+
+### Understanding Architecture
+While the architecture of the Hybrid Model may seem a little daunting at first
+glance, the [understand_hybrid.py](understand_hybrid.py) script is meant to
+help explain how the different layers of the model interact with one another.
