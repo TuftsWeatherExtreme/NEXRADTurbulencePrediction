@@ -117,8 +117,12 @@ reflectivity above this cutoff in the given VO6 file.
 
 #### Usage
 ```
-python reflect_over_cutoff.py raw_radar_data/KJGX20240131_235419_V06 20
+python reflect_over_cutoff.py <input_file> <cutoff>
 ```
+As an example, if we wanted to find all of the reflectivity values above **20**dBZ
+in the radar file `raw_radar_data/KJGX20240131_235419_V06`, we would run
+`python reflect_over_cutoff.py raw_radar_data/KJGX20240131_235419_V06 20`
+
 
 ## Gridding the data - [radar_data_to_model_input.py](radar_data_to_model_input.py)
 The next step in our data pipeline involves gridding our NEXRAD data around
@@ -151,7 +155,7 @@ To run the [radar_data_to_model_input.py](radar_data_to_model_input.py)
 program to create model inputs, it expects an input filename and output
 directory on the command line:
 ```
-Usage: python radar_data_to_model_input.py <input_file> <output_dir>
+python radar_data_to_model_input.py <input_file> <output_dir>
 ```
 This file will use the closest file to query AWS and download the radar
 object. Then, it will call the `create_grid` function exported from
@@ -174,7 +178,7 @@ the example.
 
 Our implementation of the function is very robust, but for the purposes of our
 project, we chose to use a grid of size 16x16x10 that represented
-a 0.25ºx0.25ºx10000ft volume of air. 
+a 0.25º (latitude) x 0.25º (longitude) x 10000ft (altitude) volume of air. 
 
 *Note: These decisions were somewhat arbitrary*
 
@@ -206,6 +210,6 @@ import quiet_pyart as pyart
 ```
 will effectively import PyART without the print statement.
 
-### [ryan_example.ipynb](ryan_example.ipynb)
-This script was provided by our sponsors as an initial visualization tool for
-reflectivity data. 
+### [plotting_example.ipynb](plotting_example.ipynb)
+This script was written by WeatherExtreme employee Ryan Purciel and provided to 
+us as an initial visualization tool for reflectivity data.
