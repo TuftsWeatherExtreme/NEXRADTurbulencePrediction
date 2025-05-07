@@ -39,7 +39,7 @@ combined to serve as the inputs to our Machine Learning Model.
 All of the compressed inputs we trained our model on can be found 
 [here](https://drive.google.com/drive/folders/1OT9lSk_fwXce2n7T9Yg8XN_Vt4FN7rBs?usp=share_link)
 
-*Note: It's possible not all of the data in this folder was from radar scans that occurred prior to the PIREP's report. This was fixed later but not all data was recomputed*
+*Note: It's possible not all of the data in this folder was from radar scans that occurred prior to the pilot report. This was fixed later but not all data was regenerated.*
 
 ### Additional Routes
 The [Additional Routes](/additional_routes/) directory contains all the work we did exploring methods and datasets 
@@ -54,9 +54,9 @@ the models and scripts we wrote. The executables here are meant to be run on
 high-performance compute nodes. They all use SLURM and can be run with `sbatch`.
 
 ## Contacts
-For any questions, you can reach out to the following people:  
-Leo Kaluzhny - [leo.kaluzhny@gmail.com](mailto:leo.kaluzhny@gmail.com)
-Sam Hecht - [shechtor18@gmail.com](mailto:shechtor18@gmail.com)
-Julia Zelevinsky - [julia.zelevinsky@gmail.com](mailto:julia.zelevinsky@gmail.com)
-Richard Diamond - [richarddiamond.3@gmail.com](mailto:richarddiamond.3@gmail.com)
-Charlotte Versavel - [charlotteversavel21@gmail.com](mailto:charlotteversavel21@gmail.com)
+For any questions, you can reach out to the creators of this project:  
+* Leo Kaluzhny - [leo.kaluzhny@gmail.com](mailto:leo.kaluzhny@gmail.com)
+* Sam Hecht - [shechtor18@gmail.com](mailto:shechtor18@gmail.com)
+* Julia Zelevinsky - [julia.zelevinsky@gmail.com](mailto:julia.zelevinsky@gmail.com)
+* Richard Diamond - [richarddiamond.3@gmail.com](mailto:richarddiamond.3@gmail.com)
+* Charlotte Versavel - [charlotteversavel21@gmail.com](mailto:charlotteversavel21@gmail.com)
