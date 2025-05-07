@@ -1,7 +1,7 @@
 # train_and_test_model.py
 # Team Celestial Blue
 # Spring 2025
-# Last Mododified: 05/06/2025
+# Last Modified: 05/06/2025
 # Description: This script trains and evaluates a model using K-Fold 
 #   cross-validation.
 #   Features: 
