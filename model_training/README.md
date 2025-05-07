@@ -1,14 +1,15 @@
 # Model Training
 
 This directory contains the python scripts for generating a dataloader for model inputs as well as for
-training and testing the model on that dataloader. Sample model results, sample saved models, and 
+training and testing the model on that dataloader. Sample model results and saved models are provided in . Additionally, we've written an epoch plotting function to visualize loss across epochs.
 
 ## Creating the dataloader - [create_datasets.py](create_datasets.py) using [dataloader_class](dataloader_class.py)
 
 create_datasets creates a dataloder.pth to be used for training and testing of any generated model. 
 
 ### [create_datasets.sh](generate_model_inputs.sh)
-**Description**: 
+**Description**: Creates a dataloader.pth to hold data to be used with our model. Includes functionality for
+adding to existing dataloder or starting from scratch and saves the dataloader to the specified name.
 
 **Usage**: `python create_datasets.py <dataloder_name> [existing_dataloader]`
 - dataloader_name: Desired name for dataloader to generate
@@ -19,10 +20,9 @@ create_datasets creates a dataloder.pth to be used for training and testing of a
 - [/model_inputs/compressed](../model_inputs/) contains tar xz compressed model input files
 **Notes**:
 - Will add all compressed model inputs located in [`/model_inputs/compressed`](../model_inputs/) into a dataloader.
--
 
 ### [dataloader_class.py](dataloader.py)
-**Description**: Custom 
+**Description**: Custom RadarDataLoader class to store all model inputs built off a PyTorch dataset.
 
 **Usage**: `from dataloader_class import RadarDataLoader`
 - Provides access to the RadarDataLoader class
@@ -33,8 +33,8 @@ create_datasets creates a dataloder.pth to be used for training and testing of a
 **Notes**:
 - We designed this class to optimize for a slower initialization but faster 'get_item` time. This meant
 we did the proecssing into features and label during initialization to be able to get fast indexing.
-- Note that in order to maintain the benefits of compression, we ensure that 
-- 
+- Note that in order to maintain the benefits of compression, we ensure that only one compressed file is decompressed at a time.
+- There are currently prints to standard output to give progress updates (specifically in the init). After every 1000 inputs added to the dataloader, the total count of items added is reported.
 
 
 ## Training and Testing the Model - [train_and_test_model.py](train_and_test_model.py)
@@ -64,14 +64,14 @@ arguments:
 
 At the end, it unloads the previously loaded modules and deactivates the environment to clean up the job environment after execution.
 
-The script can be found in the [hpc_scripts directory](../hpc_scripts).
+The script and more information on utilizing the HPC can be found in the [hpc_scripts directory](../hpc_scripts).
 
 ## Python Script: train_and_test_model.py (Python)
 This script runs the complete machine learning pipeline, from loading and splitting the dataset to selecting and training either a linear or hybrid model. It performs hyperparameter tuning via cross-validation, supports checkpointing for resuming interrupted jobs, retrains the best model on the full training set, and evaluates performance on a hold-out test set. Finally, it saves the best-performing model for deployment.
 ####  Dataset Preparation
 
 - Loads pre-saved radar dataset using specified dataloader.pth. This can be specified by changing the
-`DATALOADER_PATH` variavle in the script. 
+`DATALOADER_PATH` variable in the script. 
 
 - Splits into:
   - **90% training + validation**
@@ -132,8 +132,13 @@ Chosen dynamically via command-line argument (`mse`, `mae`, `nll`).
 - Saves final model as `trained_model_outputs/<timestamp>_best_<model_type>_<loss>_model_w_seed_<SEED>.pth`
 - Saves final results as `trained_model_outputs/<timestamp>_best_<model_type>_<loss>_model_w_seed_<SEED>_results.txt`
 
-- TODO:
-- add that there will be 2  examples in trained_model_outputs that include their best mdoel and reuslts files
+[trained_model_outputs](./trained_model_outputs/) contains two example models and their corresponding results file. 
+
+## Epoch Plotting - [plot_epochs](plot_epochs.py)
+
+For visualizing the loss over epochs under different l2 configurations, we've porvided a plotting function. This can be used to generate plots (as shown in [epoch_plots](./epoch_plots/)) and like the example below. 
+
+![](./epoch_plots/2025-04-15T21:42:07.330386_l2_0_loss_plot.png)
 
 
 
