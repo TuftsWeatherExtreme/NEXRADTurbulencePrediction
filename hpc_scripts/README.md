@@ -7,7 +7,7 @@ Dave Lillethun, advisor of the Tufts Senior Capstone for 2024-2025, requested ac
 
 Overarchingly, any sbatch script can be generally run as:
 **Usage:** `sbatch [script].sh [any command line args]`
-This provides consistent specification on what nodes to request, time and memory requirements, where to save output, and more and also a script for what to run once the node has been allocated. 
+This provides consistent specification on what nodes to request, time and memory requirements, where to save output, a script to run once the node has been allocated, and more. 
 
 While our ultimate scripts were formatted as batch scripts, to request a node individually and get command line access:
 - Usage (non-GPU): `srun -p batch -n 1 --mem=32g -t 1-0 --pty bash`
