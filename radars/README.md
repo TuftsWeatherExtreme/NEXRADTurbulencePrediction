@@ -18,22 +18,22 @@ of the 159 NEXRAD site codes. These are all 4 capital letters that begin with
 
 ## Processing the Data - [get_radars_for_pirep.py](get_radars_for_pirep.py)
 We wrote a helpful script called 
-[get_radars_for_pirep.py](get_radars_for_pirep.py) which accepts a csv of pilot
+[get_radars_for_pirep.py](get_radars_for_pirep.py) which accepts a CSV of pilot
 reports (produced from [clean_pireps.py](/pireps/clean_pireps.py)) and 
 determines the closest 5 radars to each pirep. This uses the 
 [nexrad_sites.csv](nexrad_sites.csv) to find the location of the 159
 NEXRAD sites in the Continental United States. One result of
 [get_radars_for_pirep.py](get_radars_for_pirep.py) is to add a column called 
-`nexrad_sites` to the csv of pilot reports to store the site codes of the 5 
+`nexrad_sites` to the CSV of pilot reports to store the site codes of the 5 
 closest radar sites.
 
 After determining the closest radars (spatially), we must determine the closest
-scan temporally. This requires listing the contents of the s3 bucket as found
+radar scan temporally. This requires listing the contents of the s3 bucket as found
 above and storing the filenames locally. We then use the times given in the
 filename (the `HHMMSS` portion) to determine the most recent radar scan for
 each pilot report, for each of the 5 spatially closest radars. Once we determine
 which file represents the most recent radar scan, we store the file path to the
-file in the s3 bucket in our csv.
+file in the s3 bucket in our CSV.
 
 ### Prerequisites
 This script needs to be able to perform AWS queries, and thus the user running
@@ -45,26 +45,30 @@ Run with
 ```
 python get_radars_for_pirep.py [-month MONTH] [-year YEAR] [-o {FILE/STDOUT}]
 ```
-If month or year are not specified, this script expects the
-csv through stdin. The `-o` should be followed by either `FILE` or `STDOUT`, 
-and this indicates the location to output the new csv to. If `FILE` is
+If month or year are not specified, this script expects a
+CSV filled with pireps through stdin. If they are both specified,
+this script searches in the [clean_pirep_data](/pireps/clean_pirep_data/) folder
+for the data for the given year and month. 
+
+The `-o` should be followed by either `FILE` or `STDOUT`, 
+and this indicates the location to output the new CSV to. If `FILE` is
 specified, this script will output to 
-[radars/pirep_w_radar_data/{YEAR}/{MONTH}.csv](/radars/pirep_w_radar_data/2024/02.csv).
+[radars/pirep_with_radar_data/{YEAR}/{MONTH}.csv](/radars/pirep_with_radar_data/2024/02.csv).
 `MONTH` must be one of "january, february, ..., december", and year must be
 of the format `YYYY` (e.g., 2025). One example usage of the script would be:
 ```
 python get_radars_for_pirep.py -month february -year 2024 -o FILE
 ```
-The output of this run can be found in [02.csv](/radars/pirep_w_radar_data/2024/02.csv)
+The output of this run can be found in [02.csv](/radars/pirep_with_radar_data/2024/02.csv)
 Another example can be seen here:
 ```
 cat pireps/clean_pirep_data/2025/03_turb_pireps.csv |
 python radars/get_radars_for_pirep.py -o STDOUT > radars/pirep_with_radar_data/2025/03.csv
 ```
-This piping feature is useful and we use it in our [generate_csv_data.sh](hpc_scripts/data_processing/generate_csv_data.sh)
+This piping feature is useful and we use it in our [generate_csv_data.sh](/hpc_scripts/data_processing/generate_csv_data.sh)
 
 ### Example
-Here are some example values for the two columns the [get_radars_for_pirep.py](get_radars_for_pirep.py) script adds to the final csv:
+Here are some example values for the two columns the [get_radars_for_pirep.py](get_radars_for_pirep.py) script adds to the final CSV:
 
 ```
 nexrad_sites: "('KJGX', 'KVAX', 'KFFC', 'KCLX', 'KTLH')",
@@ -107,7 +111,7 @@ downloaded radar files can be found in
 ### [reflect_over_cutoff.py](reflect_over_cutoff.py)
 To get our bearings with the `Radar` object provided by PyART, we wrote
 [reflect_over_cutoff.py](reflect_over_cutoff.py). This script takes takes a 
-NEXRAD VO6 file and a cutoff reflectivity value and creates a csv file
+NEXRAD VO6 file and a cutoff reflectivity value and creates a CSV file
 containing the longitude, latitude, and altitude of all instances of 
 reflectivity above this cutoff in the given VO6 file. 
 
@@ -126,11 +130,12 @@ machine learning model.
 
 ### Prerequisites
 Before we can run [radar_data_to_model_input.py](radar_data_to_model_input.py),
-it is important to combine and then split all of the csvs generated with pireps
-and their closest radars in [pirep_with_radar_data](pirep_with_radar_data).
-The [collapse.sh](collapse.sh) script can be used to combine all of the csvs
-into a single csv (run with `bash collapse.sh`). Then, the 
-[split_csv.py](split_csv.py) script can be run to split the csv into the
+if we intend to leverage the Tufts HPC, it is important to combine and then 
+split all of the CSVs generated in [pirep_with_radar_data](pirep_with_radar_data)
+to be equally sized for parallel processing.
+The [collapse.sh](collapse.sh) script can be used to combine all of the CSVs
+into a single CSV (run with `bash collapse.sh`). Then, the 
+[split_csv.py](split_csv.py) script can be run to split the CSV into the
 desired number of even parts. This script can be run with the following 
 arguments:
 ```
@@ -138,7 +143,7 @@ python split_csv.py <input_file> <output_dir> <num_parts>
 ```
 Once this has been completed, the data can be processed in parallel. An example
 output that has split the data for the 2 months in 
-[pirep_with_radar_data/](pirep_with_radar_data) can be found in 
+[pirep_with_radar_data/](pirep_with_radar_data) into 10 parts can be found in 
 [split_radar_data/](split_radar_data).
 
 ### Usage
@@ -148,7 +153,7 @@ directory on the command line:
 ```
 Usage: python radar_data_to_model_input.py <input_file> <output_dir>
 ```
-This file will use the closest file to query aws and download the radar
+This file will use the closest file to query AWS and download the radar
 object. Then, it will call the `create_grid` function exported from
 [create_grid.py](create_grid.py) to create a grid of reflectivity data around
 the pilot report we're computing on.
@@ -159,26 +164,32 @@ file. Some of these files can be found in [model_inputs](model_inputs).
 ### [create_grid.py](create_grid.py)
 This function is based on the PyART function 
 [grid_from_radars](https://arm-doe.github.io/pyart/API/generated/pyart.map.grid_from_radars.html)
- These decisions were somewhat arbitrary.
 The [example_create_grid.py](example_create_grid.py) script demonstrates how
 the `create_grid` function can be called. This script is hardcoded to use
 the a pirep in the 
-[split_radar_data/part_001.csv](split_radar_data/part_001.csv) file.
+[split_radar_data/part_001.csv](split_radar_data/part_001.csv) file for
+the example.
 
 Our implementation of the function is very robust, but for the purposes of our
 project, we chose to use a grid of size 16x16x10 that represented
-a 0.25ºx0.25ºx10000ft volume of air.
+a 0.25ºx0.25ºx10000ft volume of air. 
+
+*Note: These decisions were somewhat arbitrary*
 
 Unfortunately, the vast majority of values in the cells of most grids are NAN.
-For the one in the example, only 25 of the 2560 grid cells are populated with
-reflectivity values. This was the most populated grid in the first 20 produced
-from the grid function.
+For the one in [example_create_grid.py](example_create_grid.py), only 25 of the
+2560 grid cells are populated with valid
+reflectivity values. This was the most populated grid we could find out of
+the first 20 pireps in the CSV.
 
-Some possible improvements could come from using composite reflectivity which
-finds the highest reflectivity in a column of altitude, rather than attempting
-to find data within our smaller grids. Additionally, we could choose to only
-use grids that are not so sparsely populated. It was unclear whether any of
-the grids we created were densely populated with reflectivity values.
+One possible improvements could come from using *composite reflectivity* which
+finds the highest reflectivity in a column of altitude. 
+Additionally, we could choose to only
+use grids that are not so sparsely populated (however, the vast majority of grid
+were sparsely populated).
+
+Given more time, this is an area we would focus our efforts on more, as having
+good input data to the model is crucial for it to be able to learn any patterns.
 
 Either way, since we call this `create_grid.py` function on
 every single pirep to create our input data, it was important to optimize this
