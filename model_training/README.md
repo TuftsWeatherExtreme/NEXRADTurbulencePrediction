@@ -134,7 +134,7 @@ Chosen dynamically via command-line argument (`mse`, `mae`, `nll`).
 
 ## Epoch Plotting - [plot_epochs](plot_epochs.py)
 
-For visualizing the loss over epochs under different l2 configurations, we've porvided a plotting function. This can be used to generate plots (as shown in [epoch_plots](./epoch_plots/)) and like the example below. The produced  epoch plots can help determine if the model is overfitting
+For visualizing the loss over epochs under different l2 configurations, we've porvided a plotting function. This can be used to generate plots (as shown in [epoch_plots](./epoch_plots/)) and like the example below. The produced epoch plots can help determine if the model is overfitting
 
 ![](./epoch_plots/2025-04-15T21:42:07.330386_l2_0_loss_plot.png)
 
