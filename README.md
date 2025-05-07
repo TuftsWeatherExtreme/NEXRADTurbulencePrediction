@@ -42,9 +42,9 @@ combined to serve as the inputs to our Machine Learning Model.
 
 ### Model Inputs
 The [Model Inputs](/model_inputs/) folder contains 3 example NetCDF files that we used for training our model.
-Additionally, the [README](/model_inputs/) contains a link to all of the compressed inputs we
-trained our model on (found 
-[here](https://drive.google.com/drive/folders/1OT9lSk_fwXce2n7T9Yg8XN_Vt4FN7rBs?usp=share_link))
+[Here](https://drive.google.com/drive/folders/1OT9lSk_fwXce2n7T9Yg8XN_Vt4FN7rBs?usp=share_link)
+is a link to all of the compressed inputs we trained our model on on Google 
+Drive.
 
 ### Additional Routes
 The [Additional Routes](/additional_routes/) directory contains all the work we did exploring methods and datasets 
