@@ -15,9 +15,9 @@ This directory contains the python scripts for generating a dataloader for model
 
 **Dependencies**:
 - [Dataloader Class](dataloader_class.py)
-- [/model_inputs/compressed](../model_inputs/) contains tar xz compressed model input files
+- [/model_inputs/compressed](/model_inputs/) contains tar xz compressed model input files
 **Notes**:
-- Will add all compressed model inputs located in [`/model_inputs/compressed`](../model_inputs/) into a dataloader.
+- Will add all compressed model inputs located in [`/model_inputs/compressed`](/model_inputs/) into a dataloader.
 
 
 ### [dataloader_class.py](dataloader.py)
@@ -52,7 +52,7 @@ This should be run using `train_and_test_model.sh` as:
 ### Purpose
 
 This script is designed to submit a job to the HPC cluster using the SLURM workload manager.  
-It activates the necessary computing modules and environment using [`load_modules.sh`](./hpc_scripts/load_modules.sh), and runs [`train_and_test_model.py`](train_and_test_model.py) with three 
+It activates the necessary computing modules and environment using [`load_modules.sh`](/hpc_scripts/load_modules.sh), and runs [`train_and_test_model.py`](train_and_test_model.py) with three 
 arguments: 
 1. model_type: Type of model to train (linear or hybrid).
 
