@@ -38,10 +38,13 @@ data to a NetCDF file. Some scripts in [HPC Scripts](/hpc_scripts) compress
 these outputs to save space for later use. These NetCDF files are ultimately
 combined to serve as the inputs to our Machine Learning Model.
 
-All of the compressed inputs we trained our model on can be found 
-[here](https://drive.google.com/drive/folders/1OT9lSk_fwXce2n7T9Yg8XN_Vt4FN7rBs?usp=share_link)
-
 *Note: It's possible not all of the data in this folder was from radar scans that occurred prior to the pilot report. This was fixed later but not all data was regenerated.*
+
+### Model Inputs
+The [Model Inputs](/model_inputs/) folder contains 3 example NetCDF files that we used for training our model.
+Additionally, the [README](/model_inputs/) contains a link to all of the compressed inputs we
+trained our model on (found 
+[here](https://drive.google.com/drive/folders/1OT9lSk_fwXce2n7T9Yg8XN_Vt4FN7rBs?usp=share_link))
 
 ### Additional Routes
 The [Additional Routes](/additional_routes/) directory contains all the work we did exploring methods and datasets 
