@@ -6,11 +6,13 @@
   - Standard Output: `[job_name].[job_array_id].[node_name].out`
   - Standard Error: `[job_name].[job_array_id].[node_name].out`
   - Note: job_array_id is ommitted for any non-array scripts.
-- All scripts current do not specify a user to mail with notifications of a script starting/finishing/existing early. In the final line of each `#SBATCH` specification, `#SBATCH --mail-user=` should have the email(s) appended to that line. Multiple emails can also be specified by splitting with commas. For example, `#SBATCH --mail-user=jzelev01@tufts.edu, shecht02@tufts.edu`. 
+  - This can be easily changed if the output is desired to be in any specific location.
+- All scripts current do not specify a user to mail with notifications of a script starting/finishing/existing early. In the final line of each `#SBATCH` specification, `#SBATCH --mail-user=` should have the email(s) appended to that line. Multiple emails can also be specified by splitting with commas. For example, `#SBATCH --mail-user=jzelev01@tufts.edu, shecht02@tufts.edu`.
+- 
 
 ## Contents:
 
-### generate_csv_data.sh
+### [generate_csv_data.sh](generate_csv_data.sh)
 **Description**: Generates csv data that include pilot report information and which corresponding NEXRAD scans are closest for all the combinations of YEARS, MONTHS specified. This generates subdirectories of csvs in [pirep_w_radar_data](../../pireps/pirep_w_radar_data). 
 
 **Usage**: `sbatch generate_csv_data.sh`
@@ -26,7 +28,7 @@
 - Currently outputs to the [pirep_w_radar_data](../../pireps/pirep_w_radar_data) directory but can be changed in [get_radars_for_pirep.py](../../radars/get_radars_for_pirep.py)
 - For additional details on the scripts themselves, view the READMEs for [pireps](../../pireps/README.md) and [radars](../../pireps/README.md).
 
-### generate_model_inputs.sh
+### [generate_model_inputs.sh](generate_model_inputs.sh)
 **Description**: Generates netcdf model input files for all split data and compresses them using tar. All output files end up in the format: [part_id].tar.xz, which are a compressed form of all the netcdf's generated from `/radars/split_radar_data/part_[PART_#].csv`, and are located in `/model_inputs/compressed`.
 
 **Usage**: `sbatch generate_model_inputs.sh`
@@ -46,7 +48,7 @@
 - The compressed model inputs are unpacked when creating the dataloader (see [dataloader_class.py](../../model_training/dataloader_class.py)) and then recompressed.
 - More documentation and information about [radar_data_to_model_input.py](../../radars/radar_data_to_model_input.py) can be read [here](../../radars/README.md). Note, as documented there, this python script does not generate a netcdf file if the gridded reflectivity value is all undetectable (not read in the scan) so the entire grid is empty. This means that the compressed files (and number of model inputs in each part) may understandably vary from part to part and will not be equivalent to the number of data rows in the csv. 
 
-### generate_dataloader.sh
+### [generate_dataloader.sh](generate_dataloader.sh)
 **Description**: Generates pytorch dataloader with [create_datasets.py](../../model_training/create_datasets.py) using the [dataloader_class.py](../../model_training/dataloader_class.py).
 
 **Usage**: `sbatch generate_dataloader.sh <dataloader_name> [existing_dataloader]`
