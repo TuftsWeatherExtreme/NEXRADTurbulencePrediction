@@ -1,7 +1,8 @@
 # NEXRADTurbulencePrediction
 
 ## Overview
-This repository hosts code and documentation originally created in the 2024-25 academic year by a team of Tufts Students, as part of a capstone project sponsored by WeatherExtreme Ltd. The aim of the project is to build a model that predicts clear-air turbulence (CAT) and displays that information on a website with a clean user interface.
+This repository hosts code and documentation originally created in the 2024-25 academic year by a team of Tufts Students, as part of a capstone project sponsored by WeatherExtreme Ltd. The aim of the project is to build a model that predicts clear-air turbulence (CAT) and displays that information on a website with a clean user interface. **Note that the code for 
+the web interface is available in [this separate Github repository](https://github.com/TuftsWeatherExtreme/TurbulencePredictionFrontend)**. That repository has all relevant documentation regarding the frontend's functionality, architecture, how it can be run, and more.
 
 ## Poster
 ![Project Poster](poster.png)
@@ -44,7 +45,7 @@ combined to serve as the inputs to our Machine Learning Model.
 ### Model Inputs
 The [Model Inputs](/model_inputs/) folder contains 3 example NetCDF files that we used for training our model.
 [Here](https://drive.google.com/drive/folders/1OT9lSk_fwXce2n7T9Yg8XN_Vt4FN7rBs?usp=share_link)
-is a link to all of the compressed inputs we trained our model on on Google 
+is a link to all of the compressed inputs we trained our model on Google 
 Drive.
 
 ### Additional Routes
