@@ -18,8 +18,8 @@ This file also saves the best model it could create. The other file is used
 for creating the PyTorch Dataloader which contains all the input data to the
 model.
 
-### PIREPs
-PIREPs or the [Pilot Reports](/pireps) directory contains useful scripts for
+### Pilot Reports
+The [Pilot Reports](/pireps) (PIREPs) directory contains useful scripts for
 parsing pilot reports, which serve as our label in our machine learning models.
 There are some example CSVs of PIREPs in this directory.
 
