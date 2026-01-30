@@ -23,4 +23,7 @@ module load cuda/12.2
 echo "Activating cbenv conda environment..." 
 source activate $ENV_PATH
 
+echo "Redirecting into the NEXRAD repo..."
+cd $REPO_PATH
+
 echo "Done! Environment has now been set up"
