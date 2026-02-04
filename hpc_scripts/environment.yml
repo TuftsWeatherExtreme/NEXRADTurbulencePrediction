@@ -1,0 +1,32 @@
+name: nexrad_env
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+dependencies:
+  # 20 core packages (keep this list small + portable)
+  - python=3.12
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - xarray
+  - dask
+  - distributed
+  - netcdf4
+  - h5py
+  - matplotlib
+  - cartopy
+  - pyproj
+  - shapely
+  - scikit-learn
+  - arm_pyart
+  - open-radar-data
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+
+  # Optional: pip-only extras (add only if you *really* need them)
+  # - pip:
+  #     - xradar
