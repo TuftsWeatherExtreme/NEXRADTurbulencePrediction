@@ -9,7 +9,7 @@ This directory contains the python scripts for generating a dataloader for model
 ### [create_datasets.sh](generate_model_inputs.sh)
 **Description**: Creates a dataloader.pth to hold data to be used with our model. Includes functionality for adding to existing dataloder or starting from scratch and saves the dataloader to the specified name.
 
-**Usage**: `python create_datasets.py <dataloder_name> [existing_dataloader]`
+**Usage**: `python create_datasets.py <dataloader_name> [existing_dataloader]`
 - dataloader_name: Desired name for dataloader to generate
 - existing_dataloader: Can optionally include an existing dataloader to start with
 

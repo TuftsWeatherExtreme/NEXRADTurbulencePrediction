@@ -23,7 +23,7 @@ def main():
         print(f"Specified existing dataloder: {sys.argv[2]}, so loading before appending new data...")
         old_data = torch.load(sys.argv[2], weights_only=False)
         print("Loaded old data")
-    elif len(sys.arv == 2):
+    elif len(sys.argv) == 2:
         old_data = None
     else:
         usage()
@@ -36,3 +36,6 @@ def main():
 
     # Save the dataset and dataloader to specififed location
     torch.save(dataset, sys.argv[1])
+
+if __name__ == "__main__":
+    main()
