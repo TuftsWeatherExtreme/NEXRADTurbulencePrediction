@@ -22,7 +22,7 @@ dependencies:
   - scikit-learn
   - arm_pyart
   - open-radar-data
-  - pytorch
+  - pytorch=2.5.*
   - torchvision
   - torchaudio
   - pytorch-cuda=12.1
