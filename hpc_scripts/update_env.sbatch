@@ -7,20 +7,21 @@
 #SBATCH --error=env_update_%j.err
 
 set -euo pipefail
+set -x
 
 module load miniforge/24.11.2-py312
 
-# Make sure conda functions are available in non-interactive shells
-source "$(conda info --base)/etc/profile.d/conda.sh"
+# Find the conda base directory and use absolute paths (works in Slurm)
+BASE="$(conda info --base)"
+CONDA="${BASE}/bin/conda"
+MAMBA="${BASE}/bin/mamba"
 
-# IMPORTANT: don't update while inside the env
-conda deactivate || true
-
-# If mamba isn't installed in base yet, uncomment:
-# conda activate base
-# conda install -y -n base mamba
-# conda deactivate
+# Ensure mamba exists in base (safe to run repeatedly)
+if [ ! -x "$MAMBA" ]; then
+  "$CONDA" install -y -n base -c conda-forge mamba
+fi
 
 cd "${SLURM_SUBMIT_DIR}"
 
-mamba env update -n nexrad_env -f environment.yml --prune
+# Update the env from your recipe
+"$MAMBA" env update -n nexrad_env -f environment.yml --prune
