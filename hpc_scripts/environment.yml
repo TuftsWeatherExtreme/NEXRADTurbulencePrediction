@@ -2,9 +2,7 @@ name: nexrad_env
 channels:
   - conda-forge
   - pytorch
-  - nvidia
 dependencies:
-  # 20 core packages (keep this list small + portable)
   - python=3.12
   - pip
   - numpy
@@ -25,8 +23,3 @@ dependencies:
   - pytorch=2.5.*
   - torchvision
   - torchaudio
-  - pytorch-cuda=12.1
-
-  # Optional: pip-only extras (add only if you *really* need them)
-  # - pip:
-  #     - xradar
