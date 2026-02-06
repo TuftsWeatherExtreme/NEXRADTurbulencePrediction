@@ -21,6 +21,7 @@ MONTHS = ["january", "february", "march", "april", "may", "june", "july",
             "august", "september", "october", "november", "december"]
 RADAR_DIRNAME = os.path.dirname(sys.argv[0])
 PIREP_DIRNAME = os.path.join(os.path.dirname(RADAR_DIRNAME), "pireps")
+EARTH_RADIUS_KM = 6371.0
 
 def get_file_time(filename, date):
     """
@@ -44,9 +45,22 @@ def get_file_time(filename, date):
     return datetime(year=date.year, month=date.month, day=date.day, hour=hour, 
                     minute=minute, second=second)
 
+# Defines helper function to calc the distance of pirep from radar in km
+def haversine_km(lat1, lon1, lat2, lon2):
+    """
+    Great-circle distance between (lat1, lon1) and (lat2, lon2) in kilometers.
+    Inputs in degrees.
+    """
+    lat1, lon1, lat2, lon2 = map(np.radians, [lat1, lon1, lat2, lon2])
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = np.sin(dlat / 2.0)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon / 2.0)**2
+    c = 2.0 * np.arcsin(np.sqrt(a))
+    return EARTH_RADIUS_KM * c
+
 
 # Define a helper function to find the closest sites
-def find_5_closest_sites(pirep, nexrad_tree, site_codes):
+def find_5_closest_sites(pirep, nexrad_tree, site_codes, site_lats, site_lons):
     """
     Purpose: Given a row of a dataframe which contains data about a pirep,
         this function queries the tree of nexrad sites to find the 5 closest
@@ -59,10 +73,26 @@ def find_5_closest_sites(pirep, nexrad_tree, site_codes):
         site_codes - All of the site codes for the nexrad sites in the nexrad tree
     Return: 
         A 5-tuple of the site codes for these closest sites are returned
+        --> i am working on this: Returns 5 tuples: (site_code, distance_km), sorted closest->farthest.
     """
-    pirep_coord = np.radians([pirep['LAT'], pirep['LON']])
-    _distances, indices = nexrad_tree.query(pirep_coord, k=5)    
-    return tuple(site_codes[indices])
+    pirep_lat = pirep['LAT']
+    pirep_lon = pirep['LON']
+    pirep_coord = np.radians([pirep_lat, pirep_lon])   
+
+    # This finds the closet 10 nexrad sites by proxy 
+    _dists_rad, indices = nexrad_tree.query(pirep_coord, k=10)
+
+    output = []
+    # With these closest nexrad sites, this calculates the distance using
+    # the haversine helper function
+    for idx in np.atleast_1d(indices):
+        code = site_codes[idx]
+        dist_km = float(haversine_km(pirep_lat, pirep_lon, site_lats[idx], site_lons[idx]))
+        output.append((code, dist_km))
+
+    # Ensure sorted by true km distance
+    output.sort(key=lambda x: x[1])
+    return tuple(output)
 
 def get_closest_sites(pireps_df):
     """
@@ -80,8 +110,12 @@ def get_closest_sites(pireps_df):
     nexrad_tree = cKDTree(np.radians(nexrad_coords))
 
     site_codes = nexrad_sites['Site Code'].to_numpy()
+    # Added these lat and lon info to the data to keep coords info available 
+    site_lats  = nexrad_sites['Latitude'].to_numpy()
+    site_lons  = nexrad_sites['Longitude'].to_numpy()
+
     # Apply the helper function to find closest sites
-    pireps_df['nexrad_sites'] = pireps_df.apply(find_5_closest_sites, axis=1, args=(nexrad_tree, site_codes))
+    pireps_df['nexrad_sites'] = pireps_df.apply(find_5_closest_sites, axis=1, args=(nexrad_tree, site_codes, site_lats, site_lons))
     return pireps_df
 
 
