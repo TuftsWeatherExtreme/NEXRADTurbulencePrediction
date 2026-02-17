@@ -191,7 +191,6 @@ def train_and_eval_epoch(model, epoch, train_loader, val_loader, optimizer, loss
 
 
 def main():
-
     Model = LinearClassifierModel
     
     if sys.argv[1] == "hybrid" and (LOSS_TYPE == "mse"or LOSS_TYPE == "mae"):
@@ -201,7 +200,6 @@ def main():
     
     # load in pickled dataset from file and instantiate DataLoader Object
     dataset = torch.load(DATALOADER_PATH, weights_only=False) # load in saved dataset
-
 
     # Split dataset 
     dataset, test_dataset = torch.utils.data.random_split(dataset, [0.90, 0.10], generator=torch.Generator().manual_seed(SEED))

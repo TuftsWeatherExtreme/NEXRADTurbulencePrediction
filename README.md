@@ -3,7 +3,7 @@
 ## Overview
 This repository hosts code and documentation originally created in the 2024-25 academic year by a team of Tufts Students, as part of a capstone project sponsored by WeatherExtreme Ltd. The aim of the project is to build a model that predicts clear-air turbulence (CAT) and displays that information on a website with a clean user interface. **Note that the code for 
 the web interface is available in [this separate Github repository](https://github.com/TuftsWeatherExtreme/TurbulencePredictionFrontend)**. That repository has all relevant documentation regarding the frontend's functionality, architecture, how it can be run, and more.
- testing github connection
+
 ## Poster
 ![Project Poster](poster.png)
 
