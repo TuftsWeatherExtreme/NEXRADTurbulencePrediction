@@ -11,6 +11,8 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 from scipy.spatial import cKDTree
+from botocore import UNSIGNED
+from aiobotocore.config import AioConfig
 import bisect
 import asyncio
 from aiobotocore.session import get_session
@@ -19,7 +21,11 @@ import os
 
 MONTHS = ["january", "february", "march", "april", "may", "june", "july",
             "august", "september", "october", "november", "december"]
-RADAR_DIRNAME = os.path.dirname(sys.argv[0])
+            
+# RADAR_DIRNAME = os.path.dirname(sys.argv[0])
+# PIREP_DIRNAME = os.path.join(os.path.dirname(RADAR_DIRNAME), "pireps")
+
+RADAR_DIRNAME = os.path.dirname(os.path.abspath(__file__))
 PIREP_DIRNAME = os.path.join(os.path.dirname(RADAR_DIRNAME), "pireps")
 
 def get_file_time(filename, date):
@@ -118,7 +124,7 @@ async def s3_list_nexrad_files(date: datetime, site: str, session) -> tuple:
                 date and site
     """
     prefix = f"{date.year}/{date.month:02}/{date.day:02}/{site}"
-    async with session.create_client('s3', region_name='us-east-1') as s3:
+    async with session.create_client('s3', region_name='us-east-1', config=AioConfig(signature_version=UNSIGNED)) as s3:
         response = await s3.list_objects_v2(Bucket='noaa-nexrad-level2', Prefix=prefix)
         files = response.get("Contents", [])
         filetimes = []
