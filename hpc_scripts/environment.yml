@@ -23,4 +23,3 @@ dependencies:
   - pytorch=2.5.*
   - torchvision
   - torchaudio
-  - cpuonly
