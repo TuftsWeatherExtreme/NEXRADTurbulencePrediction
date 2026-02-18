@@ -13,9 +13,9 @@
 #    - Saves the best model to 
 #       trained_model_outputs/{timestamp}_best_{model_type}_mse_model_w_seed_{SEED}.pth
 
+import os
 import torch 
 import torch.nn as nn
-import os
 import sys
 
 # output to timestamped file
@@ -200,6 +200,9 @@ def main():
     
     # load in pickled dataset from file and instantiate DataLoader Object
     dataset = torch.load(DATALOADER_PATH, weights_only=False) # load in saved dataset
+    
+    # WORKING ON THIS
+    print("Original dataset length:", len(dataset))
 
     # Split dataset 
     dataset, test_dataset = torch.utils.data.random_split(dataset, [0.90, 0.10], generator=torch.Generator().manual_seed(SEED))

@@ -55,45 +55,39 @@ class RadarDataLoader(Dataset):
         print(f"Loaded {len(self.data)} old data points")
     count = 0
     tarfiles = glob.glob(f"{dir_path}/*.tar.xz")
+    # WORKING ON THIS
+    print("DEBUG tarfiles:", tarfiles)
     os.makedirs("decompressed", exist_ok=True)
-    for tarfile in tarfiles:
-        specific_dirname = os.path.join("decompressed", tarfile[3 + tarfile[2:].find("/"):2 + tarfile[2:].find(".")])
-        print(f"Decompressing dir: {specific_dirname}.tar.xz")
-        decompress_tar_xz(tarfile, "./decompressed")
+    
+    for ts in tarfiles:
+        print(f"Decompressing: {ts}")
+        decompress_tar_xz(ts, "./decompressed")
         print("Finished decompressing! Time to add to dataloader")
-        for filename in os.listdir(specific_dirname):
-            filepath = os.path.join(specific_dirname, filename)
-            if os.path.isfile(filepath):  # Ensure it's a file
-                nc_file = xr.open_dataset(filepath)
-                attrs_arr = np.array(list(nc_file.attrs.values()))
-
-                # get attributes (lat,long,) from netcdf file and cast them to floats
-                # does not keep last element because that is TURB, which is being used as label
-                features = attrs_arr[:-1].astype(float)
-
-                #flatten grid-like data from NEXRAD, reflectivity for instance
-                flattened_data = np.concatenate([nc_file[var].values.flatten() for var in nc_file.data_vars])
-
-                #concatenate attributes array with flatted grid-like data
-                features = np.concatenate((features, flattened_data))
-                
-                # Single Category Encoding for pilot reported turbulence level
-                label = int(attrs_arr[-1])
-
-                features = torch.tensor(features, dtype=torch.float32) 
-                
-                # To account for all the cells with undetectable reflectivity, we set a reflectivity value out of range (-32 dBz)
-                features = torch.nan_to_num(features, nan=-32.0)
-                
-                self.data.append((features, label))
-
-                count += 1
-                if count % 1000 == 0:
-                    print(f'Finished {count} total files')
         
-        print("Removing subcontents of directory: " + specific_dirname)
-
-        shutil.rmtree(specific_dirname, ignore_errors=True)
+        for filename in os.listdir("decompressed"):
+            filepath = os.path.join("decompressed", filename)
+            print(f"DEBUG: found file: {filename}, is_file: {os.path.isfile(filepath)}")
+            if os.path.isfile(filepath):
+                try:
+                    print(f"DEBUG: opening {filename}")
+                    nc_file = xr.open_dataset(filepath)
+                    print(f"DEBUG: opened, attrs: {list(nc_file.attrs.keys())}")
+                    attrs_arr = np.array(list(nc_file.attrs.values()))
+                    print(f"DEBUG: attrs_arr: {attrs_arr}")
+                    features = attrs_arr[:-1].astype(float)
+                    print(f"DEBUG: features shape: {features.shape}")
+                    flattened_data = np.concatenate([nc_file[var].values.flatten() for var in nc_file.data_vars])
+                    print(f"DEBUG: flattened_data shape: {flattened_data.shape}")
+                    features = np.concatenate((features, flattened_data))
+                    label = int(attrs_arr[-1])
+                    print(f"DEBUG: label: {label}")
+                    features = torch.tensor(features, dtype=torch.float32) 
+                    features = torch.nan_to_num(features, nan=-32.0)
+                    self.data.append((features, label))
+                    print(f"DEBUG: appended successfully")
+                    count += 1
+                except Exception as e:
+                    print(f"ERROR loading {filename}: {e}")
 
   def __len__(self): 
     """

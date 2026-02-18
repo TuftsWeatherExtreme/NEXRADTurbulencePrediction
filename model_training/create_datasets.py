@@ -28,7 +28,9 @@ def main():
     else:
         usage()
 
-    script_location = os.path.dirname(sys.argv[0])
+    # Trying new script location - WORKING ON THIS
+    # script_location = os.path.dirname(sys.argv[0])
+    script_location = os.path.dirname(os.path.abspath(__file__))
 
     # Create an instance of the custom dataset 
     print("create_datasets.py: Initializing RadarDataLoader")

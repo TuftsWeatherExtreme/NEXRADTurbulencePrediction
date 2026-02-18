@@ -16,7 +16,7 @@
 import sys
 
 import requests
-from tqdm import tqdm
+# from tqdm import tqdm
 import pandas as pd
 from io import StringIO
 import numpy as np
@@ -31,7 +31,9 @@ def usage():
 
 def read_command_line_args():
     global DIRNAME
-    DIRNAME = os.path.dirname(sys.argv[0])
+    # WORKING ON THIS:
+    # DIRNAME = os.path.dirname(sys.argv[0])
+    DIRNAME = os.path.dirname(os.path.abspath(__file__))
     month_str = None
     year = None
     month_idx = None
