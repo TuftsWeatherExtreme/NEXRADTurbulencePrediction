@@ -13,7 +13,7 @@
 #SBATCH -n 1  
 #SBATCH --mem=64g
 #SBATCH --output=generate_dataloder.%j.%N.out
-#SBATCH --error=generate_dataloder.%j.%N.out
+#SBATCH --error=generate_dataloder.%j.%N.err
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=
 

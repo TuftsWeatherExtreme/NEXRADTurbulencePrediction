@@ -29,11 +29,12 @@ mkdir -p $OUTPUT_DIR/$idx
 
 echo "Running radar_data_to_model_input on $REPO_PATH/radars/split_radar_data/part_"$idx".csv"
 python3 $REPO_PATH/radars/radar_data_to_model_input.py $REPO_PATH/radars/split_radar_data/part_"$idx".csv $OUTPUT_DIR/$idx
+echo "Python script exit code: $?"
 
 echo "Finished running radar_data_to_model_input.py on part! Compressing output directory into $OUTPUT_DIR/compressed/$idx.tar.xz"
 tar -cvJf $OUTPUT_DIR/compressed/$idx.tar.xz -C "$OUTPUT_DIR" "$idx"
 
-echo "All done with compression. Removing $REPO_PATH/model_inputs/$idxdirectory"
+echo "All done with compression. Removing $REPO_PATH/model_inputs/$idx directory"
 rm -r $OUTPUT_DIR/$idx 
 
 source $REPO_PATH/hpc_scripts/unload_modules.sh

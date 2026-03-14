@@ -1,0 +1,283 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Operating on 243
+Making directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/243
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/split_radar_data/part_243.csv
+================================================================================
+SCRIPT STARTED: radar_data_to_model_input.py
+================================================================================
+Python executable: /cluster/tufts/capstone25skyblue/condaenv26/nexrad_env/bin/python3
+Python version: 3.12.12 | packaged by conda-forge | (main, Jan 26 2026, 23:51:32) [GCC 14.3.0]
+Current working directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction
+Number of arguments: 3
+Arguments received: ['/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/radar_data_to_model_input.py', '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/split_radar_data/part_243.csv', '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/243']
+Input file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/split_radar_data/part_243.csv
+Input file exists: True
+Output directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/243
+Output directory exists: True
+================================================================================
+
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/split_radar_data/part_243.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/243
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Error processing row 114822: Plane weight must be 'L', 'M', 'H' or 'U.
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Error processing row 114925: Plane weight must be 'L', 'M', 'H' or 'U.
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Error processing row 115149: Plane weight must be 'L', 'M', 'H' or 'U.
+Completed 100% of df
+Finished running radar_data_to_model_input.py on part! Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/243.tar.xz
+243/
+243/0114709_2025_3_df_row.nc
+243/0114711_2025_3_df_row.nc
+243/0114716_2025_3_df_row.nc
+243/0114717_2025_3_df_row.nc
+243/0114718_2025_3_df_row.nc
+243/0114724_2025_3_df_row.nc
+243/0114725_2025_3_df_row.nc
+243/0114726_2025_3_df_row.nc
+243/0114727_2025_3_df_row.nc
+243/0114728_2025_3_df_row.nc
+243/0114732_2025_3_df_row.nc
+243/0114742_2025_3_df_row.nc
+243/0114744_2025_3_df_row.nc
+243/0114745_2025_3_df_row.nc
+243/0114748_2025_3_df_row.nc
+243/0114749_2025_3_df_row.nc
+243/0114750_2025_3_df_row.nc
+243/0114751_2025_3_df_row.nc
+243/0114752_2025_3_df_row.nc
+243/0114754_2025_3_df_row.nc
+243/0114757_2025_3_df_row.nc
+243/0114758_2025_3_df_row.nc
+243/0114759_2025_3_df_row.nc
+243/0114760_2025_3_df_row.nc
+243/0114761_2025_3_df_row.nc
+243/0114762_2025_3_df_row.nc
+243/0114763_2025_3_df_row.nc
+243/0114764_2025_3_df_row.nc
+243/0114765_2025_3_df_row.nc
+243/0114767_2025_3_df_row.nc
+243/0114768_2025_3_df_row.nc
+243/0114770_2025_3_df_row.nc
+243/0114771_2025_3_df_row.nc
+243/0114772_2025_3_df_row.nc
+243/0114773_2025_3_df_row.nc
+243/0114774_2025_3_df_row.nc
+243/0114776_2025_3_df_row.nc
+243/0114777_2025_3_df_row.nc
+243/0114778_2025_3_df_row.nc
+243/0114779_2025_3_df_row.nc
+243/0114784_2025_3_df_row.nc
+243/0114795_2025_3_df_row.nc
+243/0114797_2025_3_df_row.nc
+243/0114798_2025_3_df_row.nc
+243/0114799_2025_3_df_row.nc
+243/0114803_2025_3_df_row.nc
+243/0114804_2025_3_df_row.nc
+243/0114806_2025_3_df_row.nc
+243/0114821_2025_3_df_row.nc
+243/0114823_2025_3_df_row.nc
+243/0114825_2025_3_df_row.nc
+243/0114827_2025_3_df_row.nc
+243/0114829_2025_3_df_row.nc
+243/0114833_2025_3_df_row.nc
+243/0114834_2025_3_df_row.nc
+243/0114837_2025_3_df_row.nc
+243/0114838_2025_3_df_row.nc
+243/0114839_2025_3_df_row.nc
+243/0114840_2025_3_df_row.nc
+243/0114842_2025_3_df_row.nc
+243/0114845_2025_3_df_row.nc
+243/0114852_2025_3_df_row.nc
+243/0114854_2025_3_df_row.nc
+243/0114855_2025_3_df_row.nc
+243/0114856_2025_3_df_row.nc
+243/0114857_2025_3_df_row.nc
+243/0114858_2025_3_df_row.nc
+243/0114859_2025_3_df_row.nc
+243/0114860_2025_3_df_row.nc
+243/0114861_2025_3_df_row.nc
+243/0114862_2025_3_df_row.nc
+243/0114863_2025_3_df_row.nc
+243/0114866_2025_3_df_row.nc
+243/0114867_2025_3_df_row.nc
+243/0114869_2025_3_df_row.nc
+243/0114870_2025_3_df_row.nc
+243/0114874_2025_3_df_row.nc
+243/0114875_2025_3_df_row.nc
+243/0114879_2025_3_df_row.nc
+243/0114880_2025_3_df_row.nc
+243/0114881_2025_3_df_row.nc
+243/0114882_2025_3_df_row.nc
+243/0114883_2025_3_df_row.nc
+243/0114886_2025_3_df_row.nc
+243/0114895_2025_3_df_row.nc
+243/0114896_2025_3_df_row.nc
+243/0114897_2025_3_df_row.nc
+243/0114898_2025_3_df_row.nc
+243/0114899_2025_3_df_row.nc
+243/0114900_2025_3_df_row.nc
+243/0114902_2025_3_df_row.nc
+243/0114904_2025_3_df_row.nc
+243/0114906_2025_3_df_row.nc
+243/0114908_2025_3_df_row.nc
+243/0114909_2025_3_df_row.nc
+243/0114912_2025_3_df_row.nc
+243/0114913_2025_3_df_row.nc
+243/0114916_2025_3_df_row.nc
+243/0114918_2025_3_df_row.nc
+243/0114919_2025_3_df_row.nc
+243/0114920_2025_3_df_row.nc
+243/0114926_2025_3_df_row.nc
+243/0114927_2025_3_df_row.nc
+243/0114928_2025_3_df_row.nc
+243/0114929_2025_3_df_row.nc
+243/0114940_2025_3_df_row.nc
+243/0114941_2025_3_df_row.nc
+243/0114942_2025_3_df_row.nc
+243/0114944_2025_3_df_row.nc
+243/0114945_2025_3_df_row.nc
+243/0114947_2025_3_df_row.nc
+243/0114950_2025_3_df_row.nc
+243/0114953_2025_3_df_row.nc
+243/0114955_2025_3_df_row.nc
+243/0114956_2025_3_df_row.nc
+243/0114957_2025_3_df_row.nc
+243/0114960_2025_3_df_row.nc
+243/0114961_2025_3_df_row.nc
+243/0114963_2025_3_df_row.nc
+243/0114966_2025_3_df_row.nc
+243/0114971_2025_3_df_row.nc
+243/0114972_2025_3_df_row.nc
+243/0114973_2025_3_df_row.nc
+243/0114974_2025_3_df_row.nc
+243/0114979_2025_3_df_row.nc
+243/0114980_2025_3_df_row.nc
+243/0114981_2025_3_df_row.nc
+243/0114982_2025_3_df_row.nc
+243/0114983_2025_3_df_row.nc
+243/0114984_2025_3_df_row.nc
+243/0114985_2025_3_df_row.nc
+243/0114986_2025_3_df_row.nc
+243/0114989_2025_3_df_row.nc
+243/0114990_2025_3_df_row.nc
+243/0114993_2025_3_df_row.nc
+243/0114994_2025_3_df_row.nc
+243/0114996_2025_3_df_row.nc
+243/0114998_2025_3_df_row.nc
+243/0115000_2025_3_df_row.nc
+243/0115001_2025_3_df_row.nc
+243/0115002_2025_3_df_row.nc
+243/0115003_2025_3_df_row.nc
+243/0115004_2025_3_df_row.nc
+243/0115005_2025_3_df_row.nc
+243/0115007_2025_3_df_row.nc
+243/0115008_2025_3_df_row.nc
+243/0115010_2025_3_df_row.nc
+243/0115011_2025_3_df_row.nc
+243/0115015_2025_3_df_row.nc
+243/0115017_2025_3_df_row.nc
+243/0115019_2025_3_df_row.nc
+243/0115020_2025_3_df_row.nc
+243/0115021_2025_3_df_row.nc
+243/0115022_2025_3_df_row.nc
+243/0115023_2025_3_df_row.nc
+243/0115025_2025_3_df_row.nc
+243/0115026_2025_3_df_row.nc
+243/0115027_2025_3_df_row.nc
+243/0115029_2025_3_df_row.nc
+243/0115032_2025_3_df_row.nc
+243/0115033_2025_3_df_row.nc
+243/0115034_2025_3_df_row.nc
+243/0115035_2025_3_df_row.nc
+243/0115036_2025_3_df_row.nc
+243/0115039_2025_3_df_row.nc
+243/0115043_2025_3_df_row.nc
+243/0115052_2025_3_df_row.nc
+243/0115053_2025_3_df_row.nc
+243/0115056_2025_3_df_row.nc
+243/0115057_2025_3_df_row.nc
+243/0115059_2025_3_df_row.nc
+243/0115061_2025_3_df_row.nc
+243/0115067_2025_3_df_row.nc
+243/0115071_2025_3_df_row.nc
+243/0115073_2025_3_df_row.nc
+243/0115075_2025_3_df_row.nc
+243/0115077_2025_3_df_row.nc
+243/0115083_2025_3_df_row.nc
+243/0115086_2025_3_df_row.nc
+243/0115088_2025_3_df_row.nc
+243/0115092_2025_3_df_row.nc
+243/0115094_2025_3_df_row.nc
+243/0115099_2025_3_df_row.nc
+243/0115100_2025_3_df_row.nc
+243/0115102_2025_3_df_row.nc
+243/0115104_2025_3_df_row.nc
+243/0115106_2025_3_df_row.nc
+243/0115107_2025_3_df_row.nc
+243/0115110_2025_3_df_row.nc
+243/0115111_2025_3_df_row.nc
+243/0115113_2025_3_df_row.nc
+243/0115117_2025_3_df_row.nc
+243/0115118_2025_3_df_row.nc
+243/0115121_2025_3_df_row.nc
+243/0115122_2025_3_df_row.nc
+243/0115123_2025_3_df_row.nc
+243/0115124_2025_3_df_row.nc
+243/0115126_2025_3_df_row.nc
+243/0115130_2025_3_df_row.nc
+243/0115132_2025_3_df_row.nc
+243/0115134_2025_3_df_row.nc
+243/0115136_2025_3_df_row.nc
+243/0115137_2025_3_df_row.nc
+243/0115140_2025_3_df_row.nc
+243/0115141_2025_3_df_row.nc
+243/0115142_2025_3_df_row.nc
+243/0115144_2025_3_df_row.nc
+243/0115146_2025_3_df_row.nc
+243/0115147_2025_3_df_row.nc
+243/0115151_2025_3_df_row.nc
+243/0115152_2025_3_df_row.nc
+243/0115155_2025_3_df_row.nc
+243/0115156_2025_3_df_row.nc
+243/0115157_2025_3_df_row.nc
+243/0115159_2025_3_df_row.nc
+243/0115160_2025_3_df_row.nc
+243/0115163_2025_3_df_row.nc
+243/0115164_2025_3_df_row.nc
+243/0115165_2025_3_df_row.nc
+243/0115167_2025_3_df_row.nc
+243/0115171_2025_3_df_row.nc
+243/0115174_2025_3_df_row.nc
+243/0115175_2025_3_df_row.nc
+243/0115176_2025_3_df_row.nc
+243/0115178_2025_3_df_row.nc
+243/0115180_2025_3_df_row.nc
+All done with compression. Removing /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/243 directory
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!
