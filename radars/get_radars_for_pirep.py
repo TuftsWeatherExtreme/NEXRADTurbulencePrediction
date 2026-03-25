@@ -228,9 +228,9 @@ def generate_unique_requests(pireps_df: pd.DataFrame) -> set:
         Return:
             A set of all the unique requests we'll need to query the s3 bucket
     """
-    unique_requests = {(day, site_code) 
-                       for sites, dt in zip(pireps_df['nexrad_sites'], pireps_df['datetime']) 
-                       for site_code, dist_km in sites 
+    unique_requests = {(day, site_code)
+                       for sites, dt in zip(pireps_df['nexrad_sites'], pireps_df['datetime'])
+                       for site_code in sites
                        for day in {dt.date(), (dt - timedelta(days=1)).date(), (dt + timedelta(days=1)).date()}}
     eprint(f"About to perform {len(unique_requests)} list_objects_v2 requests")
     return unique_requests
@@ -295,19 +295,14 @@ def get_closest_nexrad_files(pireps_df: pd.DataFrame, nexrad_times_dict: dict):
     """
     all_radars = []
     missing = 0
-    skipped_no_threshold = 0
-    DISTANCE_THRESHOLD_KM = 150.0
+    skipped_no_radar = 0
     
     for index, pirep in pireps_df.iterrows():
         pirep_dt = pirep['datetime']
         radars = list()
         
-        # Iterate sites in distance order (already sorted by find_5_closest_sites)
-        for site_code, dist_km in pirep['nexrad_sites']:
-            # Skip sites beyond distance threshold
-            if dist_km > DISTANCE_THRESHOLD_KM:
-                continue
-            
+        # Iterate sites (ranked by beam geometry score)
+        for site_code in pirep['nexrad_sites']:
             # times will store all possible times of nexrad files nearby
             times = list()
 
@@ -337,10 +332,10 @@ def get_closest_nexrad_files(pireps_df: pd.DataFrame, nexrad_times_dict: dict):
 
         # Track PIREPs with no radar within threshold
         if len(radars) == 0:
-            skipped_no_threshold += 1
+            skipped_no_radar += 1
         all_radars.append(radars)
     eprint(f"There were {missing} sites missing data")
-    eprint(f"There were {skipped_no_threshold} PIREPs with no radar within {DISTANCE_THRESHOLD_KM} km threshold (removed)")
+    eprint(f"There were {skipped_no_radar} PIREPs with no radar data found (removed)")
     pireps_df['aws_files'] = all_radars
     # Drop PIREPs with no radar within threshold:
     pireps_df.drop(pireps_df[pireps_df['aws_files'].apply(len) == 0].index, inplace=True)
