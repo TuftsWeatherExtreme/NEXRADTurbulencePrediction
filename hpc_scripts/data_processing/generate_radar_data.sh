@@ -1,31 +1,28 @@
 #!/bin/bash -l
 
-# generate_csv_data.sh
-########
-# ONCE THIS IS RUN ONCE, THE OUTPUT WILL BE IN CLEANED_PIREPS.csv,
-# AND WILL NOT NEED TO BE RUN AGAIN
-#######
+# generate_radar_data.sh
 # Authors: Team Celestial Blue
 # Spring 2025
-# Overview: Download and clean PIREP data, filtering to SEV+ turbulence only.
-# Outputs one CSV per month/year to pireps/clean_pirep_data/{year}/{month}_turb_pireps.csv
-# Note: YEARS and MONTHS can be changed to generate for all combinations specified.
+# Overview: For each month/year of cleaned PIREP CSVs, find the best candidate
+# NEXRAD radar sites (using beam geometry scoring) and the closest radar scan
+# times from S3. Outputs CSVs with nexrad_sites and aws_files columns.
+# Note: YEARS and MONTHS must match those used in generate_csv_data.sh.
 # The job array size should be adjusted accordingly.
 
 
-#SBATCH -J csv_gen
-#SBATCH --time=01:00:00
+#SBATCH -J radar_gen
+#SBATCH --time=24:00:00
 #SBATCH -p batch,preempt
 #SBATCH -n 1
-#SBATCH --mem=8g
-#SBATCH --output=csv_gen.%j.%a.%N.out
-#SBATCH --error=csv_gen.%j.%a.%N.err
+#SBATCH --mem=32g
+#SBATCH --output=radar_gen.%j.%a.%N.out
+#SBATCH --error=radar_gen.%j.%a.%N.err
 #SBATCH --array=0-215
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user= 
+#SBATCH --mail-user=
 
 cd $REPO_PATH
-source $REPO_PATH/hpc_scripts/load_modules.sh 
+source $REPO_PATH/hpc_scripts/load_modules.sh
 
 idx=$SLURM_ARRAY_TASK_ID
 
@@ -41,7 +38,7 @@ year=${YEARS[$year_idx]}
 month=${MONTHS[$month_idx]}
 
 echo "Processing $month $year"
-python $REPO_PATH/pireps/clean_pireps.py -month $month -year $year -o FILE
+python $REPO_PATH/radars/get_radars_for_pirep.py -month $month -year $year -o FILE
 
 source $REPO_PATH/hpc_scripts/unload_modules.sh
 

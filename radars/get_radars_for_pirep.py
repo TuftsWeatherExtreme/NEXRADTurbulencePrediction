@@ -372,8 +372,8 @@ def read_command_line_args():
             i += 1
             if i < len(sys.argv):
                 year = int(sys.argv[i])
-                if year not in range(2003, 2026):
-                    eprint(f"Invalid year: {year} not in range [2003, 2025]")
+                if year not in range(2003, 2027):
+                    eprint(f"Invalid year: {year} not in range [2003, 2026]")
                     usage()
         elif sys.argv[i] == "-o":
             i += 1

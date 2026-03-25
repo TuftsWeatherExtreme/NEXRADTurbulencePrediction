@@ -50,8 +50,8 @@ def read_command_line_args():
             i += 1
             if i < len(sys.argv):
                 year = int(sys.argv[i])
-                if year not in range(2003, 2026):
-                    eprint(f"Invalid year: {year} not in range [2003, 2025]")
+                if year not in range(2003, 2027):
+                    eprint(f"Invalid year: {year} not in range [2003, 2026]")
                     usage()
         elif sys.argv[i] == "-o":
             i += 1
@@ -243,6 +243,12 @@ eprint("Dropping pireps w/ NA flight level, latitude, or longitude")
 len_before_drop_na_fl = len(only_turb_pireps)
 only_turb_pireps_w_altitude = only_turb_pireps.dropna(subset=['FL', 'LAT', 'LON'])
 eprint(f"We dropped {len_before_drop_na_fl - len(only_turb_pireps_w_altitude)}/{len_before_drop_na_fl} pireps with unknown flight level, latitude, or longitude")
+
+# Filter to SEV and above (turbulence_intensity >= 5)
+MIN_TURBULENCE_INTENSITY = 5
+len_before_sev_filter = len(only_turb_pireps_w_altitude)
+only_turb_pireps_w_altitude = only_turb_pireps_w_altitude[only_turb_pireps_w_altitude['turbulence_intensity'] >= MIN_TURBULENCE_INTENSITY]
+eprint(f"Filtered to turbulence >= {MIN_TURBULENCE_INTENSITY}: kept {len(only_turb_pireps_w_altitude)}/{len_before_sev_filter} pireps")
 
 #add plane weight classification into the dataframe
 plane_weight_dict = pd.read_csv(os.path.join(DIRNAME, "../plane_weights/plane_weight_dictionary.csv"))
