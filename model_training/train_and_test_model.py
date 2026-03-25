@@ -369,13 +369,14 @@ def main():
             if true_label > 0 and predicted_class == 0:
                 num_false_negative += 1
 
-    
-    print(f"For the test data, the actual distribution of classes are: {actual_output_counts}")
-    print(f"For the test data, the model's distribution of classes are: {model_output_counts}")
+    # Output results to the designated results file
+    RESULTS_FILE.write(f"For the test data, the actual distribution of classes are: {actual_output_counts}")
+    RESULTS_FILE.write(f"For the test data, the model's distribution of classes are: {model_output_counts}")
 
-    print(f"Accuracy is: {num_correct}/{len(test_dataset)}, or {num_correct/len(test_dataset) * 100}%")
-    print(f"The false positive rate is: {num_false_positive}/{len(test_dataset)}, or {num_false_positive/len(test_dataset) * 100}%")
-    print(f"The false negative rate is: {num_false_negative}/{len(test_dataset)}, or {num_false_negative/len(test_dataset) * 100}%")
+    RESULTS_FILE.write(f"Accuracy is: {num_correct}/{len(test_dataset)}, or {num_correct/len(test_dataset) * 100}%")
+    RESULTS_FILE.write(f"The false positive rate is: {num_false_positive}/{len(test_dataset)}, or {num_false_positive/len(test_dataset) * 100}%")
+    RESULTS_FILE.write(f"The false negative rate is: {num_false_negative}/{len(test_dataset)}, or {num_false_negative/len(test_dataset) * 100}%")
+    
 
     # Save the best model
     torch.save(best_model.state_dict(), MODEL_FILEPATH)

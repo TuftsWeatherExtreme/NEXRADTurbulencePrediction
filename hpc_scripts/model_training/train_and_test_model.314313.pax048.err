@@ -1,9 +1,0 @@
-srun: error: ioctl(TIOCGWINSZ): Inappropriate ioctl for device
-srun: error: Not using a pseudo-terminal, disregarding --pty option
-Traceback (most recent call last):
-  File "/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/train_and_test_model.py", line 386, in <module>
-    main()
-  File "/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/train_and_test_model.py", line 360, in main
-    actual_output_counts[true_label] += 1
-    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-IndexError: only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices
