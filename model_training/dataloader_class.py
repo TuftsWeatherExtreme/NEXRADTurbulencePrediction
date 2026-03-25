@@ -64,8 +64,8 @@ class RadarDataLoader(Dataset):
         decompress_tar_xz(tarfile, "./decompressed")
         print("Finished decompressing! Time to add to dataloader")
         
-        for filename in os.listdir("decompressed"):
-            filepath = os.path.join("decompressed", filename)
+        for filename in os.listdir(specific_dirname):
+            filepath = os.path.join(specific_dirname, filename)
             print(f"DEBUG: found file: {filename}, is_file: {os.path.isfile(filepath)}")
             if os.path.isfile(filepath):
                 try:
