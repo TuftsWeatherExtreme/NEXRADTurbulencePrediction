@@ -1,0 +1,1066 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Calling python create_datasets.py
+create_datasets.py: Initializing RadarDataLoader
+Calling init
+Decompressing dir: decompressed/001.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/001.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/001
+Decompressing dir: decompressed/002.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/002.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/002
+Decompressing dir: decompressed/003.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/003.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/003
+Decompressing dir: decompressed/004.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/004.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/004
+Decompressing dir: decompressed/005.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/005.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/005
+Decompressing dir: decompressed/006.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/006.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 1000 total files
+Removing subcontents of directory: decompressed/006
+Decompressing dir: decompressed/007.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/007.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/007
+Decompressing dir: decompressed/008.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/008.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/008
+Decompressing dir: decompressed/009.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/009.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/009
+Decompressing dir: decompressed/010.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/010.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/010
+Decompressing dir: decompressed/011.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/011.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/011
+Decompressing dir: decompressed/012.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/012.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 2000 total files
+Removing subcontents of directory: decompressed/012
+Decompressing dir: decompressed/013.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/013.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/013
+Decompressing dir: decompressed/014.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/014.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/014
+Decompressing dir: decompressed/015.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/015.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/015
+Decompressing dir: decompressed/016.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/016.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/016
+Decompressing dir: decompressed/017.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/017.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 3000 total files
+Removing subcontents of directory: decompressed/017
+Decompressing dir: decompressed/018.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/018.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/018
+Decompressing dir: decompressed/019.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/019.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/019
+Decompressing dir: decompressed/020.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/020.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/020
+Decompressing dir: decompressed/021.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/021.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/021
+Decompressing dir: decompressed/022.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/022.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/022
+Decompressing dir: decompressed/023.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/023.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 4000 total files
+Removing subcontents of directory: decompressed/023
+Decompressing dir: decompressed/024.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/024.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/024
+Decompressing dir: decompressed/025.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/025.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/025
+Decompressing dir: decompressed/026.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/026.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/026
+Decompressing dir: decompressed/027.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/027.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/027
+Decompressing dir: decompressed/028.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/028.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 5000 total files
+Removing subcontents of directory: decompressed/028
+Decompressing dir: decompressed/029.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/029.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/029
+Decompressing dir: decompressed/030.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/030.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/030
+Decompressing dir: decompressed/031.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/031.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/031
+Decompressing dir: decompressed/032.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/032.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/032
+Decompressing dir: decompressed/033.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/033.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 6000 total files
+Removing subcontents of directory: decompressed/033
+Decompressing dir: decompressed/034.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/034.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/034
+Decompressing dir: decompressed/035.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/035.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/035
+Decompressing dir: decompressed/036.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/036.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/036
+Decompressing dir: decompressed/037.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/037.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 7000 total files
+Removing subcontents of directory: decompressed/037
+Decompressing dir: decompressed/038.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/038.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/038
+Decompressing dir: decompressed/039.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/039.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/039
+Decompressing dir: decompressed/040.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/040.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/040
+Decompressing dir: decompressed/041.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/041.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/041
+Decompressing dir: decompressed/042.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/042.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 8000 total files
+Removing subcontents of directory: decompressed/042
+Decompressing dir: decompressed/043.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/043.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/043
+Decompressing dir: decompressed/044.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/044.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/044
+Decompressing dir: decompressed/045.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/045.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/045
+Decompressing dir: decompressed/046.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/046.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/046
+Decompressing dir: decompressed/047.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/047.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 9000 total files
+Removing subcontents of directory: decompressed/047
+Decompressing dir: decompressed/048.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/048.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/048
+Decompressing dir: decompressed/049.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/049.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/049
+Decompressing dir: decompressed/050.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/050.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/050
+Decompressing dir: decompressed/051.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/051.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/051
+Decompressing dir: decompressed/052.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/052.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/052
+Decompressing dir: decompressed/053.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/053.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 10000 total files
+Removing subcontents of directory: decompressed/053
+Decompressing dir: decompressed/054.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/054.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/054
+Decompressing dir: decompressed/055.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/055.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/055
+Decompressing dir: decompressed/056.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/056.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/056
+Decompressing dir: decompressed/057.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/057.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/057
+Decompressing dir: decompressed/058.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/058.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 11000 total files
+Removing subcontents of directory: decompressed/058
+Decompressing dir: decompressed/059.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/059.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/059
+Decompressing dir: decompressed/060.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/060.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/060
+Decompressing dir: decompressed/061.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/061.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/061
+Decompressing dir: decompressed/062.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/062.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/062
+Decompressing dir: decompressed/063.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/063.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 12000 total files
+Removing subcontents of directory: decompressed/063
+Decompressing dir: decompressed/064.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/064.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/064
+Decompressing dir: decompressed/065.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/065.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/065
+Decompressing dir: decompressed/066.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/066.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/066
+Decompressing dir: decompressed/067.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/067.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/067
+Decompressing dir: decompressed/068.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/068.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/068
+Decompressing dir: decompressed/069.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/069.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 13000 total files
+Removing subcontents of directory: decompressed/069
+Decompressing dir: decompressed/070.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/070.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/070
+Decompressing dir: decompressed/071.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/071.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/071
+Decompressing dir: decompressed/072.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/072.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/072
+Decompressing dir: decompressed/073.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/073.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/073
+Decompressing dir: decompressed/074.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/074.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 14000 total files
+Removing subcontents of directory: decompressed/074
+Decompressing dir: decompressed/075.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/075.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/075
+Decompressing dir: decompressed/076.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/076.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/076
+Decompressing dir: decompressed/077.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/077.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/077
+Decompressing dir: decompressed/078.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/078.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/078
+Decompressing dir: decompressed/079.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/079.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/079
+Decompressing dir: decompressed/080.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/080.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 15000 total files
+Removing subcontents of directory: decompressed/080
+Decompressing dir: decompressed/081.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/081.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/081
+Decompressing dir: decompressed/082.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/082.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/082
+Decompressing dir: decompressed/083.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/083.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/083
+Decompressing dir: decompressed/084.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/084.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 16000 total files
+Removing subcontents of directory: decompressed/084
+Decompressing dir: decompressed/085.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/085.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/085
+Decompressing dir: decompressed/086.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/086.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/086
+Decompressing dir: decompressed/087.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/087.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/087
+Decompressing dir: decompressed/088.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/088.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/088
+Decompressing dir: decompressed/089.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/089.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 17000 total files
+Removing subcontents of directory: decompressed/089
+Decompressing dir: decompressed/090.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/090.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/090
+Decompressing dir: decompressed/091.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/091.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/091
+Decompressing dir: decompressed/092.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/092.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/092
+Decompressing dir: decompressed/093.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/093.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/093
+Decompressing dir: decompressed/094.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/094.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 18000 total files
+Removing subcontents of directory: decompressed/094
+Decompressing dir: decompressed/095.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/095.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/095
+Decompressing dir: decompressed/096.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/096.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/096
+Decompressing dir: decompressed/097.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/097.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/097
+Decompressing dir: decompressed/098.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/098.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/098
+Decompressing dir: decompressed/099.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/099.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 19000 total files
+Removing subcontents of directory: decompressed/099
+Decompressing dir: decompressed/100.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/100.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/100
+Decompressing dir: decompressed/101.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/101.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/101
+Decompressing dir: decompressed/102.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/102.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/102
+Decompressing dir: decompressed/103.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/103.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 20000 total files
+Removing subcontents of directory: decompressed/103
+Decompressing dir: decompressed/104.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/104.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/104
+Decompressing dir: decompressed/105.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/105.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/105
+Decompressing dir: decompressed/106.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/106.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/106
+Decompressing dir: decompressed/107.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/107.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/107
+Decompressing dir: decompressed/108.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/108.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 21000 total files
+Removing subcontents of directory: decompressed/108
+Decompressing dir: decompressed/109.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/109.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/109
+Decompressing dir: decompressed/110.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/110.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/110
+Decompressing dir: decompressed/111.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/111.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/111
+Decompressing dir: decompressed/112.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/112.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/112
+Decompressing dir: decompressed/113.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/113.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 22000 total files
+Removing subcontents of directory: decompressed/113
+Decompressing dir: decompressed/114.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/114.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/114
+Decompressing dir: decompressed/115.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/115.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/115
+Decompressing dir: decompressed/116.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/116.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/116
+Decompressing dir: decompressed/117.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/117.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/117
+Decompressing dir: decompressed/118.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/118.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/118
+Decompressing dir: decompressed/119.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/119.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 23000 total files
+Removing subcontents of directory: decompressed/119
+Decompressing dir: decompressed/120.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/120.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/120
+Decompressing dir: decompressed/121.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/121.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/121
+Decompressing dir: decompressed/122.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/122.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/122
+Decompressing dir: decompressed/123.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/123.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/123
+Decompressing dir: decompressed/124.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/124.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 24000 total files
+Removing subcontents of directory: decompressed/124
+Decompressing dir: decompressed/125.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/125.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/125
+Decompressing dir: decompressed/126.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/126.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/126
+Decompressing dir: decompressed/127.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/127.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/127
+Decompressing dir: decompressed/128.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/128.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 25000 total files
+Removing subcontents of directory: decompressed/128
+Decompressing dir: decompressed/129.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/129.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/129
+Decompressing dir: decompressed/130.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/130.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/130
+Decompressing dir: decompressed/131.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/131.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/131
+Decompressing dir: decompressed/132.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/132.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/132
+Decompressing dir: decompressed/133.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/133.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 26000 total files
+Removing subcontents of directory: decompressed/133
+Decompressing dir: decompressed/134.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/134.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/134
+Decompressing dir: decompressed/135.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/135.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/135
+Decompressing dir: decompressed/136.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/136.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/136
+Decompressing dir: decompressed/137.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/137.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/137
+Decompressing dir: decompressed/138.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/138.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 27000 total files
+Removing subcontents of directory: decompressed/138
+Decompressing dir: decompressed/139.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/139.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/139
+Decompressing dir: decompressed/140.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/140.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/140
+Decompressing dir: decompressed/141.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/141.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/141
+Decompressing dir: decompressed/142.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/142.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/142
+Decompressing dir: decompressed/143.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/143.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 28000 total files
+Removing subcontents of directory: decompressed/143
+Decompressing dir: decompressed/144.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/144.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/144
+Decompressing dir: decompressed/145.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/145.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/145
+Decompressing dir: decompressed/146.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/146.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/146
+Decompressing dir: decompressed/147.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/147.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/147
+Decompressing dir: decompressed/148.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/148.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/148
+Decompressing dir: decompressed/149.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/149.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 29000 total files
+Removing subcontents of directory: decompressed/149
+Decompressing dir: decompressed/150.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/150.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/150
+Decompressing dir: decompressed/151.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/151.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/151
+Decompressing dir: decompressed/152.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/152.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/152
+Decompressing dir: decompressed/153.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/153.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/153
+Decompressing dir: decompressed/154.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/154.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 30000 total files
+Removing subcontents of directory: decompressed/154
+Decompressing dir: decompressed/155.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/155.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/155
+Decompressing dir: decompressed/156.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/156.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/156
+Decompressing dir: decompressed/157.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/157.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/157
+Decompressing dir: decompressed/158.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/158.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/158
+Decompressing dir: decompressed/159.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/159.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/159
+Decompressing dir: decompressed/160.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/160.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 31000 total files
+Removing subcontents of directory: decompressed/160
+Decompressing dir: decompressed/161.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/161.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/161
+Decompressing dir: decompressed/162.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/162.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/162
+Decompressing dir: decompressed/163.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/163.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/163
+Decompressing dir: decompressed/164.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/164.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/164
+Decompressing dir: decompressed/165.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/165.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 32000 total files
+Removing subcontents of directory: decompressed/165
+Decompressing dir: decompressed/166.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/166.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/166
+Decompressing dir: decompressed/167.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/167.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/167
+Decompressing dir: decompressed/168.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/168.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/168
+Decompressing dir: decompressed/169.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/169.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/169
+Decompressing dir: decompressed/170.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/170.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 33000 total files
+Removing subcontents of directory: decompressed/170
+Decompressing dir: decompressed/171.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/171.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/171
+Decompressing dir: decompressed/172.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/172.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/172
+Decompressing dir: decompressed/173.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/173.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/173
+Decompressing dir: decompressed/174.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/174.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/174
+Decompressing dir: decompressed/175.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/175.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 34000 total files
+Removing subcontents of directory: decompressed/175
+Decompressing dir: decompressed/176.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/176.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/176
+Decompressing dir: decompressed/177.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/177.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/177
+Decompressing dir: decompressed/178.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/178.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/178
+Decompressing dir: decompressed/179.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/179.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 35000 total files
+Removing subcontents of directory: decompressed/179
+Decompressing dir: decompressed/180.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/180.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/180
+Decompressing dir: decompressed/181.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/181.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/181
+Decompressing dir: decompressed/182.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/182.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/182
+Decompressing dir: decompressed/183.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/183.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/183
+Decompressing dir: decompressed/184.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/184.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 36000 total files
+Removing subcontents of directory: decompressed/184
+Decompressing dir: decompressed/185.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/185.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/185
+Decompressing dir: decompressed/186.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/186.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/186
+Decompressing dir: decompressed/187.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/187.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/187
+Decompressing dir: decompressed/188.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/188.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/188
+Decompressing dir: decompressed/189.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/189.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/189
+Decompressing dir: decompressed/190.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/190.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 37000 total files
+Removing subcontents of directory: decompressed/190
+Decompressing dir: decompressed/191.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/191.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/191
+Decompressing dir: decompressed/192.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/192.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/192
+Decompressing dir: decompressed/193.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/193.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/193
+Decompressing dir: decompressed/194.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/194.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/194
+Decompressing dir: decompressed/195.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/195.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 38000 total files
+Removing subcontents of directory: decompressed/195
+Decompressing dir: decompressed/196.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/196.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/196
+Decompressing dir: decompressed/197.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/197.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/197
+Decompressing dir: decompressed/198.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/198.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/198
+Decompressing dir: decompressed/199.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/199.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 39000 total files
+Removing subcontents of directory: decompressed/199
+Decompressing dir: decompressed/200.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/200.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/200
+Decompressing dir: decompressed/201.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/201.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/201
+Decompressing dir: decompressed/202.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/202.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/202
+Decompressing dir: decompressed/203.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/203.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/203
+Decompressing dir: decompressed/204.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/204.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 40000 total files
+Removing subcontents of directory: decompressed/204
+Decompressing dir: decompressed/205.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/205.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/205
+Decompressing dir: decompressed/206.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/206.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/206
+Decompressing dir: decompressed/207.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/207.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/207
+Decompressing dir: decompressed/208.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/208.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/208
+Decompressing dir: decompressed/209.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/209.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/209
+Decompressing dir: decompressed/210.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/210.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 41000 total files
+Removing subcontents of directory: decompressed/210
+Decompressing dir: decompressed/211.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/211.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/211
+Decompressing dir: decompressed/212.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/212.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/212
+Decompressing dir: decompressed/213.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/213.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/213
+Decompressing dir: decompressed/214.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/214.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/214
+Decompressing dir: decompressed/215.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/215.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 42000 total files
+Removing subcontents of directory: decompressed/215
+Decompressing dir: decompressed/216.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/216.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/216
+Decompressing dir: decompressed/217.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/217.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/217
+Decompressing dir: decompressed/218.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/218.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/218
+Decompressing dir: decompressed/219.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/219.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/219
+Decompressing dir: decompressed/220.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/220.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 43000 total files
+Removing subcontents of directory: decompressed/220
+Decompressing dir: decompressed/221.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/221.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/221
+Decompressing dir: decompressed/222.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/222.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/222
+Decompressing dir: decompressed/223.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/223.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/223
+Decompressing dir: decompressed/224.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/224.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/224
+Decompressing dir: decompressed/225.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/225.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/225
+Decompressing dir: decompressed/226.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/226.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 44000 total files
+Removing subcontents of directory: decompressed/226
+Decompressing dir: decompressed/227.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/227.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/227
+Decompressing dir: decompressed/228.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/228.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/228
+Decompressing dir: decompressed/229.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/229.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/229
+Decompressing dir: decompressed/230.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/230.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 45000 total files
+Removing subcontents of directory: decompressed/230
+Decompressing dir: decompressed/231.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/231.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/231
+Decompressing dir: decompressed/232.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/232.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/232
+Decompressing dir: decompressed/233.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/233.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/233
+Decompressing dir: decompressed/234.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/234.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/234
+Decompressing dir: decompressed/235.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/235.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 46000 total files
+Removing subcontents of directory: decompressed/235
+Decompressing dir: decompressed/236.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/236.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/236
+Decompressing dir: decompressed/237.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/237.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/237
+Decompressing dir: decompressed/238.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/238.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/238
+Decompressing dir: decompressed/239.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/239.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/239
+Decompressing dir: decompressed/240.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/240.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 47000 total files
+Removing subcontents of directory: decompressed/240
+Decompressing dir: decompressed/241.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/241.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/241
+Decompressing dir: decompressed/242.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/242.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/242
+Decompressing dir: decompressed/243.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/243.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/243
+Decompressing dir: decompressed/244.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/244.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/244
+Decompressing dir: decompressed/245.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/245.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 48000 total files
+Removing subcontents of directory: decompressed/245
+Decompressing dir: decompressed/246.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/246.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/246
+Decompressing dir: decompressed/247.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/247.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/247
+Decompressing dir: decompressed/248.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/248.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/248
+Decompressing dir: decompressed/249.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/249.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Removing subcontents of directory: decompressed/249
+Decompressing dir: decompressed/250.tar.xz
+Successfully extracted '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/../model_inputs/compressed/250.tar.xz' to './decompressed'
+Finished decompressing! Time to add to dataloader
+Finished 49000 total files
+Removing subcontents of directory: decompressed/250
+Finished running create_datasets.py and created eleanor_dataloader.pth! Deleting decompressed dir
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

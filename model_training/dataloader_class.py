@@ -58,11 +58,10 @@ class RadarDataLoader(Dataset):
     # WORKING ON THIS
     print("DEBUG tarfiles:", tarfiles)
     os.makedirs("decompressed", exist_ok=True)
-    
-    for ts in tarfiles:
-        print(f"Decompressing: {ts}")
-        decompress_tar_xz(ts, "./decompressed")
-
+    for tarfile in tarfiles:
+        specific_dirname = os.path.join("decompressed", os.path.basename(tarfile).replace(".tar.xz", ""))
+        print(f"Decompressing dir: {specific_dirname}.tar.xz")
+        decompress_tar_xz(tarfile, "./decompressed")
         print("Finished decompressing! Time to add to dataloader")
         
         for filename in os.listdir("decompressed"):

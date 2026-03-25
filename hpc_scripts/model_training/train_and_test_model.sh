@@ -9,11 +9,11 @@
 #SBATCH --time=02-00:00:00
 #SBATCH -p preempt                 
 #SBATCH --gres=gpu:1        
-#SBATCH --constraint="a100-80G|a100-40G|l40|rtx_a6000|rtx_a6000ada"
+# THIS LINE IS COMMENTED OUT, BUT CAN UNCOMMENT AND ADD VALID AVAILABLE GPUS: #SBATCH --constraint="a100-80G|a100-40G|l40|rtx_a6000|rtx_a6000ada"
 #SBATCH -n 8                         
 #SBATCH --mem=32g                  
 #SBATCH --output=train_and_test_model.%j.%N.out
-#SBATCH --output=train_and_test_model.%j.%N.out
+#SBATCH --error=train_and_test_model.%j.%N.err
 #SBATCH --mail-type=ALL 
 #SBATCH --mail-user=
 

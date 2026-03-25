@@ -40,7 +40,7 @@ NUM_EPOCHS = 5
 BATCH_SIZE = 2000
 NUM_FOLDS = 6
 # TODO: Set DATALOADER_PATH to dataloader we want to use for training
-DATALOADER_PATH = "dataloader.pth"
+DATALOADER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "eleanor_dataloader.pth")
 
 terminate_training = False
 loss_is_nll = False
@@ -335,6 +335,11 @@ def main():
     # To store the distribution of classes
     actual_output_counts = np.zeros(10, dtype=int)
     model_output_counts = np.zeros(10, dtype=int)
+    
+    # Initializing count variables
+    num_correct = 0
+    num_false_positive = 0
+    num_false_negative = 0
     with torch.no_grad():
         for x_test, y_test in test_dataloader:
             x_test, y_test = x_test.to(device), y_test.float().to(device)
@@ -347,12 +352,12 @@ def main():
             test_loss = loss_fn(input=y_hat_test, target=y_test)
             running_test_loss += test_loss.item()
 
-            probs = F.softmax(y_hat_test, dim=1)  # Get class probabilities
+            # probs = F.softmax(y_hat_test, dim=1)  # Get class probabilities, commenting out for hybrid model rn
 
         for i in range(len(y_test)):
-            true_label = y_test[i].item()
-            predicted_class = torch.argmax(y_hat_test[i]).item()
-            top_prob = probs[i][predicted_class].item()
+            true_label = int(y_test[i].item())
+            predicted_class = int(torch.argmax(y_hat_test[i]).item())
+            # top_prob = probs[i][predicted_class].item() # UNCOMMENT IF ABOVE PROBS DEF IS UNCOMMENTED
             actual_output_counts[true_label] += 1
             model_output_counts[predicted_class] += 1
 
