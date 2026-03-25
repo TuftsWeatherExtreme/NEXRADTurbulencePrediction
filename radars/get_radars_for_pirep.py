@@ -21,6 +21,7 @@ MONTHS = ["january", "february", "march", "april", "may", "june", "july",
             "august", "september", "october", "november", "december"]
 RADAR_DIRNAME = os.path.dirname(sys.argv[0])
 PIREP_DIRNAME = os.path.join(os.path.dirname(RADAR_DIRNAME), "pireps")
+EARTH_RADIUS_KM = 6371.0
 
 def get_file_time(filename, date):
     """
@@ -44,9 +45,22 @@ def get_file_time(filename, date):
     return datetime(year=date.year, month=date.month, day=date.day, hour=hour, 
                     minute=minute, second=second)
 
+# Defines helper function to calc the distance of pirep from radar in km
+def haversine_km(lat1, lon1, lat2, lon2):
+    """
+    Great-circle distance between (lat1, lon1) and (lat2, lon2) in kilometers.
+    Inputs in degrees.
+    """
+    lat1, lon1, lat2, lon2 = map(np.radians, [lat1, lon1, lat2, lon2])
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = np.sin(dlat / 2.0)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon / 2.0)**2
+    c = 2.0 * np.arcsin(np.sqrt(a))
+    return EARTH_RADIUS_KM * c
+
 
 # Define a helper function to find the closest sites
-def find_5_closest_sites(pirep, nexrad_tree, site_codes):
+def find_5_closest_sites(pirep, nexrad_tree, site_codes, site_lats, site_lons):
     """
     Purpose: Given a row of a dataframe which contains data about a pirep,
         this function queries the tree of nexrad sites to find the 5 closest
@@ -59,10 +73,26 @@ def find_5_closest_sites(pirep, nexrad_tree, site_codes):
         site_codes - All of the site codes for the nexrad sites in the nexrad tree
     Return: 
         A 5-tuple of the site codes for these closest sites are returned
+        --> i am working on this: Returns 5 tuples: (site_code, distance_km), sorted closest->farthest.
     """
-    pirep_coord = np.radians([pirep['LAT'], pirep['LON']])
-    _distances, indices = nexrad_tree.query(pirep_coord, k=5)    
-    return tuple(site_codes[indices])
+    pirep_lat = pirep['LAT']
+    pirep_lon = pirep['LON']
+    pirep_coord = np.radians([pirep_lat, pirep_lon])   
+
+    # This finds the closet 10 nexrad sites by proxy 
+    _dists_rad, indices = nexrad_tree.query(pirep_coord, k=10)
+
+    output = []
+    # With these closest nexrad sites, this calculates the distance using
+    # the haversine helper function
+    for idx in np.atleast_1d(indices):
+        code = site_codes[idx]
+        dist_km = float(haversine_km(pirep_lat, pirep_lon, site_lats[idx], site_lons[idx]))
+        output.append((code, dist_km))
+
+    # Ensure sorted by true km distance
+    output.sort(key=lambda x: x[1])
+    return tuple(output)
 
 def get_closest_sites(pireps_df):
     """
@@ -80,8 +110,12 @@ def get_closest_sites(pireps_df):
     nexrad_tree = cKDTree(np.radians(nexrad_coords))
 
     site_codes = nexrad_sites['Site Code'].to_numpy()
+    # Added these lat and lon info to the data to keep coords info available 
+    site_lats  = nexrad_sites['Latitude'].to_numpy()
+    site_lons  = nexrad_sites['Longitude'].to_numpy()
+
     # Apply the helper function to find closest sites
-    pireps_df['nexrad_sites'] = pireps_df.apply(find_5_closest_sites, axis=1, args=(nexrad_tree, site_codes))
+    pireps_df['nexrad_sites'] = pireps_df.apply(find_5_closest_sites, axis=1, args=(nexrad_tree, site_codes, site_lats, site_lons))
     return pireps_df
 
 
@@ -169,9 +203,9 @@ def generate_unique_requests(pireps_df: pd.DataFrame) -> set:
         Return:
             A set of all the unique requests we'll need to query the s3 bucket
     """
-    unique_requests = {(day, site) 
+    unique_requests = {(day, site_code) 
                        for sites, dt in zip(pireps_df['nexrad_sites'], pireps_df['datetime']) 
-                       for site in sites 
+                       for site_code, dist_km in sites 
                        for day in {dt.date(), (dt - timedelta(days=1)).date(), (dt + timedelta(days=1)).date()}}
     eprint(f"About to perform {len(unique_requests)} list_objects_v2 requests")
     return unique_requests
@@ -180,68 +214,119 @@ def generate_unique_requests(pireps_df: pd.DataFrame) -> set:
 
 def nearest_time(times: list, pirep_dt: datetime) -> datetime:
     """
-        Purpose: Returns the nearest time to pirep_time in times
+        Purpose: Returns the nearest time to pirep_time in times (in the past, within ±30 minutes)
         Arguments:
             times: A list of all times of nexrad files for the previous day
-                current day, and next day
+                current day, and next day. Must be sorted by time.
             pirep_dt: The actual time of the pirep
         Returns: The nearest time to pirep_dt that a nexrad data file was
-            generated at
+            generated at (in the past, within ±30 minutes window)
+        Note: Returns None if no valid time found within window
 
     """
+    if len(times) == 0:
+        return None
+    
     idx = bisect.bisect_left([time[0] for time in times], pirep_dt)
-    if idx >= len(times) - 1:
-        return times[-1]
-    # Safe to subtract one because we've added the whole previous day if its close
+    if idx == 0:
+        # All times are in the future, check if first one is within window
+        first_time = times[0]
+        time_diff = abs((pirep_dt - first_time[0]).total_seconds())
+        if time_diff <= 1800:  # 30 minutes = 1800 seconds
+            return first_time
+        return None
+    
+    # Get the closest time in the past
     prev_time = times[idx - 1]
-    _next_time = times[idx][0] # deprecated, we now only get the closest time in the past
-    return prev_time # Just return prev_time - OLD: if pirep_dt - prev_time <= next_time - pirep_dt else next_time
-
-
-
+    
+    # Verify it's in the past and within ±30 minutes window
+    time_diff = abs((pirep_dt - prev_time[0]).total_seconds())
+    if prev_time[0] <= pirep_dt and time_diff <= 1800:
+        return prev_time
+    
+    # If prev_time is too far in the past, check if next time (if exists) is within window
+    if idx < len(times):
+        next_time = times[idx]
+        time_diff = abs((pirep_dt - next_time[0]).total_seconds())
+        if time_diff <= 1800:
+            return next_time
+    
+    return None
 
 
 def get_closest_nexrad_files(pireps_df: pd.DataFrame, nexrad_times_dict: dict):
     """
         Purpose: Adds the actual s3 bucket paths for the closest nexrad
-            scan (in time) to each pilot report to each row of the df
+            scan (in time) to each pilot report to each row of the df.
+            PIREPs with no radar within 150 km are dropped from the dataframe.
         Arguments:
             pireps_df - The dataframe containing all the pirep data
             nexrad_times_dict - A dictionary indexed by date and site code that
                 contains all the file times for that nexrad site and that date
         Return:
-            Nothing, but adds a row to pireps_df with the 5 'aws_files' 
+            Nothing; modifies pireps_df in place: adds 'aws_files' column and
+            removes rows that have no valid radar within the distance threshold.
     
     """
     all_radars = []
     missing = 0
+    skipped_no_threshold = 0
+    DISTANCE_THRESHOLD_KM = 150.0
+    
     for index, pirep in pireps_df.iterrows():
         pirep_dt = pirep['datetime']
         radars = list()
-        for site_code in pirep['nexrad_sites']:
+        
+        # Iterate sites in distance order (already sorted by find_5_closest_sites)
+        for site_code, dist_km in pirep['nexrad_sites']:
+            # Skip sites beyond distance threshold
+            if dist_km > DISTANCE_THRESHOLD_KM:
+                continue
+            
             # times will store all possible times of nexrad files nearby
             times = list()
 
             # When we're close to another day, add that day's times too (in order)
             if (pirep_dt - timedelta(minutes=30)).day != pirep_dt.day:
-                times += nexrad_times_dict[((pirep_dt - timedelta(minutes=30)).date(), site_code)]
-            times += nexrad_times_dict[(pirep_dt.date(), site_code)]
+                times += nexrad_times_dict.get(((pirep_dt - timedelta(minutes=30)).date(), site_code), [])
+            times += nexrad_times_dict.get((pirep_dt.date(), site_code), [])
             if (pirep_dt + timedelta(minutes=30)).day != pirep_dt.day:
-                times += nexrad_times_dict[((pirep_dt + timedelta(minutes=30)).date(), site_code)]
+                times += nexrad_times_dict.get(((pirep_dt + timedelta(minutes=30)).date(), site_code), [])
+            
+            # Sort times by datetime before calling nearest_time
+            times.sort(key=lambda x: x[0])
             
             if len(times) == 0:
                 missing += 1
-            else:
-                nexrad_dt, file_ending = nearest_time(times, pirep_dt)
+                continue
+            
+            nearest_result = nearest_time(times, pirep_dt)
+            if nearest_result is None:
+                missing += 1
+                continue
+            
+            nexrad_dt, file_ending = nearest_result
+            prefix=f"{nexrad_dt.year}/{nexrad_dt.month:02}/{nexrad_dt.day:02}/{file_ending[:4]}"
+            aws_nexrad_level2_file = f"s3://unidata-nexrad-level2/{prefix}/{file_ending}"
+            radars.append(aws_nexrad_level2_file)
+            
+#             else:
+#                 nexrad_dt, file_ending = nearest_time(times, pirep_dt)
 
-                prefix=f"{nexrad_dt.year}/{nexrad_dt.month:02}/{nexrad_dt.day:02}/{file_ending[:4]}"
-                aws_nexrad_level2_file = f"s3://unidata-nexrad-level2/{prefix}/{file_ending}"
-                radars.append(aws_nexrad_level2_file)
+#                 prefix=f"{nexrad_dt.year}/{nexrad_dt.month:02}/{nexrad_dt.day:02}/{file_ending[:4]}"
+#                 aws_nexrad_level2_file = f"s3://unidata-nexrad-level2/{prefix}/{file_ending}"
+#                 radars.append(aws_nexrad_level2_file)
             # break # Uncomment to only add the closest NEXRAD file
 
+        # Track PIREPs with no radar within threshold
+        if len(radars) == 0:
+            skipped_no_threshold += 1
         all_radars.append(radars)
     eprint(f"There were {missing} sites missing data")
+    eprint(f"There were {skipped_no_threshold} PIREPs with no radar within {DISTANCE_THRESHOLD_KM} km threshold (removed)")
     pireps_df['aws_files'] = all_radars
+    # Drop PIREPs with no radar within threshold:
+    pireps_df.drop(pireps_df[pireps_df['aws_files'].apply(len) == 0].index, inplace=True)
 
 
 
