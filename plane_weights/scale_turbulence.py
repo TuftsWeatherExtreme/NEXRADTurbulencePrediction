@@ -13,7 +13,7 @@ def scale_turbulence(pilot_reported_turb, plane_weight):
         pilot_reported_turb (int): Turbulence intensity (1-7).
         plane_weight (str): Aircraft weight category ('L', 'M', 'H').
 
-    Returns:
+    Returns:we
         int: Scaled turbulence intensity.
 
     Assumptions:

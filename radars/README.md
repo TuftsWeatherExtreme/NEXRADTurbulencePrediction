@@ -6,7 +6,7 @@ For our project, we used Next Generation Weather Radar Data (NEXRAD) as the
 input to our machine learning model. Specifically, we used the level 2 product
 **reflectivity**. To acquire this data, we had to perform several queries to
 the Amazon S3 bucket found 
-[here](https://noaa-nexrad-level2.s3.amazonaws.com/index.html). 
+[here](https://unidata-nexrad-level2.s3.amazonaws.com/index.html). 
 *Most* of the data is stored in the following format:
 ```
 {YEAR}/{MONTH}/{DAY}/{SITE_CODE}/{SITE_CODE}{YEAR}{MONTH}{DAY}_{HHMMSS}_VO6"
@@ -72,11 +72,11 @@ Here are some example values for the two columns the [get_radars_for_pirep.py](g
 
 ```
 nexrad_sites: "('KJGX', 'KVAX', 'KFFC', 'KCLX', 'KTLH')",
-aws_files: "['s3://noaa-nexrad-level2/2024/01/31/KJGX/KJGX20240131_235419_V06',
-             's3://noaa-nexrad-level2/2024/01/31/KVAX/KVAX20240131_235731_V06', 
-             's3://noaa-nexrad-level2/2024/01/31/KFFC/KFFC20240131_235614_V06', 
-             's3://noaa-nexrad-level2/2024/01/31/KCLX/KCLX20240131_235840_V06', 
-             's3://noaa-nexrad-level2/2024/01/31/KTLH/KTLH20240131_235416_V06']"
+aws_files: "['s3://unidata-nexrad-level2/2024/01/31/KJGX/KJGX20240131_235419_V06',
+             's3://unidata-nexrad-level2/2024/01/31/KVAX/KVAX20240131_235731_V06', 
+             's3://unidata-nexrad-level2/2024/01/31/KFFC/KFFC20240131_235614_V06', 
+             's3://unidata-nexrad-level2/2024/01/31/KCLX/KCLX20240131_235840_V06', 
+             's3://unidata-nexrad-level2/2024/01/31/KTLH/KTLH20240131_235416_V06']"
 ```
 As can be seen, for the given pilot report at 29500 feet, 
 32.40º latitude, and -83.21º longitude, the 5 closest radar sites are:

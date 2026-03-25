@@ -339,6 +339,11 @@ def create_grid(
         },
     )
 
+    # Add coverage metadata
+    total_cells = n_alt * n_lat * n_lon
+    xarray_grid.attrs["nan_fraction"] = num_nan / total_cells
+    xarray_grid.attrs["num_radars"] = nradars
+
     verboseprint(xarray_grid)
     verboseprint("Finished creating xarray grid, returning from function now...")
 

@@ -11,6 +11,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 from scipy.spatial import cKDTree
+from haversine import haversine
 from botocore import UNSIGNED
 from aiobotocore.config import AioConfig
 import bisect
@@ -18,6 +19,8 @@ import asyncio
 from aiobotocore.session import get_session
 import sys
 import os
+
+from beam_geometry import score_radar_for_pirep, get_num_candidates
 
 MONTHS = ["january", "february", "march", "april", "may", "june", "july",
             "august", "september", "october", "november", "december"]
@@ -28,6 +31,8 @@ MONTHS = ["january", "february", "march", "april", "may", "june", "july",
 RADAR_DIRNAME = os.path.dirname(os.path.abspath(__file__))
 PIREP_DIRNAME = os.path.join(os.path.dirname(RADAR_DIRNAME), "pireps")
 EARTH_RADIUS_KM = 6371.0
+
+NEXRAD_BUCKET = 'unidata-nexrad-level2'  # Migrated from noaa-nexrad-level2 (deprecated Sep 2025)
 
 def get_file_time(filename, date):
     """
@@ -65,50 +70,63 @@ def haversine_km(lat1, lon1, lat2, lon2):
     return EARTH_RADIUS_KM * c
 
 
-# Define a helper function to find the closest sites
-def find_5_closest_sites(pirep, nexrad_tree, site_codes, site_lats, site_lons):
+def ft_to_meters(ft):
+    return ft / 3.281
+
+NUM_RADARS = 5
+
+def find_candidate_sites(pirep, nexrad_tree, site_codes, site_coords, site_elevations):
     """
-    Purpose: Given a row of a dataframe which contains data about a pirep,
-        this function queries the tree of nexrad sites to find the 5 closest
-        sites. 
-        This function is meant to be applied to a pandas df
+    Purpose: Given a PIREP, find the best 5 radar sites using altitude-aware
+        beam geometry scoring. Pulls extra nearby candidates, scores each by
+        how well their beams cover the PIREP altitude, and returns the top 5.
     Arguments:
-        pirep - The data for a singular pirep 
+        pirep - The data for a singular pirep
         nexrad_tree - The cKDTree containing the locations of all NEXRAD radar
-            stations
-        site_codes - All of the site codes for the nexrad sites in the nexrad tree
-    Return: 
-        A 5-tuple of the site codes for these closest sites are returned
-        --> i am working on this: Returns 5 tuples: (site_code, distance_km), sorted closest->farthest.
+            stations (in radians)
+        site_codes - All of the site codes for the nexrad sites
+        site_coords - Lat/lon coordinates of all NEXRAD sites
+        site_elevations - Elevation (meters) of all NEXRAD sites
+    Return:
+        A tuple of the 5 best site codes, ordered by beam geometry score
     """
-    pirep_lat = pirep['LAT']
-    pirep_lon = pirep['LON']
-    pirep_coord = np.radians([pirep_lat, pirep_lon])   
+    altitude_ft = pirep['FL']
+    altitude_m = ft_to_meters(altitude_ft)
 
-    # This finds the closet 10 nexrad sites by proxy 
-    _dists_rad, indices = nexrad_tree.query(pirep_coord, k=10)
+    # Always pull extra candidates for scoring, then return the best 5
+    num_to_query = max(NUM_RADARS, get_num_candidates(altitude_ft))
 
-    output = []
-    # With these closest nexrad sites, this calculates the distance using
-    # the haversine helper function
-    for idx in np.atleast_1d(indices):
-        code = site_codes[idx]
-        dist_km = float(haversine_km(pirep_lat, pirep_lon, site_lats[idx], site_lons[idx]))
-        output.append((code, dist_km))
+    # Query KDTree for the N nearest stations
+    pirep_coord = np.radians([pirep['LAT'], pirep['LON']])
+    _distances, indices = nexrad_tree.query(pirep_coord, k=num_to_query)
 
-    # Ensure sorted by true km distance
-    output.sort(key=lambda x: x[1])
-    return tuple(output)
+    # Score each candidate by beam geometry coverage at the PIREP altitude
+    scored = []
+    for idx in indices:
+        site_lat, site_lon = site_coords[idx]
+        distance_m = haversine(
+            (pirep['LAT'], pirep['LON']),
+            (site_lat, site_lon),
+            unit='m'
+        )
+        score = score_radar_for_pirep(
+            distance_m, altitude_m, site_elevations[idx]
+        )
+        scored.append((score, site_codes[idx]))
+
+    # Sort by score descending, return the best 5
+    scored.sort(key=lambda x: x[0], reverse=True)
+    return tuple(code for _score, code in scored[:NUM_RADARS])
 
 def get_closest_sites(pireps_df):
     """
-    Purpose: This function determines which radar sites are the 5 closest to
-        each pilot report in the pireps_df argument
+    Purpose: This function determines the best candidate radar sites for
+        each pilot report, using altitude-aware beam geometry scoring.
     Arguments:
         pireps_df - The dataframe containing all the pirep data
     Return:
         This function returns this dataframe after adding a column which
-        contains the site codes of the 5 closest nexrad radar sites
+        contains the site codes of the candidate nexrad radar sites
     """
     nexrad_sites = pd.read_csv(f"{RADAR_DIRNAME}/nexrad_sites.csv")
     nexrad_coords = nexrad_sites[['Latitude', 'Longitude']].to_numpy()
@@ -116,12 +134,12 @@ def get_closest_sites(pireps_df):
     nexrad_tree = cKDTree(np.radians(nexrad_coords))
 
     site_codes = nexrad_sites['Site Code'].to_numpy()
-    # Added these lat and lon info to the data to keep coords info available 
-    site_lats  = nexrad_sites['Latitude'].to_numpy()
-    site_lons  = nexrad_sites['Longitude'].to_numpy()
+    site_elevations = ft_to_meters(nexrad_sites['Elevation'].to_numpy())
 
-    # Apply the helper function to find closest sites
-    pireps_df['nexrad_sites'] = pireps_df.apply(find_5_closest_sites, axis=1, args=(nexrad_tree, site_codes, site_lats, site_lons))
+    pireps_df['nexrad_sites'] = pireps_df.apply(
+        find_candidate_sites, axis=1,
+        args=(nexrad_tree, site_codes, nexrad_coords, site_elevations)
+    )
     return pireps_df
 
 
@@ -160,10 +178,11 @@ async def s3_list_nexrad_files(date: datetime, site: str, session) -> tuple:
     prefix = f"{date.year}/{date.month:02}/{date.day:02}/{site}"
     async with session.create_client('s3', region_name='us-east-1', config=AioConfig(signature_version=UNSIGNED)) as s3:
         try:
-            response = await s3.list_objects_v2(Bucket='noaa-nexrad-level2', Prefix=prefix)
+            response = await s3.list_objects_v2(Bucket=NEXRAD_BUCKET, Prefix=prefix)
             files = response.get("Contents", [])
             filetimes = []
             if len(files) != 0:
+                # Generate a list of (datetimes, nexrad filename) for all listed objects with valid file times
                 filetimes = [(dt, get_nexrad_basename(file['Key'])) for file in files if (dt := get_file_time(file['Key'], date)) is not None]
             return ((date, site), filetimes)
         except Exception as e:
@@ -315,14 +334,6 @@ def get_closest_nexrad_files(pireps_df: pd.DataFrame, nexrad_times_dict: dict):
             prefix=f"{nexrad_dt.year}/{nexrad_dt.month:02}/{nexrad_dt.day:02}/{file_ending[:4]}"
             aws_nexrad_level2_file = f"s3://unidata-nexrad-level2/{prefix}/{file_ending}"
             radars.append(aws_nexrad_level2_file)
-            
-#             else:
-#                 nexrad_dt, file_ending = nearest_time(times, pirep_dt)
-
-#                 prefix=f"{nexrad_dt.year}/{nexrad_dt.month:02}/{nexrad_dt.day:02}/{file_ending[:4]}"
-#                 aws_nexrad_level2_file = f"s3://unidata-nexrad-level2/{prefix}/{file_ending}"
-#                 radars.append(aws_nexrad_level2_file)
-            # break # Uncomment to only add the closest NEXRAD file
 
         # Track PIREPs with no radar within threshold
         if len(radars) == 0:

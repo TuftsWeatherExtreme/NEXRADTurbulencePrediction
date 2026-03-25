@@ -42,65 +42,94 @@ nexrad_sites_path = os.path.join(DIRNAME, "nexrad_sites.csv")
 nexrad_sites_df = pd.read_csv(nexrad_sites_path)
 
 
+NUM_RADARS = 5
+# Skip outputting NetCDF if final grid NaN fraction exceeds this
+MAX_NAN_FRACTION = 0.90
+
+
+def fix_radar_longitude(radar, radar_file):
+    """Fix radars that report longitude as 0 by looking up the site code."""
+    if radar.longitude['data'] == 0:
+        site_code = radar_file.split("/")[6]
+        site_longitude = nexrad_sites_df.loc[
+            nexrad_sites_df['Site Code'] == site_code, 'Longitude'
+        ].iloc[0]
+        radar.gate_longitude['data'] += site_longitude
+        radar.longitude['data'] = site_longitude
+
+
+def get_radar_time(radar_file):
+    """Extract the datetime from a radar S3 path."""
+    dt = datetime(
+        year=int(radar_file[24:28]),
+        month=int(radar_file[29:31]),
+        day=int(radar_file[32:34])
+    )
+    return get_file_time(radar_file, dt)
+
+
 def output_to_netcdf(pirep, output_dirname, num_inputs, verbose=False):
     radar_files = pirep['aws_files'].strip("[]").replace("'", "").replace(" ", "").split(',')
+    # Handle old bucket name from pre-existing CSVs
     radar_files = [f.replace('noaa-nexrad-level2', 'unidata-nexrad-level2') for f in radar_files]
-    
-    # Added error checking
-    try:
-        signal.signal(signal.SIGALRM, timeout_handler)
-        signal.alarm(30)  # 30 second timeout
-        radar = pyart.io.read_nexrad_archive(radar_files[0])
-        signal.alarm(0)  # Cancel alarm if successful
-    except TimeoutError as e:
-        print(f"ERROR: Timed out reading {radar_files[0]}")
-        return
-    except Exception as e:
-        print(f"ERROR: Failed to read radar file {radar_files[0]}: {type(e).__name__}: {e}")
-        return
+    # Use the best 5 radars (already ranked by beam geometry score in get_radars_for_pirep)
+    radar_files = radar_files[:NUM_RADARS]
 
-
-    if radar.longitude['data'] == 0:
-        site_code = radar_files[0].split("/")[6]
-        site_longitude = nexrad_sites_df.loc[nexrad_sites_df['Site Code'] == site_code, 'Longitude'].iloc[0]
-        radar.gate_longitude['data'] += site_longitude
-        radar.longitude['data'] = nexrad_sites_df[nexrad_sites_df['Site Code'] == site_code]['Longitude'].iloc[0]
-    
-
-    # Find origin based on pirep location
     pirep_location = (ft_to_meters(pirep['FL']), pirep['LAT'], pirep['LON'])
     pirep_t = datetime.fromisoformat(pirep['datetime'])
 
-    # Currently only use the closest radar file - could update to use more
-    radar_file = radar_files[0]
-    basename = os.path.basename(radar_file)  # gives "KJGX20240131_235419_V06"
-    dt = datetime(year=int(basename[4:8]), month=int(basename[8:10]), day=int(basename[10:12]))
-    radar_t = get_file_time(radar_file, dt)
-
-    grid = create_grid(radars=radar,
-        grid_shape=grid_shape,
-        alt_range=alt_limits_meters,
-        lat_range=lat_limits_degrees, 
-        lon_range=lon_limits_degrees,
-        grid_origin=pirep_location, 
-        fields=["reflectivity"],
-        map_roi=False,
-        verbose=False)
-
+    # Load all radar files with timeout and error handling
+    radars = []
+    for rf in radar_files:
+        try:
+            signal.signal(signal.SIGALRM, timeout_handler)
+            signal.alarm(30)  # 30 second timeout
+            radar = pyart.io.read_nexrad_archive(rf)
+            signal.alarm(0)  # Cancel alarm if successful
+            fix_radar_longitude(radar, rf)
+            radars.append(radar)
+        except TimeoutError:
+            print(f"ERROR: Timed out reading {rf}")
+        except Exception as e:
+            print(f"ERROR: Failed to read radar file {rf}: {type(e).__name__}: {e}")
 
     global num_completed
     num_completed += 1
-    one_twentieth_num_inputs = num_inputs // 20
-    if num_completed % (one_twentieth_num_inputs) == 0:
+    one_twentieth_num_inputs = max(num_inputs // 20, 1)
+    if num_completed % one_twentieth_num_inputs == 0:
         print(f"Completed {(num_completed // one_twentieth_num_inputs) * 5}% of df")
-    # Detect and do not output empty netcdf files!
+
+    if len(radars) == 0:
+        if verbose:
+            print("INFO: no radars loaded for", pirep)
+        return
+
+    grid = create_grid(
+        radars=tuple(radars),
+        grid_shape=grid_shape,
+        alt_range=alt_limits_meters,
+        lat_range=lat_limits_degrees,
+        lon_range=lon_limits_degrees,
+        grid_origin=pirep_location,
+        fields=["reflectivity"],
+        map_roi=False,
+        verbose=False
+    )
+
     if not grid:
         if verbose:
             print("INFO: no data found for", pirep)
         return
-    
 
-    # if there is data for a pirep, output a corresponding netcdf file
+    nan_frac = grid.attrs.get("nan_fraction", 1.0)
+    if nan_frac > MAX_NAN_FRACTION:
+        if verbose:
+            print(f"INFO: grid too sparse (nan_fraction={nan_frac:.3f}), skipping")
+        return
+
+    # Use the closest radar file's time for DELTA_T
+    radar_t = get_radar_time(radar_files[0])
+
     attrs = dict()
     attrs["LAT"] = pirep["LAT"]
     attrs["LON"] = pirep["LON"]
@@ -112,7 +141,7 @@ def output_to_netcdf(pirep, output_dirname, num_inputs, verbose=False):
     output_filename = f"{pirep.name:07}_{pirep_t.year}_{pirep_t.month}_df_row.nc"
     output_path = os.path.join(output_dirname, output_filename)
     os.makedirs(output_dirname, exist_ok=True)
-    
+
     grid.to_netcdf(output_path)
     if verbose:
         print(f"Generating netcdf: {output_path}")
