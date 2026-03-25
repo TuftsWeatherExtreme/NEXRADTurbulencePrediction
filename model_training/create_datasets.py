@@ -34,7 +34,7 @@ def main():
 
     # Create an instance of the custom dataset 
     print("create_datasets.py: Initializing RadarDataLoader")
-    dataset = RadarDataLoader(dir_path = f"{script_location}/../model_inputs/001", old_data=old_data)
+    dataset = RadarDataLoader(dir_path = f"{script_location}/../model_inputs/compressed", old_data=old_data)
 
     # Save the dataset and dataloader to specififed location
     torch.save(dataset, sys.argv[1])
