@@ -6,6 +6,7 @@
 
 from create_grid import create_grid
 import pandas as pd
+import signal
 import sys
 import os
 from datetime import datetime
@@ -17,6 +18,9 @@ sys.path.append(os.path.join(DIRNAME, ".."))
 
 from plane_weights.scale_turbulence import scale_turbulence
 from get_radars_for_pirep import get_file_time
+
+def timeout_handler(signum, frame):
+    raise TimeoutError("read_nexrad_archive timed out")
 
 
 def ft_to_meters(dist_in_ft):
@@ -40,7 +44,20 @@ nexrad_sites_df = pd.read_csv(nexrad_sites_path)
 
 def output_to_netcdf(pirep, output_dirname, num_inputs, verbose=False):
     radar_files = pirep['aws_files'].strip("[]").replace("'", "").replace(" ", "").split(',')
-    radar = pyart.io.read_nexrad_archive(radar_files[0])
+    radar_files = [f.replace('noaa-nexrad-level2', 'unidata-nexrad-level2') for f in radar_files]
+    
+    # Added error checking
+    try:
+        signal.signal(signal.SIGALRM, timeout_handler)
+        signal.alarm(30)  # 30 second timeout
+        radar = pyart.io.read_nexrad_archive(radar_files[0])
+        signal.alarm(0)  # Cancel alarm if successful
+    except TimeoutError as e:
+        print(f"ERROR: Timed out reading {radar_files[0]}")
+        return
+    except Exception as e:
+        print(f"ERROR: Failed to read radar file {radar_files[0]}: {type(e).__name__}: {e}")
+        return
 
 
     if radar.longitude['data'] == 0:
@@ -56,7 +73,8 @@ def output_to_netcdf(pirep, output_dirname, num_inputs, verbose=False):
 
     # Currently only use the closest radar file - could update to use more
     radar_file = radar_files[0]
-    dt = datetime(year=int(radar_file[24:28]), month=int(radar_file[29:31]), day=int(radar_file[32:34]))
+    basename = os.path.basename(radar_file)  # gives "KJGX20240131_235419_V06"
+    dt = datetime(year=int(basename[4:8]), month=int(basename[8:10]), day=int(basename[10:12]))
     radar_t = get_file_time(radar_file, dt)
 
     grid = create_grid(radars=radar,

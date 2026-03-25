@@ -14,14 +14,14 @@ fi
 echo "Resetting environment"
 source "$(dirname ${BASH_SOURCE[0]})/unload_modules.sh"
 
-echo "Loading miniforge/24.11.2-py312..."
-module load miniforge/24.11.2-py312
+echo "Allocating resources with slurm..."
+srun -p gpu --gres=gpu:1 -n 4 --mem=8g -t 1-0 --pty bash
 
-echo "Loading cuda/12.2..."
-module load cuda/12.2
+echo "Loading cuda and miniforge..."
+module load cuda/12.9 miniforge/25.3.0
 
-echo "Activating cbenv conda environment..." 
-source activate $ENV_PATH
+echo "Activating conda environment..." 
+conda activate /cluster/tufts/capstone25skyblue/condaenv26/nexrad_env
 
 echo "Redirecting into the NEXRAD repo..."
 cd $REPO_PATH

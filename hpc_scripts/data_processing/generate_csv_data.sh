@@ -10,7 +10,7 @@
 
 
 #SBATCH -J csv_gen
-#SBATCH --time=03-00:00:00
+#SBATCH --time=24:00:00
 #SBATCH -p batch,preempt
 #SBATCH -n 1
 #SBATCH --mem=32g

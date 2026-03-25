@@ -1,0 +1,226 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Operating on 250
+Making directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/250
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/split_radar_data/part_250.csv
+================================================================================
+SCRIPT STARTED: radar_data_to_model_input.py
+================================================================================
+Python executable: /cluster/tufts/capstone25skyblue/condaenv26/nexrad_env/bin/python3
+Python version: 3.12.12 | packaged by conda-forge | (main, Jan 26 2026, 23:51:32) [GCC 14.3.0]
+Current working directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction
+Number of arguments: 3
+Arguments received: ['/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/radar_data_to_model_input.py', '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/split_radar_data/part_250.csv', '/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/250']
+Input file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/split_radar_data/part_250.csv
+Input file exists: True
+Output directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/250
+Output directory exists: True
+================================================================================
+
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/split_radar_data/part_250.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/250
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Finished running radar_data_to_model_input.py on part! Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/250.tar.xz
+250/
+250/0118026_2025_3_df_row.nc
+250/0118027_2025_3_df_row.nc
+250/0118033_2025_3_df_row.nc
+250/0118035_2025_3_df_row.nc
+250/0118036_2025_3_df_row.nc
+250/0118037_2025_3_df_row.nc
+250/0118041_2025_3_df_row.nc
+250/0118042_2025_3_df_row.nc
+250/0118045_2025_3_df_row.nc
+250/0118046_2025_3_df_row.nc
+250/0118049_2025_3_df_row.nc
+250/0118050_2025_3_df_row.nc
+250/0118052_2025_3_df_row.nc
+250/0118056_2025_3_df_row.nc
+250/0118057_2025_3_df_row.nc
+250/0118059_2025_3_df_row.nc
+250/0118060_2025_3_df_row.nc
+250/0118065_2025_3_df_row.nc
+250/0118066_2025_3_df_row.nc
+250/0118068_2025_3_df_row.nc
+250/0118071_2025_3_df_row.nc
+250/0118072_2025_3_df_row.nc
+250/0118075_2025_3_df_row.nc
+250/0118078_2025_3_df_row.nc
+250/0118081_2025_3_df_row.nc
+250/0118082_2025_3_df_row.nc
+250/0118083_2025_3_df_row.nc
+250/0118087_2025_3_df_row.nc
+250/0118089_2025_3_df_row.nc
+250/0118090_2025_3_df_row.nc
+250/0118092_2025_3_df_row.nc
+250/0118096_2025_3_df_row.nc
+250/0118099_2025_3_df_row.nc
+250/0118100_2025_3_df_row.nc
+250/0118102_2025_3_df_row.nc
+250/0118104_2025_3_df_row.nc
+250/0118108_2025_3_df_row.nc
+250/0118110_2025_3_df_row.nc
+250/0118114_2025_3_df_row.nc
+250/0118115_2025_3_df_row.nc
+250/0118116_2025_3_df_row.nc
+250/0118117_2025_3_df_row.nc
+250/0118121_2025_3_df_row.nc
+250/0118124_2025_3_df_row.nc
+250/0118126_2025_3_df_row.nc
+250/0118129_2025_3_df_row.nc
+250/0118133_2025_3_df_row.nc
+250/0118141_2025_3_df_row.nc
+250/0118144_2025_3_df_row.nc
+250/0118146_2025_3_df_row.nc
+250/0118147_2025_3_df_row.nc
+250/0118151_2025_3_df_row.nc
+250/0118155_2025_3_df_row.nc
+250/0118158_2025_3_df_row.nc
+250/0118159_2025_3_df_row.nc
+250/0118165_2025_3_df_row.nc
+250/0118167_2025_3_df_row.nc
+250/0118168_2025_3_df_row.nc
+250/0118170_2025_3_df_row.nc
+250/0118172_2025_3_df_row.nc
+250/0118174_2025_3_df_row.nc
+250/0118178_2025_3_df_row.nc
+250/0118182_2025_3_df_row.nc
+250/0118183_2025_3_df_row.nc
+250/0118184_2025_3_df_row.nc
+250/0118185_2025_3_df_row.nc
+250/0118186_2025_3_df_row.nc
+250/0118188_2025_3_df_row.nc
+250/0118189_2025_3_df_row.nc
+250/0118190_2025_3_df_row.nc
+250/0118191_2025_3_df_row.nc
+250/0118194_2025_3_df_row.nc
+250/0118195_2025_3_df_row.nc
+250/0118196_2025_3_df_row.nc
+250/0118198_2025_3_df_row.nc
+250/0118205_2025_3_df_row.nc
+250/0118207_2025_3_df_row.nc
+250/0118211_2025_3_df_row.nc
+250/0118213_2025_3_df_row.nc
+250/0118214_2025_3_df_row.nc
+250/0118215_2025_3_df_row.nc
+250/0118216_2025_3_df_row.nc
+250/0118217_2025_3_df_row.nc
+250/0118222_2025_3_df_row.nc
+250/0118227_2025_3_df_row.nc
+250/0118233_2025_3_df_row.nc
+250/0118238_2025_3_df_row.nc
+250/0118239_2025_3_df_row.nc
+250/0118244_2025_3_df_row.nc
+250/0118245_2025_3_df_row.nc
+250/0118248_2025_3_df_row.nc
+250/0118249_2025_3_df_row.nc
+250/0118250_2025_3_df_row.nc
+250/0118254_2025_3_df_row.nc
+250/0118261_2025_3_df_row.nc
+250/0118263_2025_3_df_row.nc
+250/0118266_2025_3_df_row.nc
+250/0118267_2025_3_df_row.nc
+250/0118269_2025_3_df_row.nc
+250/0118270_2025_3_df_row.nc
+250/0118271_2025_3_df_row.nc
+250/0118272_2025_3_df_row.nc
+250/0118274_2025_3_df_row.nc
+250/0118275_2025_3_df_row.nc
+250/0118276_2025_3_df_row.nc
+250/0118281_2025_3_df_row.nc
+250/0118283_2025_3_df_row.nc
+250/0118284_2025_3_df_row.nc
+250/0118285_2025_3_df_row.nc
+250/0118287_2025_3_df_row.nc
+250/0118290_2025_3_df_row.nc
+250/0118293_2025_3_df_row.nc
+250/0118296_2025_3_df_row.nc
+250/0118297_2025_3_df_row.nc
+250/0118298_2025_3_df_row.nc
+250/0118301_2025_3_df_row.nc
+250/0118304_2025_3_df_row.nc
+250/0118306_2025_3_df_row.nc
+250/0118311_2025_3_df_row.nc
+250/0118320_2025_3_df_row.nc
+250/0118321_2025_3_df_row.nc
+250/0118322_2025_3_df_row.nc
+250/0118323_2025_3_df_row.nc
+250/0118325_2025_3_df_row.nc
+250/0118326_2025_3_df_row.nc
+250/0118329_2025_3_df_row.nc
+250/0118330_2025_3_df_row.nc
+250/0118332_2025_3_df_row.nc
+250/0118334_2025_3_df_row.nc
+250/0118336_2025_3_df_row.nc
+250/0118338_2025_3_df_row.nc
+250/0118340_2025_3_df_row.nc
+250/0118342_2025_3_df_row.nc
+250/0118344_2025_3_df_row.nc
+250/0118346_2025_3_df_row.nc
+250/0118348_2025_3_df_row.nc
+250/0118349_2025_3_df_row.nc
+250/0118350_2025_3_df_row.nc
+250/0118351_2025_3_df_row.nc
+250/0118357_2025_3_df_row.nc
+250/0118358_2025_3_df_row.nc
+250/0118359_2025_3_df_row.nc
+250/0118360_2025_3_df_row.nc
+250/0118361_2025_3_df_row.nc
+250/0118363_2025_3_df_row.nc
+250/0118364_2025_3_df_row.nc
+250/0118365_2025_3_df_row.nc
+250/0118367_2025_3_df_row.nc
+250/0118369_2025_3_df_row.nc
+250/0118370_2025_3_df_row.nc
+250/0118374_2025_3_df_row.nc
+250/0118375_2025_3_df_row.nc
+250/0118376_2025_3_df_row.nc
+250/0118377_2025_3_df_row.nc
+250/0118379_2025_3_df_row.nc
+250/0118381_2025_3_df_row.nc
+250/0118382_2025_3_df_row.nc
+250/0118383_2025_3_df_row.nc
+250/0118384_2025_3_df_row.nc
+250/0118387_2025_3_df_row.nc
+250/0118388_2025_3_df_row.nc
+250/0118392_2025_3_df_row.nc
+250/0118394_2025_3_df_row.nc
+250/0118395_2025_3_df_row.nc
+250/0118399_2025_3_df_row.nc
+250/0118400_2025_3_df_row.nc
+250/0118403_2025_3_df_row.nc
+250/0118407_2025_3_df_row.nc
+250/0118411_2025_3_df_row.nc
+250/0118415_2025_3_df_row.nc
+250/0118422_2025_3_df_row.nc
+250/0118425_2025_3_df_row.nc
+All done with compression. Removing /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/250 directory
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

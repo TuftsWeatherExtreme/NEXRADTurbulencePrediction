@@ -139,7 +139,7 @@ async def s3_list_nexrad_files(date: datetime, site: str, session) -> tuple:
     """
         Purpose: This function accepts a particular date, nexrad radar site,
             and aiobotocore session object and performs a list_objects_v2
-            on the noaa-nexrad-level2 bucket looking for all radar files
+            on the unidata-nexrad-level2 bucket looking for all radar files
             on the given date for that specific site.
         Arguments:
             date - A datetime object containing the year, month, and day to find
@@ -152,15 +152,17 @@ async def s3_list_nexrad_files(date: datetime, site: str, session) -> tuple:
                 date and site
     """
     prefix = f"{date.year}/{date.month:02}/{date.day:02}/{site}"
-    async with session.create_client('s3', region_name='us-east-1') as s3:
-        response = await s3.list_objects_v2(Bucket='noaa-nexrad-level2', Prefix=prefix)
-        files = response.get("Contents", [])
-        filetimes = []
-        if len(files) != 0:
-            # Generate a list of (datetimes, nexrad filename) for all listed objects with valid file times
-            filetimes = [(dt, get_nexrad_basename(file['Key'])) for file in files if (dt := get_file_time(file['Key'], date)) is not None]
-        
-        return ((date, site), filetimes)
+    async with session.create_client('s3', region_name='us-east-1', config=AioConfig(signature_version=UNSIGNED)) as s3:
+        try:
+            response = await s3.list_objects_v2(Bucket='noaa-nexrad-level2', Prefix=prefix)
+            files = response.get("Contents", [])
+            filetimes = []
+            if len(files) != 0:
+                filetimes = [(dt, get_nexrad_basename(file['Key'])) for file in files if (dt := get_file_time(file['Key'], date)) is not None]
+            return ((date, site), filetimes)
+        except Exception as e:
+            print(f"ERROR: Failed to access S3 bucket for {site} on {date}: {type(e).__name__}: {e}")
+            return ((date, site), [])
 
 
 async def batch_list_nexrad_times(unique_requests: set) -> dict:
@@ -305,8 +307,15 @@ def get_closest_nexrad_files(pireps_df: pd.DataFrame, nexrad_times_dict: dict):
             
             nexrad_dt, file_ending = nearest_result
             prefix=f"{nexrad_dt.year}/{nexrad_dt.month:02}/{nexrad_dt.day:02}/{file_ending[:4]}"
-            aws_nexrad_level2_file = f"s3://noaa-nexrad-level2/{prefix}/{file_ending}"
+            aws_nexrad_level2_file = f"s3://unidata-nexrad-level2/{prefix}/{file_ending}"
             radars.append(aws_nexrad_level2_file)
+            
+#             else:
+#                 nexrad_dt, file_ending = nearest_time(times, pirep_dt)
+
+#                 prefix=f"{nexrad_dt.year}/{nexrad_dt.month:02}/{nexrad_dt.day:02}/{file_ending[:4]}"
+#                 aws_nexrad_level2_file = f"s3://unidata-nexrad-level2/{prefix}/{file_ending}"
+#                 radars.append(aws_nexrad_level2_file)
             # break # Uncomment to only add the closest NEXRAD file
 
         # Track PIREPs with no radar within threshold
