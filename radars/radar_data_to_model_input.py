@@ -48,7 +48,7 @@ MAX_NAN_FRACTION = 0.90
 
 
 def fix_radar_longitude(radar, radar_file):
-    """Fix radars that report longitude as 0 by looking up the site code."""
+    # Fix radars that report longitude as 0 by looking up the site code
     if radar.longitude['data'] == 0:
         site_code = radar_file.split("/")[6]
         site_longitude = nexrad_sites_df.loc[
@@ -59,12 +59,9 @@ def fix_radar_longitude(radar, radar_file):
 
 
 def get_radar_time(radar_file):
-    """Extract the datetime from a radar S3 path."""
-    dt = datetime(
-        year=int(radar_file[24:28]),
-        month=int(radar_file[29:31]),
-        day=int(radar_file[32:34])
-    )
+    # Extract the datetime from a radar S3 path
+    basename = os.path.basename(radar_file)  # e.g. "KJGX20240131_235419_V06"
+    dt = datetime(year=int(basename[4:8]), month=int(basename[8:10]), day=int(basename[10:12]))
     return get_file_time(radar_file, dt)
 
 

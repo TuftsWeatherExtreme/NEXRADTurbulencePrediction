@@ -1,0 +1,14 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing june 2016
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

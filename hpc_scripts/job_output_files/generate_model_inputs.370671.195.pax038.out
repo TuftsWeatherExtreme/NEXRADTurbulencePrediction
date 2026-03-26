@@ -1,0 +1,47 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2024/04
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2024/04.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2024/04.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2024_04
+Completed 5% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/02/KCXX/KCXX20240402_095243_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/12/KAKQ/KAKQ20240412_011521_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/17/PAHG/PAHG20240417_221014_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/17/PAHG/PAHG20240417_221014_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/18/PAHG/PAHG20240418_202857_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2024_04.tar.xz
+2024_04/
+2024_04/F000000_2024_4_df_row.nc
+2024_04/T000000_2024_4_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2024_04
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

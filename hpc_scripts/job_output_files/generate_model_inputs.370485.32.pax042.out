@@ -1,0 +1,54 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2010/09
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2010/09.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2010/09.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2010_09
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2010/09/22/KDOX/KDOX20100922_215900_V04.gz: IndexError: list index out of range
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2010/09/22/KDOX/KDOX20100922_231917_V04.gz: IndexError: list index out of range
+Completed 65% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2010/09/23/KVNX/KVNX20100923_211429_V04.gz: IndexError: list index out of range
+Completed 70% of df
+Completed 75% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2010/09/25/KVNX/KVNX20100925_200401_V04.gz: IndexError: list index out of range
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2010/09/25/KVNX/KVNX20100925_200401_V04.gz: IndexError: list index out of range
+Completed 80% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2010/09/26/KEVX/KEVX20100926_162833_V04.gz: IndexError: list index out of range
+Completed 85% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2010/09/26/KDOX/KDOX20100926_234815_V04.gz: IndexError: list index out of range
+Completed 90% of df
+Completed 95% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2010/09/28/KDOX/KDOX20100928_182321_V04.gz: IndexError: list index out of range
+Completed 100% of df
+Completed 105% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2010/09/30/KEVX/KEVX20100930_174707_V04.gz: IndexError: list index out of range
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2010/09/30/KEVX/KEVX20100930_174707_V04.gz: IndexError: list index out of range
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2010/09/30/KDOX/KDOX20100930_184325_V04.gz: IndexError: list index out of range
+Completed 110% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2010_09.tar.xz
+2010_09/
+2010_09/T000000_2010_9_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2010_09
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

@@ -1,0 +1,47 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2009/01
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2009/01.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2009/01.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2009_01
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/01/07/KCCX/KCCX20090107_141149_V03.gz: ValueError: need at least one array to concatenate
+Completed 25% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/01/07/KTYX/KTYX20090107_165619_V04.gz: OSError: unknown compression record
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/01/07/KTYX/KTYX20090107_172429_V04.gz: IndexError: Out of bounds on buffer access (axis 0)
+Completed 30% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/01/07/KMHX/KMHX20090107_202754_V03.gz: OSError: unknown compression record
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Completed 105% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2009_01.tar.xz
+2009_01/
+2009_01/F000000_2009_1_df_row.nc
+2009_01/T000000_2009_1_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2009_01
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

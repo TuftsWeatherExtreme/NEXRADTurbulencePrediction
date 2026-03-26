@@ -1,0 +1,16 @@
+srun: error: Unable to create step for job 363470: Invalid generic resource (gres) specification
+**** Welcome! This script will take a month and year and return a csv file ****
+**** with pireps that mention turbulence from this month and year          ****
+Performing GET request, this may take a moment...
+Request was 4.49 Mb
+Attempting to create dataframe from csv file
+Successfully created dataframe from CSV file
+Cleaning dataframe
+Classifying levels of turbulence
+We dropped 17053/30898 pireps with unknown turbulence intensity
+Dropping pireps w/ NA flight level, latitude, or longitude
+We dropped 945/13845 pireps with unknown flight level, latitude, or longitude
+Filtered to turbulence >= 5: kept 150/12900 pireps
+Writing 150 pireps with altitude and turbulence to csv
+Writing csv to output file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/pireps/clean_pirep_data/2015/02_turb_pireps.csv
+Finished writing csv output

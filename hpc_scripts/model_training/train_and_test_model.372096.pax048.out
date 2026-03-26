@@ -1,0 +1,689 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Thu Mar 26 07:45:52 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 575.57.08              Driver Version: 575.57.08      CUDA Version: 12.9     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L40                     On  |   00000000:4A:00.0 Off |                    0 |
+| N/A   31C    P8             35W /  300W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+About to train the hybrid model with mse loss with seed 42
+Using GPU!!!
+Original dataset length: 415
+Training the hybrid model
+Using MSELoss() as the loss function
+Using 42 as the seed for splitting the dataset
+No checkpoint found.
+Beginning search over different values of l2_alpha
+
+Beginning 6-fold Cross Validation with l2_alpha = 0.1
+Fold 0 with l2_alpha = 0.1
+First 6 train indices: [1 2 4 6 7 8]
+First 6 validation indices: [ 0  3  5  9 15 22]
+Train subset size: 311, Validation subset size: 63
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [33441.890625]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 0, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [33441.890625, 17.157472610473633]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 0, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [33441.890625, 17.157472610473633, 35.02382278442383]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 0, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [33441.890625, 17.157472610473633, 35.02382278442383, 32.35065841674805]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 0, and epoch 4
+Fold 0 had loss: 32.35065841674805 on its last epoch
+
+Fold 1 with l2_alpha = 0.1
+First 6 train indices: [0 1 2 3 4 5]
+First 6 validation indices: [ 7 16 17 18 19 24]
+Train subset size: 311, Validation subset size: 63
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [37411.46875]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 1, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [37411.46875, 311.2460021972656]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 1, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [37411.46875, 311.2460021972656, 111.70591735839844]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 1, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [37411.46875, 311.2460021972656, 111.70591735839844, 206.1835479736328]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 1, and epoch 4
+Fold 1 had loss: 206.1835479736328 on its last epoch
+
+Fold 2 with l2_alpha = 0.1
+First 6 train indices: [0 1 2 3 4 5]
+First 6 validation indices: [ 6 10 11 23 37 38]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [24697.2578125]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 2, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [24697.2578125, 7.269853115081787]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 2, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [24697.2578125, 7.269853115081787, 28.01486587524414]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 2, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [24697.2578125, 7.269853115081787, 28.01486587524414, 28.080841064453125]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 2, and epoch 4
+Fold 2 had loss: 28.080841064453125 on its last epoch
+
+Fold 3 with l2_alpha = 0.1
+First 6 train indices: [0 1 3 4 5 6]
+First 6 validation indices: [ 2 12 26 28 29 35]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [11616.17578125]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 3, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [11616.17578125, 26.329309463500977]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 3, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [11616.17578125, 26.329309463500977, 14.175589561462402]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 3, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [11616.17578125, 26.329309463500977, 14.175589561462402, 24.562410354614258]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 3, and epoch 4
+Fold 3 had loss: 24.562410354614258 on its last epoch
+
+Fold 4 with l2_alpha = 0.1
+First 6 train indices: [0 1 2 3 5 6]
+First 6 validation indices: [ 4  8 14 27 32 40]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [48317.18359375]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 4, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [48317.18359375, 2.6175174713134766]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 4, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [48317.18359375, 2.6175174713134766, 30.8330135345459]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 4, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [48317.18359375, 2.6175174713134766, 30.8330135345459, 29.47044563293457]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 4, and epoch 4
+Fold 4 had loss: 29.47044563293457 on its last epoch
+
+Fold 5 with l2_alpha = 0.1
+First 6 train indices: [0 2 3 4 5 6]
+First 6 validation indices: [ 1 13 20 21 34 48]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [17946.357421875]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 5, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [17946.357421875, 30.686302185058594]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 5, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [17946.357421875, 30.686302185058594, 36.99239730834961]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 5, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [17946.357421875, 30.686302185058594, 36.99239730834961, 32.254676818847656]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 0, fold 5, and epoch 4
+Fold 5 had loss: 32.254676818847656 on its last epoch
+
+l2_loss_list is now [58.81709671020508]
+
+Beginning 6-fold Cross Validation with l2_alpha = 0.01
+Fold 0 with l2_alpha = 0.01
+First 6 train indices: [1 2 4 6 7 8]
+First 6 validation indices: [ 0  3  5  9 15 22]
+Train subset size: 311, Validation subset size: 63
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [928.9164428710938]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 0, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [928.9164428710938, 23.29624366760254]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 0, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [928.9164428710938, 23.29624366760254, 25.83167266845703]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 0, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [928.9164428710938, 23.29624366760254, 25.83167266845703, 24.003520965576172]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 0, and epoch 4
+Fold 0 had loss: 24.003520965576172 on its last epoch
+
+Fold 1 with l2_alpha = 0.01
+First 6 train indices: [0 1 2 3 4 5]
+First 6 validation indices: [ 7 16 17 18 19 24]
+Train subset size: 311, Validation subset size: 63
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [5903.65234375]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 1, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [5903.65234375, 11.322550773620605]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 1, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [5903.65234375, 11.322550773620605, 118.06715393066406]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 1, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [5903.65234375, 11.322550773620605, 118.06715393066406, 147.1188507080078]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 1, and epoch 4
+Fold 1 had loss: 147.1188507080078 on its last epoch
+
+Fold 2 with l2_alpha = 0.01
+First 6 train indices: [0 1 2 3 4 5]
+First 6 validation indices: [ 6 10 11 23 37 38]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [21864.5390625]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 2, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [21864.5390625, 73.79840087890625]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 2, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [21864.5390625, 73.79840087890625, 57.971866607666016]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 2, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [21864.5390625, 73.79840087890625, 57.971866607666016, 116.9572982788086]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 2, and epoch 4
+Fold 2 had loss: 116.9572982788086 on its last epoch
+
+Fold 3 with l2_alpha = 0.01
+First 6 train indices: [0 1 3 4 5 6]
+First 6 validation indices: [ 2 12 26 28 29 35]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [77390.046875]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 3, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [77390.046875, 1925.909912109375]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 3, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [77390.046875, 1925.909912109375, 327.0045471191406]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 3, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [77390.046875, 1925.909912109375, 327.0045471191406, 40.145599365234375]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 3, and epoch 4
+Fold 3 had loss: 40.145599365234375 on its last epoch
+
+Fold 4 with l2_alpha = 0.01
+First 6 train indices: [0 1 2 3 5 6]
+First 6 validation indices: [ 4  8 14 27 32 40]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [34210.296875]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 4, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [34210.296875, 15.756950378417969]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 4, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [34210.296875, 15.756950378417969, 21.956443786621094]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 4, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [34210.296875, 15.756950378417969, 21.956443786621094, 32.332340240478516]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 4, and epoch 4
+Fold 4 had loss: 32.332340240478516 on its last epoch
+
+Fold 5 with l2_alpha = 0.01
+First 6 train indices: [0 2 3 4 5 6]
+First 6 validation indices: [ 1 13 20 21 34 48]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [348094.75]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 5, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [348094.75, 36.598331451416016]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 5, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [348094.75, 36.598331451416016, 29.249618530273438]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 5, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [348094.75, 36.598331451416016, 29.249618530273438, 28.457727432250977]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 1, fold 5, and epoch 4
+Fold 5 had loss: 28.457727432250977 on its last epoch
+
+l2_loss_list is now [58.81709671020508, 64.83588949839275]
+
+Beginning 6-fold Cross Validation with l2_alpha = 0.001
+Fold 0 with l2_alpha = 0.001
+First 6 train indices: [1 2 4 6 7 8]
+First 6 validation indices: [ 0  3  5  9 15 22]
+Train subset size: 311, Validation subset size: 63
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [3645.724609375]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 0, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [3645.724609375, 57.30430221557617]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 0, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [3645.724609375, 57.30430221557617, 77.19886779785156]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 0, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [3645.724609375, 57.30430221557617, 77.19886779785156, 44.911678314208984]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 0, and epoch 4
+Fold 0 had loss: 44.911678314208984 on its last epoch
+
+Fold 1 with l2_alpha = 0.001
+First 6 train indices: [0 1 2 3 4 5]
+First 6 validation indices: [ 7 16 17 18 19 24]
+Train subset size: 311, Validation subset size: 63
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [15701.71484375]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 1, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [15701.71484375, 13.602290153503418]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 1, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [15701.71484375, 13.602290153503418, 30.327131271362305]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 1, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [15701.71484375, 13.602290153503418, 30.327131271362305, 29.936870574951172]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 1, and epoch 4
+Fold 1 had loss: 29.936870574951172 on its last epoch
+
+Fold 2 with l2_alpha = 0.001
+First 6 train indices: [0 1 2 3 4 5]
+First 6 validation indices: [ 6 10 11 23 37 38]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [57667.1875]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 2, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [57667.1875, 152.3644561767578]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 2, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [57667.1875, 152.3644561767578, 68.60918426513672]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 2, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [57667.1875, 152.3644561767578, 68.60918426513672, 114.98169708251953]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 2, and epoch 4
+Fold 2 had loss: 114.98169708251953 on its last epoch
+
+Fold 3 with l2_alpha = 0.001
+First 6 train indices: [0 1 3 4 5 6]
+First 6 validation indices: [ 2 12 26 28 29 35]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [1166.8641357421875]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 3, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [1166.8641357421875, 45126.59765625]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 3, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [1166.8641357421875, 45126.59765625, 212.08706665039062]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 3, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [1166.8641357421875, 45126.59765625, 212.08706665039062, 845.9285278320312]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 3, and epoch 4
+Fold 3 had loss: 845.9285278320312 on its last epoch
+
+Fold 4 with l2_alpha = 0.001
+First 6 train indices: [0 1 2 3 5 6]
+First 6 validation indices: [ 4  8 14 27 32 40]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [164915.546875]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 4, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [164915.546875, 1.3898743391036987]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 4, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [164915.546875, 1.3898743391036987, 36.039581298828125]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 4, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [164915.546875, 1.3898743391036987, 36.039581298828125, 33.31439971923828]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 4, and epoch 4
+Fold 4 had loss: 33.31439971923828 on its last epoch
+
+Fold 5 with l2_alpha = 0.001
+First 6 train indices: [0 2 3 4 5 6]
+First 6 validation indices: [ 1 13 20 21 34 48]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [42676.125]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 5, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [42676.125, 5.044130325317383]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 5, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [42676.125, 5.044130325317383, 25.965709686279297]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 5, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [42676.125, 5.044130325317383, 25.965709686279297, 30.116273880004883]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 2, fold 5, and epoch 4
+Fold 5 had loss: 30.116273880004883 on its last epoch
+
+l2_loss_list is now [58.81709671020508, 64.83588949839275, 183.19824123382568]
+
+Beginning 6-fold Cross Validation with l2_alpha = 0
+Fold 0 with l2_alpha = 0
+First 6 train indices: [1 2 4 6 7 8]
+First 6 validation indices: [ 0  3  5  9 15 22]
+Train subset size: 311, Validation subset size: 63
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [5968.380859375]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 0, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [5968.380859375, 28.234546661376953]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 0, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [5968.380859375, 28.234546661376953, 225.12649536132812]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 0, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [5968.380859375, 28.234546661376953, 225.12649536132812, 182.4297332763672]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 0, and epoch 4
+Fold 0 had loss: 182.4297332763672 on its last epoch
+
+Fold 1 with l2_alpha = 0
+First 6 train indices: [0 1 2 3 4 5]
+First 6 validation indices: [ 7 16 17 18 19 24]
+Train subset size: 311, Validation subset size: 63
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [23068.87109375]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 1, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [23068.87109375, 11.584538459777832]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 1, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [23068.87109375, 11.584538459777832, 35.393035888671875]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 1, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [23068.87109375, 11.584538459777832, 35.393035888671875, 34.873783111572266]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 1, and epoch 4
+Fold 1 had loss: 34.873783111572266 on its last epoch
+
+Fold 2 with l2_alpha = 0
+First 6 train indices: [0 1 2 3 4 5]
+First 6 validation indices: [ 6 10 11 23 37 38]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [19129.76953125]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 2, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [19129.76953125, 13.201762199401855]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 2, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [19129.76953125, 13.201762199401855, 23.500858306884766]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 2, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [19129.76953125, 13.201762199401855, 23.500858306884766, 31.52413558959961]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 2, and epoch 4
+Fold 2 had loss: 31.52413558959961 on its last epoch
+
+Fold 3 with l2_alpha = 0
+First 6 train indices: [0 1 3 4 5 6]
+First 6 validation indices: [ 2 12 26 28 29 35]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [6643.978515625]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 3, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [6643.978515625, 124.08207702636719]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 3, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [6643.978515625, 124.08207702636719, 32.6196174621582]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 3, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [6643.978515625, 124.08207702636719, 32.6196174621582, 24.491775512695312]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 3, and epoch 4
+Fold 3 had loss: 24.491775512695312 on its last epoch
+
+Fold 4 with l2_alpha = 0
+First 6 train indices: [0 1 2 3 5 6]
+First 6 validation indices: [ 4  8 14 27 32 40]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [30539.228515625]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 4, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [30539.228515625, 7.352138042449951]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 4, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [30539.228515625, 7.352138042449951, 26.382516860961914]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 4, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [30539.228515625, 7.352138042449951, 26.382516860961914, 29.324138641357422]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 4, and epoch 4
+Fold 4 had loss: 29.324138641357422 on its last epoch
+
+Fold 5 with l2_alpha = 0
+First 6 train indices: [0 2 3 4 5 6]
+First 6 validation indices: [ 1 13 20 21 34 48]
+Train subset size: 312, Validation subset size: 62
+BEGINNING EPOCH 1
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 1 is [2082.106689453125]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 5, and epoch 1
+BEGINNING EPOCH 2
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 2 is [2082.106689453125, 273.8196105957031]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 5, and epoch 2
+BEGINNING EPOCH 3
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 3 is [2082.106689453125, 273.8196105957031, 176.81689453125]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 5, and epoch 3
+BEGINNING EPOCH 4
+Evaluated model on 1 batches of ~2000
+loss_per_epoch_list on epoch 4 is [2082.106689453125, 273.8196105957031, 176.81689453125, 77.22493743896484]
+
+Checkpoint saved at /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_training/trained_model_outputs/hybrid_mse_42_model_checkpoint.pth for l2_alpha_idx: 3, fold 5, and epoch 4
+Fold 5 had loss: 77.22493743896484 on its last epoch
+
+l2_loss_list is now [58.81709671020508, 64.83588949839275, 183.19824123382568, 63.31141726175944]
+
+length of l2_loss_list is 4
+
+l2_loss_list is [58.81709671020508, 64.83588949839275, 183.19824123382568, 63.31141726175944]
+
+best l2_alpha value is 0.1 with a loss of: 58.81709671020508
+Completed 6-fold Cross Validation
+Retraining best model on 90 percent of the data
+
+Testing the retrained best model
+
+Finished training and testing the model!
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!
