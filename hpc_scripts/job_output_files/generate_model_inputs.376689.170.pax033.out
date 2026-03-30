@@ -1,0 +1,313 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2022/03
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2022/03.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2022/03.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2022_03
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/19/KGSP/KGSP20220319_150743_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/24/KCAE/KCAE20220324_010247_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/10/KLVX/KLVX20220310_225904_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/10/KHPX/KHPX20220310_225847_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/05/KMKX/KMKX20220305_232448_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/05/KLOT/KLOT20220305_232426_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/05/KILX/KILX20220305_232034_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/21/KFDR/KFDR20220321_134013_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/18/KFFC/KFFC20220318_162300_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/18/KMXX/KMXX20220318_162811_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/18/KEOX/KEOX20220318_162915_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/18/KVAX/KVAX20220318_162924_V06
+Completed 65% of df
+Completed 70% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/24/KOKX/KOKX20220324_054221_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/12/KAMX/KAMX20220312_191556_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/12/KMLB/KMLB20220312_191508_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/12/KTBW/KTBW20220312_191731_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/23/KPBZ/KPBZ20220323_233357_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/23/KILN/KILN20220323_233511_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/23/KRLX/KRLX20220323_233144_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/06/KBBX/KBBX20220306_125932_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2022/03/06/KMAX/KMAX20220306_125930_V06
+Completed 75% of df
+Completed 80% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2022/03/26/KFCX/KFCX20220326_172502_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2022_03.tar.xz
+2022_03/
+2022_03/0000004_2022_3_df_row.nc
+2022_03/0000007_2022_3_df_row.nc
+2022_03/0000008_2022_3_df_row.nc
+2022_03/0000009_2022_3_df_row.nc
+2022_03/0000010_2022_3_df_row.nc
+2022_03/0000011_2022_3_df_row.nc
+2022_03/0000013_2022_3_df_row.nc
+2022_03/0000015_2022_3_df_row.nc
+2022_03/0000021_2022_3_df_row.nc
+2022_03/0000022_2022_3_df_row.nc
+2022_03/0000023_2022_3_df_row.nc
+2022_03/0000029_2022_3_df_row.nc
+2022_03/0000031_2022_3_df_row.nc
+2022_03/0000036_2022_3_df_row.nc
+2022_03/0000038_2022_3_df_row.nc
+2022_03/0000039_2022_3_df_row.nc
+2022_03/0000041_2022_3_df_row.nc
+2022_03/0000042_2022_3_df_row.nc
+2022_03/0000045_2022_3_df_row.nc
+2022_03/0000051_2022_3_df_row.nc
+2022_03/0000052_2022_3_df_row.nc
+2022_03/0000053_2022_3_df_row.nc
+2022_03/0000059_2022_3_df_row.nc
+2022_03/0000060_2022_3_df_row.nc
+2022_03/0000065_2022_3_df_row.nc
+2022_03/0000072_2022_3_df_row.nc
+2022_03/0000078_2022_3_df_row.nc
+2022_03/0000079_2022_3_df_row.nc
+2022_03/0000083_2022_3_df_row.nc
+2022_03/0000085_2022_3_df_row.nc
+2022_03/0000090_2022_3_df_row.nc
+2022_03/0000091_2022_3_df_row.nc
+2022_03/0000092_2022_3_df_row.nc
+2022_03/0000094_2022_3_df_row.nc
+2022_03/0000100_2022_3_df_row.nc
+2022_03/0000102_2022_3_df_row.nc
+2022_03/0000106_2022_3_df_row.nc
+2022_03/0000109_2022_3_df_row.nc
+2022_03/0000113_2022_3_df_row.nc
+2022_03/0000115_2022_3_df_row.nc
+2022_03/0000123_2022_3_df_row.nc
+2022_03/0000133_2022_3_df_row.nc
+2022_03/0000146_2022_3_df_row.nc
+2022_03/0000148_2022_3_df_row.nc
+2022_03/0000152_2022_3_df_row.nc
+2022_03/0000153_2022_3_df_row.nc
+2022_03/0000157_2022_3_df_row.nc
+2022_03/0000167_2022_3_df_row.nc
+2022_03/0000174_2022_3_df_row.nc
+2022_03/0000176_2022_3_df_row.nc
+2022_03/0000178_2022_3_df_row.nc
+2022_03/0000180_2022_3_df_row.nc
+2022_03/0000182_2022_3_df_row.nc
+2022_03/0000184_2022_3_df_row.nc
+2022_03/0000187_2022_3_df_row.nc
+2022_03/0000190_2022_3_df_row.nc
+2022_03/0000192_2022_3_df_row.nc
+2022_03/0000195_2022_3_df_row.nc
+2022_03/0000196_2022_3_df_row.nc
+2022_03/0000201_2022_3_df_row.nc
+2022_03/0000202_2022_3_df_row.nc
+2022_03/0000203_2022_3_df_row.nc
+2022_03/0000206_2022_3_df_row.nc
+2022_03/0000215_2022_3_df_row.nc
+2022_03/0000217_2022_3_df_row.nc
+2022_03/0000220_2022_3_df_row.nc
+2022_03/0000221_2022_3_df_row.nc
+2022_03/0000222_2022_3_df_row.nc
+2022_03/0000223_2022_3_df_row.nc
+2022_03/0000227_2022_3_df_row.nc
+2022_03/0000229_2022_3_df_row.nc
+2022_03/0000231_2022_3_df_row.nc
+2022_03/0000232_2022_3_df_row.nc
+2022_03/0000233_2022_3_df_row.nc
+2022_03/0000238_2022_3_df_row.nc
+2022_03/0000239_2022_3_df_row.nc
+2022_03/0000243_2022_3_df_row.nc
+2022_03/0000245_2022_3_df_row.nc
+2022_03/0000246_2022_3_df_row.nc
+2022_03/0000251_2022_3_df_row.nc
+2022_03/0000254_2022_3_df_row.nc
+2022_03/0000257_2022_3_df_row.nc
+2022_03/0000258_2022_3_df_row.nc
+2022_03/0000259_2022_3_df_row.nc
+2022_03/0000262_2022_3_df_row.nc
+2022_03/0000265_2022_3_df_row.nc
+2022_03/0000268_2022_3_df_row.nc
+2022_03/0000271_2022_3_df_row.nc
+2022_03/0000273_2022_3_df_row.nc
+2022_03/0000275_2022_3_df_row.nc
+2022_03/0000276_2022_3_df_row.nc
+2022_03/0000282_2022_3_df_row.nc
+2022_03/0000284_2022_3_df_row.nc
+2022_03/0000287_2022_3_df_row.nc
+2022_03/0000288_2022_3_df_row.nc
+2022_03/0000293_2022_3_df_row.nc
+2022_03/0000303_2022_3_df_row.nc
+2022_03/0000304_2022_3_df_row.nc
+2022_03/0000309_2022_3_df_row.nc
+2022_03/0000314_2022_3_df_row.nc
+2022_03/0000317_2022_3_df_row.nc
+2022_03/0000321_2022_3_df_row.nc
+2022_03/0000324_2022_3_df_row.nc
+2022_03/0000329_2022_3_df_row.nc
+2022_03/0000331_2022_3_df_row.nc
+2022_03/0000338_2022_3_df_row.nc
+2022_03/0000339_2022_3_df_row.nc
+2022_03/0000340_2022_3_df_row.nc
+2022_03/0000342_2022_3_df_row.nc
+2022_03/0000345_2022_3_df_row.nc
+2022_03/0000346_2022_3_df_row.nc
+2022_03/0000349_2022_3_df_row.nc
+2022_03/0000352_2022_3_df_row.nc
+2022_03/0000356_2022_3_df_row.nc
+2022_03/0000363_2022_3_df_row.nc
+2022_03/0000364_2022_3_df_row.nc
+2022_03/0000366_2022_3_df_row.nc
+2022_03/0000374_2022_3_df_row.nc
+2022_03/0000376_2022_3_df_row.nc
+2022_03/0000380_2022_3_df_row.nc
+2022_03/0000383_2022_3_df_row.nc
+2022_03/0000386_2022_3_df_row.nc
+2022_03/0000387_2022_3_df_row.nc
+2022_03/0000391_2022_3_df_row.nc
+2022_03/0000400_2022_3_df_row.nc
+2022_03/0000404_2022_3_df_row.nc
+2022_03/0000406_2022_3_df_row.nc
+2022_03/0000412_2022_3_df_row.nc
+2022_03/0000413_2022_3_df_row.nc
+2022_03/0000415_2022_3_df_row.nc
+2022_03/0000419_2022_3_df_row.nc
+2022_03/0000422_2022_3_df_row.nc
+2022_03/0000423_2022_3_df_row.nc
+2022_03/0000431_2022_3_df_row.nc
+2022_03/0000436_2022_3_df_row.nc
+2022_03/0000442_2022_3_df_row.nc
+2022_03/0000443_2022_3_df_row.nc
+2022_03/0000449_2022_3_df_row.nc
+2022_03/0000454_2022_3_df_row.nc
+2022_03/0000455_2022_3_df_row.nc
+2022_03/0000458_2022_3_df_row.nc
+2022_03/0000460_2022_3_df_row.nc
+2022_03/0000464_2022_3_df_row.nc
+2022_03/0000473_2022_3_df_row.nc
+2022_03/0000474_2022_3_df_row.nc
+2022_03/0000475_2022_3_df_row.nc
+2022_03/0000476_2022_3_df_row.nc
+2022_03/0000479_2022_3_df_row.nc
+2022_03/0000481_2022_3_df_row.nc
+2022_03/0000485_2022_3_df_row.nc
+2022_03/0000491_2022_3_df_row.nc
+2022_03/0000495_2022_3_df_row.nc
+2022_03/0000496_2022_3_df_row.nc
+2022_03/0000503_2022_3_df_row.nc
+2022_03/0000509_2022_3_df_row.nc
+2022_03/0000510_2022_3_df_row.nc
+2022_03/0000511_2022_3_df_row.nc
+2022_03/0000515_2022_3_df_row.nc
+2022_03/0000516_2022_3_df_row.nc
+2022_03/0000523_2022_3_df_row.nc
+2022_03/0000534_2022_3_df_row.nc
+2022_03/0000535_2022_3_df_row.nc
+2022_03/0000536_2022_3_df_row.nc
+2022_03/0000538_2022_3_df_row.nc
+2022_03/0000544_2022_3_df_row.nc
+2022_03/0000545_2022_3_df_row.nc
+2022_03/0000548_2022_3_df_row.nc
+2022_03/0000549_2022_3_df_row.nc
+2022_03/0000550_2022_3_df_row.nc
+2022_03/0000557_2022_3_df_row.nc
+2022_03/0000567_2022_3_df_row.nc
+2022_03/0000569_2022_3_df_row.nc
+2022_03/0000571_2022_3_df_row.nc
+2022_03/0000572_2022_3_df_row.nc
+2022_03/0000581_2022_3_df_row.nc
+2022_03/0000586_2022_3_df_row.nc
+2022_03/0000587_2022_3_df_row.nc
+2022_03/0000590_2022_3_df_row.nc
+2022_03/0000592_2022_3_df_row.nc
+2022_03/0000596_2022_3_df_row.nc
+2022_03/0000610_2022_3_df_row.nc
+2022_03/0000611_2022_3_df_row.nc
+2022_03/0000612_2022_3_df_row.nc
+2022_03/0000613_2022_3_df_row.nc
+2022_03/0000616_2022_3_df_row.nc
+2022_03/0000620_2022_3_df_row.nc
+2022_03/0000623_2022_3_df_row.nc
+2022_03/0000629_2022_3_df_row.nc
+2022_03/0000634_2022_3_df_row.nc
+2022_03/0000637_2022_3_df_row.nc
+2022_03/0000638_2022_3_df_row.nc
+2022_03/0000641_2022_3_df_row.nc
+2022_03/0000644_2022_3_df_row.nc
+2022_03/0000653_2022_3_df_row.nc
+2022_03/0000655_2022_3_df_row.nc
+2022_03/0000657_2022_3_df_row.nc
+2022_03/0000660_2022_3_df_row.nc
+2022_03/0000661_2022_3_df_row.nc
+2022_03/0000664_2022_3_df_row.nc
+2022_03/0000665_2022_3_df_row.nc
+2022_03/0000666_2022_3_df_row.nc
+2022_03/0000669_2022_3_df_row.nc
+2022_03/0000673_2022_3_df_row.nc
+2022_03/0000684_2022_3_df_row.nc
+2022_03/0000686_2022_3_df_row.nc
+2022_03/0000691_2022_3_df_row.nc
+2022_03/0000692_2022_3_df_row.nc
+2022_03/0000693_2022_3_df_row.nc
+2022_03/0000695_2022_3_df_row.nc
+2022_03/0000705_2022_3_df_row.nc
+2022_03/0000707_2022_3_df_row.nc
+2022_03/0000713_2022_3_df_row.nc
+2022_03/0000716_2022_3_df_row.nc
+2022_03/0000719_2022_3_df_row.nc
+2022_03/0000722_2022_3_df_row.nc
+2022_03/0000724_2022_3_df_row.nc
+2022_03/0000726_2022_3_df_row.nc
+2022_03/0000727_2022_3_df_row.nc
+2022_03/0000733_2022_3_df_row.nc
+2022_03/0000738_2022_3_df_row.nc
+2022_03/0000739_2022_3_df_row.nc
+2022_03/0000744_2022_3_df_row.nc
+2022_03/0000746_2022_3_df_row.nc
+2022_03/0000754_2022_3_df_row.nc
+2022_03/0000757_2022_3_df_row.nc
+2022_03/0000760_2022_3_df_row.nc
+2022_03/0000767_2022_3_df_row.nc
+2022_03/0000768_2022_3_df_row.nc
+2022_03/0000769_2022_3_df_row.nc
+2022_03/0000772_2022_3_df_row.nc
+2022_03/0000777_2022_3_df_row.nc
+2022_03/0000778_2022_3_df_row.nc
+2022_03/0000782_2022_3_df_row.nc
+2022_03/0000785_2022_3_df_row.nc
+2022_03/0000786_2022_3_df_row.nc
+2022_03/0000789_2022_3_df_row.nc
+2022_03/0000794_2022_3_df_row.nc
+2022_03/0000799_2022_3_df_row.nc
+2022_03/0000800_2022_3_df_row.nc
+2022_03/0000801_2022_3_df_row.nc
+2022_03/0000807_2022_3_df_row.nc
+2022_03/0000810_2022_3_df_row.nc
+2022_03/0000815_2022_3_df_row.nc
+2022_03/0000817_2022_3_df_row.nc
+2022_03/0000818_2022_3_df_row.nc
+2022_03/0000821_2022_3_df_row.nc
+2022_03/0000826_2022_3_df_row.nc
+2022_03/0000829_2022_3_df_row.nc
+2022_03/0000837_2022_3_df_row.nc
+2022_03/0000839_2022_3_df_row.nc
+2022_03/0000842_2022_3_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2022_03
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

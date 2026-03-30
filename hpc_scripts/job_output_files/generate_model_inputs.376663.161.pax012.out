@@ -1,0 +1,185 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2021/06
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2021/06.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2021/06.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2021_06
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2021_06.tar.xz
+2021_06/
+2021_06/0000002_2021_6_df_row.nc
+2021_06/0000003_2021_6_df_row.nc
+2021_06/0000006_2021_6_df_row.nc
+2021_06/0000007_2021_6_df_row.nc
+2021_06/0000008_2021_6_df_row.nc
+2021_06/0000011_2021_6_df_row.nc
+2021_06/0000014_2021_6_df_row.nc
+2021_06/0000018_2021_6_df_row.nc
+2021_06/0000020_2021_6_df_row.nc
+2021_06/0000024_2021_6_df_row.nc
+2021_06/0000027_2021_6_df_row.nc
+2021_06/0000029_2021_6_df_row.nc
+2021_06/0000030_2021_6_df_row.nc
+2021_06/0000032_2021_6_df_row.nc
+2021_06/0000034_2021_6_df_row.nc
+2021_06/0000035_2021_6_df_row.nc
+2021_06/0000041_2021_6_df_row.nc
+2021_06/0000043_2021_6_df_row.nc
+2021_06/0000044_2021_6_df_row.nc
+2021_06/0000045_2021_6_df_row.nc
+2021_06/0000046_2021_6_df_row.nc
+2021_06/0000047_2021_6_df_row.nc
+2021_06/0000048_2021_6_df_row.nc
+2021_06/0000051_2021_6_df_row.nc
+2021_06/0000052_2021_6_df_row.nc
+2021_06/0000053_2021_6_df_row.nc
+2021_06/0000059_2021_6_df_row.nc
+2021_06/0000063_2021_6_df_row.nc
+2021_06/0000068_2021_6_df_row.nc
+2021_06/0000075_2021_6_df_row.nc
+2021_06/0000077_2021_6_df_row.nc
+2021_06/0000080_2021_6_df_row.nc
+2021_06/0000084_2021_6_df_row.nc
+2021_06/0000088_2021_6_df_row.nc
+2021_06/0000089_2021_6_df_row.nc
+2021_06/0000091_2021_6_df_row.nc
+2021_06/0000092_2021_6_df_row.nc
+2021_06/0000097_2021_6_df_row.nc
+2021_06/0000098_2021_6_df_row.nc
+2021_06/0000099_2021_6_df_row.nc
+2021_06/0000117_2021_6_df_row.nc
+2021_06/0000119_2021_6_df_row.nc
+2021_06/0000121_2021_6_df_row.nc
+2021_06/0000122_2021_6_df_row.nc
+2021_06/0000123_2021_6_df_row.nc
+2021_06/0000125_2021_6_df_row.nc
+2021_06/0000128_2021_6_df_row.nc
+2021_06/0000129_2021_6_df_row.nc
+2021_06/0000130_2021_6_df_row.nc
+2021_06/0000131_2021_6_df_row.nc
+2021_06/0000132_2021_6_df_row.nc
+2021_06/0000134_2021_6_df_row.nc
+2021_06/0000135_2021_6_df_row.nc
+2021_06/0000136_2021_6_df_row.nc
+2021_06/0000137_2021_6_df_row.nc
+2021_06/0000138_2021_6_df_row.nc
+2021_06/0000139_2021_6_df_row.nc
+2021_06/0000141_2021_6_df_row.nc
+2021_06/0000144_2021_6_df_row.nc
+2021_06/0000145_2021_6_df_row.nc
+2021_06/0000148_2021_6_df_row.nc
+2021_06/0000149_2021_6_df_row.nc
+2021_06/0000156_2021_6_df_row.nc
+2021_06/0000164_2021_6_df_row.nc
+2021_06/0000166_2021_6_df_row.nc
+2021_06/0000167_2021_6_df_row.nc
+2021_06/0000168_2021_6_df_row.nc
+2021_06/0000175_2021_6_df_row.nc
+2021_06/0000179_2021_6_df_row.nc
+2021_06/0000181_2021_6_df_row.nc
+2021_06/0000182_2021_6_df_row.nc
+2021_06/0000183_2021_6_df_row.nc
+2021_06/0000185_2021_6_df_row.nc
+2021_06/0000188_2021_6_df_row.nc
+2021_06/0000190_2021_6_df_row.nc
+2021_06/0000194_2021_6_df_row.nc
+2021_06/0000195_2021_6_df_row.nc
+2021_06/0000196_2021_6_df_row.nc
+2021_06/0000197_2021_6_df_row.nc
+2021_06/0000198_2021_6_df_row.nc
+2021_06/0000199_2021_6_df_row.nc
+2021_06/0000201_2021_6_df_row.nc
+2021_06/0000205_2021_6_df_row.nc
+2021_06/0000207_2021_6_df_row.nc
+2021_06/0000208_2021_6_df_row.nc
+2021_06/0000214_2021_6_df_row.nc
+2021_06/0000215_2021_6_df_row.nc
+2021_06/0000216_2021_6_df_row.nc
+2021_06/0000223_2021_6_df_row.nc
+2021_06/0000224_2021_6_df_row.nc
+2021_06/0000226_2021_6_df_row.nc
+2021_06/0000227_2021_6_df_row.nc
+2021_06/0000230_2021_6_df_row.nc
+2021_06/0000232_2021_6_df_row.nc
+2021_06/0000233_2021_6_df_row.nc
+2021_06/0000234_2021_6_df_row.nc
+2021_06/0000236_2021_6_df_row.nc
+2021_06/0000238_2021_6_df_row.nc
+2021_06/0000244_2021_6_df_row.nc
+2021_06/0000246_2021_6_df_row.nc
+2021_06/0000247_2021_6_df_row.nc
+2021_06/0000249_2021_6_df_row.nc
+2021_06/0000250_2021_6_df_row.nc
+2021_06/0000252_2021_6_df_row.nc
+2021_06/0000257_2021_6_df_row.nc
+2021_06/0000258_2021_6_df_row.nc
+2021_06/0000262_2021_6_df_row.nc
+2021_06/0000264_2021_6_df_row.nc
+2021_06/0000265_2021_6_df_row.nc
+2021_06/0000266_2021_6_df_row.nc
+2021_06/0000268_2021_6_df_row.nc
+2021_06/0000271_2021_6_df_row.nc
+2021_06/0000278_2021_6_df_row.nc
+2021_06/0000280_2021_6_df_row.nc
+2021_06/0000281_2021_6_df_row.nc
+2021_06/0000282_2021_6_df_row.nc
+2021_06/0000285_2021_6_df_row.nc
+2021_06/0000295_2021_6_df_row.nc
+2021_06/0000300_2021_6_df_row.nc
+2021_06/0000302_2021_6_df_row.nc
+2021_06/0000303_2021_6_df_row.nc
+2021_06/0000305_2021_6_df_row.nc
+2021_06/0000307_2021_6_df_row.nc
+2021_06/0000313_2021_6_df_row.nc
+2021_06/0000315_2021_6_df_row.nc
+2021_06/0000319_2021_6_df_row.nc
+2021_06/0000321_2021_6_df_row.nc
+2021_06/0000323_2021_6_df_row.nc
+2021_06/0000324_2021_6_df_row.nc
+2021_06/0000325_2021_6_df_row.nc
+2021_06/0000329_2021_6_df_row.nc
+2021_06/0000330_2021_6_df_row.nc
+2021_06/0000331_2021_6_df_row.nc
+2021_06/0000334_2021_6_df_row.nc
+2021_06/0000335_2021_6_df_row.nc
+2021_06/0000345_2021_6_df_row.nc
+2021_06/0000347_2021_6_df_row.nc
+2021_06/0000348_2021_6_df_row.nc
+2021_06/0000349_2021_6_df_row.nc
+2021_06/0000350_2021_6_df_row.nc
+2021_06/0000351_2021_6_df_row.nc
+2021_06/0000352_2021_6_df_row.nc
+2021_06/0000359_2021_6_df_row.nc
+2021_06/0000360_2021_6_df_row.nc
+2021_06/0000363_2021_6_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2021_06
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

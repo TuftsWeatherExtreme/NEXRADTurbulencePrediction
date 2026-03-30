@@ -1,0 +1,290 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2011/04
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2011/04.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2011/04.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2011_04
+Completed 5% of df
+Completed 10% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2011/04/07/KFDX/KFDX20110407_184618_V04.gz: IndexError: list index out of range
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2011/04/07/KFDX/KFDX20110407_184618_V04.gz: IndexError: list index out of range
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2011/04/30/PHMO/PHMO20110430_002254_V04.gz: IndexError: list index out of range
+Completed 85% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2011/04/07/KFDX/KFDX20110407_184618_V04.gz: IndexError: list index out of range
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2011/04/17/KFDX/KFDX20110417_184013_V04.gz: IndexError: list index out of range
+Completed 90% of df
+Completed 95% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2011/04/07/KFDX/KFDX20110407_184618_V04.gz: IndexError: list index out of range
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2011_04.tar.xz
+2011_04/
+2011_04/0000002_2011_4_df_row.nc
+2011_04/0000005_2011_4_df_row.nc
+2011_04/0000008_2011_4_df_row.nc
+2011_04/0000011_2011_4_df_row.nc
+2011_04/0000017_2011_4_df_row.nc
+2011_04/0000020_2011_4_df_row.nc
+2011_04/0000023_2011_4_df_row.nc
+2011_04/0000024_2011_4_df_row.nc
+2011_04/0000027_2011_4_df_row.nc
+2011_04/0000028_2011_4_df_row.nc
+2011_04/0000029_2011_4_df_row.nc
+2011_04/0000033_2011_4_df_row.nc
+2011_04/0000038_2011_4_df_row.nc
+2011_04/0000040_2011_4_df_row.nc
+2011_04/0000043_2011_4_df_row.nc
+2011_04/0000044_2011_4_df_row.nc
+2011_04/0000046_2011_4_df_row.nc
+2011_04/0000054_2011_4_df_row.nc
+2011_04/0000055_2011_4_df_row.nc
+2011_04/0000057_2011_4_df_row.nc
+2011_04/0000063_2011_4_df_row.nc
+2011_04/0000066_2011_4_df_row.nc
+2011_04/0000069_2011_4_df_row.nc
+2011_04/0000073_2011_4_df_row.nc
+2011_04/0000074_2011_4_df_row.nc
+2011_04/0000079_2011_4_df_row.nc
+2011_04/0000081_2011_4_df_row.nc
+2011_04/0000082_2011_4_df_row.nc
+2011_04/0000083_2011_4_df_row.nc
+2011_04/0000085_2011_4_df_row.nc
+2011_04/0000089_2011_4_df_row.nc
+2011_04/0000096_2011_4_df_row.nc
+2011_04/0000101_2011_4_df_row.nc
+2011_04/0000104_2011_4_df_row.nc
+2011_04/0000107_2011_4_df_row.nc
+2011_04/0000111_2011_4_df_row.nc
+2011_04/0000112_2011_4_df_row.nc
+2011_04/0000114_2011_4_df_row.nc
+2011_04/0000115_2011_4_df_row.nc
+2011_04/0000116_2011_4_df_row.nc
+2011_04/0000122_2011_4_df_row.nc
+2011_04/0000123_2011_4_df_row.nc
+2011_04/0000129_2011_4_df_row.nc
+2011_04/0000133_2011_4_df_row.nc
+2011_04/0000136_2011_4_df_row.nc
+2011_04/0000146_2011_4_df_row.nc
+2011_04/0000147_2011_4_df_row.nc
+2011_04/0000149_2011_4_df_row.nc
+2011_04/0000150_2011_4_df_row.nc
+2011_04/0000152_2011_4_df_row.nc
+2011_04/0000153_2011_4_df_row.nc
+2011_04/0000155_2011_4_df_row.nc
+2011_04/0000156_2011_4_df_row.nc
+2011_04/0000157_2011_4_df_row.nc
+2011_04/0000159_2011_4_df_row.nc
+2011_04/0000164_2011_4_df_row.nc
+2011_04/0000166_2011_4_df_row.nc
+2011_04/0000169_2011_4_df_row.nc
+2011_04/0000170_2011_4_df_row.nc
+2011_04/0000172_2011_4_df_row.nc
+2011_04/0000174_2011_4_df_row.nc
+2011_04/0000177_2011_4_df_row.nc
+2011_04/0000178_2011_4_df_row.nc
+2011_04/0000182_2011_4_df_row.nc
+2011_04/0000184_2011_4_df_row.nc
+2011_04/0000186_2011_4_df_row.nc
+2011_04/0000190_2011_4_df_row.nc
+2011_04/0000191_2011_4_df_row.nc
+2011_04/0000193_2011_4_df_row.nc
+2011_04/0000194_2011_4_df_row.nc
+2011_04/0000197_2011_4_df_row.nc
+2011_04/0000199_2011_4_df_row.nc
+2011_04/0000201_2011_4_df_row.nc
+2011_04/0000205_2011_4_df_row.nc
+2011_04/0000214_2011_4_df_row.nc
+2011_04/0000215_2011_4_df_row.nc
+2011_04/0000216_2011_4_df_row.nc
+2011_04/0000220_2011_4_df_row.nc
+2011_04/0000222_2011_4_df_row.nc
+2011_04/0000223_2011_4_df_row.nc
+2011_04/0000224_2011_4_df_row.nc
+2011_04/0000228_2011_4_df_row.nc
+2011_04/0000229_2011_4_df_row.nc
+2011_04/0000230_2011_4_df_row.nc
+2011_04/0000238_2011_4_df_row.nc
+2011_04/0000240_2011_4_df_row.nc
+2011_04/0000241_2011_4_df_row.nc
+2011_04/0000242_2011_4_df_row.nc
+2011_04/0000246_2011_4_df_row.nc
+2011_04/0000248_2011_4_df_row.nc
+2011_04/0000257_2011_4_df_row.nc
+2011_04/0000261_2011_4_df_row.nc
+2011_04/0000262_2011_4_df_row.nc
+2011_04/0000270_2011_4_df_row.nc
+2011_04/0000274_2011_4_df_row.nc
+2011_04/0000277_2011_4_df_row.nc
+2011_04/0000284_2011_4_df_row.nc
+2011_04/0000287_2011_4_df_row.nc
+2011_04/0000293_2011_4_df_row.nc
+2011_04/0000303_2011_4_df_row.nc
+2011_04/0000306_2011_4_df_row.nc
+2011_04/0000310_2011_4_df_row.nc
+2011_04/0000312_2011_4_df_row.nc
+2011_04/0000318_2011_4_df_row.nc
+2011_04/0000320_2011_4_df_row.nc
+2011_04/0000322_2011_4_df_row.nc
+2011_04/0000324_2011_4_df_row.nc
+2011_04/0000325_2011_4_df_row.nc
+2011_04/0000326_2011_4_df_row.nc
+2011_04/0000328_2011_4_df_row.nc
+2011_04/0000337_2011_4_df_row.nc
+2011_04/0000340_2011_4_df_row.nc
+2011_04/0000342_2011_4_df_row.nc
+2011_04/0000345_2011_4_df_row.nc
+2011_04/0000347_2011_4_df_row.nc
+2011_04/0000348_2011_4_df_row.nc
+2011_04/0000349_2011_4_df_row.nc
+2011_04/0000352_2011_4_df_row.nc
+2011_04/0000356_2011_4_df_row.nc
+2011_04/0000357_2011_4_df_row.nc
+2011_04/0000358_2011_4_df_row.nc
+2011_04/0000360_2011_4_df_row.nc
+2011_04/0000362_2011_4_df_row.nc
+2011_04/0000366_2011_4_df_row.nc
+2011_04/0000370_2011_4_df_row.nc
+2011_04/0000372_2011_4_df_row.nc
+2011_04/0000373_2011_4_df_row.nc
+2011_04/0000375_2011_4_df_row.nc
+2011_04/0000376_2011_4_df_row.nc
+2011_04/0000377_2011_4_df_row.nc
+2011_04/0000383_2011_4_df_row.nc
+2011_04/0000387_2011_4_df_row.nc
+2011_04/0000390_2011_4_df_row.nc
+2011_04/0000394_2011_4_df_row.nc
+2011_04/0000399_2011_4_df_row.nc
+2011_04/0000402_2011_4_df_row.nc
+2011_04/0000407_2011_4_df_row.nc
+2011_04/0000408_2011_4_df_row.nc
+2011_04/0000420_2011_4_df_row.nc
+2011_04/0000421_2011_4_df_row.nc
+2011_04/0000431_2011_4_df_row.nc
+2011_04/0000433_2011_4_df_row.nc
+2011_04/0000435_2011_4_df_row.nc
+2011_04/0000438_2011_4_df_row.nc
+2011_04/0000439_2011_4_df_row.nc
+2011_04/0000441_2011_4_df_row.nc
+2011_04/0000444_2011_4_df_row.nc
+2011_04/0000446_2011_4_df_row.nc
+2011_04/0000447_2011_4_df_row.nc
+2011_04/0000451_2011_4_df_row.nc
+2011_04/0000458_2011_4_df_row.nc
+2011_04/0000461_2011_4_df_row.nc
+2011_04/0000462_2011_4_df_row.nc
+2011_04/0000467_2011_4_df_row.nc
+2011_04/0000472_2011_4_df_row.nc
+2011_04/0000481_2011_4_df_row.nc
+2011_04/0000485_2011_4_df_row.nc
+2011_04/0000488_2011_4_df_row.nc
+2011_04/0000490_2011_4_df_row.nc
+2011_04/0000492_2011_4_df_row.nc
+2011_04/0000493_2011_4_df_row.nc
+2011_04/0000496_2011_4_df_row.nc
+2011_04/0000498_2011_4_df_row.nc
+2011_04/0000502_2011_4_df_row.nc
+2011_04/0000507_2011_4_df_row.nc
+2011_04/0000512_2011_4_df_row.nc
+2011_04/0000515_2011_4_df_row.nc
+2011_04/0000527_2011_4_df_row.nc
+2011_04/0000528_2011_4_df_row.nc
+2011_04/0000531_2011_4_df_row.nc
+2011_04/0000534_2011_4_df_row.nc
+2011_04/0000535_2011_4_df_row.nc
+2011_04/0000536_2011_4_df_row.nc
+2011_04/0000537_2011_4_df_row.nc
+2011_04/0000539_2011_4_df_row.nc
+2011_04/0000541_2011_4_df_row.nc
+2011_04/0000549_2011_4_df_row.nc
+2011_04/0000552_2011_4_df_row.nc
+2011_04/0000555_2011_4_df_row.nc
+2011_04/0000557_2011_4_df_row.nc
+2011_04/0000559_2011_4_df_row.nc
+2011_04/0000560_2011_4_df_row.nc
+2011_04/0000561_2011_4_df_row.nc
+2011_04/0000565_2011_4_df_row.nc
+2011_04/0000567_2011_4_df_row.nc
+2011_04/0000570_2011_4_df_row.nc
+2011_04/0000587_2011_4_df_row.nc
+2011_04/0000591_2011_4_df_row.nc
+2011_04/0000592_2011_4_df_row.nc
+2011_04/0000599_2011_4_df_row.nc
+2011_04/0000600_2011_4_df_row.nc
+2011_04/0000608_2011_4_df_row.nc
+2011_04/0000614_2011_4_df_row.nc
+2011_04/0000617_2011_4_df_row.nc
+2011_04/0000622_2011_4_df_row.nc
+2011_04/0000626_2011_4_df_row.nc
+2011_04/0000627_2011_4_df_row.nc
+2011_04/0000630_2011_4_df_row.nc
+2011_04/0000635_2011_4_df_row.nc
+2011_04/0000637_2011_4_df_row.nc
+2011_04/0000641_2011_4_df_row.nc
+2011_04/0000642_2011_4_df_row.nc
+2011_04/0000645_2011_4_df_row.nc
+2011_04/0000646_2011_4_df_row.nc
+2011_04/0000647_2011_4_df_row.nc
+2011_04/0000654_2011_4_df_row.nc
+2011_04/0000657_2011_4_df_row.nc
+2011_04/0000659_2011_4_df_row.nc
+2011_04/0000664_2011_4_df_row.nc
+2011_04/0000666_2011_4_df_row.nc
+2011_04/0000673_2011_4_df_row.nc
+2011_04/0000674_2011_4_df_row.nc
+2011_04/0000676_2011_4_df_row.nc
+2011_04/0000682_2011_4_df_row.nc
+2011_04/0000686_2011_4_df_row.nc
+2011_04/0000687_2011_4_df_row.nc
+2011_04/0000688_2011_4_df_row.nc
+2011_04/0000689_2011_4_df_row.nc
+2011_04/0000691_2011_4_df_row.nc
+2011_04/0000692_2011_4_df_row.nc
+2011_04/0000695_2011_4_df_row.nc
+2011_04/0000696_2011_4_df_row.nc
+2011_04/0000697_2011_4_df_row.nc
+2011_04/0000698_2011_4_df_row.nc
+2011_04/0000701_2011_4_df_row.nc
+2011_04/0000705_2011_4_df_row.nc
+2011_04/0000706_2011_4_df_row.nc
+2011_04/0000708_2011_4_df_row.nc
+2011_04/0000711_2011_4_df_row.nc
+2011_04/0000713_2011_4_df_row.nc
+2011_04/0000715_2011_4_df_row.nc
+2011_04/0000720_2011_4_df_row.nc
+2011_04/0000724_2011_4_df_row.nc
+2011_04/0000727_2011_4_df_row.nc
+2011_04/0000728_2011_4_df_row.nc
+2011_04/0000730_2011_4_df_row.nc
+2011_04/0000732_2011_4_df_row.nc
+2011_04/0000734_2011_4_df_row.nc
+2011_04/0000735_2011_4_df_row.nc
+2011_04/0000736_2011_4_df_row.nc
+2011_04/0000742_2011_4_df_row.nc
+2011_04/0000744_2011_4_df_row.nc
+2011_04/0000745_2011_4_df_row.nc
+2011_04/0000747_2011_4_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2011_04
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

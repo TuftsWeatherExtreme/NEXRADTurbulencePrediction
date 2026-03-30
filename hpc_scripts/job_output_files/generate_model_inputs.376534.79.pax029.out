@@ -1,0 +1,151 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2014/08
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2014/08.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2014/08.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2014_08
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2014/08/07/KLSX/KLSX20140807_010706_V06.gz: OSError: unknown compression record
+Completed 5% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2014/08/05/KBYX/KBYX20140805_161541_V06.gz: OSError: unknown compression record
+Completed 10% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2014/08/23/KUEX/KUEX20140823_051028_V06.gz: OSError: unknown compression record
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2014/08/07/KLSX/KLSX20140807_010706_V06.gz: OSError: unknown compression record
+Completed 40% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2014/08/27/KLWX/KLWX20140827_124950_V06.gz: OSError: unknown compression record
+Completed 45% of df
+Completed 50% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2014/08/08/KDIX/KDIX20140808_190351_V06.gz: OSError: unknown compression record
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2014/08/05/KBYX/KBYX20140805_161541_V06.gz: OSError: unknown compression record
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Completed 105% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2014_08.tar.xz
+2014_08/
+2014_08/0000001_2014_8_df_row.nc
+2014_08/0000002_2014_8_df_row.nc
+2014_08/0000003_2014_8_df_row.nc
+2014_08/0000007_2014_8_df_row.nc
+2014_08/0000009_2014_8_df_row.nc
+2014_08/0000010_2014_8_df_row.nc
+2014_08/0000012_2014_8_df_row.nc
+2014_08/0000014_2014_8_df_row.nc
+2014_08/0000018_2014_8_df_row.nc
+2014_08/0000019_2014_8_df_row.nc
+2014_08/0000020_2014_8_df_row.nc
+2014_08/0000021_2014_8_df_row.nc
+2014_08/0000022_2014_8_df_row.nc
+2014_08/0000024_2014_8_df_row.nc
+2014_08/0000026_2014_8_df_row.nc
+2014_08/0000031_2014_8_df_row.nc
+2014_08/0000032_2014_8_df_row.nc
+2014_08/0000033_2014_8_df_row.nc
+2014_08/0000036_2014_8_df_row.nc
+2014_08/0000037_2014_8_df_row.nc
+2014_08/0000040_2014_8_df_row.nc
+2014_08/0000043_2014_8_df_row.nc
+2014_08/0000046_2014_8_df_row.nc
+2014_08/0000047_2014_8_df_row.nc
+2014_08/0000050_2014_8_df_row.nc
+2014_08/0000053_2014_8_df_row.nc
+2014_08/0000055_2014_8_df_row.nc
+2014_08/0000058_2014_8_df_row.nc
+2014_08/0000063_2014_8_df_row.nc
+2014_08/0000065_2014_8_df_row.nc
+2014_08/0000070_2014_8_df_row.nc
+2014_08/0000071_2014_8_df_row.nc
+2014_08/0000075_2014_8_df_row.nc
+2014_08/0000077_2014_8_df_row.nc
+2014_08/0000079_2014_8_df_row.nc
+2014_08/0000080_2014_8_df_row.nc
+2014_08/0000081_2014_8_df_row.nc
+2014_08/0000084_2014_8_df_row.nc
+2014_08/0000089_2014_8_df_row.nc
+2014_08/0000092_2014_8_df_row.nc
+2014_08/0000093_2014_8_df_row.nc
+2014_08/0000101_2014_8_df_row.nc
+2014_08/0000104_2014_8_df_row.nc
+2014_08/0000107_2014_8_df_row.nc
+2014_08/0000108_2014_8_df_row.nc
+2014_08/0000111_2014_8_df_row.nc
+2014_08/0000113_2014_8_df_row.nc
+2014_08/0000117_2014_8_df_row.nc
+2014_08/0000119_2014_8_df_row.nc
+2014_08/0000120_2014_8_df_row.nc
+2014_08/0000124_2014_8_df_row.nc
+2014_08/0000126_2014_8_df_row.nc
+2014_08/0000127_2014_8_df_row.nc
+2014_08/0000128_2014_8_df_row.nc
+2014_08/0000129_2014_8_df_row.nc
+2014_08/0000131_2014_8_df_row.nc
+2014_08/0000135_2014_8_df_row.nc
+2014_08/0000140_2014_8_df_row.nc
+2014_08/0000141_2014_8_df_row.nc
+2014_08/0000145_2014_8_df_row.nc
+2014_08/0000146_2014_8_df_row.nc
+2014_08/0000148_2014_8_df_row.nc
+2014_08/0000150_2014_8_df_row.nc
+2014_08/0000151_2014_8_df_row.nc
+2014_08/0000155_2014_8_df_row.nc
+2014_08/0000156_2014_8_df_row.nc
+2014_08/0000158_2014_8_df_row.nc
+2014_08/0000159_2014_8_df_row.nc
+2014_08/0000161_2014_8_df_row.nc
+2014_08/0000162_2014_8_df_row.nc
+2014_08/0000167_2014_8_df_row.nc
+2014_08/0000170_2014_8_df_row.nc
+2014_08/0000171_2014_8_df_row.nc
+2014_08/0000176_2014_8_df_row.nc
+2014_08/0000178_2014_8_df_row.nc
+2014_08/0000179_2014_8_df_row.nc
+2014_08/0000185_2014_8_df_row.nc
+2014_08/0000186_2014_8_df_row.nc
+2014_08/0000187_2014_8_df_row.nc
+2014_08/0000188_2014_8_df_row.nc
+2014_08/0000189_2014_8_df_row.nc
+2014_08/0000190_2014_8_df_row.nc
+2014_08/0000192_2014_8_df_row.nc
+2014_08/0000193_2014_8_df_row.nc
+2014_08/0000194_2014_8_df_row.nc
+2014_08/0000196_2014_8_df_row.nc
+2014_08/0000203_2014_8_df_row.nc
+2014_08/0000206_2014_8_df_row.nc
+2014_08/0000207_2014_8_df_row.nc
+2014_08/0000210_2014_8_df_row.nc
+2014_08/0000213_2014_8_df_row.nc
+2014_08/0000215_2014_8_df_row.nc
+2014_08/0000217_2014_8_df_row.nc
+2014_08/0000218_2014_8_df_row.nc
+2014_08/0000226_2014_8_df_row.nc
+2014_08/0000231_2014_8_df_row.nc
+2014_08/0000233_2014_8_df_row.nc
+2014_08/0000234_2014_8_df_row.nc
+2014_08/0000237_2014_8_df_row.nc
+2014_08/0000242_2014_8_df_row.nc
+2014_08/0000244_2014_8_df_row.nc
+2014_08/0000246_2014_8_df_row.nc
+2014_08/0000251_2014_8_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2014_08
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

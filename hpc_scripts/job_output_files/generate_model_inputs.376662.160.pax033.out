@@ -1,0 +1,175 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2021/05
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2021/05.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2021/05.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2021_05
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2021_05.tar.xz
+2021_05/
+2021_05/0000004_2021_5_df_row.nc
+2021_05/0000006_2021_5_df_row.nc
+2021_05/0000008_2021_5_df_row.nc
+2021_05/0000016_2021_5_df_row.nc
+2021_05/0000020_2021_5_df_row.nc
+2021_05/0000021_2021_5_df_row.nc
+2021_05/0000022_2021_5_df_row.nc
+2021_05/0000023_2021_5_df_row.nc
+2021_05/0000028_2021_5_df_row.nc
+2021_05/0000029_2021_5_df_row.nc
+2021_05/0000032_2021_5_df_row.nc
+2021_05/0000034_2021_5_df_row.nc
+2021_05/0000036_2021_5_df_row.nc
+2021_05/0000037_2021_5_df_row.nc
+2021_05/0000040_2021_5_df_row.nc
+2021_05/0000041_2021_5_df_row.nc
+2021_05/0000042_2021_5_df_row.nc
+2021_05/0000043_2021_5_df_row.nc
+2021_05/0000051_2021_5_df_row.nc
+2021_05/0000052_2021_5_df_row.nc
+2021_05/0000054_2021_5_df_row.nc
+2021_05/0000057_2021_5_df_row.nc
+2021_05/0000062_2021_5_df_row.nc
+2021_05/0000063_2021_5_df_row.nc
+2021_05/0000066_2021_5_df_row.nc
+2021_05/0000068_2021_5_df_row.nc
+2021_05/0000070_2021_5_df_row.nc
+2021_05/0000072_2021_5_df_row.nc
+2021_05/0000081_2021_5_df_row.nc
+2021_05/0000082_2021_5_df_row.nc
+2021_05/0000088_2021_5_df_row.nc
+2021_05/0000090_2021_5_df_row.nc
+2021_05/0000096_2021_5_df_row.nc
+2021_05/0000102_2021_5_df_row.nc
+2021_05/0000104_2021_5_df_row.nc
+2021_05/0000105_2021_5_df_row.nc
+2021_05/0000107_2021_5_df_row.nc
+2021_05/0000108_2021_5_df_row.nc
+2021_05/0000114_2021_5_df_row.nc
+2021_05/0000115_2021_5_df_row.nc
+2021_05/0000117_2021_5_df_row.nc
+2021_05/0000120_2021_5_df_row.nc
+2021_05/0000121_2021_5_df_row.nc
+2021_05/0000124_2021_5_df_row.nc
+2021_05/0000134_2021_5_df_row.nc
+2021_05/0000135_2021_5_df_row.nc
+2021_05/0000137_2021_5_df_row.nc
+2021_05/0000138_2021_5_df_row.nc
+2021_05/0000139_2021_5_df_row.nc
+2021_05/0000141_2021_5_df_row.nc
+2021_05/0000145_2021_5_df_row.nc
+2021_05/0000146_2021_5_df_row.nc
+2021_05/0000149_2021_5_df_row.nc
+2021_05/0000151_2021_5_df_row.nc
+2021_05/0000152_2021_5_df_row.nc
+2021_05/0000154_2021_5_df_row.nc
+2021_05/0000157_2021_5_df_row.nc
+2021_05/0000161_2021_5_df_row.nc
+2021_05/0000164_2021_5_df_row.nc
+2021_05/0000165_2021_5_df_row.nc
+2021_05/0000166_2021_5_df_row.nc
+2021_05/0000167_2021_5_df_row.nc
+2021_05/0000169_2021_5_df_row.nc
+2021_05/0000170_2021_5_df_row.nc
+2021_05/0000171_2021_5_df_row.nc
+2021_05/0000172_2021_5_df_row.nc
+2021_05/0000180_2021_5_df_row.nc
+2021_05/0000182_2021_5_df_row.nc
+2021_05/0000186_2021_5_df_row.nc
+2021_05/0000187_2021_5_df_row.nc
+2021_05/0000189_2021_5_df_row.nc
+2021_05/0000190_2021_5_df_row.nc
+2021_05/0000192_2021_5_df_row.nc
+2021_05/0000193_2021_5_df_row.nc
+2021_05/0000194_2021_5_df_row.nc
+2021_05/0000195_2021_5_df_row.nc
+2021_05/0000196_2021_5_df_row.nc
+2021_05/0000201_2021_5_df_row.nc
+2021_05/0000202_2021_5_df_row.nc
+2021_05/0000206_2021_5_df_row.nc
+2021_05/0000210_2021_5_df_row.nc
+2021_05/0000213_2021_5_df_row.nc
+2021_05/0000215_2021_5_df_row.nc
+2021_05/0000217_2021_5_df_row.nc
+2021_05/0000218_2021_5_df_row.nc
+2021_05/0000221_2021_5_df_row.nc
+2021_05/0000223_2021_5_df_row.nc
+2021_05/0000224_2021_5_df_row.nc
+2021_05/0000228_2021_5_df_row.nc
+2021_05/0000230_2021_5_df_row.nc
+2021_05/0000231_2021_5_df_row.nc
+2021_05/0000234_2021_5_df_row.nc
+2021_05/0000235_2021_5_df_row.nc
+2021_05/0000236_2021_5_df_row.nc
+2021_05/0000242_2021_5_df_row.nc
+2021_05/0000243_2021_5_df_row.nc
+2021_05/0000246_2021_5_df_row.nc
+2021_05/0000251_2021_5_df_row.nc
+2021_05/0000252_2021_5_df_row.nc
+2021_05/0000253_2021_5_df_row.nc
+2021_05/0000254_2021_5_df_row.nc
+2021_05/0000258_2021_5_df_row.nc
+2021_05/0000261_2021_5_df_row.nc
+2021_05/0000262_2021_5_df_row.nc
+2021_05/0000263_2021_5_df_row.nc
+2021_05/0000267_2021_5_df_row.nc
+2021_05/0000268_2021_5_df_row.nc
+2021_05/0000270_2021_5_df_row.nc
+2021_05/0000271_2021_5_df_row.nc
+2021_05/0000272_2021_5_df_row.nc
+2021_05/0000282_2021_5_df_row.nc
+2021_05/0000286_2021_5_df_row.nc
+2021_05/0000287_2021_5_df_row.nc
+2021_05/0000288_2021_5_df_row.nc
+2021_05/0000289_2021_5_df_row.nc
+2021_05/0000291_2021_5_df_row.nc
+2021_05/0000292_2021_5_df_row.nc
+2021_05/0000293_2021_5_df_row.nc
+2021_05/0000296_2021_5_df_row.nc
+2021_05/0000300_2021_5_df_row.nc
+2021_05/0000308_2021_5_df_row.nc
+2021_05/0000309_2021_5_df_row.nc
+2021_05/0000310_2021_5_df_row.nc
+2021_05/0000312_2021_5_df_row.nc
+2021_05/0000313_2021_5_df_row.nc
+2021_05/0000316_2021_5_df_row.nc
+2021_05/0000318_2021_5_df_row.nc
+2021_05/0000320_2021_5_df_row.nc
+2021_05/0000325_2021_5_df_row.nc
+2021_05/0000327_2021_5_df_row.nc
+2021_05/0000330_2021_5_df_row.nc
+2021_05/0000332_2021_5_df_row.nc
+2021_05/0000335_2021_5_df_row.nc
+2021_05/0000337_2021_5_df_row.nc
+2021_05/0000340_2021_5_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2021_05
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

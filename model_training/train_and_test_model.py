@@ -107,21 +107,18 @@ def load_checkpoint(model, optimizer):
     else:
         print("No checkpoint found.")
         return None
-
-
-def init_loaders(train_idx, val_idx, dataset):
-    print(f"First {NUM_FOLDS} train indices: {train_idx[:NUM_FOLDS]}")
-    print(f"First {NUM_FOLDS} validation indices: {val_idx[:NUM_FOLDS]}")
-
-    # Create subsets for training and validation for current fold
-    # Adapt the subsets into dataloaders
+        
+        
+def init_loaders(train_idx, val_idx, dataset, weights):
     train_subset = Subset(dataset, train_idx)
-    train_loader = DataLoader(train_subset, batch_size=BATCH_SIZE, shuffle=True)
+    # Create sampler for just the training subset
+    subset_weights = [weights[i] for i in train_idx]
+    subset_sampler = torch.utils.data.WeightedRandomSampler(subset_weights, num_samples=len(subset_weights), replacement=True)
+    train_loader = DataLoader(train_subset, batch_size=BATCH_SIZE, sampler=subset_sampler)
 
     val_subset = Subset(dataset, val_idx)
     val_loader = DataLoader(val_subset, batch_size=BATCH_SIZE, shuffle=True)
     print(f"Train subset size: {len(train_subset)}, Validation subset size: {len(val_subset)}")
-
     return train_loader, val_loader
 
 
@@ -193,7 +190,7 @@ def train_and_eval_epoch(model, epoch, train_loader, val_loader, optimizer, loss
 def main():
     Model = LinearClassifierModel
     
-    if sys.argv[1] == "hybrid" and (LOSS_TYPE == "mse"or LOSS_TYPE == "mae"):
+    if sys.argv[1] == "hybrid" and (LOSS_TYPE == "mse" or LOSS_TYPE == "mae" or LOSS_TYPE == "bce"):
         Model = HybridModel1Out
     elif sys.argv[1] == "hybrid" and LOSS_TYPE == "nll":
         Model = HybridModel
@@ -204,11 +201,24 @@ def main():
     # WORKING ON THIS
     print("Original dataset length:", len(dataset))
 
-    # Split dataset 
-    dataset, test_dataset = torch.utils.data.random_split(dataset, [0.90, 0.10], generator=torch.Generator().manual_seed(SEED))
+    # Split dataset into 85% train, 15% test
+    dataset, test_dataset = torch.utils.data.random_split(dataset, [0.85, 0.15], generator=torch.Generator().manual_seed(SEED))
+    
+    
+    # NEW CODE, MIGHT NEED TO DEBUG!!
+    labels = [label for _, label in dataset]
+    num_nonsevere = labels.count(0.0)
+    num_severe = labels.count(1.0)
+    pos_weight = torch.tensor([num_nonsevere / num_severe]).to(device)
+    weights = [1.0 / num_nonsevere if l == 0.0 else 1.0 / num_severe for l in labels]
+    sampler = torch.utils.data.WeightedRandomSampler(weights, num_samples=len(weights), replacement=True)
+    all_train_dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, sampler=sampler)
+    
+    
+    
 
-    # Create DataLoader for train and test after the best model is selected
-    all_train_dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
+    # Create DataLoaders
+    #all_train_dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
     test_dataloader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=True)
 
     # https://medium.com/biased-algorithms/cross-validation-in-pytorch-2f9f9fa9ab16
@@ -226,8 +236,10 @@ def main():
     global loss_is_nll
     global log_softmax
     log_softmax = nn.LogSoftmax(dim=-1)
-    # Initialize the loss function, currently supports MSE, MAE, and NLL
-    if LOSS_TYPE == "mse":
+    # Initialize the loss function, currently supports BCE, MSE, MAE, and NLL
+    if LOSS_TYPE == "bce":
+        loss_fn = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+    elif LOSS_TYPE == "mse":
         loss_fn = nn.MSELoss()
     elif LOSS_TYPE == "mae":
         loss_fn = nn.L1Loss()
@@ -275,7 +287,7 @@ def main():
                 continue
             print(f"Fold {fold} with l2_alpha = {l2_alpha}")
             loss_per_epoch_list = loss_per_epoch_list if restarting_from_checkpoint else list()
-            train_loader, val_loader = init_loaders(train_idx, val_idx, dataset)
+            train_loader, val_loader = init_loaders(train_idx, val_idx, dataset, weights)
             model = model if restarting_from_checkpoint else Model().to(device)
             optimizer = optimizer if restarting_from_checkpoint else optim.Adam(model.parameters(), lr=0.01, weight_decay=l2_alpha) 
 
@@ -328,60 +340,47 @@ def main():
     print("Testing the retrained best model\n")
 
     # ----------------- TESTING -----------------
-    # Evaluate the model on the test set
-    running_test_loss = 0.0
-    best_model.eval()
-
-    # To store the distribution of classes
-    actual_output_counts = np.zeros(10, dtype=int)
-    model_output_counts = np.zeros(10, dtype=int)
-    
-    # Initializing count variables
     num_correct = 0
     num_false_positive = 0
     num_false_negative = 0
+    num_true_positive = 0
+    total = 0
+    
+    best_model.eval()
     with torch.no_grad():
         for x_test, y_test in test_dataloader:
             x_test, y_test = x_test.to(device), y_test.float().to(device)
             y_hat_test = best_model(x_test)
-
-            if loss_is_nll:
-                y_hat_test = log_softmax(y_hat_test)
-                y_test = y_test.long()
-
-            test_loss = loss_fn(input=y_hat_test, target=y_test)
-            running_test_loss += test_loss.item()
-
-            # probs = F.softmax(y_hat_test, dim=1)  # Get class probabilities, commenting out for hybrid model rn
-
-        for i in range(len(y_test)):
-            true_label = int(y_test[i].item())
-            predicted_class = int(torch.argmax(y_hat_test[i]).item())
-            # top_prob = probs[i][predicted_class].item() # UNCOMMENT IF ABOVE PROBS DEF IS UNCOMMENTED
-            actual_output_counts[true_label] += 1
-            model_output_counts[predicted_class] += 1
-
-            # Calculate accuracy
-            if true_label == predicted_class: 
-                num_correct += 1
-            if true_label == 0 and predicted_class > 1:
-                num_false_positive += 1
-            if true_label > 0 and predicted_class == 0:
-                num_false_negative += 1
-
-    # Output results to the designated results file and job output file
-    RESULTS_FILE.write(f"For the test data, the actual distribution of classes are: {actual_output_counts}\n")
-    RESULTS_FILE.write(f"For the test data, the model's distribution of classes are: {model_output_counts}\n")
-    RESULTS_FILE.write(f"Accuracy is: {num_correct}/{len(test_dataset)}, or {num_correct/len(test_dataset) * 100}%\n")
-    RESULTS_FILE.write(f"The false positive rate is: {num_false_positive}/{len(test_dataset)}, or {num_false_positive/len(test_dataset) * 100}%\n")
-    RESULTS_FILE.write(f"The false negative rate is: {num_false_negative}/{len(test_dataset)}, or {num_false_negative/len(test_dataset) * 100}%\n")
+            probs = torch.sigmoid(y_hat_test)
+            predicted = (probs >= 0.5).float()
+            for i in range(len(y_test)):
+                true_label = int(y_test[i].item())
+                pred_label = int(predicted[i].item())
+                total += 1
+                if true_label == pred_label:
+                    num_correct += 1
+                if true_label == 0 and pred_label == 1:
+                    num_false_positive += 1
+                if true_label == 1 and pred_label == 0:
+                    num_false_negative += 1
+                if true_label == 1 and pred_label == 1:
+                    num_true_positive += 1
     
-    print(f"For the test data, the actual distribution of classes are: {actual_output_counts}")
-    print(f"For the test data, the model's distribution of classes are: {model_output_counts}")
-    print(f"Accuracy is: {num_correct}/{len(test_dataset)}, or {num_correct/len(test_dataset) * 100}%")
-    print(f"The false positive rate is: {num_false_positive}/{len(test_dataset)}, or {num_false_positive/len(test_dataset) * 100}%")
-    print(f"The false negative rate is: {num_false_negative}/{len(test_dataset)}, or {num_false_negative/len(test_dataset) * 100}%")
+    precision = num_true_positive / (num_true_positive + num_false_positive + 1e-8)
+    recall = num_true_positive / (num_true_positive + num_false_negative + 1e-8)
+    f1 = 2 * precision * recall / (precision + recall + 1e-8)
     
+    results = [
+        f"Accuracy: {num_correct}/{total} = {num_correct/total*100:.2f}%",
+        f"False positive rate: {num_false_positive}/{total} = {num_false_positive/total*100:.2f}%",
+        f"False negative rate: {num_false_negative}/{total} = {num_false_negative/total*100:.2f}%",
+        f"Precision: {precision:.4f}",
+        f"Recall: {recall:.4f}",
+        f"F1 Score: {f1:.4f}"
+    ]
+    for r in results:
+        print(r)
+        RESULTS_FILE.write(r + "\n")
 
     # Save the best model
     torch.save(best_model.state_dict(), MODEL_FILEPATH)

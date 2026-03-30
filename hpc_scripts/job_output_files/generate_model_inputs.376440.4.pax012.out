@@ -1,0 +1,24 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2008/05
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2008/05.csv
+Python script exit code: 137
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2008_05.tar.xz
+2008_05/
+2008_05/0000004_2008_5_df_row.nc
+2008_05/0000019_2008_5_df_row.nc
+2008_05/0000040_2008_5_df_row.nc
+2008_05/0000087_2008_5_df_row.nc
+2008_05/0000090_2008_5_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2008_05
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

@@ -1,0 +1,115 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2009/09
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2009/09.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2009/09.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2009_09
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2009_09.tar.xz
+2009_09/
+2009_09/0000000_2009_9_df_row.nc
+2009_09/0000002_2009_9_df_row.nc
+2009_09/0000006_2009_9_df_row.nc
+2009_09/0000010_2009_9_df_row.nc
+2009_09/0000011_2009_9_df_row.nc
+2009_09/0000012_2009_9_df_row.nc
+2009_09/0000013_2009_9_df_row.nc
+2009_09/0000014_2009_9_df_row.nc
+2009_09/0000015_2009_9_df_row.nc
+2009_09/0000017_2009_9_df_row.nc
+2009_09/0000019_2009_9_df_row.nc
+2009_09/0000022_2009_9_df_row.nc
+2009_09/0000025_2009_9_df_row.nc
+2009_09/0000028_2009_9_df_row.nc
+2009_09/0000029_2009_9_df_row.nc
+2009_09/0000033_2009_9_df_row.nc
+2009_09/0000036_2009_9_df_row.nc
+2009_09/0000039_2009_9_df_row.nc
+2009_09/0000040_2009_9_df_row.nc
+2009_09/0000043_2009_9_df_row.nc
+2009_09/0000050_2009_9_df_row.nc
+2009_09/0000052_2009_9_df_row.nc
+2009_09/0000055_2009_9_df_row.nc
+2009_09/0000061_2009_9_df_row.nc
+2009_09/0000062_2009_9_df_row.nc
+2009_09/0000065_2009_9_df_row.nc
+2009_09/0000073_2009_9_df_row.nc
+2009_09/0000077_2009_9_df_row.nc
+2009_09/0000078_2009_9_df_row.nc
+2009_09/0000080_2009_9_df_row.nc
+2009_09/0000085_2009_9_df_row.nc
+2009_09/0000086_2009_9_df_row.nc
+2009_09/0000088_2009_9_df_row.nc
+2009_09/0000093_2009_9_df_row.nc
+2009_09/0000095_2009_9_df_row.nc
+2009_09/0000098_2009_9_df_row.nc
+2009_09/0000099_2009_9_df_row.nc
+2009_09/0000100_2009_9_df_row.nc
+2009_09/0000101_2009_9_df_row.nc
+2009_09/0000106_2009_9_df_row.nc
+2009_09/0000107_2009_9_df_row.nc
+2009_09/0000108_2009_9_df_row.nc
+2009_09/0000111_2009_9_df_row.nc
+2009_09/0000113_2009_9_df_row.nc
+2009_09/0000118_2009_9_df_row.nc
+2009_09/0000119_2009_9_df_row.nc
+2009_09/0000120_2009_9_df_row.nc
+2009_09/0000121_2009_9_df_row.nc
+2009_09/0000124_2009_9_df_row.nc
+2009_09/0000128_2009_9_df_row.nc
+2009_09/0000130_2009_9_df_row.nc
+2009_09/0000132_2009_9_df_row.nc
+2009_09/0000137_2009_9_df_row.nc
+2009_09/0000141_2009_9_df_row.nc
+2009_09/0000143_2009_9_df_row.nc
+2009_09/0000146_2009_9_df_row.nc
+2009_09/0000148_2009_9_df_row.nc
+2009_09/0000149_2009_9_df_row.nc
+2009_09/0000152_2009_9_df_row.nc
+2009_09/0000153_2009_9_df_row.nc
+2009_09/0000156_2009_9_df_row.nc
+2009_09/0000157_2009_9_df_row.nc
+2009_09/0000161_2009_9_df_row.nc
+2009_09/0000163_2009_9_df_row.nc
+2009_09/0000165_2009_9_df_row.nc
+2009_09/0000168_2009_9_df_row.nc
+2009_09/0000172_2009_9_df_row.nc
+2009_09/0000185_2009_9_df_row.nc
+2009_09/0000186_2009_9_df_row.nc
+2009_09/0000188_2009_9_df_row.nc
+2009_09/0000189_2009_9_df_row.nc
+2009_09/0000193_2009_9_df_row.nc
+2009_09/0000195_2009_9_df_row.nc
+2009_09/0000198_2009_9_df_row.nc
+2009_09/0000203_2009_9_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2009_09
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

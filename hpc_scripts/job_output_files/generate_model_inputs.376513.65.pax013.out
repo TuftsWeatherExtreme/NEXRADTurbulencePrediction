@@ -1,0 +1,161 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2013/06
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2013/06.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2013/06.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2013_06
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/06/23/KRIW/KRIW20130623_215804_V06.gz: OSError: unknown compression record
+Completed 30% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/06/29/KESX/KESX20130629_004310_V06.gz: OSError: unknown compression record
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/06/01/KDMX/KDMX20130601_163954_V06.gz: OSError: unknown compression record
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/06/07/KFFC/KFFC20130607_172818_V06.gz: OSError: unknown compression record
+Completed 55% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/06/24/KFTG/KFTG20130624_170238_V06.gz: OSError: unknown compression record
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Completed 105% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2013_06.tar.xz
+2013_06/
+2013_06/0000002_2013_6_df_row.nc
+2013_06/0000003_2013_6_df_row.nc
+2013_06/0000005_2013_6_df_row.nc
+2013_06/0000009_2013_6_df_row.nc
+2013_06/0000010_2013_6_df_row.nc
+2013_06/0000013_2013_6_df_row.nc
+2013_06/0000015_2013_6_df_row.nc
+2013_06/0000017_2013_6_df_row.nc
+2013_06/0000021_2013_6_df_row.nc
+2013_06/0000024_2013_6_df_row.nc
+2013_06/0000025_2013_6_df_row.nc
+2013_06/0000027_2013_6_df_row.nc
+2013_06/0000028_2013_6_df_row.nc
+2013_06/0000030_2013_6_df_row.nc
+2013_06/0000031_2013_6_df_row.nc
+2013_06/0000032_2013_6_df_row.nc
+2013_06/0000033_2013_6_df_row.nc
+2013_06/0000039_2013_6_df_row.nc
+2013_06/0000046_2013_6_df_row.nc
+2013_06/0000051_2013_6_df_row.nc
+2013_06/0000052_2013_6_df_row.nc
+2013_06/0000056_2013_6_df_row.nc
+2013_06/0000063_2013_6_df_row.nc
+2013_06/0000065_2013_6_df_row.nc
+2013_06/0000066_2013_6_df_row.nc
+2013_06/0000068_2013_6_df_row.nc
+2013_06/0000069_2013_6_df_row.nc
+2013_06/0000070_2013_6_df_row.nc
+2013_06/0000071_2013_6_df_row.nc
+2013_06/0000077_2013_6_df_row.nc
+2013_06/0000082_2013_6_df_row.nc
+2013_06/0000084_2013_6_df_row.nc
+2013_06/0000085_2013_6_df_row.nc
+2013_06/0000089_2013_6_df_row.nc
+2013_06/0000090_2013_6_df_row.nc
+2013_06/0000091_2013_6_df_row.nc
+2013_06/0000095_2013_6_df_row.nc
+2013_06/0000099_2013_6_df_row.nc
+2013_06/0000101_2013_6_df_row.nc
+2013_06/0000104_2013_6_df_row.nc
+2013_06/0000105_2013_6_df_row.nc
+2013_06/0000112_2013_6_df_row.nc
+2013_06/0000113_2013_6_df_row.nc
+2013_06/0000115_2013_6_df_row.nc
+2013_06/0000116_2013_6_df_row.nc
+2013_06/0000117_2013_6_df_row.nc
+2013_06/0000118_2013_6_df_row.nc
+2013_06/0000125_2013_6_df_row.nc
+2013_06/0000126_2013_6_df_row.nc
+2013_06/0000127_2013_6_df_row.nc
+2013_06/0000128_2013_6_df_row.nc
+2013_06/0000130_2013_6_df_row.nc
+2013_06/0000132_2013_6_df_row.nc
+2013_06/0000133_2013_6_df_row.nc
+2013_06/0000138_2013_6_df_row.nc
+2013_06/0000139_2013_6_df_row.nc
+2013_06/0000147_2013_6_df_row.nc
+2013_06/0000148_2013_6_df_row.nc
+2013_06/0000149_2013_6_df_row.nc
+2013_06/0000150_2013_6_df_row.nc
+2013_06/0000154_2013_6_df_row.nc
+2013_06/0000158_2013_6_df_row.nc
+2013_06/0000160_2013_6_df_row.nc
+2013_06/0000162_2013_6_df_row.nc
+2013_06/0000163_2013_6_df_row.nc
+2013_06/0000165_2013_6_df_row.nc
+2013_06/0000169_2013_6_df_row.nc
+2013_06/0000174_2013_6_df_row.nc
+2013_06/0000177_2013_6_df_row.nc
+2013_06/0000178_2013_6_df_row.nc
+2013_06/0000180_2013_6_df_row.nc
+2013_06/0000181_2013_6_df_row.nc
+2013_06/0000183_2013_6_df_row.nc
+2013_06/0000192_2013_6_df_row.nc
+2013_06/0000193_2013_6_df_row.nc
+2013_06/0000195_2013_6_df_row.nc
+2013_06/0000200_2013_6_df_row.nc
+2013_06/0000201_2013_6_df_row.nc
+2013_06/0000208_2013_6_df_row.nc
+2013_06/0000209_2013_6_df_row.nc
+2013_06/0000211_2013_6_df_row.nc
+2013_06/0000212_2013_6_df_row.nc
+2013_06/0000215_2013_6_df_row.nc
+2013_06/0000216_2013_6_df_row.nc
+2013_06/0000218_2013_6_df_row.nc
+2013_06/0000222_2013_6_df_row.nc
+2013_06/0000223_2013_6_df_row.nc
+2013_06/0000226_2013_6_df_row.nc
+2013_06/0000228_2013_6_df_row.nc
+2013_06/0000229_2013_6_df_row.nc
+2013_06/0000230_2013_6_df_row.nc
+2013_06/0000233_2013_6_df_row.nc
+2013_06/0000235_2013_6_df_row.nc
+2013_06/0000237_2013_6_df_row.nc
+2013_06/0000238_2013_6_df_row.nc
+2013_06/0000243_2013_6_df_row.nc
+2013_06/0000244_2013_6_df_row.nc
+2013_06/0000247_2013_6_df_row.nc
+2013_06/0000248_2013_6_df_row.nc
+2013_06/0000250_2013_6_df_row.nc
+2013_06/0000251_2013_6_df_row.nc
+2013_06/0000253_2013_6_df_row.nc
+2013_06/0000258_2013_6_df_row.nc
+2013_06/0000263_2013_6_df_row.nc
+2013_06/0000267_2013_6_df_row.nc
+2013_06/0000269_2013_6_df_row.nc
+2013_06/0000271_2013_6_df_row.nc
+2013_06/0000273_2013_6_df_row.nc
+2013_06/0000275_2013_6_df_row.nc
+2013_06/0000277_2013_6_df_row.nc
+2013_06/0000279_2013_6_df_row.nc
+2013_06/0000284_2013_6_df_row.nc
+2013_06/0000287_2013_6_df_row.nc
+2013_06/0000290_2013_6_df_row.nc
+2013_06/0000294_2013_6_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2013_06
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

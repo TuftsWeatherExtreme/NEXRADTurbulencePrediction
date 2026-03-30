@@ -1,0 +1,114 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2016/11
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2016/11.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2016/11.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2016_11
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2016_11.tar.xz
+2016_11/
+2016_11/0000002_2016_11_df_row.nc
+2016_11/0000007_2016_11_df_row.nc
+2016_11/0000012_2016_11_df_row.nc
+2016_11/0000015_2016_11_df_row.nc
+2016_11/0000019_2016_11_df_row.nc
+2016_11/0000051_2016_11_df_row.nc
+2016_11/0000055_2016_11_df_row.nc
+2016_11/0000058_2016_11_df_row.nc
+2016_11/0000070_2016_11_df_row.nc
+2016_11/0000073_2016_11_df_row.nc
+2016_11/0000077_2016_11_df_row.nc
+2016_11/0000083_2016_11_df_row.nc
+2016_11/0000084_2016_11_df_row.nc
+2016_11/0000093_2016_11_df_row.nc
+2016_11/0000094_2016_11_df_row.nc
+2016_11/0000100_2016_11_df_row.nc
+2016_11/0000107_2016_11_df_row.nc
+2016_11/0000109_2016_11_df_row.nc
+2016_11/0000112_2016_11_df_row.nc
+2016_11/0000121_2016_11_df_row.nc
+2016_11/0000124_2016_11_df_row.nc
+2016_11/0000125_2016_11_df_row.nc
+2016_11/0000132_2016_11_df_row.nc
+2016_11/0000139_2016_11_df_row.nc
+2016_11/0000140_2016_11_df_row.nc
+2016_11/0000148_2016_11_df_row.nc
+2016_11/0000150_2016_11_df_row.nc
+2016_11/0000167_2016_11_df_row.nc
+2016_11/0000180_2016_11_df_row.nc
+2016_11/0000182_2016_11_df_row.nc
+2016_11/0000184_2016_11_df_row.nc
+2016_11/0000187_2016_11_df_row.nc
+2016_11/0000194_2016_11_df_row.nc
+2016_11/0000195_2016_11_df_row.nc
+2016_11/0000198_2016_11_df_row.nc
+2016_11/0000205_2016_11_df_row.nc
+2016_11/0000208_2016_11_df_row.nc
+2016_11/0000215_2016_11_df_row.nc
+2016_11/0000216_2016_11_df_row.nc
+2016_11/0000217_2016_11_df_row.nc
+2016_11/0000223_2016_11_df_row.nc
+2016_11/0000225_2016_11_df_row.nc
+2016_11/0000226_2016_11_df_row.nc
+2016_11/0000230_2016_11_df_row.nc
+2016_11/0000238_2016_11_df_row.nc
+2016_11/0000239_2016_11_df_row.nc
+2016_11/0000241_2016_11_df_row.nc
+2016_11/0000248_2016_11_df_row.nc
+2016_11/0000257_2016_11_df_row.nc
+2016_11/0000258_2016_11_df_row.nc
+2016_11/0000273_2016_11_df_row.nc
+2016_11/0000277_2016_11_df_row.nc
+2016_11/0000280_2016_11_df_row.nc
+2016_11/0000281_2016_11_df_row.nc
+2016_11/0000286_2016_11_df_row.nc
+2016_11/0000292_2016_11_df_row.nc
+2016_11/0000294_2016_11_df_row.nc
+2016_11/0000298_2016_11_df_row.nc
+2016_11/0000303_2016_11_df_row.nc
+2016_11/0000306_2016_11_df_row.nc
+2016_11/0000310_2016_11_df_row.nc
+2016_11/0000313_2016_11_df_row.nc
+2016_11/0000320_2016_11_df_row.nc
+2016_11/0000321_2016_11_df_row.nc
+2016_11/0000322_2016_11_df_row.nc
+2016_11/0000323_2016_11_df_row.nc
+2016_11/0000325_2016_11_df_row.nc
+2016_11/0000329_2016_11_df_row.nc
+2016_11/0000334_2016_11_df_row.nc
+2016_11/0000338_2016_11_df_row.nc
+2016_11/0000346_2016_11_df_row.nc
+2016_11/0000347_2016_11_df_row.nc
+2016_11/0000352_2016_11_df_row.nc
+2016_11/0000358_2016_11_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2016_11
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

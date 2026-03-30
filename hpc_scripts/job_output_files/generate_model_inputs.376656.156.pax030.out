@@ -1,0 +1,174 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2021/01
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2021/01.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2021/01.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2021_01
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2021/01/28/KDIX/KDIX20210128_190215_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2021_01.tar.xz
+2021_01/
+2021_01/0000001_2021_1_df_row.nc
+2021_01/0000003_2021_1_df_row.nc
+2021_01/0000005_2021_1_df_row.nc
+2021_01/0000007_2021_1_df_row.nc
+2021_01/0000010_2021_1_df_row.nc
+2021_01/0000011_2021_1_df_row.nc
+2021_01/0000012_2021_1_df_row.nc
+2021_01/0000013_2021_1_df_row.nc
+2021_01/0000023_2021_1_df_row.nc
+2021_01/0000024_2021_1_df_row.nc
+2021_01/0000026_2021_1_df_row.nc
+2021_01/0000027_2021_1_df_row.nc
+2021_01/0000029_2021_1_df_row.nc
+2021_01/0000033_2021_1_df_row.nc
+2021_01/0000036_2021_1_df_row.nc
+2021_01/0000038_2021_1_df_row.nc
+2021_01/0000041_2021_1_df_row.nc
+2021_01/0000043_2021_1_df_row.nc
+2021_01/0000045_2021_1_df_row.nc
+2021_01/0000046_2021_1_df_row.nc
+2021_01/0000050_2021_1_df_row.nc
+2021_01/0000059_2021_1_df_row.nc
+2021_01/0000060_2021_1_df_row.nc
+2021_01/0000063_2021_1_df_row.nc
+2021_01/0000067_2021_1_df_row.nc
+2021_01/0000077_2021_1_df_row.nc
+2021_01/0000079_2021_1_df_row.nc
+2021_01/0000083_2021_1_df_row.nc
+2021_01/0000091_2021_1_df_row.nc
+2021_01/0000098_2021_1_df_row.nc
+2021_01/0000099_2021_1_df_row.nc
+2021_01/0000101_2021_1_df_row.nc
+2021_01/0000104_2021_1_df_row.nc
+2021_01/0000107_2021_1_df_row.nc
+2021_01/0000111_2021_1_df_row.nc
+2021_01/0000115_2021_1_df_row.nc
+2021_01/0000118_2021_1_df_row.nc
+2021_01/0000123_2021_1_df_row.nc
+2021_01/0000132_2021_1_df_row.nc
+2021_01/0000133_2021_1_df_row.nc
+2021_01/0000137_2021_1_df_row.nc
+2021_01/0000149_2021_1_df_row.nc
+2021_01/0000152_2021_1_df_row.nc
+2021_01/0000155_2021_1_df_row.nc
+2021_01/0000157_2021_1_df_row.nc
+2021_01/0000162_2021_1_df_row.nc
+2021_01/0000163_2021_1_df_row.nc
+2021_01/0000165_2021_1_df_row.nc
+2021_01/0000167_2021_1_df_row.nc
+2021_01/0000168_2021_1_df_row.nc
+2021_01/0000175_2021_1_df_row.nc
+2021_01/0000177_2021_1_df_row.nc
+2021_01/0000178_2021_1_df_row.nc
+2021_01/0000179_2021_1_df_row.nc
+2021_01/0000188_2021_1_df_row.nc
+2021_01/0000190_2021_1_df_row.nc
+2021_01/0000191_2021_1_df_row.nc
+2021_01/0000193_2021_1_df_row.nc
+2021_01/0000198_2021_1_df_row.nc
+2021_01/0000203_2021_1_df_row.nc
+2021_01/0000211_2021_1_df_row.nc
+2021_01/0000215_2021_1_df_row.nc
+2021_01/0000218_2021_1_df_row.nc
+2021_01/0000219_2021_1_df_row.nc
+2021_01/0000221_2021_1_df_row.nc
+2021_01/0000222_2021_1_df_row.nc
+2021_01/0000228_2021_1_df_row.nc
+2021_01/0000235_2021_1_df_row.nc
+2021_01/0000238_2021_1_df_row.nc
+2021_01/0000245_2021_1_df_row.nc
+2021_01/0000248_2021_1_df_row.nc
+2021_01/0000251_2021_1_df_row.nc
+2021_01/0000252_2021_1_df_row.nc
+2021_01/0000257_2021_1_df_row.nc
+2021_01/0000258_2021_1_df_row.nc
+2021_01/0000263_2021_1_df_row.nc
+2021_01/0000265_2021_1_df_row.nc
+2021_01/0000266_2021_1_df_row.nc
+2021_01/0000271_2021_1_df_row.nc
+2021_01/0000275_2021_1_df_row.nc
+2021_01/0000276_2021_1_df_row.nc
+2021_01/0000277_2021_1_df_row.nc
+2021_01/0000281_2021_1_df_row.nc
+2021_01/0000285_2021_1_df_row.nc
+2021_01/0000287_2021_1_df_row.nc
+2021_01/0000290_2021_1_df_row.nc
+2021_01/0000291_2021_1_df_row.nc
+2021_01/0000292_2021_1_df_row.nc
+2021_01/0000297_2021_1_df_row.nc
+2021_01/0000300_2021_1_df_row.nc
+2021_01/0000303_2021_1_df_row.nc
+2021_01/0000305_2021_1_df_row.nc
+2021_01/0000307_2021_1_df_row.nc
+2021_01/0000312_2021_1_df_row.nc
+2021_01/0000313_2021_1_df_row.nc
+2021_01/0000314_2021_1_df_row.nc
+2021_01/0000324_2021_1_df_row.nc
+2021_01/0000330_2021_1_df_row.nc
+2021_01/0000335_2021_1_df_row.nc
+2021_01/0000339_2021_1_df_row.nc
+2021_01/0000344_2021_1_df_row.nc
+2021_01/0000347_2021_1_df_row.nc
+2021_01/0000353_2021_1_df_row.nc
+2021_01/0000354_2021_1_df_row.nc
+2021_01/0000356_2021_1_df_row.nc
+2021_01/0000366_2021_1_df_row.nc
+2021_01/0000371_2021_1_df_row.nc
+2021_01/0000379_2021_1_df_row.nc
+2021_01/0000381_2021_1_df_row.nc
+2021_01/0000393_2021_1_df_row.nc
+2021_01/0000399_2021_1_df_row.nc
+2021_01/0000400_2021_1_df_row.nc
+2021_01/0000405_2021_1_df_row.nc
+2021_01/0000407_2021_1_df_row.nc
+2021_01/0000408_2021_1_df_row.nc
+2021_01/0000409_2021_1_df_row.nc
+2021_01/0000411_2021_1_df_row.nc
+2021_01/0000414_2021_1_df_row.nc
+2021_01/0000423_2021_1_df_row.nc
+2021_01/0000428_2021_1_df_row.nc
+2021_01/0000437_2021_1_df_row.nc
+2021_01/0000438_2021_1_df_row.nc
+2021_01/0000441_2021_1_df_row.nc
+2021_01/0000443_2021_1_df_row.nc
+2021_01/0000446_2021_1_df_row.nc
+2021_01/0000453_2021_1_df_row.nc
+2021_01/0000455_2021_1_df_row.nc
+2021_01/0000464_2021_1_df_row.nc
+2021_01/0000468_2021_1_df_row.nc
+2021_01/0000472_2021_1_df_row.nc
+2021_01/0000475_2021_1_df_row.nc
+2021_01/0000482_2021_1_df_row.nc
+2021_01/0000485_2021_1_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2021_01
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

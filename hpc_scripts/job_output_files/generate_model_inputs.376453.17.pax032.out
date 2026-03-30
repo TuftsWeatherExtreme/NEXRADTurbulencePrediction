@@ -1,0 +1,148 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2009/06
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2009/06.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2009/06.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2009_06
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/06/03/KILN/KILN20090603_182726_V03.gz: IndexError: Out of bounds on buffer access (axis 0)
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/06/23/KMPX/KMPX20090623_165351_V03.gz: OSError: unknown compression record
+Completed 20% of df
+Completed 25% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/06/25/KDVN/KDVN20090625_221619_V03.gz: error: Error -3 while decompressing data: invalid code lengths set
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/06/24/KICX/KICX20090624_180213_V03.gz: ValueError: No MSG31 records found, cannot read file
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2009/06/09/KAMX/KAMX20090609_162320_V03.gz
+ERROR: Timed out reading s3://unidata-nexrad-level2/2009/06/13/KGJX/KGJX20090613_233424_V03.gz
+ERROR: Timed out reading s3://unidata-nexrad-level2/2009/06/13/KFTG/KFTG20090613_233135_V03.gz
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2009/06/02/KDDC/KDDC20090602_021518_V03.gz
+ERROR: Timed out reading s3://unidata-nexrad-level2/2009/06/02/KUEX/KUEX20090602_021413_V03.gz
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Completed 105% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2009_06.tar.xz
+2009_06/
+2009_06/0000000_2009_6_df_row.nc
+2009_06/0000004_2009_6_df_row.nc
+2009_06/0000006_2009_6_df_row.nc
+2009_06/0000009_2009_6_df_row.nc
+2009_06/0000010_2009_6_df_row.nc
+2009_06/0000011_2009_6_df_row.nc
+2009_06/0000013_2009_6_df_row.nc
+2009_06/0000014_2009_6_df_row.nc
+2009_06/0000015_2009_6_df_row.nc
+2009_06/0000016_2009_6_df_row.nc
+2009_06/0000020_2009_6_df_row.nc
+2009_06/0000021_2009_6_df_row.nc
+2009_06/0000022_2009_6_df_row.nc
+2009_06/0000026_2009_6_df_row.nc
+2009_06/0000027_2009_6_df_row.nc
+2009_06/0000028_2009_6_df_row.nc
+2009_06/0000030_2009_6_df_row.nc
+2009_06/0000032_2009_6_df_row.nc
+2009_06/0000035_2009_6_df_row.nc
+2009_06/0000036_2009_6_df_row.nc
+2009_06/0000039_2009_6_df_row.nc
+2009_06/0000040_2009_6_df_row.nc
+2009_06/0000045_2009_6_df_row.nc
+2009_06/0000046_2009_6_df_row.nc
+2009_06/0000050_2009_6_df_row.nc
+2009_06/0000051_2009_6_df_row.nc
+2009_06/0000053_2009_6_df_row.nc
+2009_06/0000056_2009_6_df_row.nc
+2009_06/0000065_2009_6_df_row.nc
+2009_06/0000068_2009_6_df_row.nc
+2009_06/0000070_2009_6_df_row.nc
+2009_06/0000073_2009_6_df_row.nc
+2009_06/0000079_2009_6_df_row.nc
+2009_06/0000080_2009_6_df_row.nc
+2009_06/0000083_2009_6_df_row.nc
+2009_06/0000087_2009_6_df_row.nc
+2009_06/0000089_2009_6_df_row.nc
+2009_06/0000090_2009_6_df_row.nc
+2009_06/0000092_2009_6_df_row.nc
+2009_06/0000094_2009_6_df_row.nc
+2009_06/0000100_2009_6_df_row.nc
+2009_06/0000103_2009_6_df_row.nc
+2009_06/0000104_2009_6_df_row.nc
+2009_06/0000107_2009_6_df_row.nc
+2009_06/0000108_2009_6_df_row.nc
+2009_06/0000113_2009_6_df_row.nc
+2009_06/0000114_2009_6_df_row.nc
+2009_06/0000117_2009_6_df_row.nc
+2009_06/0000119_2009_6_df_row.nc
+2009_06/0000122_2009_6_df_row.nc
+2009_06/0000125_2009_6_df_row.nc
+2009_06/0000129_2009_6_df_row.nc
+2009_06/0000130_2009_6_df_row.nc
+2009_06/0000131_2009_6_df_row.nc
+2009_06/0000134_2009_6_df_row.nc
+2009_06/0000137_2009_6_df_row.nc
+2009_06/0000141_2009_6_df_row.nc
+2009_06/0000142_2009_6_df_row.nc
+2009_06/0000144_2009_6_df_row.nc
+2009_06/0000145_2009_6_df_row.nc
+2009_06/0000148_2009_6_df_row.nc
+2009_06/0000149_2009_6_df_row.nc
+2009_06/0000152_2009_6_df_row.nc
+2009_06/0000153_2009_6_df_row.nc
+2009_06/0000156_2009_6_df_row.nc
+2009_06/0000157_2009_6_df_row.nc
+2009_06/0000159_2009_6_df_row.nc
+2009_06/0000161_2009_6_df_row.nc
+2009_06/0000162_2009_6_df_row.nc
+2009_06/0000164_2009_6_df_row.nc
+2009_06/0000167_2009_6_df_row.nc
+2009_06/0000168_2009_6_df_row.nc
+2009_06/0000171_2009_6_df_row.nc
+2009_06/0000176_2009_6_df_row.nc
+2009_06/0000179_2009_6_df_row.nc
+2009_06/0000180_2009_6_df_row.nc
+2009_06/0000182_2009_6_df_row.nc
+2009_06/0000184_2009_6_df_row.nc
+2009_06/0000186_2009_6_df_row.nc
+2009_06/0000187_2009_6_df_row.nc
+2009_06/0000191_2009_6_df_row.nc
+2009_06/0000192_2009_6_df_row.nc
+2009_06/0000194_2009_6_df_row.nc
+2009_06/0000201_2009_6_df_row.nc
+2009_06/0000203_2009_6_df_row.nc
+2009_06/0000204_2009_6_df_row.nc
+2009_06/0000205_2009_6_df_row.nc
+2009_06/0000208_2009_6_df_row.nc
+2009_06/0000212_2009_6_df_row.nc
+2009_06/0000217_2009_6_df_row.nc
+2009_06/0000219_2009_6_df_row.nc
+2009_06/0000220_2009_6_df_row.nc
+2009_06/0000221_2009_6_df_row.nc
+2009_06/0000224_2009_6_df_row.nc
+2009_06/0000225_2009_6_df_row.nc
+2009_06/0000230_2009_6_df_row.nc
+2009_06/0000232_2009_6_df_row.nc
+2009_06/0000233_2009_6_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2009_06
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

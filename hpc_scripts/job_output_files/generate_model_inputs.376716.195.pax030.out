@@ -1,0 +1,438 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2024/04
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2024/04.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2024/04.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2024_04
+Completed 5% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/18/PAHG/PAHG20240418_202857_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/02/KCXX/KCXX20240402_095243_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/17/PAHG/PAHG20240417_221014_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 40% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/15/KTBW/KTBW20240415_145652_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/17/KGLD/KGLD20240417_195714_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/02/KGRR/KGRR20240402_214949_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/02/KGRB/KGRB20240402_215152_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/02/KMKX/KMKX20240402_214922_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/02/KIWX/KIWX20240402_214654_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/02/KLOT/KLOT20240402_214748_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/14/KMRX/KMRX20240414_174201_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/14/KHTX/KHTX20240414_174155_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/14/KOHX/KOHX20240414_173953_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/14/KJKL/KJKL20240414_174200_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/14/KLVX/KLVX20240414_174059_V06
+Completed 45% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/23/KTWX/KTWX20240423_024724_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/23/KOAX/KOAX20240423_024743_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/11/KTYX/KTYX20240411_131049_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/11/KBUF/KBUF20240411_130835_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/11/KCCX/KCCX20240411_130659_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/11/KENX/KENX20240411_130800_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KDOX/KDOX20240403_204605_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KDIX/KDIX20240403_204818_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KLWX/KLWX20240403_204818_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KCCX/KCCX20240403_204648_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KOKX/KOKX20240403_204518_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/19/KFCX/KFCX20240419_161544_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/19/KRLX/KRLX20240419_161413_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/19/KLWX/KLWX20240419_161351_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/06/KIWA/KIWA20240406_171740_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/04/KCXX/KCXX20240404_025031_V06
+Completed 50% of df
+Completed 55% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/19/PAHG/PAHG20240419_235901_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 60% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/21/PAHG/PAHG20240421_192834_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 65% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/27/KMPX/KMPX20240427_211346_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/27/KDMX/KDMX20240427_211851_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KOKX/KOKX20240403_203122_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KDIX/KDIX20240403_203006_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KBGM/KBGM20240403_202806_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/26/KJGX/KJGX20240426_104542_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/26/KFFC/KFFC20240426_104300_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/26/KCLX/KCLX20240426_104710_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/26/KMXX/KMXX20240426_104340_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KTBW/KTBW20240403_181741_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KMLB/KMLB20240403_182034_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KMOB/KMOB20240403_204426_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KEVX/KEVX20240403_204803_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KHDC/KHDC20240403_203842_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/08/KCYS/KCYS20240408_212357_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/08/KFTG/KFTG20240408_212207_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/08/KGJX/KGJX20240408_212748_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/08/KPUX/KPUX20240408_212632_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/08/KRIW/KRIW20240408_212706_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KOKX/KOKX20240403_212519_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KDIX/KDIX20240403_212847_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KDOX/KDOX20240403_212716_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KBOX/KBOX20240403_212544_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KENX/KENX20240403_212905_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KJAX/KJAX20240403_144455_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KJGX/KJGX20240403_144244_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KTLH/KTLH20240403_144230_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KCLX/KCLX20240403_144436_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/04/KAMX/KAMX20240404_030538_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/14/KOKX/KOKX20240414_194559_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/14/KDIX/KDIX20240414_194646_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/14/KENX/KENX20240414_194550_V06
+Completed 70% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/11/KMKX/KMKX20240411_123653_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/11/KGRB/KGRB20240411_123720_V06
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/17/PAHG/PAHG20240417_221014_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 75% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/10/KAKQ/KAKQ20240410_231549_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/10/KRLX/KRLX20240410_231326_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/04/KBYX/KBYX20240404_023157_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/10/KEOX/KEOX20240410_232118_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/22/KABR/KABR20240422_172634_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/17/KDLH/KDLH20240417_100753_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/17/KFSD/KFSD20240417_100824_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/17/KDMX/KDMX20240417_100423_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/10/KTLX/KTLX20240410_163057_V06
+Completed 80% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/21/KBMX/KBMX20240421_123600_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/28/KFDR/KFDR20240428_054826_V06
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/11/KDOX/KDOX20240411_164846_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/11/KAKQ/KAKQ20240411_164822_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/05/KRIW/KRIW20240405_193736_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KLWX/KLWX20240403_193558_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/12/KFCX/KFCX20240412_012917_V06
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/12/KAKQ/KAKQ20240412_011521_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 85% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/02/KILX/KILX20240402_213456_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/02/KCLE/KCLE20240402_223003_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/16/KRLX/KRLX20240416_202451_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/10/KMRX/KMRX20240410_175026_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KLWX/KLWX20240403_162945_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KCCX/KCCX20240403_162338_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/01/KBOX/KBOX20240401_173026_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/01/KENX/KENX20240401_173110_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/04/KCBW/KCBW20240404_070634_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/04/KGYX/KGYX20240404_070451_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/04/KBOX/KBOX20240404_070716_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/04/KCXX/KCXX20240404_070819_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/04/KOKX/KOKX20240404_070836_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KPBZ/KPBZ20240403_092141_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KRLX/KRLX20240403_092046_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KCLE/KCLE20240403_091856_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KCCX/KCCX20240403_091632_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KLWX/KLWX20240403_092143_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/24/KOKX/KOKX20240424_171103_V06
+Completed 90% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/28/KICT/KICT20240428_033657_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/28/KUEX/KUEX20240428_034040_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/28/KVNX/KVNX20240428_033729_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/28/KDDC/KDDC20240428_034353_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/01/KABX/KABX20240401_170631_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/01/KHDX/KHDX20240401_170913_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/01/KFDX/KFDX20240401_170627_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/01/KEPZ/KEPZ20240401_170700_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/01/KGJX/KGJX20240401_170954_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/27/KINX/KINX20240427_143440_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/27/KTLX/KTLX20240427_143516_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/27/KICT/KICT20240427_143206_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/15/KSRX/KSRX20240415_135840_V06
+Completed 95% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/06/KDMX/KDMX20240406_230617_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/06/KDVN/KDVN20240406_230255_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/07/KDVN/KDVN20240407_190433_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/07/KLOT/KLOT20240407_190449_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/07/KILX/KILX20240407_190618_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/07/KMKX/KMKX20240407_190632_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/07/KARX/KARX20240407_190731_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/12/KDIX/KDIX20240412_142035_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/12/KBGM/KBGM20240412_141900_V06
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2024/04/24/PAHG/PAHG20240424_203215_V06: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 100% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KBGM/KBGM20240403_204514_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/16/KJAX/KJAX20240416_135036_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/16/KAMX/KAMX20240416_134737_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KOKX/KOKX20240403_202425_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2024/04/03/KENX/KENX20240403_201925_V06
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2024_04.tar.xz
+2024_04/
+2024_04/0000000_2024_4_df_row.nc
+2024_04/0000006_2024_4_df_row.nc
+2024_04/0000008_2024_4_df_row.nc
+2024_04/0000009_2024_4_df_row.nc
+2024_04/0000012_2024_4_df_row.nc
+2024_04/0000017_2024_4_df_row.nc
+2024_04/0000018_2024_4_df_row.nc
+2024_04/0000020_2024_4_df_row.nc
+2024_04/0000021_2024_4_df_row.nc
+2024_04/0000022_2024_4_df_row.nc
+2024_04/0000023_2024_4_df_row.nc
+2024_04/0000029_2024_4_df_row.nc
+2024_04/0000030_2024_4_df_row.nc
+2024_04/0000033_2024_4_df_row.nc
+2024_04/0000035_2024_4_df_row.nc
+2024_04/0000038_2024_4_df_row.nc
+2024_04/0000040_2024_4_df_row.nc
+2024_04/0000041_2024_4_df_row.nc
+2024_04/0000042_2024_4_df_row.nc
+2024_04/0000043_2024_4_df_row.nc
+2024_04/0000045_2024_4_df_row.nc
+2024_04/0000047_2024_4_df_row.nc
+2024_04/0000052_2024_4_df_row.nc
+2024_04/0000058_2024_4_df_row.nc
+2024_04/0000059_2024_4_df_row.nc
+2024_04/0000061_2024_4_df_row.nc
+2024_04/0000062_2024_4_df_row.nc
+2024_04/0000064_2024_4_df_row.nc
+2024_04/0000067_2024_4_df_row.nc
+2024_04/0000071_2024_4_df_row.nc
+2024_04/0000075_2024_4_df_row.nc
+2024_04/0000077_2024_4_df_row.nc
+2024_04/0000080_2024_4_df_row.nc
+2024_04/0000082_2024_4_df_row.nc
+2024_04/0000086_2024_4_df_row.nc
+2024_04/0000087_2024_4_df_row.nc
+2024_04/0000091_2024_4_df_row.nc
+2024_04/0000092_2024_4_df_row.nc
+2024_04/0000093_2024_4_df_row.nc
+2024_04/0000095_2024_4_df_row.nc
+2024_04/0000098_2024_4_df_row.nc
+2024_04/0000102_2024_4_df_row.nc
+2024_04/0000108_2024_4_df_row.nc
+2024_04/0000110_2024_4_df_row.nc
+2024_04/0000113_2024_4_df_row.nc
+2024_04/0000114_2024_4_df_row.nc
+2024_04/0000116_2024_4_df_row.nc
+2024_04/0000118_2024_4_df_row.nc
+2024_04/0000119_2024_4_df_row.nc
+2024_04/0000121_2024_4_df_row.nc
+2024_04/0000124_2024_4_df_row.nc
+2024_04/0000125_2024_4_df_row.nc
+2024_04/0000128_2024_4_df_row.nc
+2024_04/0000130_2024_4_df_row.nc
+2024_04/0000133_2024_4_df_row.nc
+2024_04/0000136_2024_4_df_row.nc
+2024_04/0000137_2024_4_df_row.nc
+2024_04/0000138_2024_4_df_row.nc
+2024_04/0000142_2024_4_df_row.nc
+2024_04/0000144_2024_4_df_row.nc
+2024_04/0000145_2024_4_df_row.nc
+2024_04/0000147_2024_4_df_row.nc
+2024_04/0000148_2024_4_df_row.nc
+2024_04/0000154_2024_4_df_row.nc
+2024_04/0000155_2024_4_df_row.nc
+2024_04/0000158_2024_4_df_row.nc
+2024_04/0000159_2024_4_df_row.nc
+2024_04/0000160_2024_4_df_row.nc
+2024_04/0000162_2024_4_df_row.nc
+2024_04/0000165_2024_4_df_row.nc
+2024_04/0000166_2024_4_df_row.nc
+2024_04/0000168_2024_4_df_row.nc
+2024_04/0000173_2024_4_df_row.nc
+2024_04/0000175_2024_4_df_row.nc
+2024_04/0000176_2024_4_df_row.nc
+2024_04/0000180_2024_4_df_row.nc
+2024_04/0000182_2024_4_df_row.nc
+2024_04/0000185_2024_4_df_row.nc
+2024_04/0000189_2024_4_df_row.nc
+2024_04/0000192_2024_4_df_row.nc
+2024_04/0000194_2024_4_df_row.nc
+2024_04/0000200_2024_4_df_row.nc
+2024_04/0000203_2024_4_df_row.nc
+2024_04/0000205_2024_4_df_row.nc
+2024_04/0000212_2024_4_df_row.nc
+2024_04/0000213_2024_4_df_row.nc
+2024_04/0000216_2024_4_df_row.nc
+2024_04/0000217_2024_4_df_row.nc
+2024_04/0000220_2024_4_df_row.nc
+2024_04/0000223_2024_4_df_row.nc
+2024_04/0000228_2024_4_df_row.nc
+2024_04/0000229_2024_4_df_row.nc
+2024_04/0000230_2024_4_df_row.nc
+2024_04/0000231_2024_4_df_row.nc
+2024_04/0000232_2024_4_df_row.nc
+2024_04/0000238_2024_4_df_row.nc
+2024_04/0000240_2024_4_df_row.nc
+2024_04/0000243_2024_4_df_row.nc
+2024_04/0000247_2024_4_df_row.nc
+2024_04/0000248_2024_4_df_row.nc
+2024_04/0000249_2024_4_df_row.nc
+2024_04/0000250_2024_4_df_row.nc
+2024_04/0000256_2024_4_df_row.nc
+2024_04/0000257_2024_4_df_row.nc
+2024_04/0000258_2024_4_df_row.nc
+2024_04/0000259_2024_4_df_row.nc
+2024_04/0000263_2024_4_df_row.nc
+2024_04/0000266_2024_4_df_row.nc
+2024_04/0000272_2024_4_df_row.nc
+2024_04/0000273_2024_4_df_row.nc
+2024_04/0000278_2024_4_df_row.nc
+2024_04/0000279_2024_4_df_row.nc
+2024_04/0000282_2024_4_df_row.nc
+2024_04/0000286_2024_4_df_row.nc
+2024_04/0000290_2024_4_df_row.nc
+2024_04/0000291_2024_4_df_row.nc
+2024_04/0000294_2024_4_df_row.nc
+2024_04/0000296_2024_4_df_row.nc
+2024_04/0000298_2024_4_df_row.nc
+2024_04/0000299_2024_4_df_row.nc
+2024_04/0000302_2024_4_df_row.nc
+2024_04/0000303_2024_4_df_row.nc
+2024_04/0000304_2024_4_df_row.nc
+2024_04/0000308_2024_4_df_row.nc
+2024_04/0000309_2024_4_df_row.nc
+2024_04/0000311_2024_4_df_row.nc
+2024_04/0000312_2024_4_df_row.nc
+2024_04/0000317_2024_4_df_row.nc
+2024_04/0000321_2024_4_df_row.nc
+2024_04/0000326_2024_4_df_row.nc
+2024_04/0000327_2024_4_df_row.nc
+2024_04/0000329_2024_4_df_row.nc
+2024_04/0000335_2024_4_df_row.nc
+2024_04/0000336_2024_4_df_row.nc
+2024_04/0000342_2024_4_df_row.nc
+2024_04/0000345_2024_4_df_row.nc
+2024_04/0000347_2024_4_df_row.nc
+2024_04/0000356_2024_4_df_row.nc
+2024_04/0000360_2024_4_df_row.nc
+2024_04/0000361_2024_4_df_row.nc
+2024_04/0000366_2024_4_df_row.nc
+2024_04/0000368_2024_4_df_row.nc
+2024_04/0000369_2024_4_df_row.nc
+2024_04/0000373_2024_4_df_row.nc
+2024_04/0000374_2024_4_df_row.nc
+2024_04/0000377_2024_4_df_row.nc
+2024_04/0000381_2024_4_df_row.nc
+2024_04/0000384_2024_4_df_row.nc
+2024_04/0000385_2024_4_df_row.nc
+2024_04/0000388_2024_4_df_row.nc
+2024_04/0000390_2024_4_df_row.nc
+2024_04/0000393_2024_4_df_row.nc
+2024_04/0000394_2024_4_df_row.nc
+2024_04/0000396_2024_4_df_row.nc
+2024_04/0000400_2024_4_df_row.nc
+2024_04/0000405_2024_4_df_row.nc
+2024_04/0000406_2024_4_df_row.nc
+2024_04/0000408_2024_4_df_row.nc
+2024_04/0000409_2024_4_df_row.nc
+2024_04/0000411_2024_4_df_row.nc
+2024_04/0000416_2024_4_df_row.nc
+2024_04/0000420_2024_4_df_row.nc
+2024_04/0000422_2024_4_df_row.nc
+2024_04/0000426_2024_4_df_row.nc
+2024_04/0000428_2024_4_df_row.nc
+2024_04/0000438_2024_4_df_row.nc
+2024_04/0000439_2024_4_df_row.nc
+2024_04/0000446_2024_4_df_row.nc
+2024_04/0000449_2024_4_df_row.nc
+2024_04/0000459_2024_4_df_row.nc
+2024_04/0000462_2024_4_df_row.nc
+2024_04/0000464_2024_4_df_row.nc
+2024_04/0000465_2024_4_df_row.nc
+2024_04/0000466_2024_4_df_row.nc
+2024_04/0000467_2024_4_df_row.nc
+2024_04/0000472_2024_4_df_row.nc
+2024_04/0000473_2024_4_df_row.nc
+2024_04/0000475_2024_4_df_row.nc
+2024_04/0000477_2024_4_df_row.nc
+2024_04/0000483_2024_4_df_row.nc
+2024_04/0000484_2024_4_df_row.nc
+2024_04/0000490_2024_4_df_row.nc
+2024_04/0000496_2024_4_df_row.nc
+2024_04/0000498_2024_4_df_row.nc
+2024_04/0000500_2024_4_df_row.nc
+2024_04/0000502_2024_4_df_row.nc
+2024_04/0000503_2024_4_df_row.nc
+2024_04/0000504_2024_4_df_row.nc
+2024_04/0000508_2024_4_df_row.nc
+2024_04/0000509_2024_4_df_row.nc
+2024_04/0000513_2024_4_df_row.nc
+2024_04/0000514_2024_4_df_row.nc
+2024_04/0000515_2024_4_df_row.nc
+2024_04/0000521_2024_4_df_row.nc
+2024_04/0000523_2024_4_df_row.nc
+2024_04/0000530_2024_4_df_row.nc
+2024_04/0000537_2024_4_df_row.nc
+2024_04/0000538_2024_4_df_row.nc
+2024_04/0000540_2024_4_df_row.nc
+2024_04/0000542_2024_4_df_row.nc
+2024_04/0000555_2024_4_df_row.nc
+2024_04/0000557_2024_4_df_row.nc
+2024_04/0000559_2024_4_df_row.nc
+2024_04/0000562_2024_4_df_row.nc
+2024_04/0000565_2024_4_df_row.nc
+2024_04/0000566_2024_4_df_row.nc
+2024_04/0000570_2024_4_df_row.nc
+2024_04/0000571_2024_4_df_row.nc
+2024_04/0000573_2024_4_df_row.nc
+2024_04/0000577_2024_4_df_row.nc
+2024_04/0000581_2024_4_df_row.nc
+2024_04/0000587_2024_4_df_row.nc
+2024_04/0000589_2024_4_df_row.nc
+2024_04/0000591_2024_4_df_row.nc
+2024_04/0000593_2024_4_df_row.nc
+2024_04/0000595_2024_4_df_row.nc
+2024_04/0000597_2024_4_df_row.nc
+2024_04/0000599_2024_4_df_row.nc
+2024_04/0000600_2024_4_df_row.nc
+2024_04/0000604_2024_4_df_row.nc
+2024_04/0000605_2024_4_df_row.nc
+2024_04/0000607_2024_4_df_row.nc
+2024_04/0000612_2024_4_df_row.nc
+2024_04/0000616_2024_4_df_row.nc
+2024_04/0000617_2024_4_df_row.nc
+2024_04/0000622_2024_4_df_row.nc
+2024_04/0000624_2024_4_df_row.nc
+2024_04/0000628_2024_4_df_row.nc
+2024_04/0000630_2024_4_df_row.nc
+2024_04/0000631_2024_4_df_row.nc
+2024_04/0000633_2024_4_df_row.nc
+2024_04/0000636_2024_4_df_row.nc
+2024_04/0000643_2024_4_df_row.nc
+2024_04/0000645_2024_4_df_row.nc
+2024_04/0000646_2024_4_df_row.nc
+2024_04/0000649_2024_4_df_row.nc
+2024_04/0000652_2024_4_df_row.nc
+2024_04/0000653_2024_4_df_row.nc
+2024_04/0000657_2024_4_df_row.nc
+2024_04/0000661_2024_4_df_row.nc
+2024_04/0000663_2024_4_df_row.nc
+2024_04/0000665_2024_4_df_row.nc
+2024_04/0000669_2024_4_df_row.nc
+2024_04/0000670_2024_4_df_row.nc
+2024_04/0000673_2024_4_df_row.nc
+2024_04/0000674_2024_4_df_row.nc
+2024_04/0000676_2024_4_df_row.nc
+2024_04/0000683_2024_4_df_row.nc
+2024_04/0000687_2024_4_df_row.nc
+2024_04/0000690_2024_4_df_row.nc
+2024_04/0000691_2024_4_df_row.nc
+2024_04/0000693_2024_4_df_row.nc
+2024_04/0000695_2024_4_df_row.nc
+2024_04/0000697_2024_4_df_row.nc
+2024_04/0000701_2024_4_df_row.nc
+2024_04/0000702_2024_4_df_row.nc
+2024_04/0000703_2024_4_df_row.nc
+2024_04/0000704_2024_4_df_row.nc
+2024_04/0000708_2024_4_df_row.nc
+2024_04/0000714_2024_4_df_row.nc
+2024_04/0000716_2024_4_df_row.nc
+2024_04/0000717_2024_4_df_row.nc
+2024_04/0000718_2024_4_df_row.nc
+2024_04/0000722_2024_4_df_row.nc
+2024_04/0000723_2024_4_df_row.nc
+2024_04/0000725_2024_4_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2024_04
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

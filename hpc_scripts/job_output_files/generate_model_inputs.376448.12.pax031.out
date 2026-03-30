@@ -1,0 +1,192 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2009/01
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2009/01.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2009/01.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2009_01
+Completed 5% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2009/01/07/KBUF/KBUF20090107_154718_V03.gz
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/01/07/KTYX/KTYX20090107_172429_V04.gz: IndexError: Out of bounds on buffer access (axis 0)
+Completed 30% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/01/07/KCCX/KCCX20090107_141149_V03.gz: ValueError: need at least one array to concatenate
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/01/10/KBOX/KBOX20090110_235624_V03.gz: ValueError: No MSG31 records found, cannot read file
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/01/07/KMHX/KMHX20090107_202754_V03.gz: OSError: unknown compression record
+Completed 85% of df
+Completed 90% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/01/07/KTYX/KTYX20090107_165619_V04.gz: OSError: unknown compression record
+Completed 95% of df
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2009_01.tar.xz
+2009_01/
+2009_01/0000001_2009_1_df_row.nc
+2009_01/0000005_2009_1_df_row.nc
+2009_01/0000007_2009_1_df_row.nc
+2009_01/0000009_2009_1_df_row.nc
+2009_01/0000010_2009_1_df_row.nc
+2009_01/0000011_2009_1_df_row.nc
+2009_01/0000013_2009_1_df_row.nc
+2009_01/0000018_2009_1_df_row.nc
+2009_01/0000023_2009_1_df_row.nc
+2009_01/0000025_2009_1_df_row.nc
+2009_01/0000029_2009_1_df_row.nc
+2009_01/0000033_2009_1_df_row.nc
+2009_01/0000040_2009_1_df_row.nc
+2009_01/0000041_2009_1_df_row.nc
+2009_01/0000043_2009_1_df_row.nc
+2009_01/0000046_2009_1_df_row.nc
+2009_01/0000048_2009_1_df_row.nc
+2009_01/0000049_2009_1_df_row.nc
+2009_01/0000062_2009_1_df_row.nc
+2009_01/0000063_2009_1_df_row.nc
+2009_01/0000068_2009_1_df_row.nc
+2009_01/0000079_2009_1_df_row.nc
+2009_01/0000083_2009_1_df_row.nc
+2009_01/0000091_2009_1_df_row.nc
+2009_01/0000094_2009_1_df_row.nc
+2009_01/0000095_2009_1_df_row.nc
+2009_01/0000096_2009_1_df_row.nc
+2009_01/0000103_2009_1_df_row.nc
+2009_01/0000105_2009_1_df_row.nc
+2009_01/0000106_2009_1_df_row.nc
+2009_01/0000108_2009_1_df_row.nc
+2009_01/0000111_2009_1_df_row.nc
+2009_01/0000116_2009_1_df_row.nc
+2009_01/0000119_2009_1_df_row.nc
+2009_01/0000120_2009_1_df_row.nc
+2009_01/0000121_2009_1_df_row.nc
+2009_01/0000135_2009_1_df_row.nc
+2009_01/0000137_2009_1_df_row.nc
+2009_01/0000143_2009_1_df_row.nc
+2009_01/0000149_2009_1_df_row.nc
+2009_01/0000154_2009_1_df_row.nc
+2009_01/0000163_2009_1_df_row.nc
+2009_01/0000172_2009_1_df_row.nc
+2009_01/0000174_2009_1_df_row.nc
+2009_01/0000177_2009_1_df_row.nc
+2009_01/0000179_2009_1_df_row.nc
+2009_01/0000188_2009_1_df_row.nc
+2009_01/0000191_2009_1_df_row.nc
+2009_01/0000193_2009_1_df_row.nc
+2009_01/0000195_2009_1_df_row.nc
+2009_01/0000204_2009_1_df_row.nc
+2009_01/0000208_2009_1_df_row.nc
+2009_01/0000212_2009_1_df_row.nc
+2009_01/0000214_2009_1_df_row.nc
+2009_01/0000228_2009_1_df_row.nc
+2009_01/0000229_2009_1_df_row.nc
+2009_01/0000235_2009_1_df_row.nc
+2009_01/0000237_2009_1_df_row.nc
+2009_01/0000239_2009_1_df_row.nc
+2009_01/0000255_2009_1_df_row.nc
+2009_01/0000256_2009_1_df_row.nc
+2009_01/0000257_2009_1_df_row.nc
+2009_01/0000258_2009_1_df_row.nc
+2009_01/0000259_2009_1_df_row.nc
+2009_01/0000262_2009_1_df_row.nc
+2009_01/0000276_2009_1_df_row.nc
+2009_01/0000281_2009_1_df_row.nc
+2009_01/0000291_2009_1_df_row.nc
+2009_01/0000292_2009_1_df_row.nc
+2009_01/0000296_2009_1_df_row.nc
+2009_01/0000300_2009_1_df_row.nc
+2009_01/0000301_2009_1_df_row.nc
+2009_01/0000303_2009_1_df_row.nc
+2009_01/0000306_2009_1_df_row.nc
+2009_01/0000310_2009_1_df_row.nc
+2009_01/0000322_2009_1_df_row.nc
+2009_01/0000323_2009_1_df_row.nc
+2009_01/0000324_2009_1_df_row.nc
+2009_01/0000327_2009_1_df_row.nc
+2009_01/0000331_2009_1_df_row.nc
+2009_01/0000335_2009_1_df_row.nc
+2009_01/0000338_2009_1_df_row.nc
+2009_01/0000349_2009_1_df_row.nc
+2009_01/0000351_2009_1_df_row.nc
+2009_01/0000360_2009_1_df_row.nc
+2009_01/0000361_2009_1_df_row.nc
+2009_01/0000362_2009_1_df_row.nc
+2009_01/0000364_2009_1_df_row.nc
+2009_01/0000365_2009_1_df_row.nc
+2009_01/0000372_2009_1_df_row.nc
+2009_01/0000373_2009_1_df_row.nc
+2009_01/0000379_2009_1_df_row.nc
+2009_01/0000381_2009_1_df_row.nc
+2009_01/0000390_2009_1_df_row.nc
+2009_01/0000393_2009_1_df_row.nc
+2009_01/0000394_2009_1_df_row.nc
+2009_01/0000399_2009_1_df_row.nc
+2009_01/0000400_2009_1_df_row.nc
+2009_01/0000405_2009_1_df_row.nc
+2009_01/0000407_2009_1_df_row.nc
+2009_01/0000412_2009_1_df_row.nc
+2009_01/0000413_2009_1_df_row.nc
+2009_01/0000414_2009_1_df_row.nc
+2009_01/0000424_2009_1_df_row.nc
+2009_01/0000425_2009_1_df_row.nc
+2009_01/0000426_2009_1_df_row.nc
+2009_01/0000428_2009_1_df_row.nc
+2009_01/0000430_2009_1_df_row.nc
+2009_01/0000431_2009_1_df_row.nc
+2009_01/0000434_2009_1_df_row.nc
+2009_01/0000447_2009_1_df_row.nc
+2009_01/0000448_2009_1_df_row.nc
+2009_01/0000450_2009_1_df_row.nc
+2009_01/0000454_2009_1_df_row.nc
+2009_01/0000455_2009_1_df_row.nc
+2009_01/0000457_2009_1_df_row.nc
+2009_01/0000459_2009_1_df_row.nc
+2009_01/0000463_2009_1_df_row.nc
+2009_01/0000465_2009_1_df_row.nc
+2009_01/0000475_2009_1_df_row.nc
+2009_01/0000482_2009_1_df_row.nc
+2009_01/0000485_2009_1_df_row.nc
+2009_01/0000492_2009_1_df_row.nc
+2009_01/0000496_2009_1_df_row.nc
+2009_01/0000498_2009_1_df_row.nc
+2009_01/0000499_2009_1_df_row.nc
+2009_01/0000501_2009_1_df_row.nc
+2009_01/0000503_2009_1_df_row.nc
+2009_01/0000510_2009_1_df_row.nc
+2009_01/0000520_2009_1_df_row.nc
+2009_01/0000521_2009_1_df_row.nc
+2009_01/0000522_2009_1_df_row.nc
+2009_01/0000528_2009_1_df_row.nc
+2009_01/0000530_2009_1_df_row.nc
+2009_01/0000534_2009_1_df_row.nc
+2009_01/0000541_2009_1_df_row.nc
+2009_01/0000550_2009_1_df_row.nc
+2009_01/0000554_2009_1_df_row.nc
+2009_01/0000557_2009_1_df_row.nc
+2009_01/0000559_2009_1_df_row.nc
+2009_01/0000560_2009_1_df_row.nc
+2009_01/0000571_2009_1_df_row.nc
+2009_01/0000575_2009_1_df_row.nc
+2009_01/0000578_2009_1_df_row.nc
+2009_01/0000579_2009_1_df_row.nc
+2009_01/0000581_2009_1_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2009_01
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

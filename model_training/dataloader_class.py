@@ -79,7 +79,7 @@ class RadarDataLoader(Dataset):
                     flattened_data = np.concatenate([nc_file[var].values.flatten() for var in nc_file.data_vars])
                     print(f"DEBUG: flattened_data shape: {flattened_data.shape}")
                     features = np.concatenate((features, flattened_data))
-                    label = int(attrs_arr[-1])
+                    label = float(attrs_arr[-1])
                     print(f"DEBUG: label: {label}")
                     features = torch.tensor(features, dtype=torch.float32) 
                     features = torch.nan_to_num(features, nan=-32.0)

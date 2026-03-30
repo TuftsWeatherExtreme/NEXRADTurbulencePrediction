@@ -1,0 +1,109 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2013/11
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2013/11.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2013/11.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2013_11
+Completed 5% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/11/17/KLVX/KLVX20131117_121954_V06.gz: OSError: unknown compression record
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/11/13/KMUX/KMUX20131113_195550_V06.gz: OSError: unknown compression record
+Completed 25% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/11/13/KMUX/KMUX20131113_195550_V06.gz: OSError: unknown compression record
+Completed 30% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/11/13/KMSX/KMSX20131113_005626_V06.gz: OSError: unknown compression record
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/11/18/KFSD/KFSD20131118_160846_V06.gz: ValueError: No MSG31 records found, cannot read file
+Completed 35% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/11/24/KLWX/KLWX20131124_163651_V06.gz: OSError: unknown compression record
+Completed 40% of df
+Completed 45% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/11/07/KIND/KIND20131107_152720_V06.gz: OSError: unknown compression record
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/11/07/KIWX/KIWX20131107_153709_V06.gz: OSError: unknown compression record
+Completed 50% of df
+Completed 55% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/11/06/KLBB/KLBB20131106_181300_V06.gz: OSError: unknown compression record
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/11/13/KMUX/KMUX20131113_195550_V06.gz: OSError: unknown compression record
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2013/11/21/KNKX/KNKX20131121_002324_V06.gz: IndexError: index 0 is out of bounds for axis 0 with size 0
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2013_11.tar.xz
+2013_11/
+2013_11/0000002_2013_11_df_row.nc
+2013_11/0000003_2013_11_df_row.nc
+2013_11/0000004_2013_11_df_row.nc
+2013_11/0000007_2013_11_df_row.nc
+2013_11/0000011_2013_11_df_row.nc
+2013_11/0000016_2013_11_df_row.nc
+2013_11/0000021_2013_11_df_row.nc
+2013_11/0000025_2013_11_df_row.nc
+2013_11/0000029_2013_11_df_row.nc
+2013_11/0000030_2013_11_df_row.nc
+2013_11/0000044_2013_11_df_row.nc
+2013_11/0000047_2013_11_df_row.nc
+2013_11/0000054_2013_11_df_row.nc
+2013_11/0000061_2013_11_df_row.nc
+2013_11/0000065_2013_11_df_row.nc
+2013_11/0000071_2013_11_df_row.nc
+2013_11/0000075_2013_11_df_row.nc
+2013_11/0000078_2013_11_df_row.nc
+2013_11/0000081_2013_11_df_row.nc
+2013_11/0000082_2013_11_df_row.nc
+2013_11/0000091_2013_11_df_row.nc
+2013_11/0000098_2013_11_df_row.nc
+2013_11/0000107_2013_11_df_row.nc
+2013_11/0000111_2013_11_df_row.nc
+2013_11/0000122_2013_11_df_row.nc
+2013_11/0000132_2013_11_df_row.nc
+2013_11/0000143_2013_11_df_row.nc
+2013_11/0000163_2013_11_df_row.nc
+2013_11/0000164_2013_11_df_row.nc
+2013_11/0000165_2013_11_df_row.nc
+2013_11/0000173_2013_11_df_row.nc
+2013_11/0000180_2013_11_df_row.nc
+2013_11/0000184_2013_11_df_row.nc
+2013_11/0000187_2013_11_df_row.nc
+2013_11/0000191_2013_11_df_row.nc
+2013_11/0000192_2013_11_df_row.nc
+2013_11/0000202_2013_11_df_row.nc
+2013_11/0000210_2013_11_df_row.nc
+2013_11/0000211_2013_11_df_row.nc
+2013_11/0000213_2013_11_df_row.nc
+2013_11/0000217_2013_11_df_row.nc
+2013_11/0000218_2013_11_df_row.nc
+2013_11/0000221_2013_11_df_row.nc
+2013_11/0000224_2013_11_df_row.nc
+2013_11/0000235_2013_11_df_row.nc
+2013_11/0000240_2013_11_df_row.nc
+2013_11/0000242_2013_11_df_row.nc
+2013_11/0000245_2013_11_df_row.nc
+2013_11/0000251_2013_11_df_row.nc
+2013_11/0000252_2013_11_df_row.nc
+2013_11/0000253_2013_11_df_row.nc
+2013_11/0000260_2013_11_df_row.nc
+2013_11/0000277_2013_11_df_row.nc
+2013_11/0000281_2013_11_df_row.nc
+2013_11/0000283_2013_11_df_row.nc
+2013_11/0000313_2013_11_df_row.nc
+2013_11/0000314_2013_11_df_row.nc
+2013_11/0000316_2013_11_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2013_11
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

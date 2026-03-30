@@ -1,0 +1,189 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2011/06
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2011/06.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2011/06.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2011_06
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2011/06/09/KOUN/KOUN20110609_150516_V06.gz: OSError: unknown compression record
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2011/06/06/PHMO/PHMO20110606_024601_V04.gz: IndexError: list index out of range
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2011_06.tar.xz
+2011_06/
+2011_06/0000000_2011_6_df_row.nc
+2011_06/0000002_2011_6_df_row.nc
+2011_06/0000003_2011_6_df_row.nc
+2011_06/0000004_2011_6_df_row.nc
+2011_06/0000006_2011_6_df_row.nc
+2011_06/0000008_2011_6_df_row.nc
+2011_06/0000010_2011_6_df_row.nc
+2011_06/0000011_2011_6_df_row.nc
+2011_06/0000013_2011_6_df_row.nc
+2011_06/0000017_2011_6_df_row.nc
+2011_06/0000020_2011_6_df_row.nc
+2011_06/0000021_2011_6_df_row.nc
+2011_06/0000024_2011_6_df_row.nc
+2011_06/0000027_2011_6_df_row.nc
+2011_06/0000031_2011_6_df_row.nc
+2011_06/0000032_2011_6_df_row.nc
+2011_06/0000034_2011_6_df_row.nc
+2011_06/0000035_2011_6_df_row.nc
+2011_06/0000037_2011_6_df_row.nc
+2011_06/0000039_2011_6_df_row.nc
+2011_06/0000040_2011_6_df_row.nc
+2011_06/0000042_2011_6_df_row.nc
+2011_06/0000043_2011_6_df_row.nc
+2011_06/0000046_2011_6_df_row.nc
+2011_06/0000047_2011_6_df_row.nc
+2011_06/0000048_2011_6_df_row.nc
+2011_06/0000049_2011_6_df_row.nc
+2011_06/0000050_2011_6_df_row.nc
+2011_06/0000051_2011_6_df_row.nc
+2011_06/0000052_2011_6_df_row.nc
+2011_06/0000053_2011_6_df_row.nc
+2011_06/0000054_2011_6_df_row.nc
+2011_06/0000055_2011_6_df_row.nc
+2011_06/0000059_2011_6_df_row.nc
+2011_06/0000066_2011_6_df_row.nc
+2011_06/0000069_2011_6_df_row.nc
+2011_06/0000072_2011_6_df_row.nc
+2011_06/0000077_2011_6_df_row.nc
+2011_06/0000078_2011_6_df_row.nc
+2011_06/0000079_2011_6_df_row.nc
+2011_06/0000081_2011_6_df_row.nc
+2011_06/0000087_2011_6_df_row.nc
+2011_06/0000092_2011_6_df_row.nc
+2011_06/0000096_2011_6_df_row.nc
+2011_06/0000098_2011_6_df_row.nc
+2011_06/0000101_2011_6_df_row.nc
+2011_06/0000103_2011_6_df_row.nc
+2011_06/0000104_2011_6_df_row.nc
+2011_06/0000109_2011_6_df_row.nc
+2011_06/0000110_2011_6_df_row.nc
+2011_06/0000116_2011_6_df_row.nc
+2011_06/0000117_2011_6_df_row.nc
+2011_06/0000118_2011_6_df_row.nc
+2011_06/0000119_2011_6_df_row.nc
+2011_06/0000121_2011_6_df_row.nc
+2011_06/0000125_2011_6_df_row.nc
+2011_06/0000127_2011_6_df_row.nc
+2011_06/0000130_2011_6_df_row.nc
+2011_06/0000134_2011_6_df_row.nc
+2011_06/0000135_2011_6_df_row.nc
+2011_06/0000141_2011_6_df_row.nc
+2011_06/0000142_2011_6_df_row.nc
+2011_06/0000145_2011_6_df_row.nc
+2011_06/0000148_2011_6_df_row.nc
+2011_06/0000149_2011_6_df_row.nc
+2011_06/0000152_2011_6_df_row.nc
+2011_06/0000153_2011_6_df_row.nc
+2011_06/0000154_2011_6_df_row.nc
+2011_06/0000156_2011_6_df_row.nc
+2011_06/0000157_2011_6_df_row.nc
+2011_06/0000158_2011_6_df_row.nc
+2011_06/0000162_2011_6_df_row.nc
+2011_06/0000163_2011_6_df_row.nc
+2011_06/0000164_2011_6_df_row.nc
+2011_06/0000169_2011_6_df_row.nc
+2011_06/0000173_2011_6_df_row.nc
+2011_06/0000175_2011_6_df_row.nc
+2011_06/0000178_2011_6_df_row.nc
+2011_06/0000179_2011_6_df_row.nc
+2011_06/0000191_2011_6_df_row.nc
+2011_06/0000193_2011_6_df_row.nc
+2011_06/0000194_2011_6_df_row.nc
+2011_06/0000200_2011_6_df_row.nc
+2011_06/0000201_2011_6_df_row.nc
+2011_06/0000205_2011_6_df_row.nc
+2011_06/0000206_2011_6_df_row.nc
+2011_06/0000208_2011_6_df_row.nc
+2011_06/0000211_2011_6_df_row.nc
+2011_06/0000212_2011_6_df_row.nc
+2011_06/0000213_2011_6_df_row.nc
+2011_06/0000218_2011_6_df_row.nc
+2011_06/0000221_2011_6_df_row.nc
+2011_06/0000222_2011_6_df_row.nc
+2011_06/0000223_2011_6_df_row.nc
+2011_06/0000225_2011_6_df_row.nc
+2011_06/0000228_2011_6_df_row.nc
+2011_06/0000231_2011_6_df_row.nc
+2011_06/0000234_2011_6_df_row.nc
+2011_06/0000238_2011_6_df_row.nc
+2011_06/0000241_2011_6_df_row.nc
+2011_06/0000243_2011_6_df_row.nc
+2011_06/0000246_2011_6_df_row.nc
+2011_06/0000247_2011_6_df_row.nc
+2011_06/0000250_2011_6_df_row.nc
+2011_06/0000253_2011_6_df_row.nc
+2011_06/0000255_2011_6_df_row.nc
+2011_06/0000256_2011_6_df_row.nc
+2011_06/0000257_2011_6_df_row.nc
+2011_06/0000259_2011_6_df_row.nc
+2011_06/0000260_2011_6_df_row.nc
+2011_06/0000265_2011_6_df_row.nc
+2011_06/0000268_2011_6_df_row.nc
+2011_06/0000270_2011_6_df_row.nc
+2011_06/0000271_2011_6_df_row.nc
+2011_06/0000273_2011_6_df_row.nc
+2011_06/0000274_2011_6_df_row.nc
+2011_06/0000277_2011_6_df_row.nc
+2011_06/0000282_2011_6_df_row.nc
+2011_06/0000284_2011_6_df_row.nc
+2011_06/0000289_2011_6_df_row.nc
+2011_06/0000292_2011_6_df_row.nc
+2011_06/0000296_2011_6_df_row.nc
+2011_06/0000297_2011_6_df_row.nc
+2011_06/0000299_2011_6_df_row.nc
+2011_06/0000304_2011_6_df_row.nc
+2011_06/0000305_2011_6_df_row.nc
+2011_06/0000308_2011_6_df_row.nc
+2011_06/0000311_2011_6_df_row.nc
+2011_06/0000315_2011_6_df_row.nc
+2011_06/0000317_2011_6_df_row.nc
+2011_06/0000319_2011_6_df_row.nc
+2011_06/0000325_2011_6_df_row.nc
+2011_06/0000327_2011_6_df_row.nc
+2011_06/0000328_2011_6_df_row.nc
+2011_06/0000329_2011_6_df_row.nc
+2011_06/0000330_2011_6_df_row.nc
+2011_06/0000331_2011_6_df_row.nc
+2011_06/0000336_2011_6_df_row.nc
+2011_06/0000339_2011_6_df_row.nc
+2011_06/0000342_2011_6_df_row.nc
+2011_06/0000343_2011_6_df_row.nc
+2011_06/0000347_2011_6_df_row.nc
+2011_06/0000349_2011_6_df_row.nc
+2011_06/0000352_2011_6_df_row.nc
+2011_06/0000356_2011_6_df_row.nc
+2011_06/0000357_2011_6_df_row.nc
+2011_06/0000360_2011_6_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2011_06
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

@@ -34,4 +34,6 @@ def scale_turbulence(pilot_reported_turb, plane_weight):
     scaled_turbulence = pilot_reported_turb + weight_adjustments[plane_weight]
 
     # Ensure the scaled turbulence does not exceed the max value of 7
-    return scaled_turbulence
+    # return scaled_turbulence
+    SEVERE_THRESHOLD = 5
+    return 1 if scaled_turbulence >= SEVERE_THRESHOLD else 0

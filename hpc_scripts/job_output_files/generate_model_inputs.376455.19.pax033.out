@@ -1,0 +1,135 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2009/08
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2009/08.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2009/08.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2009_08
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2009_08.tar.xz
+2009_08/
+2009_08/0000000_2009_8_df_row.nc
+2009_08/0000003_2009_8_df_row.nc
+2009_08/0000006_2009_8_df_row.nc
+2009_08/0000007_2009_8_df_row.nc
+2009_08/0000008_2009_8_df_row.nc
+2009_08/0000010_2009_8_df_row.nc
+2009_08/0000013_2009_8_df_row.nc
+2009_08/0000014_2009_8_df_row.nc
+2009_08/0000015_2009_8_df_row.nc
+2009_08/0000021_2009_8_df_row.nc
+2009_08/0000023_2009_8_df_row.nc
+2009_08/0000028_2009_8_df_row.nc
+2009_08/0000030_2009_8_df_row.nc
+2009_08/0000031_2009_8_df_row.nc
+2009_08/0000039_2009_8_df_row.nc
+2009_08/0000041_2009_8_df_row.nc
+2009_08/0000044_2009_8_df_row.nc
+2009_08/0000045_2009_8_df_row.nc
+2009_08/0000046_2009_8_df_row.nc
+2009_08/0000048_2009_8_df_row.nc
+2009_08/0000052_2009_8_df_row.nc
+2009_08/0000053_2009_8_df_row.nc
+2009_08/0000058_2009_8_df_row.nc
+2009_08/0000061_2009_8_df_row.nc
+2009_08/0000062_2009_8_df_row.nc
+2009_08/0000064_2009_8_df_row.nc
+2009_08/0000065_2009_8_df_row.nc
+2009_08/0000069_2009_8_df_row.nc
+2009_08/0000070_2009_8_df_row.nc
+2009_08/0000072_2009_8_df_row.nc
+2009_08/0000076_2009_8_df_row.nc
+2009_08/0000079_2009_8_df_row.nc
+2009_08/0000081_2009_8_df_row.nc
+2009_08/0000083_2009_8_df_row.nc
+2009_08/0000085_2009_8_df_row.nc
+2009_08/0000086_2009_8_df_row.nc
+2009_08/0000088_2009_8_df_row.nc
+2009_08/0000091_2009_8_df_row.nc
+2009_08/0000096_2009_8_df_row.nc
+2009_08/0000097_2009_8_df_row.nc
+2009_08/0000102_2009_8_df_row.nc
+2009_08/0000103_2009_8_df_row.nc
+2009_08/0000104_2009_8_df_row.nc
+2009_08/0000110_2009_8_df_row.nc
+2009_08/0000111_2009_8_df_row.nc
+2009_08/0000112_2009_8_df_row.nc
+2009_08/0000115_2009_8_df_row.nc
+2009_08/0000116_2009_8_df_row.nc
+2009_08/0000117_2009_8_df_row.nc
+2009_08/0000120_2009_8_df_row.nc
+2009_08/0000123_2009_8_df_row.nc
+2009_08/0000124_2009_8_df_row.nc
+2009_08/0000126_2009_8_df_row.nc
+2009_08/0000129_2009_8_df_row.nc
+2009_08/0000132_2009_8_df_row.nc
+2009_08/0000134_2009_8_df_row.nc
+2009_08/0000137_2009_8_df_row.nc
+2009_08/0000138_2009_8_df_row.nc
+2009_08/0000139_2009_8_df_row.nc
+2009_08/0000140_2009_8_df_row.nc
+2009_08/0000143_2009_8_df_row.nc
+2009_08/0000145_2009_8_df_row.nc
+2009_08/0000147_2009_8_df_row.nc
+2009_08/0000148_2009_8_df_row.nc
+2009_08/0000157_2009_8_df_row.nc
+2009_08/0000162_2009_8_df_row.nc
+2009_08/0000164_2009_8_df_row.nc
+2009_08/0000166_2009_8_df_row.nc
+2009_08/0000167_2009_8_df_row.nc
+2009_08/0000168_2009_8_df_row.nc
+2009_08/0000169_2009_8_df_row.nc
+2009_08/0000171_2009_8_df_row.nc
+2009_08/0000175_2009_8_df_row.nc
+2009_08/0000176_2009_8_df_row.nc
+2009_08/0000177_2009_8_df_row.nc
+2009_08/0000178_2009_8_df_row.nc
+2009_08/0000181_2009_8_df_row.nc
+2009_08/0000182_2009_8_df_row.nc
+2009_08/0000184_2009_8_df_row.nc
+2009_08/0000185_2009_8_df_row.nc
+2009_08/0000186_2009_8_df_row.nc
+2009_08/0000187_2009_8_df_row.nc
+2009_08/0000189_2009_8_df_row.nc
+2009_08/0000190_2009_8_df_row.nc
+2009_08/0000194_2009_8_df_row.nc
+2009_08/0000199_2009_8_df_row.nc
+2009_08/0000200_2009_8_df_row.nc
+2009_08/0000201_2009_8_df_row.nc
+2009_08/0000204_2009_8_df_row.nc
+2009_08/0000206_2009_8_df_row.nc
+2009_08/0000207_2009_8_df_row.nc
+2009_08/0000211_2009_8_df_row.nc
+2009_08/0000215_2009_8_df_row.nc
+2009_08/0000216_2009_8_df_row.nc
+2009_08/0000218_2009_8_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2009_08
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

@@ -246,9 +246,21 @@ eprint(f"We dropped {len_before_drop_na_fl - len(only_turb_pireps_w_altitude)}/{
 
 # Filter to SEV and above (turbulence_intensity >= 5)
 MIN_TURBULENCE_INTENSITY = 5
+NONSEVERE_TO_SEVERE_RATIO = 1  # For every 1 severe PIREP, include 1 non-severe
+
 len_before_sev_filter = len(only_turb_pireps_w_altitude)
-only_turb_pireps_w_altitude = only_turb_pireps_w_altitude[only_turb_pireps_w_altitude['turbulence_intensity'] >= MIN_TURBULENCE_INTENSITY]
-eprint(f"Filtered to turbulence >= {MIN_TURBULENCE_INTENSITY}: kept {len(only_turb_pireps_w_altitude)}/{len_before_sev_filter} pireps")
+
+severe_pireps = only_turb_pireps_w_altitude[only_turb_pireps_w_altitude['turbulence_intensity'] >= MIN_TURBULENCE_INTENSITY]
+nonsevere_pireps = only_turb_pireps_w_altitude[only_turb_pireps_w_altitude['turbulence_intensity'] < MIN_TURBULENCE_INTENSITY]
+
+# Sample non-severe PIREPs to match ratio
+num_nonsevere_to_keep = min(len(severe_pireps) * NONSEVERE_TO_SEVERE_RATIO, len(nonsevere_pireps))
+nonsevere_sampled = nonsevere_pireps.sample(n=num_nonsevere_to_keep, random_state=42)
+
+only_turb_pireps_w_altitude = pd.concat([severe_pireps, nonsevere_sampled]).sample(frac=1, random_state=42).reset_index(drop=True)
+
+eprint(f"Severe PIREPs: {len(severe_pireps)}, Non-severe PIREPs sampled: {num_nonsevere_to_keep}/{len(nonsevere_pireps)}")
+eprint(f"Final dataset size: {len(only_turb_pireps_w_altitude)}/{len_before_sev_filter} pireps")
 
 #add plane weight classification into the dataframe
 plane_weight_dict = pd.read_csv(os.path.join(DIRNAME, "../plane_weights/plane_weight_dictionary.csv"))

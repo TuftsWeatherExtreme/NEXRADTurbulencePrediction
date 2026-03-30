@@ -157,7 +157,7 @@ output_dirname = sys.argv[2]
 print(f"Reading from file: {input_filename} and outputting to directory: {output_dirname}")
 
 # Important to index_col=0 if reading just a part! - Otherwise remove
-pireps_df = pd.read_csv(input_filename, index_col=0)
+pireps_df = pd.read_csv(input_filename)
 num_completed = 0
 
 def safe_output_to_netcdf(pirep, output_dirname, num_inputs):

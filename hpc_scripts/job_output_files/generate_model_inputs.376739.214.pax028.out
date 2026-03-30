@@ -1,0 +1,190 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2025/11
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2025/11.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2025/11.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2025_11
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/06/KPBZ/KPBZ20251106_000329_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/06/KDTX/KDTX20251106_000314_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/06/KBUF/KBUF20251106_000205_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/06/KILN/KILN20251106_000437_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/03/KVAX/KVAX20251103_114207_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/03/KMLB/KMLB20251103_114701_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/18/PAIH/PAIH20251118_154550_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/18/PAPD/PAPD20251118_154433_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/18/PAKC/PAKC20251118_154447_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/10/KPOE/KPOE20251110_173707_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/10/KDGX/KDGX20251110_173554_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/10/KLZK/KLZK20251110_173710_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/10/KLCH/KLCH20251110_173602_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/08/KCXX/KCXX20251108_133919_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/03/KDOX/KDOX20251103_223221_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/03/KOKX/KOKX20251103_223614_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/03/KLWX/KLWX20251103_223344_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/03/KBGM/KBGM20251103_223230_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/15/KDGX/KDGX20251115_183517_V06
+ERROR: Timed out reading s3://unidata-nexrad-level2/2025/11/15/KSHV/KSHV20251115_183701_V06
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2025_11.tar.xz
+2025_11/
+2025_11/0000002_2025_11_df_row.nc
+2025_11/0000008_2025_11_df_row.nc
+2025_11/0000009_2025_11_df_row.nc
+2025_11/0000013_2025_11_df_row.nc
+2025_11/0000017_2025_11_df_row.nc
+2025_11/0000022_2025_11_df_row.nc
+2025_11/0000034_2025_11_df_row.nc
+2025_11/0000036_2025_11_df_row.nc
+2025_11/0000037_2025_11_df_row.nc
+2025_11/0000038_2025_11_df_row.nc
+2025_11/0000039_2025_11_df_row.nc
+2025_11/0000046_2025_11_df_row.nc
+2025_11/0000048_2025_11_df_row.nc
+2025_11/0000049_2025_11_df_row.nc
+2025_11/0000055_2025_11_df_row.nc
+2025_11/0000057_2025_11_df_row.nc
+2025_11/0000061_2025_11_df_row.nc
+2025_11/0000067_2025_11_df_row.nc
+2025_11/0000068_2025_11_df_row.nc
+2025_11/0000070_2025_11_df_row.nc
+2025_11/0000077_2025_11_df_row.nc
+2025_11/0000083_2025_11_df_row.nc
+2025_11/0000087_2025_11_df_row.nc
+2025_11/0000090_2025_11_df_row.nc
+2025_11/0000092_2025_11_df_row.nc
+2025_11/0000098_2025_11_df_row.nc
+2025_11/0000102_2025_11_df_row.nc
+2025_11/0000103_2025_11_df_row.nc
+2025_11/0000106_2025_11_df_row.nc
+2025_11/0000110_2025_11_df_row.nc
+2025_11/0000114_2025_11_df_row.nc
+2025_11/0000121_2025_11_df_row.nc
+2025_11/0000134_2025_11_df_row.nc
+2025_11/0000135_2025_11_df_row.nc
+2025_11/0000136_2025_11_df_row.nc
+2025_11/0000137_2025_11_df_row.nc
+2025_11/0000138_2025_11_df_row.nc
+2025_11/0000140_2025_11_df_row.nc
+2025_11/0000146_2025_11_df_row.nc
+2025_11/0000147_2025_11_df_row.nc
+2025_11/0000156_2025_11_df_row.nc
+2025_11/0000160_2025_11_df_row.nc
+2025_11/0000163_2025_11_df_row.nc
+2025_11/0000170_2025_11_df_row.nc
+2025_11/0000175_2025_11_df_row.nc
+2025_11/0000177_2025_11_df_row.nc
+2025_11/0000182_2025_11_df_row.nc
+2025_11/0000183_2025_11_df_row.nc
+2025_11/0000187_2025_11_df_row.nc
+2025_11/0000189_2025_11_df_row.nc
+2025_11/0000198_2025_11_df_row.nc
+2025_11/0000199_2025_11_df_row.nc
+2025_11/0000203_2025_11_df_row.nc
+2025_11/0000206_2025_11_df_row.nc
+2025_11/0000211_2025_11_df_row.nc
+2025_11/0000213_2025_11_df_row.nc
+2025_11/0000222_2025_11_df_row.nc
+2025_11/0000232_2025_11_df_row.nc
+2025_11/0000239_2025_11_df_row.nc
+2025_11/0000241_2025_11_df_row.nc
+2025_11/0000248_2025_11_df_row.nc
+2025_11/0000251_2025_11_df_row.nc
+2025_11/0000258_2025_11_df_row.nc
+2025_11/0000260_2025_11_df_row.nc
+2025_11/0000261_2025_11_df_row.nc
+2025_11/0000262_2025_11_df_row.nc
+2025_11/0000265_2025_11_df_row.nc
+2025_11/0000269_2025_11_df_row.nc
+2025_11/0000280_2025_11_df_row.nc
+2025_11/0000283_2025_11_df_row.nc
+2025_11/0000285_2025_11_df_row.nc
+2025_11/0000286_2025_11_df_row.nc
+2025_11/0000296_2025_11_df_row.nc
+2025_11/0000299_2025_11_df_row.nc
+2025_11/0000302_2025_11_df_row.nc
+2025_11/0000306_2025_11_df_row.nc
+2025_11/0000309_2025_11_df_row.nc
+2025_11/0000314_2025_11_df_row.nc
+2025_11/0000317_2025_11_df_row.nc
+2025_11/0000320_2025_11_df_row.nc
+2025_11/0000326_2025_11_df_row.nc
+2025_11/0000330_2025_11_df_row.nc
+2025_11/0000333_2025_11_df_row.nc
+2025_11/0000342_2025_11_df_row.nc
+2025_11/0000343_2025_11_df_row.nc
+2025_11/0000345_2025_11_df_row.nc
+2025_11/0000346_2025_11_df_row.nc
+2025_11/0000347_2025_11_df_row.nc
+2025_11/0000348_2025_11_df_row.nc
+2025_11/0000352_2025_11_df_row.nc
+2025_11/0000354_2025_11_df_row.nc
+2025_11/0000355_2025_11_df_row.nc
+2025_11/0000360_2025_11_df_row.nc
+2025_11/0000361_2025_11_df_row.nc
+2025_11/0000362_2025_11_df_row.nc
+2025_11/0000364_2025_11_df_row.nc
+2025_11/0000367_2025_11_df_row.nc
+2025_11/0000369_2025_11_df_row.nc
+2025_11/0000371_2025_11_df_row.nc
+2025_11/0000374_2025_11_df_row.nc
+2025_11/0000386_2025_11_df_row.nc
+2025_11/0000393_2025_11_df_row.nc
+2025_11/0000397_2025_11_df_row.nc
+2025_11/0000400_2025_11_df_row.nc
+2025_11/0000407_2025_11_df_row.nc
+2025_11/0000408_2025_11_df_row.nc
+2025_11/0000409_2025_11_df_row.nc
+2025_11/0000410_2025_11_df_row.nc
+2025_11/0000411_2025_11_df_row.nc
+2025_11/0000412_2025_11_df_row.nc
+2025_11/0000419_2025_11_df_row.nc
+2025_11/0000420_2025_11_df_row.nc
+2025_11/0000432_2025_11_df_row.nc
+2025_11/0000436_2025_11_df_row.nc
+2025_11/0000439_2025_11_df_row.nc
+2025_11/0000440_2025_11_df_row.nc
+2025_11/0000446_2025_11_df_row.nc
+2025_11/0000449_2025_11_df_row.nc
+2025_11/0000455_2025_11_df_row.nc
+2025_11/0000458_2025_11_df_row.nc
+2025_11/0000472_2025_11_df_row.nc
+2025_11/0000475_2025_11_df_row.nc
+2025_11/0000478_2025_11_df_row.nc
+2025_11/0000481_2025_11_df_row.nc
+2025_11/0000482_2025_11_df_row.nc
+2025_11/0000493_2025_11_df_row.nc
+2025_11/0000495_2025_11_df_row.nc
+2025_11/0000500_2025_11_df_row.nc
+2025_11/0000502_2025_11_df_row.nc
+2025_11/0000504_2025_11_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2025_11
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!
