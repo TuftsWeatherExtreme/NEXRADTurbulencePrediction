@@ -22,11 +22,10 @@ source $REPO_PATH/hpc_scripts/load_modules.sh
 nvidia-smi
 
 model_type=$1
-loss_function=$2
-seed=$3
+seed=$2
 
-echo "About to train the $model_type model with $loss_function loss with seed $seed"
-python -u $REPO_PATH/model_training/train_and_test_model.py $model_type $loss_function $seed
+echo "About to train the $model_type model with seed $seed"
+python -u $REPO_PATH/model_training/train_and_test_model.py $model_type $seed
 echo "Finished training and testing the model!"
 
 source $REPO_PATH/hpc_scripts/unload_modules.sh

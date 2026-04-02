@@ -27,6 +27,7 @@ sys.path.append(os.path.join(DIRNAME, "..",))
 from model_architecture.regression_model import LinearClassifierModel
 from model_architecture.hybrid_model_1_out import HybridModel1Out
 from model_architecture.hybrid_model import HybridModel
+from model_architecture.resnet3d_model import ResNet3DModel
 import torch.optim as optim
 from torch.utils.data import DataLoader
 import numpy as np
@@ -36,8 +37,8 @@ from sklearn.model_selection import KFold
 from torch.utils.data import Subset
 import torch.nn.functional as F
 
-NUM_EPOCHS = 5 
-BATCH_SIZE = 2000
+NUM_EPOCHS = 30
+BATCH_SIZE = 64
 NUM_FOLDS = 6
 # TODO: Set DATALOADER_PATH to dataloader we want to use for training
 DATALOADER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "eleanor_dataloader.pth")
@@ -46,23 +47,21 @@ terminate_training = False
 loss_is_nll = False
 
 def usage():
-    print("Usage: python train_and_test_model.py [linear|hybrid] [LOSS_TYPE] [SEED]")
+    print("Usage: python train_and_test_model.py [linear|hybrid|resnet] [SEED]")
     print("linear: Train a linear classifier")
-    print("hybrid: Train a hybrid classifier")
-    print("LOSS_TYPE: loss function to use (e.g., mse, mae, nll)")
+    print("hybrid: Train the hybrid CNN + FC model")
+    print("resnet: Train the ResNet3D model")
     print("SEED: seed for splitting dataset and saving model checkpoint")
     exit(1)
 
-if len(sys.argv) != 4 or (sys.argv[1] != "linear" and sys.argv[1] != "hybrid"):
+if len(sys.argv) != 3:
     usage()
 try:
-    LOSS_TYPE = sys.argv[2]
-    SEED = int(sys.argv[3])
+    SEED = int(sys.argv[2])
 except:
     usage()
-    raise f"Could not cast {sys.argv[3]} to an int"
 
-
+MODEL_TYPE = sys.argv[1]
 
 OUTPUT_DIR = os.path.join(DIRNAME, "trained_model_outputs")
 if not os.path.exists(OUTPUT_DIR):
@@ -71,8 +70,8 @@ if not os.path.exists(OUTPUT_DIR):
 curr_time = time.time()
 formatted_curr_date = datetime.datetime.fromtimestamp(curr_time).isoformat()
 
-MODEL_CHECKPOINT_PATH = os.path.join(OUTPUT_DIR, f"{sys.argv[1]}_{LOSS_TYPE}_{SEED}_model_checkpoint.pth")
-OUTPUT_FILENAME = os.path.join(OUTPUT_DIR, formatted_curr_date + f"_best_{sys.argv[1]}_{LOSS_TYPE}_model_w_seed_{SEED}")
+MODEL_CHECKPOINT_PATH = os.path.join(OUTPUT_DIR, f"{MODEL_TYPE}_{SEED}_model_checkpoint.pth")
+OUTPUT_FILENAME = os.path.join(OUTPUT_DIR, formatted_curr_date + f"_best_{MODEL_TYPE}_model_w_seed_{SEED}")
 RESULTS_FILEPATH = OUTPUT_FILENAME + "_results.txt"
 RESULTS_FILE = open(RESULTS_FILEPATH, "a")
 MODEL_FILEPATH = OUTPUT_FILENAME + ".pth"
@@ -123,53 +122,36 @@ def init_loaders(train_idx, val_idx, dataset, weights):
 
 
 def train_model(model, epoch, train_loader, optimizer, loss_fn, verbose=False):
-    # iterate through all the data
     running_train_loss = 0.0
     for batch_num, (x_train, y_train) in enumerate(train_loader):
+        x_train = x_train.to(device)
+        y_train = y_train.long().to(device)
 
-        # Move data to the appropriate device
-        x_train, y_train = x_train.to(device), y_train.float().to(device)
-
-        optimizer.zero_grad() # zero the parameter gradients at the beginning
-        y_hat = model(x_train) # Evaluate the model on the input data
-
-        if loss_is_nll:
-            y_hat = log_softmax(y_hat)
-            y_train = y_train.long()
-
+        optimizer.zero_grad()
+        y_hat = model(x_train)
         loss = loss_fn(y_hat, y_train)
 
         loss.backward()
         optimizer.step()
-        running_train_loss += loss.item() # Yields the average loss per batch
+        running_train_loss += loss.item()
 
-        if verbose and batch_num % 100 == 100 - 1:    # print every 100 mini-batches
-            output_str = f'[Epoch: {epoch}, Batch_num: {batch_num + 1:5d}] avg training loss per batch: {running_train_loss / 100:.3f}'
-            RESULTS_FILE.write(output_str)
-            print(output_str)
-            print(f"On batch: {batch_num + 1}, train_loss: {loss.item()}, running train loss: {running_train_loss}")
+        if verbose and batch_num % 50 == 49:
+            print(f'[Epoch {epoch}, Batch {batch_num + 1:5d}] avg loss: {running_train_loss / 50:.4f}')
             running_train_loss = 0.0
 
 def evaluate_model(model, val_loader, loss_fn, verbose=False):
     running_valid_loss = 0.0
-    with torch.no_grad(): # disable gradient tracking for validation
+    with torch.no_grad():
         for batch_num, (x_val, y_val) in enumerate(val_loader):
-            
-            x_val, y_val = x_val.to(device), y_val.float().to(device)
+            x_val = x_val.to(device)
+            y_val = y_val.long().to(device)
 
             y_hat_val = model(x_val)
-
-            if loss_is_nll:
-                y_hat_val = log_softmax(y_hat_val)
-                y_val = y_val.long()
-
             val_loss = loss_fn(y_hat_val, y_val)
-
             running_valid_loss += val_loss.item()
-            if verbose and batch_num % 20 == 20 - 1:    # print every 20 mini-batches
-                print(f"On batch: {batch_num + 1:3d}, val_loss: {val_loss.item()}, running val loss: {running_valid_loss}")
-    print(f"Evaluated model on {len(val_loader)} batches of ~2000")
+
     avg_valid_loss_epoch = running_valid_loss / len(val_loader)
+    print(f"Validation loss: {avg_valid_loss_epoch:.4f} ({len(val_loader)} batches)")
     return avg_valid_loss_epoch
 
 def train_and_eval_epoch(model, epoch, train_loader, val_loader, optimizer, loss_fn, fold, save_model=False):
@@ -188,12 +170,16 @@ def train_and_eval_epoch(model, epoch, train_loader, val_loader, optimizer, loss
 
 
 def main():
-    Model = LinearClassifierModel
-    
-    if sys.argv[1] == "hybrid" and (LOSS_TYPE == "mse" or LOSS_TYPE == "mae" or LOSS_TYPE == "bce"):
-        Model = HybridModel1Out
-    elif sys.argv[1] == "hybrid" and LOSS_TYPE == "nll":
-        Model = HybridModel
+    model_type = sys.argv[1]
+    MODELS = {
+        "linear": LinearClassifierModel,
+        "hybrid": HybridModel1Out,
+        "resnet": ResNet3DModel,
+    }
+    if model_type not in MODELS:
+        print(f"Unknown model type: {model_type}. Choose from: {', '.join(MODELS.keys())}")
+        sys.exit(1)
+    Model = MODELS[model_type]
     
     # load in pickled dataset from file and instantiate DataLoader Object
     dataset = torch.load(DATALOADER_PATH, weights_only=False) # load in saved dataset
@@ -230,30 +216,15 @@ def main():
     # to store the average loss (over all folds) with each regularization parameter
     l2_loss_list = list()
 
-    # Readable softmax function (percentages)
-    # softmax = nn.Softmax(dim=-1)
+    # Cross-entropy loss for 2-class classification
+    loss_fn = nn.CrossEntropyLoss()
 
-    global loss_is_nll
-    global log_softmax
-    log_softmax = nn.LogSoftmax(dim=-1)
-    # Initialize the loss function, currently supports BCE, MSE, MAE, and NLL
-    if LOSS_TYPE == "bce":
-        loss_fn = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
-    elif LOSS_TYPE == "mse":
-        loss_fn = nn.MSELoss()
-    elif LOSS_TYPE == "mae":
-        loss_fn = nn.L1Loss()
-    elif LOSS_TYPE == "nll":
-        loss_is_nll = True
-        loss_fn = nn.NLLLoss()
-
-    print(f"Training the {sys.argv[1]} model")
-    print(f"Using {loss_fn} as the loss function")
+    print(f"Training the {model_type} model")
+    print(f"Using CrossEntropyLoss")
     print(f"Using {SEED} as the seed for splitting the dataset")
-    
 
     model = Model().to(device)
-    optimizer = optim.Adam(params=model.parameters())
+    optimizer = optim.AdamW(params=model.parameters(), lr=1e-3)
 
     restarting_from_checkpoint = False
     checkpoint = load_checkpoint(model, optimizer)
@@ -289,7 +260,7 @@ def main():
             loss_per_epoch_list = loss_per_epoch_list if restarting_from_checkpoint else list()
             train_loader, val_loader = init_loaders(train_idx, val_idx, dataset, weights)
             model = model if restarting_from_checkpoint else Model().to(device)
-            optimizer = optimizer if restarting_from_checkpoint else optim.Adam(model.parameters(), lr=0.01, weight_decay=l2_alpha) 
+            optimizer = optimizer if restarting_from_checkpoint else optim.AdamW(model.parameters(), lr=1e-3, weight_decay=l2_alpha)
 
             for epoch in range(start_epoch + 1, NUM_EPOCHS):
                 restarting_from_checkpoint = False
@@ -316,7 +287,7 @@ def main():
     print(f"Completed {NUM_FOLDS}-fold Cross Validation")
 
     best_model = Model().to(device)
-    optimizer = optim.Adam(best_model.parameters(), lr=0.01, weight_decay=best_l2_val)
+    optimizer = optim.AdamW(best_model.parameters(), lr=1e-3, weight_decay=best_l2_val)
 
     # Retrain on the 90 percent of the data
     print("Retraining best model on 90 percent of the data\n")
