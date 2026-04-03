@@ -295,13 +295,10 @@ def main():
         for batch_num, data in enumerate(all_train_dataloader):
             x_train, y_train = data
 
-            x_train, y_train = x_train.to(device), y_train.float().to(device)
+            x_train, y_train = x_train.to(device), y_train.long().to(device)
 
             optimizer.zero_grad() # zero the parameter gradients at the beginning
             y_hat = best_model(x_train)
-            if loss_is_nll:
-                y_hat = log_softmax(y_hat)
-                y_train = y_train.long()
 
             loss = loss_fn(input=y_hat, target=y_train)
                     
@@ -320,10 +317,9 @@ def main():
     best_model.eval()
     with torch.no_grad():
         for x_test, y_test in test_dataloader:
-            x_test, y_test = x_test.to(device), y_test.float().to(device)
+            x_test, y_test = x_test.to(device), y_test.long().to(device)
             y_hat_test = best_model(x_test)
-            probs = torch.sigmoid(y_hat_test)
-            predicted = (probs >= 0.5).float()
+            predicted = torch.argmax(y_hat_test, dim=1).float()
             for i in range(len(y_test)):
                 true_label = int(y_test[i].item())
                 pred_label = int(predicted[i].item())
