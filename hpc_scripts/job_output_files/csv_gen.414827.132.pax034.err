@@ -1,0 +1,38 @@
+srun: error: Unable to create step for job 414827: Invalid generic resource (gres) specification
+**** get_sigmets.py: Download and clean Convective SIGMETs ****
+Fetching SIGMETs from IEM for january 2019...
+URL params: sts=2019-01-01T00:00:00Z, ets=2019-02-01T00:00:00Z
+Response status: 200
+Response was 113.3 KB
+Loaded 941 raw SIGMET records
+Dropped 0 rows with missing time/geometry
+Processed 941 valid SIGMET records
+Writing 941 SIGMETs to output
+Writing CSV to: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/pireps/sigmet_data/2019/01_sigmets.csv
+Finished writing SIGMET CSV
+**** Welcome! This script will take a month and year and return a csv file ****
+**** with pireps that mention turbulence from this month and year          ****
+Performing GET request, this may take a moment...
+Request was 10.26 Mb
+Attempting to create dataframe from csv file
+Successfully created dataframe from CSV file
+Cleaning dataframe
+Loaded columns: ['URGENT', 'AIRCRAFT', 'REPORT', 'TURBULENCE', 'PRODUCT_ID', 'FL', 'LAT', 'LON', 'datetime']
+Classifying levels of turbulence
+We dropped 39093/73307 pireps with unknown turbulence intensity
+Dropping pireps w/ NA flight level, latitude, or longitude
+We dropped 1379/34214 pireps with unknown flight level, latitude, or longitude
+Severe PIREPs: 376, Non-severe PIREPs sampled: 376/32459
+Final dataset size: 752/32835 pireps
+Fetching SIGMETs to annotate PIREPs...
+Fetching SIGMETs from IEM for january 2019...
+URL params: sts=2019-01-01T00:00:00Z, ets=2019-02-01T00:00:00Z
+Response status: 200
+Response was 113.3 KB
+Loaded 941 raw SIGMET records
+Dropped 0 rows with missing time/geometry
+Processed 941 valid SIGMET records
+SIGMETs found for 30 PIREPs
+Writing 752 pireps with altitude and turbulence to csv
+Writing csv to output file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/pireps/clean_pirep_data/2019/01_turb_pireps.csv
+Finished writing csv output

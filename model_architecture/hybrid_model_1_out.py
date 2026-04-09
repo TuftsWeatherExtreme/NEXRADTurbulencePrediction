@@ -12,7 +12,7 @@ N_LAT = 16
 N_LON = 16
 
 NUM_GRID_FEATURES = N_ALT * N_LAT * N_LON
-NUM_LINEAR_FEATURES = 4  # lat, lon, alt, delta_t
+NUM_LINEAR_FEATURES = 5  # lat, lon, alt, delta_t, in_sigmet
 NUM_FIELDS = 1
 NUM_CLASSES = 2
 
@@ -61,8 +61,8 @@ class HybridModel1Out(nn.Module):
         )
 
     def forward(self, x):
-        x_fc = x[:, :4]
-        x_cnn = x[:, 4:].reshape(-1, NUM_FIELDS, N_ALT, N_LAT, N_LON)
+        x_cnn = x[:, NUM_LINEAR_FEATURES:].reshape(-1, NUM_FIELDS, N_ALT, N_LAT, N_LON)
+        x_fc = x[:, :NUM_LINEAR_FEATURES]
 
         out_fc = self.fc_branch(x_fc)
         out_cnn = self.conv_branch(x_cnn)

@@ -132,6 +132,7 @@ def output_to_netcdf(pirep, output_dirname, num_inputs, verbose=False):
     attrs["LON"] = pirep["LON"]
     attrs["ALT"] = pirep["FL"]
     attrs["DELTA_T"] = (pirep_t - radar_t).seconds
+    attrs["IN_SIGMET"] = pirep.get("in_sigmet", 0)
     attrs['TURB'] = scale_turbulence(pirep['turbulence_intensity'], pirep['Plane Weight'])
     grid.attrs = attrs
 

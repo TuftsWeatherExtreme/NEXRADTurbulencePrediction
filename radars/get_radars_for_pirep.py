@@ -9,7 +9,7 @@
 
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from scipy.spatial import cKDTree
 from haversine import haversine
 from botocore import UNSIGNED
@@ -53,8 +53,15 @@ def get_file_time(filename, date):
     hour = int(filetime[:2])
     minute = int(filetime[2:4])
     second = int(filetime[4:6])
-    return datetime(year=date.year, month=date.month, day=date.day, hour=hour, 
-                    minute=minute, second=second)
+    return datetime(
+        year=date.year,
+        month=date.month,
+        day=date.day,
+        hour=hour,
+        minute=minute,
+        second=second,
+        tzinfo=timezone.utc
+    )
 
 # Defines helper function to calc the distance of pirep from radar in km
 def haversine_km(lat1, lon1, lat2, lon2):
@@ -251,6 +258,10 @@ def nearest_time(times: list, pirep_dt: datetime) -> datetime:
     """
     if len(times) == 0:
         return None
+
+    # Ensure timezone consistency
+    if pirep_dt.tzinfo is None:
+        pirep_dt = pirep_dt.replace(tzinfo=timezone.utc)
     
     idx = bisect.bisect_left([time[0] for time in times], pirep_dt)
     if idx == 0:
@@ -408,7 +419,7 @@ async def main():
     eprint(pireps_df.head(5))
     get_closest_sites(pireps_df)
 
-    pireps_df['datetime'] = pd.to_datetime(pireps_df['datetime'])
+    pireps_df['datetime'] = pd.to_datetime(pireps_df['datetime'], utc=True)
     if read_stdin:
         year = pireps_df['datetime'][0].year
         month_idx = pireps_df['datetime'][0].month

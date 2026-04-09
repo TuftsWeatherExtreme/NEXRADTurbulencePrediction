@@ -1,0 +1,103 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2017/09
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2017/09.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2017/09.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2017_09
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+Completed 100% of df
+Completed 105% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2017_09.tar.xz
+2017_09/
+2017_09/0000000_2017_9_df_row.nc
+2017_09/0000006_2017_9_df_row.nc
+2017_09/0000016_2017_9_df_row.nc
+2017_09/0000029_2017_9_df_row.nc
+2017_09/0000031_2017_9_df_row.nc
+2017_09/0000033_2017_9_df_row.nc
+2017_09/0000041_2017_9_df_row.nc
+2017_09/0000044_2017_9_df_row.nc
+2017_09/0000048_2017_9_df_row.nc
+2017_09/0000050_2017_9_df_row.nc
+2017_09/0000056_2017_9_df_row.nc
+2017_09/0000057_2017_9_df_row.nc
+2017_09/0000059_2017_9_df_row.nc
+2017_09/0000060_2017_9_df_row.nc
+2017_09/0000065_2017_9_df_row.nc
+2017_09/0000070_2017_9_df_row.nc
+2017_09/0000072_2017_9_df_row.nc
+2017_09/0000074_2017_9_df_row.nc
+2017_09/0000079_2017_9_df_row.nc
+2017_09/0000089_2017_9_df_row.nc
+2017_09/0000090_2017_9_df_row.nc
+2017_09/0000096_2017_9_df_row.nc
+2017_09/0000100_2017_9_df_row.nc
+2017_09/0000107_2017_9_df_row.nc
+2017_09/0000114_2017_9_df_row.nc
+2017_09/0000116_2017_9_df_row.nc
+2017_09/0000118_2017_9_df_row.nc
+2017_09/0000121_2017_9_df_row.nc
+2017_09/0000128_2017_9_df_row.nc
+2017_09/0000132_2017_9_df_row.nc
+2017_09/0000134_2017_9_df_row.nc
+2017_09/0000135_2017_9_df_row.nc
+2017_09/0000143_2017_9_df_row.nc
+2017_09/0000148_2017_9_df_row.nc
+2017_09/0000155_2017_9_df_row.nc
+2017_09/0000159_2017_9_df_row.nc
+2017_09/0000161_2017_9_df_row.nc
+2017_09/0000166_2017_9_df_row.nc
+2017_09/0000170_2017_9_df_row.nc
+2017_09/0000172_2017_9_df_row.nc
+2017_09/0000174_2017_9_df_row.nc
+2017_09/0000183_2017_9_df_row.nc
+2017_09/0000188_2017_9_df_row.nc
+2017_09/0000200_2017_9_df_row.nc
+2017_09/0000204_2017_9_df_row.nc
+2017_09/0000205_2017_9_df_row.nc
+2017_09/0000210_2017_9_df_row.nc
+2017_09/0000214_2017_9_df_row.nc
+2017_09/0000218_2017_9_df_row.nc
+2017_09/0000220_2017_9_df_row.nc
+2017_09/0000222_2017_9_df_row.nc
+2017_09/0000223_2017_9_df_row.nc
+2017_09/0000228_2017_9_df_row.nc
+2017_09/0000236_2017_9_df_row.nc
+2017_09/0000243_2017_9_df_row.nc
+2017_09/0000249_2017_9_df_row.nc
+2017_09/0000256_2017_9_df_row.nc
+2017_09/0000264_2017_9_df_row.nc
+2017_09/0000267_2017_9_df_row.nc
+2017_09/0000268_2017_9_df_row.nc
+2017_09/0000270_2017_9_df_row.nc
+2017_09/0000272_2017_9_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2017_09
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

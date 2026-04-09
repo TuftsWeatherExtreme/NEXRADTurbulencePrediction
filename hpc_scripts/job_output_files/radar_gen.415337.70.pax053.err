@@ -1,0 +1,19 @@
+srun: error: Unable to create step for job 415337: Invalid generic resource (gres) specification
+Beginning to get radars for pirep from november 2013
+Successfully read in df of pireps:
+  URGENT AIRCRAFT  ... in_sigmet Plane Weight
+0      T     A300  ...         1            L
+1      F     C340  ...         0            L
+2      T     C182  ...         0            L
+3      F     C550  ...         0            L
+4      F     B772  ...         0            H
+
+[5 rows x 12 columns]
+About to perform 2259 list_objects_v2 requests
+Getting times for all nexrad files. This may take up to 5 minutes
+About to perform 2259 requests to S3 bucket...
+Processing complete
+There were 158 sites missing data
+There were 6 PIREPs with no radar data found (removed)
+Outputting to csv file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2013/11.csv
+Done!

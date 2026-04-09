@@ -1,0 +1,6 @@
+Accuracy: 2661/4077 = 65.27%
+False positive rate: 686/4077 = 16.83%
+False negative rate: 730/4077 = 17.91%
+Precision: 0.7467
+Recall: 0.7347
+F1 Score: 0.7407
