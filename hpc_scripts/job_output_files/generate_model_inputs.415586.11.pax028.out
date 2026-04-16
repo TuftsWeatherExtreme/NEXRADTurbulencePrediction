@@ -1,0 +1,191 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2008/12
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2008/12.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2008/12.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2008_12
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2008/12/05/KCCX/KCCX20081205_235256_V03.gz: OSError: unknown compression record
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+Completed 85% of df
+Completed 90% of df
+Completed 95% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2008/12/28/KBGM/KBGM20081228_115124_V03.gz: ValueError: need at least one array to concatenate
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2008_12.tar.xz
+2008_12/
+2008_12/0000000_2008_12_df_row.nc
+2008_12/0000002_2008_12_df_row.nc
+2008_12/0000003_2008_12_df_row.nc
+2008_12/0000004_2008_12_df_row.nc
+2008_12/0000014_2008_12_df_row.nc
+2008_12/0000015_2008_12_df_row.nc
+2008_12/0000017_2008_12_df_row.nc
+2008_12/0000018_2008_12_df_row.nc
+2008_12/0000020_2008_12_df_row.nc
+2008_12/0000021_2008_12_df_row.nc
+2008_12/0000023_2008_12_df_row.nc
+2008_12/0000028_2008_12_df_row.nc
+2008_12/0000031_2008_12_df_row.nc
+2008_12/0000032_2008_12_df_row.nc
+2008_12/0000035_2008_12_df_row.nc
+2008_12/0000036_2008_12_df_row.nc
+2008_12/0000037_2008_12_df_row.nc
+2008_12/0000039_2008_12_df_row.nc
+2008_12/0000041_2008_12_df_row.nc
+2008_12/0000047_2008_12_df_row.nc
+2008_12/0000048_2008_12_df_row.nc
+2008_12/0000055_2008_12_df_row.nc
+2008_12/0000057_2008_12_df_row.nc
+2008_12/0000059_2008_12_df_row.nc
+2008_12/0000062_2008_12_df_row.nc
+2008_12/0000063_2008_12_df_row.nc
+2008_12/0000072_2008_12_df_row.nc
+2008_12/0000074_2008_12_df_row.nc
+2008_12/0000084_2008_12_df_row.nc
+2008_12/0000085_2008_12_df_row.nc
+2008_12/0000088_2008_12_df_row.nc
+2008_12/0000091_2008_12_df_row.nc
+2008_12/0000092_2008_12_df_row.nc
+2008_12/0000094_2008_12_df_row.nc
+2008_12/0000095_2008_12_df_row.nc
+2008_12/0000103_2008_12_df_row.nc
+2008_12/0000105_2008_12_df_row.nc
+2008_12/0000113_2008_12_df_row.nc
+2008_12/0000115_2008_12_df_row.nc
+2008_12/0000120_2008_12_df_row.nc
+2008_12/0000121_2008_12_df_row.nc
+2008_12/0000123_2008_12_df_row.nc
+2008_12/0000124_2008_12_df_row.nc
+2008_12/0000130_2008_12_df_row.nc
+2008_12/0000135_2008_12_df_row.nc
+2008_12/0000147_2008_12_df_row.nc
+2008_12/0000151_2008_12_df_row.nc
+2008_12/0000152_2008_12_df_row.nc
+2008_12/0000154_2008_12_df_row.nc
+2008_12/0000160_2008_12_df_row.nc
+2008_12/0000167_2008_12_df_row.nc
+2008_12/0000174_2008_12_df_row.nc
+2008_12/0000175_2008_12_df_row.nc
+2008_12/0000182_2008_12_df_row.nc
+2008_12/0000183_2008_12_df_row.nc
+2008_12/0000184_2008_12_df_row.nc
+2008_12/0000185_2008_12_df_row.nc
+2008_12/0000187_2008_12_df_row.nc
+2008_12/0000189_2008_12_df_row.nc
+2008_12/0000191_2008_12_df_row.nc
+2008_12/0000193_2008_12_df_row.nc
+2008_12/0000194_2008_12_df_row.nc
+2008_12/0000195_2008_12_df_row.nc
+2008_12/0000207_2008_12_df_row.nc
+2008_12/0000210_2008_12_df_row.nc
+2008_12/0000211_2008_12_df_row.nc
+2008_12/0000213_2008_12_df_row.nc
+2008_12/0000214_2008_12_df_row.nc
+2008_12/0000218_2008_12_df_row.nc
+2008_12/0000219_2008_12_df_row.nc
+2008_12/0000224_2008_12_df_row.nc
+2008_12/0000227_2008_12_df_row.nc
+2008_12/0000228_2008_12_df_row.nc
+2008_12/0000230_2008_12_df_row.nc
+2008_12/0000234_2008_12_df_row.nc
+2008_12/0000236_2008_12_df_row.nc
+2008_12/0000240_2008_12_df_row.nc
+2008_12/0000250_2008_12_df_row.nc
+2008_12/0000251_2008_12_df_row.nc
+2008_12/0000253_2008_12_df_row.nc
+2008_12/0000255_2008_12_df_row.nc
+2008_12/0000258_2008_12_df_row.nc
+2008_12/0000266_2008_12_df_row.nc
+2008_12/0000270_2008_12_df_row.nc
+2008_12/0000271_2008_12_df_row.nc
+2008_12/0000272_2008_12_df_row.nc
+2008_12/0000274_2008_12_df_row.nc
+2008_12/0000277_2008_12_df_row.nc
+2008_12/0000282_2008_12_df_row.nc
+2008_12/0000286_2008_12_df_row.nc
+2008_12/0000293_2008_12_df_row.nc
+2008_12/0000294_2008_12_df_row.nc
+2008_12/0000306_2008_12_df_row.nc
+2008_12/0000307_2008_12_df_row.nc
+2008_12/0000312_2008_12_df_row.nc
+2008_12/0000313_2008_12_df_row.nc
+2008_12/0000316_2008_12_df_row.nc
+2008_12/0000320_2008_12_df_row.nc
+2008_12/0000321_2008_12_df_row.nc
+2008_12/0000331_2008_12_df_row.nc
+2008_12/0000332_2008_12_df_row.nc
+2008_12/0000334_2008_12_df_row.nc
+2008_12/0000343_2008_12_df_row.nc
+2008_12/0000346_2008_12_df_row.nc
+2008_12/0000347_2008_12_df_row.nc
+2008_12/0000348_2008_12_df_row.nc
+2008_12/0000352_2008_12_df_row.nc
+2008_12/0000355_2008_12_df_row.nc
+2008_12/0000357_2008_12_df_row.nc
+2008_12/0000363_2008_12_df_row.nc
+2008_12/0000365_2008_12_df_row.nc
+2008_12/0000369_2008_12_df_row.nc
+2008_12/0000371_2008_12_df_row.nc
+2008_12/0000374_2008_12_df_row.nc
+2008_12/0000376_2008_12_df_row.nc
+2008_12/0000377_2008_12_df_row.nc
+2008_12/0000389_2008_12_df_row.nc
+2008_12/0000392_2008_12_df_row.nc
+2008_12/0000396_2008_12_df_row.nc
+2008_12/0000400_2008_12_df_row.nc
+2008_12/0000410_2008_12_df_row.nc
+2008_12/0000417_2008_12_df_row.nc
+2008_12/0000418_2008_12_df_row.nc
+2008_12/0000422_2008_12_df_row.nc
+2008_12/0000425_2008_12_df_row.nc
+2008_12/0000427_2008_12_df_row.nc
+2008_12/0000429_2008_12_df_row.nc
+2008_12/0000432_2008_12_df_row.nc
+2008_12/0000434_2008_12_df_row.nc
+2008_12/0000437_2008_12_df_row.nc
+2008_12/0000438_2008_12_df_row.nc
+2008_12/0000445_2008_12_df_row.nc
+2008_12/0000447_2008_12_df_row.nc
+2008_12/0000451_2008_12_df_row.nc
+2008_12/0000452_2008_12_df_row.nc
+2008_12/0000464_2008_12_df_row.nc
+2008_12/0000465_2008_12_df_row.nc
+2008_12/0000467_2008_12_df_row.nc
+2008_12/0000474_2008_12_df_row.nc
+2008_12/0000477_2008_12_df_row.nc
+2008_12/0000479_2008_12_df_row.nc
+2008_12/0000480_2008_12_df_row.nc
+2008_12/0000494_2008_12_df_row.nc
+2008_12/0000497_2008_12_df_row.nc
+2008_12/0000499_2008_12_df_row.nc
+2008_12/0000501_2008_12_df_row.nc
+2008_12/0000503_2008_12_df_row.nc
+2008_12/0000504_2008_12_df_row.nc
+2008_12/0000507_2008_12_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2008_12
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

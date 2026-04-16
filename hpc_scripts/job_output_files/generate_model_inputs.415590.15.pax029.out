@@ -1,0 +1,267 @@
+Resetting environment
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+Allocating resources with slurm...
+Loading cuda and miniforge...
+Activating conda environment...
+Redirecting into the NEXRAD repo...
+Done! Environment has now been set up
+Processing 2009/04
+Running radar_data_to_model_input on /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2009/04.csv
+Reading from file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2009/04.csv and outputting to directory: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2009_04
+Completed 5% of df
+Completed 10% of df
+Completed 15% of df
+Completed 20% of df
+Completed 25% of df
+Completed 30% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/04/18/KDVN/KDVN20090418_211918_V03.gz: OSError: unknown compression record
+Completed 35% of df
+Completed 40% of df
+Completed 45% of df
+Completed 50% of df
+Completed 55% of df
+Completed 60% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/04/18/KLSX/KLSX20090418_210517_V03.gz: OSError: unknown compression record
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/04/18/KDMX/KDMX20090418_210451_V03.gz: OSError: unknown compression record
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/04/01/KBUF/KBUF20090401_122957_V03.gz: OSError: unknown compression record
+Completed 65% of df
+Completed 70% of df
+Completed 75% of df
+Completed 80% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/04/28/KENX/KENX20090428_133008_V03.gz: ValueError: need at least one array to concatenate
+Completed 85% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/04/22/KRAX/KRAX20090422_140058_V03.gz: OSError: unknown compression record
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/04/22/KLTX/KLTX20090422_140324_V03.gz: OSError: unknown compression record
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/04/22/KMHX/KMHX20090422_135524_V03.gz: OSError: unknown compression record
+Completed 90% of df
+Completed 95% of df
+ERROR: Failed to read radar file s3://unidata-nexrad-level2/2009/04/18/KILX/KILX20090418_211511_V03.gz: OSError: unknown compression record
+Completed 100% of df
+Python script exit code: 0
+Compressing output directory into /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/compressed/2009_04.tar.xz
+2009_04/
+2009_04/0000000_2009_4_df_row.nc
+2009_04/0000001_2009_4_df_row.nc
+2009_04/0000003_2009_4_df_row.nc
+2009_04/0000008_2009_4_df_row.nc
+2009_04/0000011_2009_4_df_row.nc
+2009_04/0000012_2009_4_df_row.nc
+2009_04/0000013_2009_4_df_row.nc
+2009_04/0000017_2009_4_df_row.nc
+2009_04/0000019_2009_4_df_row.nc
+2009_04/0000020_2009_4_df_row.nc
+2009_04/0000023_2009_4_df_row.nc
+2009_04/0000024_2009_4_df_row.nc
+2009_04/0000025_2009_4_df_row.nc
+2009_04/0000028_2009_4_df_row.nc
+2009_04/0000031_2009_4_df_row.nc
+2009_04/0000032_2009_4_df_row.nc
+2009_04/0000034_2009_4_df_row.nc
+2009_04/0000035_2009_4_df_row.nc
+2009_04/0000039_2009_4_df_row.nc
+2009_04/0000040_2009_4_df_row.nc
+2009_04/0000044_2009_4_df_row.nc
+2009_04/0000045_2009_4_df_row.nc
+2009_04/0000049_2009_4_df_row.nc
+2009_04/0000056_2009_4_df_row.nc
+2009_04/0000058_2009_4_df_row.nc
+2009_04/0000060_2009_4_df_row.nc
+2009_04/0000067_2009_4_df_row.nc
+2009_04/0000068_2009_4_df_row.nc
+2009_04/0000069_2009_4_df_row.nc
+2009_04/0000077_2009_4_df_row.nc
+2009_04/0000078_2009_4_df_row.nc
+2009_04/0000079_2009_4_df_row.nc
+2009_04/0000089_2009_4_df_row.nc
+2009_04/0000091_2009_4_df_row.nc
+2009_04/0000093_2009_4_df_row.nc
+2009_04/0000095_2009_4_df_row.nc
+2009_04/0000098_2009_4_df_row.nc
+2009_04/0000099_2009_4_df_row.nc
+2009_04/0000100_2009_4_df_row.nc
+2009_04/0000105_2009_4_df_row.nc
+2009_04/0000107_2009_4_df_row.nc
+2009_04/0000113_2009_4_df_row.nc
+2009_04/0000114_2009_4_df_row.nc
+2009_04/0000117_2009_4_df_row.nc
+2009_04/0000120_2009_4_df_row.nc
+2009_04/0000122_2009_4_df_row.nc
+2009_04/0000125_2009_4_df_row.nc
+2009_04/0000127_2009_4_df_row.nc
+2009_04/0000128_2009_4_df_row.nc
+2009_04/0000132_2009_4_df_row.nc
+2009_04/0000138_2009_4_df_row.nc
+2009_04/0000144_2009_4_df_row.nc
+2009_04/0000145_2009_4_df_row.nc
+2009_04/0000146_2009_4_df_row.nc
+2009_04/0000148_2009_4_df_row.nc
+2009_04/0000152_2009_4_df_row.nc
+2009_04/0000153_2009_4_df_row.nc
+2009_04/0000155_2009_4_df_row.nc
+2009_04/0000158_2009_4_df_row.nc
+2009_04/0000165_2009_4_df_row.nc
+2009_04/0000175_2009_4_df_row.nc
+2009_04/0000178_2009_4_df_row.nc
+2009_04/0000179_2009_4_df_row.nc
+2009_04/0000182_2009_4_df_row.nc
+2009_04/0000184_2009_4_df_row.nc
+2009_04/0000187_2009_4_df_row.nc
+2009_04/0000192_2009_4_df_row.nc
+2009_04/0000195_2009_4_df_row.nc
+2009_04/0000196_2009_4_df_row.nc
+2009_04/0000200_2009_4_df_row.nc
+2009_04/0000201_2009_4_df_row.nc
+2009_04/0000203_2009_4_df_row.nc
+2009_04/0000208_2009_4_df_row.nc
+2009_04/0000214_2009_4_df_row.nc
+2009_04/0000216_2009_4_df_row.nc
+2009_04/0000221_2009_4_df_row.nc
+2009_04/0000222_2009_4_df_row.nc
+2009_04/0000224_2009_4_df_row.nc
+2009_04/0000225_2009_4_df_row.nc
+2009_04/0000228_2009_4_df_row.nc
+2009_04/0000230_2009_4_df_row.nc
+2009_04/0000233_2009_4_df_row.nc
+2009_04/0000234_2009_4_df_row.nc
+2009_04/0000235_2009_4_df_row.nc
+2009_04/0000236_2009_4_df_row.nc
+2009_04/0000239_2009_4_df_row.nc
+2009_04/0000241_2009_4_df_row.nc
+2009_04/0000246_2009_4_df_row.nc
+2009_04/0000247_2009_4_df_row.nc
+2009_04/0000248_2009_4_df_row.nc
+2009_04/0000250_2009_4_df_row.nc
+2009_04/0000253_2009_4_df_row.nc
+2009_04/0000255_2009_4_df_row.nc
+2009_04/0000257_2009_4_df_row.nc
+2009_04/0000259_2009_4_df_row.nc
+2009_04/0000261_2009_4_df_row.nc
+2009_04/0000262_2009_4_df_row.nc
+2009_04/0000266_2009_4_df_row.nc
+2009_04/0000267_2009_4_df_row.nc
+2009_04/0000268_2009_4_df_row.nc
+2009_04/0000271_2009_4_df_row.nc
+2009_04/0000272_2009_4_df_row.nc
+2009_04/0000275_2009_4_df_row.nc
+2009_04/0000279_2009_4_df_row.nc
+2009_04/0000282_2009_4_df_row.nc
+2009_04/0000285_2009_4_df_row.nc
+2009_04/0000288_2009_4_df_row.nc
+2009_04/0000292_2009_4_df_row.nc
+2009_04/0000293_2009_4_df_row.nc
+2009_04/0000300_2009_4_df_row.nc
+2009_04/0000301_2009_4_df_row.nc
+2009_04/0000303_2009_4_df_row.nc
+2009_04/0000304_2009_4_df_row.nc
+2009_04/0000308_2009_4_df_row.nc
+2009_04/0000310_2009_4_df_row.nc
+2009_04/0000313_2009_4_df_row.nc
+2009_04/0000320_2009_4_df_row.nc
+2009_04/0000322_2009_4_df_row.nc
+2009_04/0000328_2009_4_df_row.nc
+2009_04/0000330_2009_4_df_row.nc
+2009_04/0000333_2009_4_df_row.nc
+2009_04/0000334_2009_4_df_row.nc
+2009_04/0000335_2009_4_df_row.nc
+2009_04/0000337_2009_4_df_row.nc
+2009_04/0000339_2009_4_df_row.nc
+2009_04/0000348_2009_4_df_row.nc
+2009_04/0000354_2009_4_df_row.nc
+2009_04/0000355_2009_4_df_row.nc
+2009_04/0000357_2009_4_df_row.nc
+2009_04/0000359_2009_4_df_row.nc
+2009_04/0000360_2009_4_df_row.nc
+2009_04/0000362_2009_4_df_row.nc
+2009_04/0000363_2009_4_df_row.nc
+2009_04/0000365_2009_4_df_row.nc
+2009_04/0000368_2009_4_df_row.nc
+2009_04/0000374_2009_4_df_row.nc
+2009_04/0000377_2009_4_df_row.nc
+2009_04/0000378_2009_4_df_row.nc
+2009_04/0000381_2009_4_df_row.nc
+2009_04/0000387_2009_4_df_row.nc
+2009_04/0000391_2009_4_df_row.nc
+2009_04/0000392_2009_4_df_row.nc
+2009_04/0000394_2009_4_df_row.nc
+2009_04/0000396_2009_4_df_row.nc
+2009_04/0000401_2009_4_df_row.nc
+2009_04/0000402_2009_4_df_row.nc
+2009_04/0000407_2009_4_df_row.nc
+2009_04/0000411_2009_4_df_row.nc
+2009_04/0000420_2009_4_df_row.nc
+2009_04/0000421_2009_4_df_row.nc
+2009_04/0000428_2009_4_df_row.nc
+2009_04/0000429_2009_4_df_row.nc
+2009_04/0000436_2009_4_df_row.nc
+2009_04/0000440_2009_4_df_row.nc
+2009_04/0000443_2009_4_df_row.nc
+2009_04/0000445_2009_4_df_row.nc
+2009_04/0000455_2009_4_df_row.nc
+2009_04/0000457_2009_4_df_row.nc
+2009_04/0000460_2009_4_df_row.nc
+2009_04/0000464_2009_4_df_row.nc
+2009_04/0000465_2009_4_df_row.nc
+2009_04/0000469_2009_4_df_row.nc
+2009_04/0000470_2009_4_df_row.nc
+2009_04/0000474_2009_4_df_row.nc
+2009_04/0000475_2009_4_df_row.nc
+2009_04/0000477_2009_4_df_row.nc
+2009_04/0000481_2009_4_df_row.nc
+2009_04/0000484_2009_4_df_row.nc
+2009_04/0000489_2009_4_df_row.nc
+2009_04/0000490_2009_4_df_row.nc
+2009_04/0000491_2009_4_df_row.nc
+2009_04/0000493_2009_4_df_row.nc
+2009_04/0000495_2009_4_df_row.nc
+2009_04/0000496_2009_4_df_row.nc
+2009_04/0000497_2009_4_df_row.nc
+2009_04/0000505_2009_4_df_row.nc
+2009_04/0000507_2009_4_df_row.nc
+2009_04/0000508_2009_4_df_row.nc
+2009_04/0000510_2009_4_df_row.nc
+2009_04/0000521_2009_4_df_row.nc
+2009_04/0000522_2009_4_df_row.nc
+2009_04/0000530_2009_4_df_row.nc
+2009_04/0000539_2009_4_df_row.nc
+2009_04/0000542_2009_4_df_row.nc
+2009_04/0000543_2009_4_df_row.nc
+2009_04/0000546_2009_4_df_row.nc
+2009_04/0000547_2009_4_df_row.nc
+2009_04/0000548_2009_4_df_row.nc
+2009_04/0000551_2009_4_df_row.nc
+2009_04/0000552_2009_4_df_row.nc
+2009_04/0000557_2009_4_df_row.nc
+2009_04/0000559_2009_4_df_row.nc
+2009_04/0000560_2009_4_df_row.nc
+2009_04/0000562_2009_4_df_row.nc
+2009_04/0000565_2009_4_df_row.nc
+2009_04/0000566_2009_4_df_row.nc
+2009_04/0000567_2009_4_df_row.nc
+2009_04/0000568_2009_4_df_row.nc
+2009_04/0000572_2009_4_df_row.nc
+2009_04/0000579_2009_4_df_row.nc
+2009_04/0000580_2009_4_df_row.nc
+2009_04/0000583_2009_4_df_row.nc
+2009_04/0000584_2009_4_df_row.nc
+2009_04/0000595_2009_4_df_row.nc
+2009_04/0000596_2009_4_df_row.nc
+2009_04/0000600_2009_4_df_row.nc
+2009_04/0000602_2009_4_df_row.nc
+2009_04/0000604_2009_4_df_row.nc
+2009_04/0000607_2009_4_df_row.nc
+2009_04/0000609_2009_4_df_row.nc
+2009_04/0000611_2009_4_df_row.nc
+2009_04/0000613_2009_4_df_row.nc
+2009_04/0000614_2009_4_df_row.nc
+2009_04/0000617_2009_4_df_row.nc
+2009_04/0000620_2009_4_df_row.nc
+2009_04/0000624_2009_4_df_row.nc
+2009_04/0000625_2009_4_df_row.nc
+2009_04/0000627_2009_4_df_row.nc
+Removing uncompressed directory /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/model_inputs/2009_04
+Deactivating conda environment (if any)
+Purging all modules
+Done! Environment has been torn down
+All done!

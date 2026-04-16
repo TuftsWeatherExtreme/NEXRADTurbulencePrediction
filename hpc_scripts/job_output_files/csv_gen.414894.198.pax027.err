@@ -1,0 +1,40 @@
+srun: error: Unable to create step for job 414894: Invalid generic resource (gres) specification
+**** get_sigmets.py: Download and clean Convective SIGMETs ****
+Fetching SIGMETs from IEM for july 2024...
+URL params: sts=2024-07-01T00:00:00Z, ets=2024-08-01T00:00:00Z
+Response status: 200
+Response was 1265.4 KB
+Loaded 11326 raw SIGMET records
+Dropped 0 rows with missing time/geometry
+Processed 11326 valid SIGMET records
+Writing 11326 SIGMETs to output
+Writing CSV to: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/pireps/sigmet_data/2024/07_sigmets.csv
+Finished writing SIGMET CSV
+**** Welcome! This script will take a month and year and return a csv file ****
+**** with pireps that mention turbulence from this month and year          ****
+Performing GET request, this may take a moment...
+Request was 9.85 Mb
+Attempting to create dataframe from csv file
+/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/pireps/clean_pireps.py:121: DtypeWarning: Columns (0: PRODUCT_ID) have mixed types. Specify dtype option on import or set low_memory=False.
+  pireps = pd.read_csv(StringIO(r.text), on_bad_lines='skip')
+Successfully created dataframe from CSV file
+Cleaning dataframe
+Loaded columns: ['URGENT', 'AIRCRAFT', 'REPORT', 'TURBULENCE', 'PRODUCT_ID', 'FL', 'LAT', 'LON', 'datetime']
+Classifying levels of turbulence
+We dropped 35687/74607 pireps with unknown turbulence intensity
+Dropping pireps w/ NA flight level, latitude, or longitude
+We dropped 1341/38920 pireps with unknown flight level, latitude, or longitude
+Severe PIREPs: 185, Non-severe PIREPs sampled: 185/37394
+Final dataset size: 370/37579 pireps
+Fetching SIGMETs to annotate PIREPs...
+Fetching SIGMETs from IEM for july 2024...
+URL params: sts=2024-07-01T00:00:00Z, ets=2024-08-01T00:00:00Z
+Response status: 200
+Response was 1265.4 KB
+Loaded 11326 raw SIGMET records
+Dropped 0 rows with missing time/geometry
+Processed 11326 valid SIGMET records
+SIGMETs found for 130 PIREPs
+Writing 370 pireps with altitude and turbulence to csv
+Writing csv to output file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/pireps/clean_pirep_data/2024/07_turb_pireps.csv
+Finished writing csv output

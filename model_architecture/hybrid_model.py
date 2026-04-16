@@ -16,7 +16,7 @@ N_LAT = 16
 N_LON = 16
 
 NUM_GRID_FEATURES = N_ALT * N_LAT * N_LAT # Number of grid features
-NUM_LINEAR_FEATURES = 4 # lat long alt delta_t 
+NUM_LINEAR_FEATURES = 5  # lat, lon, alt, delta_t, in_sigmet
 NUM_FIELDS = 1
 
 class HybridModel(nn.Module):
@@ -80,8 +80,8 @@ class HybridModel(nn.Module):
 
     def forward(self, x):
         # Split input:
-        x_fc = x[:, :4]  # First 4 features
-        x_cnn = x[:, 4:].reshape(-1, NUM_FIELDS, N_ALT, N_LAT, N_LON)  # Reshape last 2560 elements to (B, C, 10, 16, 16), the -1 means to infer based on batch size
+        x_cnn = x[:, NUM_LINEAR_FEATURES:].reshape(-1, NUM_FIELDS, N_ALT, N_LAT, N_LON)
+        x_fc = x[:, :NUM_LINEAR_FEATURES]
 
         # Forward through both branches
         out_fc = self.fc_branch(x_fc)

@@ -1,5 +1,0 @@
-For the test data, the actual distribution of classes are: [   0    0    0    0    0 1529  937  177   42    2]
-For the test data, the model's distribution of classes are: [2687    0    0    0    0    0    0    0    0    0]
-Accuracy is: 0/2687, or 0.0%
-The false positive rate is: 0/2687, or 0.0%
-The false negative rate is: 2687/2687, or 100.0%

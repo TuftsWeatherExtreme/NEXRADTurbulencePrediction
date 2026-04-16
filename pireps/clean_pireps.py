@@ -22,6 +22,10 @@ from io import StringIO
 import numpy as np
 import os
 from signal import signal, SIGPIPE, SIG_DFL
+from get_sigmets import is_in_sigmet, process_sigmets, fetch_sigmets
+from datetime import date
+import calendar
+
 signal(SIGPIPE,SIG_DFL) 
 
 
@@ -93,14 +97,22 @@ YEAR, START_MONTH_IDX, OUTPUT = read_command_line_args()
 
 END_MONTH_IDX = 1 if START_MONTH_IDX == len(MONTHS) else START_MONTH_IDX + 1
 END_YEAR = YEAR + 1 if START_MONTH_IDX == len(MONTHS) else YEAR
-query = {"year1": YEAR, 
-         "month1": START_MONTH_IDX, 
-         "year2": END_YEAR, 
-         "month2":END_MONTH_IDX, 
-         "artcc": "_ALL", 
-         "fmt": "csv"}
+last_day = calendar.monthrange(YEAR, START_MONTH_IDX)[1]
+sts = date(YEAR, START_MONTH_IDX, 1).strftime("%Y-%m-%dT00:00:00Z")
+ets_year = YEAR + 1 if START_MONTH_IDX == 12 else YEAR
+ets_month = 1 if START_MONTH_IDX == 12 else START_MONTH_IDX + 1
+ets = date(ets_year, ets_month, 1).strftime("%Y-%m-%dT00:00:00Z")
+query = {
+    "sts": sts,
+    "ets": ets,
+    "artcc": "_ALL",
+    "fmt": "csv"
+}
+
 eprint(f"Performing GET request, this may take a moment...")
 r = requests.get(f"{BASE_URL}", params=query, stream=True)
+if "GET START/END TIME PARAMETERS MISSING" in r.text:
+    raise ValueError(f"IEM API error:\n{r.text[:200]}")
 eprint(f"Request was {len(r.content)/1024/1024:.2f} Mb")
 
 eprint("Attempting to create dataframe from csv file")
@@ -111,10 +123,20 @@ pireps = pd.read_csv(StringIO(r.text), on_bad_lines='skip')
 eprint("Successfully created dataframe from CSV file")
 
 eprint("Cleaning dataframe")
-pireps['datetime'] = pd.to_datetime(pireps['VALID'], format='%Y%m%d%H%M')
-pireps = pireps.drop(["ICING", "ATRCC", "VALID"], axis=1)
+
+# Normalize column names
+pireps.columns = [c.upper() for c in pireps.columns]
+
+if 'VALID' not in pireps.columns:
+    raise ValueError(f"'VALID' column not found. Available columns: {pireps.columns}")
+
+pireps['datetime'] = pd.to_datetime(pireps['VALID'], format='%Y%m%d%H%M', errors='coerce')
+pireps = pireps.drop(columns=[c for c in ["ICING", "ATRCC", "VALID"] if c in pireps.columns])
+
 # Columns are named incorrectly, rename them as should be
 # pireps = pireps.rename(columns={'PRODUCT_ID': 'LON', 'LON': 'LAT'})
+
+eprint(f"Loaded columns: {list(pireps.columns)}")
 
 
 def get_turb_intensity(row):
@@ -261,6 +283,24 @@ only_turb_pireps_w_altitude = pd.concat([severe_pireps, nonsevere_sampled]).samp
 
 eprint(f"Severe PIREPs: {len(severe_pireps)}, Non-severe PIREPs sampled: {num_nonsevere_to_keep}/{len(nonsevere_pireps)}")
 eprint(f"Final dataset size: {len(only_turb_pireps_w_altitude)}/{len_before_sev_filter} pireps")
+
+# ── SIGMET annotation ──────────────────────────────────────────────────────
+eprint("Fetching SIGMETs to annotate PIREPs...")
+try:
+    sigmets_gdf = fetch_sigmets(YEAR, START_MONTH_IDX)
+    sigmets_df = process_sigmets(sigmets_gdf)
+    only_turb_pireps_w_altitude['datetime'] = pd.to_datetime(
+        only_turb_pireps_w_altitude['datetime'], utc=True, errors='coerce'
+    )
+    only_turb_pireps_w_altitude['in_sigmet'] = only_turb_pireps_w_altitude.apply(
+        lambda row: is_in_sigmet(
+            row['LAT'], row['LON'], row['FL'], row['datetime'], sigmets_df
+        ), axis=1
+    )
+    eprint(f"SIGMETs found for {only_turb_pireps_w_altitude['in_sigmet'].sum()} PIREPs")
+except Exception as e:
+    eprint(f"WARNING: SIGMET annotation failed: {e}. Setting in_sigmet=0 for all rows.")
+    only_turb_pireps_w_altitude['in_sigmet'] = 0
 
 #add plane weight classification into the dataframe
 plane_weight_dict = pd.read_csv(os.path.join(DIRNAME, "../plane_weights/plane_weight_dictionary.csv"))
