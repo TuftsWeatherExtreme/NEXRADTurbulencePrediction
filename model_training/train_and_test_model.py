@@ -41,7 +41,8 @@ NUM_EPOCHS = 30
 BATCH_SIZE = 64
 NUM_FOLDS = 6
 # TODO: Set DATALOADER_PATH to dataloader we want to use for training
-DATALOADER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "eleanor_dataloader.pth")
+# DATALOADER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "eleanor_dataloader.pth")
+DATALOADER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "nehir_dataloader.pth")
 
 terminate_training = False
 loss_is_nll = False

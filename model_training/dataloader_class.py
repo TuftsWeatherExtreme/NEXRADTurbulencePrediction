@@ -72,14 +72,29 @@ class RadarDataLoader(Dataset):
                     print(f"DEBUG: opening {filename}")
                     nc_file = xr.open_dataset(filepath)
                     print(f"DEBUG: opened, attrs: {list(nc_file.attrs.keys())}")
-                    attrs_arr = np.array(list(nc_file.attrs.values()))
-                    print(f"DEBUG: attrs_arr: {attrs_arr}")
-                    features = attrs_arr[:-1].astype(float)
-                    print(f"DEBUG: features shape: {features.shape}")
+                    # Here we are instead of just turning every attribute value 
+                    # into numbers for the model, we are just checking if the file
+                    # has LAT, LON, ALT, DELTA_T, and TURB. If it does, use only 
+                    # those for the four numbers and the label for the model. 
+                    # Don’t use the other attributes as model inputs.
+                    # The reason why we are doing this is because we added 
+                    # PIREP_TIME as text (a timestamp string) so the map / 
+                    # GeoJSON can show when the report was.
+                    a = nc_file.attrs
+                    if all(k in a for k in ("LAT", "LON", "ALT", "DELTA_T", "TURB")):
+                        meta = np.array(
+                            [float(a["LAT"]), float(a["LON"]), float(a["ALT"]), float(a["DELTA_T"])],
+                            dtype=np.float64,
+                        )
+                        label = float(a["TURB"])
+                    else:
+                        attrs_arr = np.array(list(a.values()))
+                        meta = attrs_arr[:-1].astype(float)
+                        label = float(attrs_arr[-1])
+                    print(f"DEBUG: meta shape: {meta.shape}")
                     flattened_data = np.concatenate([nc_file[var].values.flatten() for var in nc_file.data_vars])
                     print(f"DEBUG: flattened_data shape: {flattened_data.shape}")
-                    features = np.concatenate((features, flattened_data))
-                    label = float(attrs_arr[-1])
+                    features = np.concatenate((meta, flattened_data))
                     print(f"DEBUG: label: {label}")
                     features = torch.tensor(features, dtype=torch.float32) 
                     features = torch.nan_to_num(features, nan=-32.0)
