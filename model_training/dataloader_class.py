@@ -81,9 +81,9 @@ class RadarDataLoader(Dataset):
                     # PIREP_TIME as text (a timestamp string) so the map / 
                     # GeoJSON can show when the report was.
                     a = nc_file.attrs
-                    if all(k in a for k in ("LAT", "LON", "ALT", "DELTA_T", "TURB")):
+                    if all(k in a for k in ("LAT", "LON", "ALT", "DELTA_T", "TURB", "IN_SIGMET")):
                         meta = np.array(
-                            [float(a["LAT"]), float(a["LON"]), float(a["ALT"]), float(a["DELTA_T"])],
+                            [float(a["LAT"]), float(a["LON"]), float(a["ALT"]), float(a["DELTA_T"]), float(a["IN_SIGMET"])],
                             dtype=np.float64,
                         )
                         label = float(a["TURB"])

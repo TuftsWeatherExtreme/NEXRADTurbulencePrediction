@@ -38,7 +38,7 @@ def _features_label_from_attrs(ds: xr.Dataset) -> tuple[np.ndarray, float]:
     PIREP_TIME must exist on the file but is not part of the tensor.
     """
     a = ds.attrs
-    required = ("LAT", "LON", "ALT", "DELTA_T", "TURB", "PIREP_TIME")
+    required = ("LAT", "LON", "ALT", "DELTA_T", "TURB", "PIREP_TIME", "IN_SIGMET")
     missing = [k for k in required if k not in a]
     if missing:
         raise ValueError(f"NetCDF missing required attrs: {missing}")
