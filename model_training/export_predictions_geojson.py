@@ -86,10 +86,12 @@ def prediction_to_properties(meta: dict, logits_1d: torch.Tensor) -> dict:
         logits_1d = logits_1d.unsqueeze(0)
     probs = F.softmax(logits_1d, dim=-1).cpu().tolist()
     pred_class = int(torch.argmax(logits_1d, dim=-1).item())
+    severe_prob = float(probs[1]) if len(probs) > 1 else None
     return {
         "source": "nexrad",
         "pred_class": pred_class,
         "probs": probs,
+        "severe_prob": severe_prob,
         "prob_max": float(max(probs)) if probs else None,
         "true_class": meta["true_class"],
         "flight_level_ft": meta["flight_level_ft"],
