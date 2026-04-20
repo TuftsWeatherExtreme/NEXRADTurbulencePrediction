@@ -1,3 +1,0 @@
-srun: error: Unable to create step for job 416306: Invalid generic resource (gres) specification
-/var/spool/slurm/job416306/slurm_script: line 51: 4036449 Killed                  python3 $REPO_PATH/radars/radar_data_to_model_input.py $INPUT_CSV $OUTPUT_DIR
-slurmstepd: error: Detected 1 oom_kill event in StepId=416306.batch. Some of the step tasks have been OOM Killed.
