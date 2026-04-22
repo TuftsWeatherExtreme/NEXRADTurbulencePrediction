@@ -7,7 +7,7 @@
 # Usage: sbatch predict_radar_demo.sh <model_type> <weights_path> [start_time]
 
 #SBATCH -J radar_demo
-#SBATCH --time=01:00:00
+#SBATCH --time=02-00:00:00
 #SBATCH -p preempt
 #SBATCH --gres=gpu:1
 #SBATCH -n 4
