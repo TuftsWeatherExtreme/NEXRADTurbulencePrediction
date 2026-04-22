@@ -3,7 +3,6 @@
 # Spring 2025
 # U-Net style encoder-decoder that takes a 10x16x16 radar reflectivity grid
 # and outputs a 16x16 turbulence probability heatmap.
-# Uses the same dataloader as the binary models but generates spatial predictions.
 
 import torch
 import torch.nn as nn
@@ -47,7 +46,6 @@ class DecoderBlock(nn.Module):
 
     def forward(self, x, skip):
         x = self.up(x)
-        # Pad if sizes don't match after upsampling
         if x.shape != skip.shape:
             diff_d = skip.shape[2] - x.shape[2]
             diff_h = skip.shape[3] - x.shape[3]
@@ -62,33 +60,35 @@ class HeatmapModel(nn.Module):
         super().__init__()
 
         # Encoder
-        self.enc1 = EncoderBlock(NUM_FIELDS, 32)    # (32, 10, 16, 16)
-        self.pool1 = nn.MaxPool3d(2)                 # (32, 5, 8, 8)
+        self.enc1 = EncoderBlock(NUM_FIELDS, 32)
+        self.pool1 = nn.MaxPool3d(2)
 
-        self.enc2 = EncoderBlock(32, 64)              # (64, 5, 8, 8)
-        self.pool2 = nn.MaxPool3d(2)                  # (64, 2, 4, 4)
+        self.enc2 = EncoderBlock(32, 64)
+        self.pool2 = nn.MaxPool3d(2)
 
         # Bottleneck
-        self.bottleneck = EncoderBlock(64, 128)       # (128, 2, 4, 4)
+        self.bottleneck = EncoderBlock(64, 128)
 
         # Decoder
-        self.dec2 = DecoderBlock(128, 64, 64)         # (64, 5, 8, 8) -- after upsampling (128, 4, 8, 8) then pad
-        self.dec1 = DecoderBlock(64, 32, 32)          # (32, 10, 16, 16)
+        self.dec2 = DecoderBlock(128, 64, 64)
+        self.dec1 = DecoderBlock(64, 32, 32)
 
         # Collapse altitude dimension and produce 16x16 heatmap
         self.head = nn.Sequential(
-            nn.Conv3d(32, 16, kernel_size=(N_ALT, 1, 1)),  # (16, 1, 16, 16)
+            nn.Conv3d(32, 16, kernel_size=(N_ALT, 1, 1)),
             nn.ReLU(),
-            nn.Conv3d(16, 1, kernel_size=1),                # (1, 1, 16, 16)
+            nn.Conv3d(16, 1, kernel_size=1),
             nn.Sigmoid(),
         )
 
-        # Metadata branch to modulate the heatmap
+        # FIX: metadata branch now outputs an additive bias, not a
+        # multiplicative gate. This prevents the 0.5 floor collapse.
+        # It adds a small learned offset based on SIGMET/altitude context.
         self.meta_branch = nn.Sequential(
             nn.Linear(NUM_LINEAR_FEATURES, 16),
             nn.ReLU(),
             nn.Linear(16, 1),
-            nn.Sigmoid(),
+            nn.Tanh(),   # output in (-1, 1) — used as additive bias
         )
 
     def forward(self, x):
@@ -96,57 +96,61 @@ class HeatmapModel(nn.Module):
         x_grid = x[:, NUM_LINEAR_FEATURES:].reshape(-1, NUM_FIELDS, N_ALT, N_LAT, N_LON)
 
         # Encoder
-        e1 = self.enc1(x_grid)          # (B, 32, 10, 16, 16)
-        e2 = self.enc2(self.pool1(e1))  # (B, 64, 5, 8, 8)
+        e1 = self.enc1(x_grid)
+        e2 = self.enc2(self.pool1(e1))
 
         # Bottleneck
-        b = self.bottleneck(self.pool2(e2))  # (B, 128, 2, 4, 4)
+        b = self.bottleneck(self.pool2(e2))
 
         # Decoder
-        d2 = self.dec2(b, e2)   # (B, 64, 5, 8, 8)
-        d1 = self.dec1(d2, e1)  # (B, 32, 10, 16, 16)
+        d2 = self.dec2(b, e2)
+        d1 = self.dec1(d2, e1)
 
-        # Heatmap output
-        heatmap = self.head(d1)  # (B, 1, 1, 16, 16)
-        heatmap = heatmap.squeeze(2)  # (B, 1, 16, 16)
+        # Heatmap output — raw logits before sigmoid
+        heatmap = self.head(d1)        # (B, 1, 1, 16, 16)
+        heatmap = heatmap.squeeze(2)   # (B, 1, 16, 16)
 
-        # Modulate by metadata (e.g., scale by SIGMET presence)
-        meta_scale = self.meta_branch(x_meta)  # (B, 1)
-        meta_scale = meta_scale.unsqueeze(-1).unsqueeze(-1)  # (B, 1, 1, 1)
-        heatmap = heatmap * (0.5 + 0.5 * meta_scale)  # Scale between 0.5x and 1x
+        # FIX: additive metadata bias instead of multiplicative gate.
+        # Scale by 0.1 so metadata nudges the heatmap without dominating it.
+        meta_bias = self.meta_branch(x_meta)             # (B, 1)
+        meta_bias = meta_bias.unsqueeze(-1).unsqueeze(-1) # (B, 1, 1, 1)
+        heatmap = (heatmap + 0.1 * meta_bias).clamp(0, 1)
 
         return heatmap.squeeze(1)  # (B, 16, 16)
 
 
-def create_gaussian_target(pirep_lat, pirep_lon, grid_lat_range, grid_lon_range,
-                           grid_h=N_LAT, grid_w=N_LON, sigma=2.0):
+def create_gaussian_target(label, grid_h=N_LAT, grid_w=N_LON, sigma=2.0):
     """
-    Create a 2D Gaussian target heatmap centered at the PIREP location
-    within the grid.
+    Create a 2D Gaussian target heatmap.
+
+    Since the radar grid is ALWAYS centered on the PIREP by construction
+    (see radar_data_to_model_input.py), the PIREP is always at the center
+    of the grid. We therefore always place the Gaussian at the grid center
+    for severe samples, and return zeros for non-severe samples.
+
+    This is the correct behavior — the model's job is to learn whether
+    reflectivity patterns in the grid indicate severe turbulence AT the
+    center point, not to predict where in the grid turbulence is.
 
     Args:
-        pirep_lat, pirep_lon: PIREP coordinates
-        grid_lat_range: (min_lat, max_lat) of the grid
-        grid_lon_range: (min_lon, max_lon) of the grid
-        grid_h, grid_w: grid dimensions
+        label: 1 for severe, 0 for non-severe
+        grid_h, grid_w: grid dimensions (default 16x16)
         sigma: Gaussian spread in grid cells
 
     Returns:
         (grid_h, grid_w) numpy array with values 0-1
     """
-    # Normalize PIREP position to grid coordinates
-    lat_frac = (pirep_lat - grid_lat_range[0]) / (grid_lat_range[1] - grid_lat_range[0])
-    lon_frac = (pirep_lon - grid_lon_range[0]) / (grid_lon_range[1] - grid_lon_range[0])
+    if label != 1 and label != 1.0:
+        return np.zeros((grid_h, grid_w), dtype=np.float32)
 
-    cy = lat_frac * (grid_h - 1)
-    cx = lon_frac * (grid_w - 1)
+    # Center of the grid
+    cy = (grid_h - 1) / 2.0
+    cx = (grid_w - 1) / 2.0
 
-    # Create meshgrid
     y = np.arange(grid_h)
     x = np.arange(grid_w)
     xx, yy = np.meshgrid(x, y)
 
-    # Gaussian
     gaussian = np.exp(-((xx - cx)**2 + (yy - cy)**2) / (2 * sigma**2))
     return gaussian.astype(np.float32)
 

@@ -54,24 +54,11 @@ class HeatmapDataset(Dataset):
         item = self.base[idx]
         features = item[0]
         label = item[1]
-
-        # Extract PIREP lat/lon from the first features
-        pirep_lat = features[0].item()
-        pirep_lon = features[1].item()
-
-        # The grid is centered on the PIREP, so the PIREP is at the center
-        # of the 16x16 grid. For severe, we place a Gaussian at center.
-        # For non-severe, target is all zeros.
-        if label == 1 or label == 1.0:
-            target = create_gaussian_target(
-                pirep_lat, pirep_lon,
-                grid_lat_range=(pirep_lat - DEGREES/2, pirep_lat + DEGREES/2),
-                grid_lon_range=(pirep_lon - DEGREES/2, pirep_lon + DEGREES/2),
-                sigma=2.0
-            )
-        else:
-            target = np.zeros((N_LAT, N_LON), dtype=np.float32)
-
+    
+        # FIX: simplified call — no longer passes lat/lon/grid bounds
+        # since the Gaussian is always centered in the grid
+        target = create_gaussian_target(label, sigma=2.0)
+    
         return features, torch.tensor(target, dtype=torch.float32)
 
 
@@ -95,7 +82,7 @@ def train_epoch(model, loader, optimizer):
             print(f"    Batch {batch_num+1}: loss={total_loss/50:.6f}", flush=True)
             total_loss = 0
 
-    return total_loss / max(1, len(loader) % 50)
+    return total_loss / len(loader)
 
 
 def evaluate(model, loader):
@@ -103,7 +90,10 @@ def evaluate(model, loader):
     total_loss = 0
     total_iou = 0
     total_peak_error = 0
+    center_correct = 0
+    center_total = 0
     count = 0
+    CENTER_Y, CENTER_X = N_LAT // 2, N_LON // 2
 
     with torch.no_grad():
         for x, target in loader:
@@ -122,9 +112,19 @@ def evaluate(model, loader):
             iou = (intersection / union.clamp(min=1)).mean().item()
             total_iou += iou
 
-            # Peak location error (in grid cells)
+            # Center accuracy — does the model correctly predict
+            # high/low probability at the grid center?
             for i in range(pred.shape[0]):
-                if target[i].max() > 0.1:  # Only for severe samples
+                is_severe = target[i].max().item() > 0.5
+                pred_center = pred[i, CENTER_Y, CENTER_X].item()
+                predicted_severe = pred_center > 0.5
+                if is_severe == predicted_severe:
+                    center_correct += 1
+                center_total += 1
+
+            # Peak location error (only meaningful for severe samples)
+            for i in range(pred.shape[0]):
+                if target[i].max() > 0.1:
                     pred_peak = torch.argmax(pred[i])
                     true_peak = torch.argmax(target[i])
                     pred_y, pred_x = pred_peak // N_LON, pred_peak % N_LON
@@ -134,11 +134,12 @@ def evaluate(model, loader):
                     count += 1
 
     n_batches = len(loader)
-    avg_loss = total_loss / n_batches
-    avg_iou = total_iou / n_batches
-    avg_peak = total_peak_error / max(1, count)
-
-    return avg_loss, avg_iou, avg_peak
+    return (
+        total_loss / n_batches,
+        total_iou / n_batches,
+        total_peak_error / max(1, count),
+        center_correct / max(1, center_total),  # new metric
+    )
 
 
 def main():
@@ -189,10 +190,11 @@ def main():
             for epoch in range(NUM_EPOCHS):
                 t0 = time.time()
                 train_epoch(model, train_loader, optimizer)
-                val_loss, val_iou, val_peak = evaluate(model, val_loader)
                 elapsed = time.time() - t0
+                val_loss, val_iou, val_peak, val_center_acc = evaluate(model, val_loader)
                 print(f"    Epoch {epoch+1}/{NUM_EPOCHS}: "
                       f"val_loss={val_loss:.6f}, IoU={val_iou:.4f}, "
+                      f"center_acc={val_center_acc:.4f}, "
                       f"peak_err={val_peak:.2f} cells ({elapsed:.1f}s)", flush=True)
 
             fold_losses.append(val_loss)
@@ -224,11 +226,11 @@ def main():
     print("TESTING ON HELD-OUT SET", flush=True)
     print(f"{'='*60}", flush=True)
 
-    test_loss, test_iou, test_peak = evaluate(best_model, test_loader)
+    test_loss, test_iou, test_peak, test_center_acc = evaluate(best_model, test_loader)
     print(f"Test BCE Loss: {test_loss:.6f}", flush=True)
     print(f"Test IoU (threshold=0.5): {test_iou:.4f}", flush=True)
+    print(f"Test Center Accuracy: {test_center_acc:.4f}", flush=True)
     print(f"Test Peak Location Error: {test_peak:.2f} grid cells", flush=True)
-    print(f"  (~{test_peak * DEGREES/N_LAT * 111:.1f} km at mid-latitudes)", flush=True)
 
     # Per-sample analysis on test set
     print(f"\nSample predictions:", flush=True)
@@ -260,7 +262,8 @@ def main():
         f.write(f"Best L2: {best_l2}\n")
         f.write(f"Test BCE Loss: {test_loss:.6f}\n")
         f.write(f"Test IoU: {test_iou:.4f}\n")
-        f.write(f"Test Peak Error: {test_peak:.2f} cells (~{test_peak * DEGREES/N_LAT * 111:.1f} km)\n")
+        f.write(f"Test Center Accuracy: {test_center_acc:.4f}\n")
+        f.write(f"Test Peak Error: {test_peak:.2f} cells\n")
         f.write(f"Epochs: {NUM_EPOCHS}, Batch Size: {BATCH_SIZE}, Folds: {NUM_FOLDS}\n")
     print(f"Results saved to {results_path}", flush=True)
 

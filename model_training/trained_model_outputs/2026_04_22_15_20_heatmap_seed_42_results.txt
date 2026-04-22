@@ -1,0 +1,8 @@
+Heatmap Model Results
+Seed: 42
+Best L2: 0.0001
+Test BCE Loss: 0.321072
+Test IoU: 0.0000
+Test Center Accuracy: 0.3213
+Test Peak Error: 8.09 cells
+Epochs: 30, Batch Size: 64, Folds: 4
