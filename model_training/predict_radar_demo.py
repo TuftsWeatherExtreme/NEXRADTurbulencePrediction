@@ -58,7 +58,7 @@ MAX_NAN_FRACTION = 0.95  # more lenient for demo — show something rather than 
 # CONUS grid for predictions
 LAT_MIN, LAT_MAX = 25.0, 50.0
 LON_MIN, LON_MAX = -125.0, -67.0
-PATCH_STEP_DEG = 0.5  # coarser for demo speed
+PATCH_STEP_DEG = 0.25  # coarser for demo speed; changed from 0.5 to 0.25 to quadruple the number of patches
 ALT_LEVELS = [10000, 20000, 30000, 40000]
 
 NEXRAD_BUCKET = 'unidata-nexrad-level2'
@@ -192,18 +192,25 @@ def predict_batch(model, features_batch, device, model_type):
         results = []
         for i in range(probs.shape[0]):
             max_prob = float(probs[i].max())
+            # For heatmap, interpret "severe_prob" as max probability in the heatmap.
             results.append({
                 "severe_prob": max_prob,
                 "pred_class": 1 if max_prob > 0.5 else 0,
+                "probs": [1.0 - max_prob, max_prob],
+                "prob_max": max_prob,
             })
         return results
     else:
         probs = F.softmax(output, dim=-1).cpu().numpy()
         results = []
         for i in range(probs.shape[0]):
+            p0 = float(probs[i][0]) if probs.shape[1] > 0 else 0.0
+            p1 = float(probs[i][1]) if probs.shape[1] > 1 else 0.0
             results.append({
-                "severe_prob": float(probs[i][1]),
+                "severe_prob": p1,
                 "pred_class": int(np.argmax(probs[i])),
+                "probs": [p0, p1],
+                "prob_max": float(max(p0, p1)),
             })
         return results
 
@@ -299,6 +306,12 @@ def main():
                             "lat": plat, "lon": plon, "alt": palt,
                             "severe_prob": result["severe_prob"],
                             "pred_class": result["pred_class"],
+                            "probs": result.get("probs"),
+                            "prob_max": result.get("prob_max"),
+                            "delta_t_seconds": 0.0,
+                            "true_class": None,
+                            "pirep_time": prediction_time.replace(tzinfo=None).isoformat(),
+                            "patch_id": f"demo_{step:02d}_{plat:.3f}_{plon:.3f}_{int(palt)}",
                         })
                     features_list = []
                     batch_patches = []
@@ -321,12 +334,15 @@ def main():
                     "geometry": {"type": "Point", "coordinates": [r["lon"], r["lat"]]},
                     "properties": {
                         "source": "nexrad",
-                        "model_type": args.model_type,
                         "pred_class": r["pred_class"],
-                        "severe_prob": r["severe_prob"],
+                        "probs": r.get("probs"),
+                        "severe_prob": r.get("severe_prob"),
+                        "prob_max": r.get("prob_max"),
+                        "true_class": r.get("true_class"),
                         "flight_level_ft": r["alt"],
-                        "timestamp": prediction_time.isoformat(),
-                        "step": step,
+                        "delta_t_seconds": r.get("delta_t_seconds"),
+                        "pirep_time": r.get("pirep_time"),
+                        "patch_id": r.get("patch_id"),
                     },
                 }
                 for r in all_results
