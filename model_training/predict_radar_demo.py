@@ -27,11 +27,17 @@ from datetime import date as date_class
 
 try:
     import boto3
-    from botocore import UNSIGNED
-    from botocore.config import Config
 except Exception:  # pragma: no cover
     boto3 = None
+
+try:
+    from botocore import UNSIGNED
+except Exception:  # pragma: no cover
     UNSIGNED = None
+
+try:
+    from botocore.config import Config
+except Exception:  # pragma: no cover
     Config = None
 
 try:
@@ -103,6 +109,11 @@ def _get_s3_client():
             "boto3/botocore not available; cannot list NEXRAD keys from S3. "
             "Install boto3 or use the conda environment that includes botocore/aiobotocore."
         )
+    if Config is None or UNSIGNED is None:
+        raise RuntimeError(
+            "botocore is not available; cannot create unsigned S3 client. "
+            "Install botocore (or boto3)."
+        )
     _s3_client = boto3.client(
         "s3",
         region_name="us-east-1",
@@ -119,7 +130,7 @@ async def _aio_list_objects_all(prefix: str):
     if _aio_get_session is None or _AioConfig is None or UNSIGNED is None:
         raise RuntimeError(
             "Neither boto3 nor aiobotocore is available for S3 listing. "
-            "Install boto3 or aiobotocore."
+            "Install boto3 or aiobotocore (and ensure botocore is installed)."
         )
     session = _aio_get_session()
     keys = []
