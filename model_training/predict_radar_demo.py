@@ -171,7 +171,6 @@ def create_features_for_point_with_reason(
     features = np.concatenate([meta, flattened])
     features = np.nan_to_num(features, nan=-32.0)
     return features, "ok"
-        return None
 
 
 # Cache for radar objects: (site_code, rounded_time) -> radar object
