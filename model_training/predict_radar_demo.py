@@ -21,6 +21,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import time as time_module
 from scipy.spatial import cKDTree
+from collections import Counter
 
 DIRNAME = os.path.dirname(os.path.abspath(__file__))
 RADAR_DIR = os.path.join(DIRNAME, "..", "radars")
@@ -104,7 +105,72 @@ def fetch_radar_scan(site_code, scan_time):
     try:
         radar = pyart.io.read_nexrad_archive(s3_path)
         return radar
+    except Exception as e:
+        # This usually fails because s3_path is a prefix (directory), not a конкрет file key.
+        # Logging a few examples makes it obvious when S3 fetching is the root cause.
+        return None
+
+
+def create_features_for_point_with_reason(
+    lat,
+    lon,
+    alt_ft,
+    scan_time,
+    tree,
+    codes,
+    coords,
+    elevations,
+    sites_df,
+):
+    """
+    Same as create_features_for_point, but returns (features, reason).
+    Reason is one of: ok, no_radars, grid_exception, grid_none, grid_too_sparse.
+    """
+    site_codes = find_nearest_radars(lat, lon, alt_ft, tree, codes, coords, elevations)
+    alt_m = ft_to_meters(alt_ft)
+
+    radars = []
+    for code in site_codes:
+        radar = get_radar_cached(code, scan_time)
+        if radar is not None:
+            if radar.longitude["data"] == 0:
+                site_lon = sites_df.loc[sites_df["Site Code"] == code, "Longitude"].iloc[0]
+                radar.gate_longitude["data"] += site_lon
+                radar.longitude["data"] = site_lon
+            radars.append(radar)
+
+    if len(radars) == 0:
+        return None, "no_radars"
+
+    try:
+        grid = create_grid(
+            radars=tuple(radars),
+            grid_shape=GRID_SHAPE,
+            alt_range=ALT_LIMITS,
+            lat_range=LAT_LIMITS,
+            lon_range=LON_LIMITS,
+            grid_origin=(alt_m, lat, lon),
+            fields=["reflectivity"],
+            map_roi=False,
+            verbose=False,
+        )
     except Exception:
+        return None, "grid_exception"
+
+    if not grid:
+        return None, "grid_none"
+
+    nan_frac = grid.attrs.get("nan_fraction", 1.0)
+    if nan_frac > MAX_NAN_FRACTION:
+        return None, "grid_too_sparse"
+
+    delta_t = 0
+    in_sigmet = 0
+    meta = np.array([lat, lon, alt_ft, delta_t, in_sigmet], dtype=np.float32)
+    flattened = np.concatenate([grid[var].values.flatten() for var in grid.data_vars])
+    features = np.concatenate([meta, flattened])
+    features = np.nan_to_num(features, nan=-32.0)
+    return features, "ok"
         return None
 
 
@@ -284,16 +350,26 @@ def main():
         batch_patches = []
         all_results = []
         skipped = 0
+        skip_reasons = Counter()
 
         for i, (lat, lon, alt) in enumerate(patches):
-            features = create_features_for_point(
-                lat, lon, alt, prediction_time,
-                tree, codes, coords, elevations, sites_df
+            features, reason = create_features_for_point_with_reason(
+                lat,
+                lon,
+                alt,
+                prediction_time,
+                tree,
+                codes,
+                coords,
+                elevations,
+                sites_df,
             )
 
             if features is None:
                 skipped += 1
+                skip_reasons[reason] += 1
                 continue
+            skip_reasons["ok"] += 1
 
             features_list.append(features)
             batch_patches.append((lat, lon, alt))
@@ -322,6 +398,9 @@ def main():
         n_severe = sum(1 for r in all_results if r["pred_class"] == 1)
         print(f"  Predicted {len(all_results)} patches, skipped {skipped} "
               f"({time_module.time()-t0:.1f}s)", flush=True)
+        if skipped:
+            top = ", ".join(f"{k}={v}" for k, v in skip_reasons.most_common(5))
+            print(f"  Skip reasons: {top}", flush=True)
         print(f"  Severe: {n_severe}/{len(all_results)} "
               f"({100*n_severe/max(1,len(all_results)):.1f}%)", flush=True)
         print(f"  Radar cache size: {len(radar_cache)}", flush=True)
