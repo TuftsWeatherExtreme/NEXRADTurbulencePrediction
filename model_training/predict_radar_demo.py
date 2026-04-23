@@ -34,6 +34,15 @@ except Exception:  # pragma: no cover
     UNSIGNED = None
     Config = None
 
+try:
+    from aiobotocore.session import get_session as _aio_get_session
+    from aiobotocore.config import AioConfig as _AioConfig
+except Exception:  # pragma: no cover
+    _aio_get_session = None
+    _AioConfig = None
+
+import asyncio
+
 DIRNAME = os.path.dirname(os.path.abspath(__file__))
 RADAR_DIR = os.path.join(DIRNAME, "..", "radars")
 sys.path.insert(0, os.path.join(DIRNAME, ".."))
@@ -81,6 +90,8 @@ NEXRAD_BUCKET = 'unidata-nexrad-level2'
 
 _s3_client = None
 _s3_list_cache = {}  # (YYYY-MM-DD, site) -> list[(dt_utc, s3_key)]
+_s3_debug_errors_printed = 0
+_s3_debug_lists_printed = 0
 
 
 def _get_s3_client():
@@ -98,6 +109,40 @@ def _get_s3_client():
         config=Config(signature_version=UNSIGNED),
     )
     return _s3_client
+
+
+async def _aio_list_objects_all(prefix: str):
+    """
+    aiobotocore fallback for environments without boto3.
+    Returns list of object keys under the prefix.
+    """
+    if _aio_get_session is None or _AioConfig is None or UNSIGNED is None:
+        raise RuntimeError(
+            "Neither boto3 nor aiobotocore is available for S3 listing. "
+            "Install boto3 or aiobotocore."
+        )
+    session = _aio_get_session()
+    keys = []
+    token = None
+    async with session.create_client(
+        "s3",
+        region_name="us-east-1",
+        config=_AioConfig(signature_version=UNSIGNED),
+    ) as s3:
+        while True:
+            kwargs = {"Bucket": NEXRAD_BUCKET, "Prefix": prefix}
+            if token:
+                kwargs["ContinuationToken"] = token
+            resp = await s3.list_objects_v2(**kwargs)
+            for obj in resp.get("Contents", []):
+                k = obj.get("Key")
+                if k:
+                    keys.append(k)
+            if resp.get("IsTruncated"):
+                token = resp.get("NextContinuationToken")
+            else:
+                break
+    return keys
 
 
 # Example basename: KTLX20240403_171012_V06
@@ -130,36 +175,52 @@ def _list_site_keys_for_day(site_code: str, day: date_class):
         return _s3_list_cache[cache_key]
 
     prefix = f"{day.year}/{day.month:02d}/{day.day:02d}/{site_code}/"
-    client = _get_s3_client()
-
     keys = []
-    token = None
-    while True:
-        kwargs = {"Bucket": NEXRAD_BUCKET, "Prefix": prefix}
-        if token:
-            kwargs["ContinuationToken"] = token
-        resp = client.list_objects_v2(**kwargs)
-        for obj in resp.get("Contents", []):
-            key = obj.get("Key")
-            if not key:
-                continue
-            dt = _key_time_utc_from_key(key)
-            if dt is None:
-                continue
-            keys.append((dt, key))
-        if resp.get("IsTruncated"):
-            token = resp.get("NextContinuationToken")
+    try:
+        if boto3 is not None:
+            client = _get_s3_client()
+            token = None
+            while True:
+                kwargs = {"Bucket": NEXRAD_BUCKET, "Prefix": prefix}
+                if token:
+                    kwargs["ContinuationToken"] = token
+                resp = client.list_objects_v2(**kwargs)
+                for obj in resp.get("Contents", []):
+                    key = obj.get("Key")
+                    if not key:
+                        continue
+                    dt = _key_time_utc_from_key(key)
+                    if dt is None:
+                        continue
+                    keys.append((dt, key))
+                if resp.get("IsTruncated"):
+                    token = resp.get("NextContinuationToken")
+                else:
+                    break
         else:
-            break
+            # Fall back to aiobotocore if boto3 isn't present.
+            raw_keys = asyncio.run(_aio_list_objects_all(prefix))
+            for key in raw_keys:
+                dt = _key_time_utc_from_key(key)
+                if dt is None:
+                    continue
+                keys.append((dt, key))
+    except Exception as e:
+        global _s3_debug_errors_printed
+        if _s3_debug_errors_printed < 5:
+            print(f"[s3] ERROR listing prefix {prefix}: {type(e).__name__}: {e}", flush=True)
+            _s3_debug_errors_printed += 1
 
     keys.sort(key=lambda x: x[0])
     _s3_list_cache[cache_key] = keys
-    # Helpful one-time debug output for diagnosing "no_radars everywhere"
-    if len(_s3_list_cache) <= 3:
+    # Helpful debug output for diagnosing "no_radars everywhere"
+    global _s3_debug_lists_printed
+    if _s3_debug_lists_printed < 5:
         print(
             f"[s3] Listed {len(keys)} keys for {site_code} on {day.isoformat()} (prefix {prefix})",
             flush=True,
         )
+        _s3_debug_lists_printed += 1
     return keys
 
 
@@ -228,7 +289,15 @@ def fetch_radar_scan(site_code, scan_time):
             return None
         radar = pyart.io.read_nexrad_archive(f"s3://{NEXRAD_BUCKET}/{key}")
         return radar
-    except Exception:
+    except Exception as e:
+        global _s3_debug_errors_printed
+        if _s3_debug_errors_printed < 5:
+            print(
+                f"[s3] ERROR reading radar for {site_code} at {scan_time.isoformat()}: "
+                f"{type(e).__name__}: {e}",
+                flush=True,
+            )
+            _s3_debug_errors_printed += 1
         return None
 
 
