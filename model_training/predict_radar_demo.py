@@ -21,7 +21,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import time as time_module
 from scipy.spatial import cKDTree
-from collections import Counter
+from collections import Counter, OrderedDict
 import re
 from datetime import date as date_class
 
@@ -85,7 +85,7 @@ MAX_NAN_FRACTION = 0.95  # more lenient for demo — show something rather than 
 # CONUS grid for predictions
 LAT_MIN, LAT_MAX = 25.0, 50.0
 LON_MIN, LON_MAX = -125.0, -67.0
-PATCH_STEP_DEG = 0.25  # coarser for demo speed; changed from 0.5 to 0.25 to quadruple the number of patches
+PATCH_STEP_DEG = 0.5  # coarser for demo speed; changed from 0.5 to 0.25 to quadruple the number of patches
 ALT_LEVELS = [10000, 20000, 30000, 40000]
 
 NEXRAD_BUCKET = 'unidata-nexrad-level2'
@@ -375,17 +375,24 @@ def create_features_for_point_with_reason(
 
 
 # Cache for radar objects: (site_code, rounded_time) -> radar object
-radar_cache = {}
+# IMPORTANT: Radar objects are large. An unbounded cache will eventually OOM and
+# the job will be killed (exit code 137). Keep this bounded.
+RADAR_CACHE_MAX_ITEMS = 64
+radar_cache = OrderedDict()
 
 
 def get_radar_cached(site_code, scan_time):
     """Fetch a radar scan with caching."""
     cache_key = (site_code, scan_time.replace(minute=0, second=0, microsecond=0))
     if cache_key in radar_cache:
-        return radar_cache[cache_key]
+        radar = radar_cache.pop(cache_key)
+        radar_cache[cache_key] = radar  # mark as most-recently-used
+        return radar
 
     radar = fetch_radar_scan(site_code, scan_time)
     radar_cache[cache_key] = radar
+    while len(radar_cache) > RADAR_CACHE_MAX_ITEMS:
+        radar_cache.popitem(last=False)  # evict least-recently-used
     return radar
 
 
@@ -544,6 +551,9 @@ def main():
         print(f"\n{'='*60}", flush=True)
         print(f"Step {step+1}/16: {prediction_time.isoformat()}", flush=True)
         print(f"{'='*60}", flush=True)
+
+        # Keep memory bounded across steps.
+        radar_cache.clear()
 
         t0 = time_module.time()
         features_list = []
