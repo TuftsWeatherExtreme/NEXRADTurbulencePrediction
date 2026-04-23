@@ -22,6 +22,17 @@ from pathlib import Path
 import time as time_module
 from scipy.spatial import cKDTree
 from collections import Counter
+import re
+from datetime import date as date_class
+
+try:
+    import boto3
+    from botocore import UNSIGNED
+    from botocore.config import Config
+except Exception:  # pragma: no cover
+    boto3 = None
+    UNSIGNED = None
+    Config = None
 
 DIRNAME = os.path.dirname(os.path.abspath(__file__))
 RADAR_DIR = os.path.join(DIRNAME, "..", "radars")
@@ -64,6 +75,108 @@ ALT_LEVELS = [10000, 20000, 30000, 40000]
 
 NEXRAD_BUCKET = 'unidata-nexrad-level2'
 
+# ---------------------------------------------------------------------------
+# S3 helpers (public unsigned access)
+# ---------------------------------------------------------------------------
+
+_s3_client = None
+_s3_list_cache = {}  # (YYYY-MM-DD, site) -> list[(dt_utc, s3_key)]
+
+
+def _get_s3_client():
+    global _s3_client
+    if _s3_client is not None:
+        return _s3_client
+    if boto3 is None:
+        raise RuntimeError(
+            "boto3/botocore not available; cannot list NEXRAD keys from S3. "
+            "Install boto3 or use the conda environment that includes botocore/aiobotocore."
+        )
+    _s3_client = boto3.client(
+        "s3",
+        region_name="us-east-1",
+        config=Config(signature_version=UNSIGNED),
+    )
+    return _s3_client
+
+
+_NEXRAD_BASENAME_RE = re.compile(r"^[A-Z0-9]{4}(\\d{8})_(\\d{6})_V\\d{2}$")
+
+
+def _key_time_utc_from_key(key: str):
+    base = key.rsplit("/", 1)[-1]
+    m = _NEXRAD_BASENAME_RE.match(base)
+    if not m:
+        return None
+    ymd, hms = m.group(1), m.group(2)
+    try:
+        return datetime(
+            year=int(ymd[0:4]),
+            month=int(ymd[4:6]),
+            day=int(ymd[6:8]),
+            hour=int(hms[0:2]),
+            minute=int(hms[2:4]),
+            second=int(hms[4:6]),
+            tzinfo=timezone.utc,
+        )
+    except Exception:
+        return None
+
+
+def _list_site_keys_for_day(site_code: str, day: date_class):
+    cache_key = (day.isoformat(), site_code)
+    if cache_key in _s3_list_cache:
+        return _s3_list_cache[cache_key]
+
+    prefix = f"{day.year}/{day.month:02d}/{day.day:02d}/{site_code}/"
+    client = _get_s3_client()
+
+    keys = []
+    token = None
+    while True:
+        kwargs = {"Bucket": NEXRAD_BUCKET, "Prefix": prefix}
+        if token:
+            kwargs["ContinuationToken"] = token
+        resp = client.list_objects_v2(**kwargs)
+        for obj in resp.get("Contents", []):
+            key = obj.get("Key")
+            if not key:
+                continue
+            dt = _key_time_utc_from_key(key)
+            if dt is None:
+                continue
+            keys.append((dt, key))
+        if resp.get("IsTruncated"):
+            token = resp.get("NextContinuationToken")
+        else:
+            break
+
+    keys.sort(key=lambda x: x[0])
+    _s3_list_cache[cache_key] = keys
+    return keys
+
+
+def _pick_closest_key(site_code: str, scan_time: datetime, max_diff_minutes: int = 15):
+    if scan_time.tzinfo is None:
+        scan_time = scan_time.replace(tzinfo=timezone.utc)
+    scan_time = scan_time.astimezone(timezone.utc)
+
+    keys = _list_site_keys_for_day(site_code, scan_time.date())
+    if not keys:
+        return None
+
+    best_key = None
+    best_diff = None
+    for dt, key in keys:
+        diff = abs((dt - scan_time).total_seconds())
+        if best_diff is None or diff < best_diff:
+            best_diff = diff
+            best_key = key
+
+    if best_diff is None or best_diff > max_diff_minutes * 60:
+        return None
+    return best_key
+
 
 def ft_to_meters(ft):
     return ft / 3.281
@@ -98,16 +211,17 @@ def find_nearest_radars(lat, lon, alt_ft, tree, codes, coords, elevations):
 
 
 def fetch_radar_scan(site_code, scan_time):
-    """Fetch the nearest NEXRAD scan to scan_time for a given site from S3."""
-    prefix = f"{scan_time.year}/{scan_time.month:02d}/{scan_time.day:02d}/{site_code}"
-    s3_path = f"s3://{NEXRAD_BUCKET}/{prefix}"
-
+    """
+    Fetch the closest NEXRAD Level2 scan to scan_time for a given site from S3.
+    We must read an actual object key, not a directory prefix.
+    """
     try:
-        radar = pyart.io.read_nexrad_archive(s3_path)
+        key = _pick_closest_key(site_code, scan_time, max_diff_minutes=15)
+        if key is None:
+            return None
+        radar = pyart.io.read_nexrad_archive(f"s3://{NEXRAD_BUCKET}/{key}")
         return radar
-    except Exception as e:
-        # This usually fails because s3_path is a prefix (directory), not a конкрет file key.
-        # Logging a few examples makes it obvious when S3 fetching is the root cause.
+    except Exception:
         return None
 
 
