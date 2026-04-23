@@ -100,7 +100,8 @@ def _get_s3_client():
     return _s3_client
 
 
-_NEXRAD_BASENAME_RE = re.compile(r"^[A-Z0-9]{4}(\\d{8})_(\\d{6})_V\\d{2}$")
+# Example basename: KTLX20240403_171012_V06
+_NEXRAD_BASENAME_RE = re.compile(r"^[A-Z0-9]{4}(\d{8})_(\d{6})_V\d{2}$")
 
 
 def _key_time_utc_from_key(key: str):
@@ -153,6 +154,12 @@ def _list_site_keys_for_day(site_code: str, day: date_class):
 
     keys.sort(key=lambda x: x[0])
     _s3_list_cache[cache_key] = keys
+    # Helpful one-time debug output for diagnosing "no_radars everywhere"
+    if len(_s3_list_cache) <= 3:
+        print(
+            f"[s3] Listed {len(keys)} keys for {site_code} on {day.isoformat()} (prefix {prefix})",
+            flush=True,
+        )
     return keys
 
 
