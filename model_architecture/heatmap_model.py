@@ -78,7 +78,6 @@ class HeatmapModel(nn.Module):
             nn.Conv3d(32, 16, kernel_size=(N_ALT, 1, 1)),
             nn.ReLU(),
             nn.Conv3d(16, 1, kernel_size=1),
-            nn.Sigmoid(),
         )
 
         # FIX: metadata branch now outputs an additive bias, not a
@@ -94,29 +93,22 @@ class HeatmapModel(nn.Module):
     def forward(self, x):
         x_meta = x[:, :NUM_LINEAR_FEATURES]
         x_grid = x[:, NUM_LINEAR_FEATURES:].reshape(-1, NUM_FIELDS, N_ALT, N_LAT, N_LON)
-
-        # Encoder
+    
         e1 = self.enc1(x_grid)
         e2 = self.enc2(self.pool1(e1))
-
-        # Bottleneck
         b = self.bottleneck(self.pool2(e2))
-
-        # Decoder
         d2 = self.dec2(b, e2)
         d1 = self.dec1(d2, e1)
-
-        # Heatmap output — raw logits before sigmoid
+    
+        # Raw logits — NO sigmoid here since we use BCEWithLogitsLoss
         heatmap = self.head(d1)        # (B, 1, 1, 16, 16)
         heatmap = heatmap.squeeze(2)   # (B, 1, 16, 16)
-
-        # FIX: additive metadata bias instead of multiplicative gate.
-        # Scale by 0.1 so metadata nudges the heatmap without dominating it.
-        meta_bias = self.meta_branch(x_meta)             # (B, 1)
-        meta_bias = meta_bias.unsqueeze(-1).unsqueeze(-1) # (B, 1, 1, 1)
-        heatmap = (heatmap + 0.1 * meta_bias).clamp(0, 1)
-
-        return heatmap.squeeze(1)  # (B, 16, 16)
+    
+        meta_bias = self.meta_branch(x_meta)
+        meta_bias = meta_bias.unsqueeze(-1).unsqueeze(-1)
+        # Return raw logits — sigmoid applied by loss function during training
+        # and explicitly in evaluate() for metrics
+        return (heatmap + 0.1 * meta_bias).squeeze(1)  # (B, 16, 16)
 
 
 def create_gaussian_target(label, grid_h=N_LAT, grid_w=N_LON, sigma=2.0):

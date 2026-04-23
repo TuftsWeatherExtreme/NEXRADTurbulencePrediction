@@ -62,30 +62,30 @@ class HeatmapDataset(Dataset):
         return features, torch.tensor(target, dtype=torch.float32)
 
 
-def train_epoch(model, loader, optimizer):
+def train_epoch(model, loader, optimizer, pos_weight):
     model.train()
     total_loss = 0
+    batches = 0
     for batch_num, (x, target) in enumerate(loader):
         x = x.to(device)
         target = target.to(device)
 
         optimizer.zero_grad()
         pred = model(x)
-
-        # BCE loss per pixel
-        loss = F.binary_cross_entropy(pred, target)
+        loss = F.binary_cross_entropy_with_logits(pred, target, pos_weight=pos_weight)
         loss.backward()
         optimizer.step()
         total_loss += loss.item()
+        batches += 1
 
         if batch_num % 50 == 49:
             print(f"    Batch {batch_num+1}: loss={total_loss/50:.6f}", flush=True)
             total_loss = 0
 
-    return total_loss / len(loader)
+    return total_loss / max(1, batches % 50)
 
 
-def evaluate(model, loader):
+def evaluate(model, loader, pos_weight):
     model.eval()
     total_loss = 0
     total_iou = 0
@@ -101,31 +101,33 @@ def evaluate(model, loader):
             target = target.to(device)
 
             pred = model(x)
-            loss = F.binary_cross_entropy(pred, target)
+            loss = F.binary_cross_entropy_with_logits(pred, target, pos_weight=pos_weight)
             total_loss += loss.item()
 
+            # Apply sigmoid for metrics since model now outputs logits
+            pred_prob = torch.sigmoid(pred)
+
             # IoU at threshold 0.5
-            pred_bin = (pred > 0.5).float()
+            pred_bin = (pred_prob > 0.5).float()
             target_bin = (target > 0.5).float()
             intersection = (pred_bin * target_bin).sum(dim=(1, 2))
             union = ((pred_bin + target_bin) > 0).float().sum(dim=(1, 2))
             iou = (intersection / union.clamp(min=1)).mean().item()
             total_iou += iou
 
-            # Center accuracy — does the model correctly predict
-            # high/low probability at the grid center?
-            for i in range(pred.shape[0]):
+            # Center accuracy
+            for i in range(pred_prob.shape[0]):
                 is_severe = target[i].max().item() > 0.5
-                pred_center = pred[i, CENTER_Y, CENTER_X].item()
+                pred_center = pred_prob[i, CENTER_Y, CENTER_X].item()
                 predicted_severe = pred_center > 0.5
                 if is_severe == predicted_severe:
                     center_correct += 1
                 center_total += 1
 
-            # Peak location error (only meaningful for severe samples)
-            for i in range(pred.shape[0]):
+            # Peak location error
+            for i in range(pred_prob.shape[0]):
                 if target[i].max() > 0.1:
-                    pred_peak = torch.argmax(pred[i])
+                    pred_peak = torch.argmax(pred_prob[i])
                     true_peak = torch.argmax(target[i])
                     pred_y, pred_x = pred_peak // N_LON, pred_peak % N_LON
                     true_y, true_x = true_peak // N_LON, true_peak % N_LON
@@ -138,8 +140,15 @@ def evaluate(model, loader):
         total_loss / n_batches,
         total_iou / n_batches,
         total_peak_error / max(1, count),
-        center_correct / max(1, center_total),  # new metric
+        center_correct / max(1, center_total),
     )
+
+
+def compute_pos_weight(dataset):
+    labels = [int(dataset[i][1]) for i in range(len(dataset))]
+    num_severe = sum(labels)
+    num_nonsevere = len(labels) - num_severe
+    return torch.tensor([num_nonsevere / num_severe]).to(device)
 
 
 def main():
@@ -155,6 +164,9 @@ def main():
     print(f"Loading dataloader from {DATALOADER_PATH}", flush=True)
 
     base_dataset = torch.load(DATALOADER_PATH, weights_only=False)
+    pos_weight = compute_pos_weight(base_dataset)
+    print(f"pos_weight: {pos_weight.item():.4f}", flush=True)
+
     dataset = HeatmapDataset(base_dataset)
     print(f"Dataset size: {len(dataset)}", flush=True)
 
@@ -185,13 +197,14 @@ def main():
                                     batch_size=BATCH_SIZE)
 
             model = HeatmapModel().to(device)
-            optimizer = optim.AdamW(model.parameters(), lr=1e-3, weight_decay=l2_alpha)
+            #optimizer = optim.AdamW(model.parameters(), lr=1e-3, weight_decay=l2_alpha)
+            optimizer = optim.AdamW(model.parameters(), lr=3e-4, weight_decay=l2_alpha)
 
             for epoch in range(NUM_EPOCHS):
                 t0 = time.time()
-                train_epoch(model, train_loader, optimizer)
+                train_epoch(model, train_loader, optimizer, pos_weight)
+                val_loss, val_iou, val_peak, val_center_acc = evaluate(model, val_loader, pos_weight)
                 elapsed = time.time() - t0
-                val_loss, val_iou, val_peak, val_center_acc = evaluate(model, val_loader)
                 print(f"    Epoch {epoch+1}/{NUM_EPOCHS}: "
                       f"val_loss={val_loss:.6f}, IoU={val_iou:.4f}, "
                       f"center_acc={val_center_acc:.4f}, "
@@ -214,10 +227,11 @@ def main():
     print("Retraining on full training set...", flush=True)
     train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
     best_model = HeatmapModel().to(device)
-    optimizer = optim.AdamW(best_model.parameters(), lr=1e-3, weight_decay=best_l2)
+    #optimizer = optim.AdamW(best_model.parameters(), lr=1e-3, weight_decay=best_l2)
+    optimizer = optim.AdamW(model.parameters(), lr=3e-4, weight_decay=l2_alpha)
 
     for epoch in range(NUM_EPOCHS):
-        train_epoch(best_model, train_loader, optimizer)
+        train_epoch(best_model, train_loader, optimizer, pos_weight)
         if (epoch + 1) % 5 == 0:
             print(f"  Retrain epoch {epoch+1}/{NUM_EPOCHS}", flush=True)
 
@@ -226,7 +240,7 @@ def main():
     print("TESTING ON HELD-OUT SET", flush=True)
     print(f"{'='*60}", flush=True)
 
-    test_loss, test_iou, test_peak, test_center_acc = evaluate(best_model, test_loader)
+    test_loss, test_iou, test_peak, test_center_acc = evaluate(best_model, test_loader, pos_weight)
     print(f"Test BCE Loss: {test_loss:.6f}", flush=True)
     print(f"Test IoU (threshold=0.5): {test_iou:.4f}", flush=True)
     print(f"Test Center Accuracy: {test_center_acc:.4f}", flush=True)
