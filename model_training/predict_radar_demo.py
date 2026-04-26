@@ -98,6 +98,7 @@ _s3_client = None
 _s3_list_cache = {}  # (YYYY-MM-DD, site) -> list[(dt_utc, s3_key)]
 _s3_debug_errors_printed = 0
 _s3_debug_lists_printed = 0
+_S3_DEBUG_LIMIT = 20  # print more diagnostic output
 
 
 def _get_s3_client():
@@ -218,7 +219,7 @@ def _list_site_keys_for_day(site_code: str, day: date_class):
                 keys.append((dt, key))
     except Exception as e:
         global _s3_debug_errors_printed
-        if _s3_debug_errors_printed < 5:
+        if _s3_debug_errors_printed < _S3_DEBUG_LIMIT:
             print(f"[s3] ERROR listing prefix {prefix}: {type(e).__name__}: {e}", flush=True)
             _s3_debug_errors_printed += 1
 
@@ -226,7 +227,7 @@ def _list_site_keys_for_day(site_code: str, day: date_class):
     _s3_list_cache[cache_key] = keys
     # Helpful debug output for diagnosing "no_radars everywhere"
     global _s3_debug_lists_printed
-    if _s3_debug_lists_printed < 5:
+    if _s3_debug_lists_printed < _S3_DEBUG_LIMIT:
         print(
             f"[s3] Listed {len(keys)} keys for {site_code} on {day.isoformat()} (prefix {prefix})",
             flush=True,
@@ -302,7 +303,7 @@ def fetch_radar_scan(site_code, scan_time):
         return radar
     except Exception as e:
         global _s3_debug_errors_printed
-        if _s3_debug_errors_printed < 5:
+        if _s3_debug_errors_printed < _S3_DEBUG_LIMIT:
             print(
                 f"[s3] ERROR reading radar for {site_code} at {scan_time.isoformat()}: "
                 f"{type(e).__name__}: {e}",
@@ -490,7 +491,7 @@ def predict_batch(model, features_batch, device, model_type):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate 16 GeoJSON files for 8 hours of radar predictions (demo)"
+        description="Generate GeoJSON files for radar predictions (demo)"
     )
     parser.add_argument("--model-type", choices=sorted(MODEL_FACTORIES.keys()), required=True)
     parser.add_argument("--weights", required=True, type=Path)
@@ -500,22 +501,31 @@ def main():
     parser.add_argument("--alt", type=int, default=None,
                         help="Single altitude level (ft). Default: all levels.")
     parser.add_argument("--start-time", type=str, default=None,
-                        help="Start of 8-hour window (ISO format). Default: 8 hours ago.")
+                        help="Start of time window (ISO format). Default: window-length ago.")
+    parser.add_argument("--num-steps", type=int, default=1,
+                        help="Number of prediction steps (default: 1 = single 30-min snapshot)")
+    parser.add_argument("--step-minutes", type=int, default=30,
+                        help="Minutes between prediction steps (default: 30)")
     args = parser.parse_args()
 
     device = torch.device(
         args.device if args.device else ("cuda" if torch.cuda.is_available() else "cpu")
     )
 
+    num_steps = args.num_steps
+    step_minutes = args.step_minutes
+
     if args.start_time:
         start_time = datetime.fromisoformat(args.start_time).replace(tzinfo=timezone.utc)
     else:
-        start_time = datetime.now(timezone.utc) - timedelta(hours=8)
+        start_time = datetime.now(timezone.utc) - timedelta(minutes=num_steps * step_minutes)
 
     print(f"Device: {device}", flush=True)
     print(f"Model: {args.model_type}", flush=True)
-    print(f"8-hour window: {start_time.isoformat()} to "
-          f"{(start_time + timedelta(hours=8)).isoformat()}", flush=True)
+    print(f"Window: {num_steps} steps x {step_minutes} min = "
+          f"{num_steps * step_minutes} min total", flush=True)
+    print(f"  {start_time.isoformat()} to "
+          f"{(start_time + timedelta(minutes=num_steps * step_minutes)).isoformat()}", flush=True)
 
     # Load model
     model = MODEL_FACTORIES[args.model_type]().to(device)
@@ -545,11 +555,39 @@ def main():
     args.output_dir.mkdir(parents=True, exist_ok=True)
     total_start = time_module.time()
 
-    for step in range(16):
-        prediction_time = start_time + timedelta(minutes=step * 30)
+    # --- S3 connectivity diagnostic ---
+    test_time = start_time
+    test_sites = list(codes[:5])  # first 5 NEXRAD sites
+    print(f"\n--- S3 Diagnostic ---", flush=True)
+    print(f"Bucket: {NEXRAD_BUCKET}", flush=True)
+    print(f"Test time: {test_time.isoformat()}", flush=True)
+    print(f"Test date: {test_time.date()}", flush=True)
+    for site in test_sites:
+        keys = _list_site_keys_for_day(site, test_time.date())
+        if keys:
+            print(f"  {site}: {len(keys)} files found. "
+                  f"First: {keys[0][1].rsplit('/',1)[-1]}, "
+                  f"Last: {keys[-1][1].rsplit('/',1)[-1]}", flush=True)
+        else:
+            print(f"  {site}: NO FILES FOUND", flush=True)
+    closest = _pick_closest_key(test_sites[0], test_time)
+    if closest:
+        print(f"  Closest scan for {test_sites[0]}: {closest.rsplit('/',1)[-1]}", flush=True)
+    else:
+        print(f"  Closest scan for {test_sites[0]}: NONE within 15 min window", flush=True)
+    print(f"--- End S3 Diagnostic ---\n", flush=True)
+
+    for step in range(num_steps):
+        prediction_time = start_time + timedelta(minutes=step * step_minutes)
+        filename = args.output_dir / f"prediction_{step:02d}.geojson"
+
+        # Resume: skip steps that already have output
+        if filename.exists():
+            print(f"\nStep {step+1}/{num_steps}: SKIPPING (already exists: {filename})", flush=True)
+            continue
 
         print(f"\n{'='*60}", flush=True)
-        print(f"Step {step+1}/16: {prediction_time.isoformat()}", flush=True)
+        print(f"Step {step+1}/{num_steps}: {prediction_time.isoformat()}", flush=True)
         print(f"{'='*60}", flush=True)
 
         # Keep memory bounded across steps.
