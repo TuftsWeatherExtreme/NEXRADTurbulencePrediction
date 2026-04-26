@@ -80,12 +80,12 @@ ALT_LIMITS = (-Z_SIZE / 2.0, Z_SIZE / 2.0)
 LAT_LIMITS = (-DEGREES / 2.0, DEGREES / 2.0)
 LON_LIMITS = (-DEGREES / 2.0, DEGREES / 2.0)
 NUM_RADARS = 5
-MAX_NAN_FRACTION = 0.95  # more lenient for demo — show something rather than nothing
+MAX_NAN_FRACTION = 0.99  # very lenient for demo — show predictions even with sparse radar data
 
 # CONUS grid for predictions
 LAT_MIN, LAT_MAX = 25.0, 50.0
 LON_MIN, LON_MAX = -125.0, -67.0
-PATCH_STEP_DEG = 0.5  # coarser for demo speed; changed from 0.5 to 0.25 to quadruple the number of patches
+PATCH_STEP_DEG = 0.25  # 0.25 degree spacing for denser coverage
 ALT_LEVELS = [10000, 20000, 30000, 40000]
 
 NEXRAD_BUCKET = 'unidata-nexrad-level2'
@@ -578,6 +578,18 @@ def main():
             if features is None:
                 skipped += 1
                 skip_reasons[reason] += 1
+                # Instead of skipping, emit a "no turbulence" prediction
+                all_results.append({
+                    "lat": lat, "lon": lon, "alt": alt,
+                    "severe_prob": 0.0,
+                    "pred_class": 0,
+                    "probs": [1.0, 0.0],
+                    "prob_max": 1.0,
+                    "delta_t_seconds": 0.0,
+                    "true_class": None,
+                    "pirep_time": prediction_time.replace(tzinfo=None).isoformat(),
+                    "patch_id": f"demo_{step:02d}_{lat:.3f}_{lon:.3f}_{int(alt)}_no_radar",
+                })
                 continue
             skip_reasons["ok"] += 1
 
@@ -611,8 +623,20 @@ def main():
         if skipped:
             top = ", ".join(f"{k}={v}" for k, v in skip_reasons.most_common(5))
             print(f"  Skip reasons: {top}", flush=True)
+        all_probs = [r["severe_prob"] for r in all_results]
+        model_preds = [r for r in all_results if "no_radar" not in r.get("patch_id", "")]
+        model_probs = [r["severe_prob"] for r in model_preds]
+        print(f"  Total points: {len(all_results)} ({len(model_preds)} with radar, "
+              f"{len(all_results) - len(model_preds)} no coverage)", flush=True)
         print(f"  Severe: {n_severe}/{len(all_results)} "
               f"({100*n_severe/max(1,len(all_results)):.1f}%)", flush=True)
+        if model_probs:
+            print(f"  Model prob stats: min={min(model_probs):.4f}, max={max(model_probs):.4f}, "
+                  f"mean={np.mean(model_probs):.4f}, median={np.median(model_probs):.4f}", flush=True)
+            print(f"  Distribution: >0.1: {sum(1 for p in model_probs if p > 0.1)}, "
+                  f">0.3: {sum(1 for p in model_probs if p > 0.3)}, "
+                  f">0.5: {sum(1 for p in model_probs if p > 0.5)}, "
+                  f">0.7: {sum(1 for p in model_probs if p > 0.7)}", flush=True)
         print(f"  Radar cache size: {len(radar_cache)}", flush=True)
 
         geojson = {

@@ -203,6 +203,11 @@ def run_prediction_cycle(model, patches, scan_time, device, model_type, batch_si
 
         if features is None:
             skipped += 1
+            all_results.append({
+                "lat": lat, "lon": lon, "alt": alt,
+                "severe_prob": 0.0,
+                "pred_class": 0,
+            })
             continue
 
         features_list.append(features)
