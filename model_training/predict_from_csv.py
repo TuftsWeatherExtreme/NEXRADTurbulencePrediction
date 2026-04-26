@@ -73,9 +73,42 @@ def fix_radar_longitude(radar, radar_file):
         radar.longitude['data'] = site_longitude
 
 
+# Global cache: S3 path -> loaded pyart radar object (or None if failed)
+_radar_file_cache = {}
+_cache_stats = {"hits": 0, "misses": 0, "errors": 0}
+
+
+def load_radar_cached(rf):
+    """Download and cache a radar file. Returns radar object or None."""
+    if rf in _radar_file_cache:
+        _cache_stats["hits"] += 1
+        return _radar_file_cache[rf]
+
+    _cache_stats["misses"] += 1
+    try:
+        signal.signal(signal.SIGALRM, timeout_handler)
+        signal.alarm(30)
+        radar = pyart.io.read_nexrad_archive(rf)
+        signal.alarm(0)
+        fix_radar_longitude(radar, rf)
+        _radar_file_cache[rf] = radar
+        return radar
+    except TimeoutError:
+        print(f"    Timeout reading {rf}", flush=True)
+        _cache_stats["errors"] += 1
+        _radar_file_cache[rf] = None
+        return None
+    except Exception as e:
+        print(f"    Error reading {rf}: {e}", flush=True)
+        _cache_stats["errors"] += 1
+        _radar_file_cache[rf] = None
+        return None
+
+
 def process_row(row):
     """
-    Process a single CSV row: download radars, grid, return feature vector or None.
+    Process a single CSV row: download radars (with caching), grid,
+    return feature vector or None.
     """
     radar_files_str = row.get('aws_files', '[]')
     radar_files = radar_files_str.strip("[]").replace("'", "").replace(" ", "").split(',')
@@ -91,20 +124,12 @@ def process_row(row):
     alt_ft = row['FL']
     alt_m = ft_to_meters(alt_ft)
 
-    # Load radars
+    # Load radars from cache
     radars = []
     for rf in radar_files:
-        try:
-            signal.signal(signal.SIGALRM, timeout_handler)
-            signal.alarm(30)
-            radar = pyart.io.read_nexrad_archive(rf)
-            signal.alarm(0)
-            fix_radar_longitude(radar, rf)
+        radar = load_radar_cached(rf)
+        if radar is not None:
             radars.append(radar)
-        except TimeoutError:
-            print(f"    Timeout reading {rf}", flush=True)
-        except Exception as e:
-            print(f"    Error reading {rf}: {e}", flush=True)
 
     if len(radars) == 0:
         return None
@@ -182,6 +207,27 @@ def main():
     df = pd.read_csv(args.input_csv)
     print(f"Input CSV: {len(df)} rows", flush=True)
 
+    # --- Preload: download all unique radar files upfront ---
+    all_radar_paths = set()
+    for _, row in df.iterrows():
+        radar_files_str = row.get('aws_files', '[]')
+        files = radar_files_str.strip("[]").replace("'", "").replace(" ", "").split(',')
+        files = [f.replace('noaa-nexrad-level2', 'unidata-nexrad-level2') for f in files]
+        files = [f for f in files if f][:NUM_RADARS]
+        all_radar_paths.update(files)
+
+    print(f"Preloading {len(all_radar_paths)} unique radar files...", flush=True)
+    preload_start = time_module.time()
+    for i, rf in enumerate(sorted(all_radar_paths)):
+        load_radar_cached(rf)
+        if (i + 1) % 20 == 0:
+            print(f"  Preloaded {i+1}/{len(all_radar_paths)} files "
+                  f"({_cache_stats['errors']} errors) "
+                  f"[{time_module.time()-preload_start:.0f}s]", flush=True)
+    print(f"Preload complete: {len(_radar_file_cache)} files cached, "
+          f"{_cache_stats['errors']} errors "
+          f"({time_module.time()-preload_start:.0f}s)", flush=True)
+
     all_results = []
     features_batch = []
     batch_rows = []
@@ -229,7 +275,10 @@ def main():
         if num_processed % 500 == 0:
             elapsed = time_module.time() - start_time
             print(f"  Processed {num_processed}/{len(df)} "
-                  f"({num_no_radar} no radar) [{elapsed:.0f}s]", flush=True)
+                  f"({num_no_radar} no radar) [{elapsed:.0f}s] "
+                  f"radar_cache: {len(_radar_file_cache)} files, "
+                  f"hits={_cache_stats['hits']} misses={_cache_stats['misses']} "
+                  f"errors={_cache_stats['errors']}", flush=True)
 
     # Stats
     model_preds = [r for r in all_results if "no_radar" not in r["patch_id"]]
