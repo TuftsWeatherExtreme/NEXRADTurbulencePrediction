@@ -76,7 +76,7 @@ def fix_radar_longitude(radar, radar_file):
 # LRU-style cache with a max size to prevent OOM
 from collections import OrderedDict
 
-MAX_CACHE_SIZE = 30  # keep at most 30 radar files in memory (~10 GB)
+MAX_CACHE_SIZE = 70  # keep at most 70 radar files in memory (~25 GB)
 _radar_file_cache = OrderedDict()
 _cache_stats = {"hits": 0, "misses": 0, "errors": 0, "evictions": 0}
 
