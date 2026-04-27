@@ -12,6 +12,8 @@ import json
 import os
 import sys
 from pathlib import Path
+import csv
+import re
 
 import numpy as np
 import torch
@@ -89,6 +91,7 @@ def prediction_to_properties(meta: dict, logits_1d: torch.Tensor) -> dict:
     severe_prob = float(probs[1]) if len(probs) > 1 else None
     return {
         "source": "nexrad",
+        "aircraft_class": meta.get("aircraft_class"),
         "pred_class": pred_class,
         "probs": probs,
         "severe_prob": severe_prob,
@@ -99,6 +102,29 @@ def prediction_to_properties(meta: dict, logits_1d: torch.Tensor) -> dict:
         "pirep_time": meta["pirep_time"],
         "patch_id": meta["patch_id"],
     }
+
+
+_PATCH_ID_RE = re.compile(r"^(?P<row>\d{1,9})_")
+
+
+def _load_aircraft_class_map_from_pireps_csv(p: Path) -> dict[int, str]:
+    """
+    Build a mapping: df_row_index -> aircraft_class ("l"|"m"|"h") from the
+    radar pirep_with_radar_data CSVs.
+    """
+    mapping: dict[int, str] = {}
+    with p.open("r", encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        for i, row in enumerate(reader):
+            # Index used in NetCDF filename comes from dataframe index at generation time.
+            # In our pipeline, that aligns with row order in the CSV.
+            plane = (row.get("Plane Weight") or "").strip().lower()
+            if not plane:
+                continue
+            if plane not in ("l", "m", "h", "u"):
+                continue
+            mapping[i] = "l" if plane == "u" else plane
+    return mapping
 
 
 def main() -> None:
@@ -125,6 +151,13 @@ def main() -> None:
         help="Search subdirectories for *.nc",
     )
     parser.add_argument("--device", default=None, help="cpu or cuda (default: auto)")
+    parser.add_argument(
+        "--pireps-csv",
+        type=Path,
+        default=None,
+        help="Optional: CSV used to generate these NetCDFs (must contain 'Plane Weight'). "
+        "If provided, exporter will add 'aircraft_class' to each feature based on patch_id row index.",
+    )
     args = parser.parse_args()
 
     if not args.input_dir.is_dir():
@@ -133,6 +166,15 @@ def main() -> None:
     if not args.weights.is_file():
         print(f"Error: weights not found: {args.weights}", file=sys.stderr)
         sys.exit(1)
+    if args.pireps_csv is not None and not args.pireps_csv.is_file():
+        print(f"Error: pireps csv not found: {args.pireps_csv}", file=sys.stderr)
+        sys.exit(1)
+
+    aircraft_class_map = (
+        _load_aircraft_class_map_from_pireps_csv(args.pireps_csv)
+        if args.pireps_csv is not None
+        else None
+    )
 
     device = torch.device(
         args.device if args.device else ("cuda" if torch.cuda.is_available() else "cpu")
@@ -151,6 +193,13 @@ def main() -> None:
             continue
 
         meta["patch_id"] = nc_path.name
+        if aircraft_class_map is not None:
+            m = _PATCH_ID_RE.match(nc_path.name)
+            if m:
+                row_idx = int(m.group("row"))
+                meta["aircraft_class"] = aircraft_class_map.get(row_idx)
+            else:
+                meta["aircraft_class"] = None
         x = tensor.unsqueeze(0).to(device)
         with torch.no_grad():
             logits = model(x)
