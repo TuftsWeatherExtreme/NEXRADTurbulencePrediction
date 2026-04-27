@@ -34,9 +34,11 @@ MODEL_FACTORIES = {
 }
 
 
-def _features_label_from_attrs(ds: xr.Dataset) -> tuple[np.ndarray, float]:
+def _features_label_from_attrs(
+    ds: xr.Dataset, *, include_in_sigmet: bool
+) -> tuple[np.ndarray, float, float]:
     """
-    Same four scalars + label as RadarDataLoader (named attrs only).
+    Same scalars + label as RadarDataLoader (named attrs only).
     PIREP_TIME must exist on the file but is not part of the tensor.
     """
     a = ds.attrs
@@ -44,15 +46,20 @@ def _features_label_from_attrs(ds: xr.Dataset) -> tuple[np.ndarray, float]:
     missing = [k for k in required if k not in a]
     if missing:
         raise ValueError(f"NetCDF missing required attrs: {missing}")
-    meta = np.array(
-        [float(a["LAT"]), float(a["LON"]), float(a["ALT"]), float(a["DELTA_T"])],
-        dtype=np.float64,
+    in_sigmet = float(a.get("IN_SIGMET", 0.0))
+    meta_values = [float(a["LAT"]), float(a["LON"]), float(a["ALT"]), float(a["DELTA_T"])]
+    if include_in_sigmet:
+        meta_values.append(in_sigmet)
+    meta = np.array(meta_values, dtype=np.float64)
+    return meta, float(a["TURB"]), in_sigmet
+
+
+def tensor_and_meta_from_nc(
+    ds: xr.Dataset, *, include_in_sigmet: bool
+) -> tuple[torch.Tensor, dict]:
+    meta_features, label, in_sigmet = _features_label_from_attrs(
+        ds, include_in_sigmet=include_in_sigmet
     )
-    return meta, float(a["TURB"])
-
-
-def tensor_and_meta_from_nc(ds: xr.Dataset) -> tuple[torch.Tensor, dict]:
-    meta_features, label = _features_label_from_attrs(ds)
     flattened = np.concatenate([ds[var].values.flatten() for var in ds.data_vars])
     vec = np.concatenate((meta_features, flattened))
     t = torch.tensor(vec, dtype=torch.float32)
@@ -65,6 +72,7 @@ def tensor_and_meta_from_nc(ds: xr.Dataset) -> tuple[torch.Tensor, dict]:
         "lon": float(meta_features[1]),
         "flight_level_ft": float(meta_features[2]),
         "delta_t_seconds": float(meta_features[3]),
+        "in_sigmet": float(in_sigmet),
         "pirep_time": str(a["PIREP_TIME"]),
     }
     return t, meta
@@ -183,11 +191,13 @@ def main() -> None:
     load_state_dict_flexible(model, str(args.weights), device)
     model.eval()
 
+    include_in_sigmet = args.model_type in ("hybrid", "resnet")
+
     features: list[dict] = []
     for nc_path in collect_nc_paths(args.input_dir, args.recursive):
         try:
             with xr.open_dataset(nc_path) as ds:
-                tensor, meta = tensor_and_meta_from_nc(ds)
+                tensor, meta = tensor_and_meta_from_nc(ds, include_in_sigmet=include_in_sigmet)
         except Exception as e:
             print(f"Skip {nc_path}: {e}", file=sys.stderr)
             continue
