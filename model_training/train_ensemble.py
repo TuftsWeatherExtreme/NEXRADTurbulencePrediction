@@ -88,19 +88,30 @@ def get_radar_predictions(radar_model, dataloader, device):
     return np.array(all_probs), np.array(all_labels), np.array(all_meta)
 
 
-def get_sat_predictions(sat_model_path, sat_data_dir, device):
+def get_sat_predictions(sat_model_path, sat_data_dir, device, sat_repo_src=None):
     """Run satellite model on its data, return (probs, labels, metadata)."""
-    # Import satellite model and dataloader
-    sat_src = os.path.join(os.path.dirname(DIRNAME), "..",
-                           "SatelliteTurbulencePrediction", "src")
-    if os.path.exists(sat_src):
-        sys.path.insert(0, sat_src)
+    # Try multiple paths for satellite imports
+    search_paths = []
+    if sat_repo_src:
+        search_paths.append(sat_repo_src)
+    if os.environ.get("SAT_REPO_PATH"):
+        search_paths.append(os.path.join(os.environ["SAT_REPO_PATH"], "src"))
+    search_paths.append(os.path.join(os.path.dirname(DIRNAME), "..",
+                                      "SatelliteTurbulencePrediction", "src"))
+
+    for path in search_paths:
+        if os.path.exists(path):
+            sys.path.insert(0, path)
+            print(f"  Added satellite src path: {path}", flush=True)
+            break
+    else:
+        print(f"WARNING: No satellite src found. Searched: {search_paths}", flush=True)
 
     try:
         from dataloader_class import SatelliteDataLoader
         from model_architecture import SatelliteTurbulenceModel
-    except ImportError:
-        print("WARNING: Satellite model not available. Using dummy predictions.", flush=True)
+    except ImportError as e:
+        print(f"WARNING: Satellite model import failed: {e}. Using dummy predictions.", flush=True)
         return None, None, None
 
     dataset = SatelliteDataLoader(sat_data_dir)
@@ -141,6 +152,8 @@ def main():
                         help="Path to satellite model weights (optional)")
     parser.add_argument("--sat-data-dir", type=Path, default=None,
                         help="Path to satellite model_inputs dir (optional)")
+    parser.add_argument("--sat-repo", type=str, default=None,
+                        help="Path to SatelliteTurbulencePrediction/src (for imports)")
     parser.add_argument("--device", default=None)
     args = parser.parse_args()
 
@@ -176,7 +189,8 @@ def main():
     if args.sat_weights and args.sat_data_dir:
         print("\nLoading satellite model and generating predictions...", flush=True)
         sat_probs, sat_labels, _ = get_sat_predictions(
-            str(args.sat_weights), str(args.sat_data_dir), device
+            str(args.sat_weights), str(args.sat_data_dir), device,
+            sat_repo_src=args.sat_repo
         )
         if sat_probs is not None:
             has_sat = True

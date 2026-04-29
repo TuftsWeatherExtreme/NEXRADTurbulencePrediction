@@ -39,7 +39,7 @@ CMD="python -u $REPO_PATH/model_training/train_ensemble.py $seed \
 
 if [ -n "$sat_weights" ] && [ -n "$sat_data_dir" ]; then
     echo "  Satellite: $sat_weights (data: $sat_data_dir)"
-    CMD="$CMD --sat-weights $sat_weights --sat-data-dir $sat_data_dir"
+    CMD="$CMD --sat-weights $sat_weights --sat-data-dir $sat_data_dir --sat-repo $SAT_REPO_PATH/src"
 else
     echo "  Satellite: not included (radar-only ensemble)"
 fi
