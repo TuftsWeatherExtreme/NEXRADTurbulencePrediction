@@ -286,7 +286,7 @@ def main():
             loss.backward()
             optimizer.step()
 
-    # --- Step 6: Evaluate on test set ---
+    # --- Step 6: Evaluate on test set and collect per-sample predictions ---
     print("\nEvaluating on test set...", flush=True)
     best_model.eval()
     test_loader = DataLoader(TensorDataset(X_test, y_test), batch_size=BATCH_SIZE)
@@ -294,6 +294,7 @@ def main():
     num_correct = 0
     tp = fp = tn = fn = 0
     all_test_probs = []
+    per_sample_rows = []
 
     with torch.no_grad():
         for xb, yb in test_loader:
@@ -313,6 +314,20 @@ def main():
                 elif true == 0 and pred == 0: tn += 1
                 elif true == 1 and pred == 0: fn += 1
 
+                # Collect per-sample data
+                per_sample_rows.append({
+                    "radar_prob": float(xb[i, 0].item()),
+                    "sat_prob": float(xb[i, 1].item()),
+                    "has_radar": float(xb[i, 2].item()),
+                    "lat": float(xb[i, 3].item()),
+                    "lon": float(xb[i, 4].item()),
+                    "alt": float(xb[i, 5].item()),
+                    "combined_prob": float(probs[i]),
+                    "pred_class": int(pred),
+                    "true_label": int(true),
+                    "correct": int(true == pred),
+                })
+
     total = len(y_test)
     precision = tp / max(1, tp + fp)
     recall = tp / max(1, tp + fn)
@@ -327,7 +342,7 @@ def main():
     print(f"  Prob stats: min={min(all_test_probs):.4f}, max={max(all_test_probs):.4f}, "
           f"mean={np.mean(all_test_probs):.4f}", flush=True)
 
-    # --- Step 7: Save model and results ---
+    # --- Step 7: Save model, results, and per-sample predictions ---
     timestamp = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M")
     model_path = os.path.join(OUTPUT_DIR, f"{timestamp}_ensemble_seed_{SEED}.pth")
     torch.save(best_model.state_dict(), model_path)
@@ -350,6 +365,15 @@ def main():
     with open(results_path, "w") as f:
         json.dump(results, f, indent=2)
     print(f"Results saved to {results_path}", flush=True)
+
+    # Per-sample predictions CSV
+    import csv
+    csv_path = os.path.join(OUTPUT_DIR, f"{timestamp}_ensemble_seed_{SEED}_predictions.csv")
+    with open(csv_path, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=per_sample_rows[0].keys())
+        writer.writeheader()
+        writer.writerows(per_sample_rows)
+    print(f"Per-sample predictions saved to {csv_path} ({len(per_sample_rows)} rows)", flush=True)
 
 
 if __name__ == "__main__":
