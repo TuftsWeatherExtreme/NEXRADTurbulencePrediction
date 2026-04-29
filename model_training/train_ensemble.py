@@ -90,26 +90,9 @@ def get_radar_predictions(radar_model, dataloader, device):
 
 def get_sat_predictions(sat_model_path, sat_data_dir, device, sat_repo_src=None):
     """Run satellite model on its data, return (probs, labels, metadata)."""
-    # Try multiple paths for satellite imports
-    search_paths = []
-    if sat_repo_src:
-        search_paths.append(sat_repo_src)
-    if os.environ.get("SAT_REPO_PATH"):
-        search_paths.append(os.path.join(os.environ["SAT_REPO_PATH"], "src"))
-    search_paths.append(os.path.join(os.path.dirname(DIRNAME), "..",
-                                      "SatelliteTurbulencePrediction", "src"))
-
-    for path in search_paths:
-        if os.path.exists(path):
-            sys.path.insert(0, path)
-            print(f"  Added satellite src path: {path}", flush=True)
-            break
-    else:
-        print(f"WARNING: No satellite src found. Searched: {search_paths}", flush=True)
-
     try:
-        from dataloader_class import SatelliteDataLoader
-        from model_architecture import SatelliteTurbulenceModel
+        from sat_dataloader_class import SatelliteDataLoader
+        from sat_model_architecture import SatelliteTurbulenceModel
     except ImportError as e:
         print(f"WARNING: Satellite model import failed: {e}. Using dummy predictions.", flush=True)
         return None, None, None
