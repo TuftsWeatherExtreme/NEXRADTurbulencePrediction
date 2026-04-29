@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "best_l2": 0.01,
+  "accuracy": 0.6448368898700024,
+  "precision": 0.6455039525691699,
+  "recall": 0.995049504950495,
+  "f1": 0.7830386574767755,
+  "tp": 2613,
+  "fp": 1435,
+  "tn": 16,
+  "fn": 13,
+  "has_satellite": false,
+  "radar_model_type": "resnet",
+  "n_train": 23104,
+  "n_test": 4077
+}

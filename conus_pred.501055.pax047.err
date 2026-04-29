@@ -1,0 +1,23 @@
+srun: error: ioctl(TIOCGWINSZ): Inappropriate ioctl for device
+srun: error: Not using a pseudo-terminal, disregarding --pty option
+Generated 23868 grid points
+/cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/get_radars_for_pirep.py Waiting to read csv from stdin...
+Successfully read in df of pireps:
+  URGENT AIRCRAFT  ... turbulence_intensity Plane Weight
+0      F     GRID  ...                  0.0            M
+1      F     GRID  ...                  0.0            M
+2      F     GRID  ...                  0.0            M
+3      F     GRID  ...                  0.0            M
+4      F     GRID  ...                  0.0            M
+
+[5 rows x 11 columns]
+About to perform 435 list_objects_v2 requests
+Getting times for all nexrad files. This may take up to 5 minutes
+About to perform 435 requests to S3 bucket...
+Processing complete
+There were 2805 sites missing data
+There were 0 PIREPs with no radar data found (removed)
+Outputting to csv file: /cluster/tufts/capstone25skyblue/eelkus01/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/2025/12.csv
+Done!
+/var/spool/slurm/job501055/slurm_script: line 92: 3950027 Killed                  python -u $REPO_PATH/model_training/predict_from_csv.py --model-type $model_type --weights $weights --input-csv $RADAR_CSV --output $OUTPUT
+slurmstepd: error: Detected 1 oom_kill event in StepId=501055.batch. Some of the step tasks have been OOM Killed.

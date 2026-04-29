@@ -1,9 +1,10 @@
 # find_peak_turbulence_window.py
-# Purpose: Scan all clean PIREP CSVs and find the 8-hour window with the
-#          highest count of severe turbulence reports (turbulence_intensity >= 5).
-# Usage: python find_peak_turbulence_window.py [--data-dir PATH] [--top N]
+# Purpose: Scan PIREP CSVs with confirmed radar data and find the 8-hour
+#          window with the highest count of severe turbulence reports.
+# Usage: python find_peak_turbulence_window.py [--year YEAR] [--data-dir PATH] [--top N]
 #
-# Defaults to $REPO_PATH/pireps/clean_pirep_data if --data-dir is not provided.
+# Defaults to $REPO_PATH/radars/pirep_with_radar_data if --data-dir is not provided.
+# If --year is provided, searches only that year's subdirectory.
 
 import os
 import sys
@@ -17,17 +18,37 @@ SEVERE_THRESHOLD = 5
 WINDOW_HOURS = 8
 
 
-def load_all_pireps(data_dir):
-    """Load all monthly CSV files from all year subdirectories."""
-    pattern = os.path.join(data_dir, "*", "*_turb_pireps.csv")
+def load_all_pireps(data_dir, year=None):
+    """
+    Load all CSV files from pirep_with_radar_data.
+
+    If year is provided, only loads CSVs from the matching subdirectory
+    (e.g. pirep_with_radar_data/2024/).
+    Otherwise loads all CSVs across all year subdirectories.
+
+    The radar data CSVs are named by month (e.g. 01.csv, february.csv)
+    rather than the *_turb_pireps.csv pattern used in clean_pirep_data,
+    so we match all *.csv files within the target directory.
+    """
+    if year is not None:
+        year_dir = os.path.join(data_dir, str(year))
+        if not os.path.isdir(year_dir):
+            print(f"ERROR: Year directory not found: {year_dir}", file=sys.stderr)
+            sys.exit(1)
+        pattern = os.path.join(year_dir, "*.csv")
+        scope_label = f"year {year}"
+    else:
+        pattern = os.path.join(data_dir, "*", "*.csv")
+        scope_label = "all years"
+
     files = sorted(glob.glob(pattern))
 
     if not files:
-        print(f"ERROR: No PIREP CSV files found under {data_dir}", file=sys.stderr)
+        print(f"ERROR: No CSV files found under {data_dir} ({scope_label})", file=sys.stderr)
         print(f"  Expected pattern: {pattern}", file=sys.stderr)
         sys.exit(1)
 
-    print(f"Found {len(files)} monthly CSV files across all years", flush=True)
+    print(f"Found {len(files)} CSV files ({scope_label})", flush=True)
 
     dfs = []
     for f in files:
@@ -43,7 +64,7 @@ def load_all_pireps(data_dir):
         sys.exit(1)
 
     combined = pd.concat(dfs, ignore_index=True)
-    print(f"Loaded {len(combined):,} total PIREPs", flush=True)
+    print(f"Loaded {len(combined):,} total PIREPs with radar data", flush=True)
     return combined
 
 
@@ -96,14 +117,13 @@ def find_peak_window(severe_df, top_n=5):
 
 def summarise_window(severe_df, window_start, count):
     """Print a breakdown of PIREPs in the best window."""
-    # Ensure window boundaries are tz-aware to match severe_df["datetime"]
     window_start = pd.Timestamp(window_start).tz_localize("UTC") if window_start.tzinfo is None else window_start
     window_end = window_start + timedelta(hours=WINDOW_HOURS)
     mask = (severe_df["datetime"] >= window_start) & (severe_df["datetime"] <= window_end)
     window_pireps = severe_df[mask]
 
     print(f"\n{'='*60}")
-    print(f"Window: {window_start}  →  {window_end} UTC")
+    print(f"Window: {window_start.strftime('%Y-%m-%dT%H:%M:%S')}  →  {window_end.strftime('%Y-%m-%dT%H:%M:%S')} UTC")
     print(f"Severe PIREP count: {count}")
     print(f"{'='*60}")
     print(f"Intensity distribution:")
@@ -124,12 +144,21 @@ def summarise_window(severe_df, window_start, count):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Find the 8-hour window with the most severe turbulence PIREPs."
+        description="Find the 8-hour window with the most severe turbulence PIREPs "
+                    "using only PIREPs that have confirmed radar data."
+    )
+    parser.add_argument(
+        "--year",
+        type=int,
+        default=None,
+        help="Optional year to restrict search (e.g. --year 2024). "
+             "If omitted, searches all available years.",
     )
     parser.add_argument(
         "--data-dir",
         default=None,
-        help="Path to clean_pirep_data directory. Defaults to $REPO_PATH/pireps/clean_pirep_data",
+        help="Path to pirep_with_radar_data directory. "
+             "Defaults to $REPO_PATH/radars/pirep_with_radar_data",
     )
     parser.add_argument(
         "--top",
@@ -147,16 +176,17 @@ def main():
         if not repo_path:
             print("ERROR: $REPO_PATH not set. Use --data-dir to specify the path.", file=sys.stderr)
             sys.exit(1)
-        data_dir = os.path.join(repo_path, "pireps", "clean_pirep_data")
+        data_dir = os.path.join(repo_path, "radars", "pirep_with_radar_data")
 
     if not os.path.isdir(data_dir):
         print(f"ERROR: Directory not found: {data_dir}", file=sys.stderr)
         sys.exit(1)
 
-    print(f"Scanning: {data_dir}", flush=True)
+    scope = f"year {args.year}" if args.year else "all years"
+    print(f"Scanning: {data_dir} ({scope})", flush=True)
 
     # Load and filter
-    df = load_all_pireps(data_dir)
+    df = load_all_pireps(data_dir, year=args.year)
 
     # Parse datetime
     df["datetime"] = pd.to_datetime(df["datetime"], errors="coerce", utc=True)
@@ -179,7 +209,8 @@ def main():
     print(f"TOP {args.top} PEAK 8-HOUR WINDOWS FOR SEVERE TURBULENCE")
     print(f"{'='*60}")
     for rank, (count, start, end) in enumerate(top_windows, 1):
-        print(f"  #{rank}  {start}  →  {end}   ({count} severe PIREPs)")
+        print(f"  #{rank}  {start.strftime('%Y-%m-%dT%H:%M:%S')}  →  "
+              f"{end.strftime('%Y-%m-%dT%H:%M:%S')}   ({count} severe PIREPs)")
 
     # Full breakdown of the best window
     best_count, best_start, _ = top_windows[0]
