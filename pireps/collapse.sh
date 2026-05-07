@@ -4,6 +4,7 @@
 # Purpose: This script collapses all the cleaned pireps in clean_pirep_data
 #          into a single large output file clean_pirep_data/cleaned_pireps.csv
 # Run with `bash collapse.sh`
+# NOTE: Unnecessary to run in the data pipeline from Fall 25/Spring 26 year
 
 DIRNAME=$(dirname "$0")
 CLEAN_PIREP_PATH="$DIRNAME/clean_pirep_data"

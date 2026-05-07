@@ -1,12 +1,12 @@
 # predict_radar_conus.py
-# Team Celestial Blue
-# Spring 2025
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
 # Purpose: Pull current NEXRAD radar data, tile CONUS into patches,
 #          run the trained model on each patch, and output a GeoJSON
 #          file for the frontend to display. Supports continuous mode.
 #
 # Usage: python -u predict_radar_conus.py --model-type resnet --weights model.pth \
 #            --output predictions.geojson [--cycle-minutes 30] [--alt 35000]
+# NOTE: WORK IN PROGRESS
 
 import argparse
 import json

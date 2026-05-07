@@ -68,7 +68,9 @@ A simple [pireps_playground.ipynb](pireps_playground.ipynb) script can be used
 to download a month's worth of data from this archive.
 This script displays some of how we manipulate the pirep data before using it.
 A singular csv representing the raw data from the archive for January 2025 can 
-be found in [raw_pirep_data](raw_pirep_data/2025/01_raw_pireps.csv). 
+be found in [raw_pirep_data](raw_pirep_data/2025/01_raw_pireps.csv).
+
+An even more stripped down version [single_pirep.ipnyb](single_pirep.ipynb) can be used to download a single pirep and run it through the slightly modified data pipeline for the Spring 26 semester.
 
 ## clean_pireps.py
 We have a useful script called [clean_pireps.py](clean_pireps.py) that can 
@@ -90,18 +92,24 @@ and will output these pireps to a file called
 ### get_all_clean_pireps.py
 The script [get_all_clean_pireps.py](get_all_clean_pireps.py) runs the 
 [clean_pireps.py](clean_pireps.py) script to download the data for all
- months and years from 2003-2024. This script has been parallelized to be 
- run on the Tufts HPC in the script 
- [generate_pirep_data_csvs.sh](/hpc_scripts/generate_pirep_data_csvs.sh) 
- which runs both the [clean_pireps.py](clean_pireps.py) script and then 
- pipes the output directly to the 
- [get_radars_for_pirep.py](get_radars_for_pirep.py) 
- script to retrieve the closest radars (More info on this script can be found
- in the [radars README](/radars/README.md)).
+months and years from 2003-2024. This script has been parallelized to be 
+run on the Tufts HPC in the script 
+[generate_pirep_data_csvs.sh](/hpc_scripts/generate_pirep_data_csvs.sh) 
+which runs both the [clean_pireps.py](clean_pireps.py) script and then 
+pipes the output directly to the 
+[get_radars_for_pirep.py](get_radars_for_pirep.py) 
+script to retrieve the closest radars (More info on this script can be found
+in the [radars README](/radars/README.md)).
+
+### get_sigmets.py
+The script [get_sigmets.py](get_sigmets.py) downloads Convective SIGMETs for a given month and year from the IEM AWC SIGMET archive, parses polygon geometry and altitude information, and outputs a CSV of SIGMETs that can be used to annotate PIREPs with an `in_sigmet` feature in clean_pireps.py.
+
+### Running and Testing
+All necessary steps to download and filter the pireps (including all sigmet information) can be done by running the [generate_csv_data.sh](/NEXRADTurbulencePrediction/hpc_scripts/data_processing/generate_csv_data.sh) job on the HPC. After completing, [test_sigmet_covereage.py](test_sigmet_coverage.py) can be run to give an overall report on the sigmet coverage for the gathered pirep data. The outcome of this job is that the [clean_pirep_data](/NEXRADTurbulencePrediction/pireps/clean_pirep_data/) folder contains all pireps from 2008-2025 with an in_sigmet flag, and the [sigmet_data](/NEXRADTurbulencePrediction/pireps/sigmet_data/) folder contains all sigmets from 2008-2025.
 
 ### collapse.sh
 There is a simple bash script called [collapse.sh](collapse.sh) that collapses 
 all the cleaned pirep data into a single file called
 [clean_pirep_data/cleaned_pireps.csv](clean_pirep_data/cleaned_pireps.csv). It
-can be run with `bash collapse.sh`. 
+can be run with `bash collapse.sh`. Note that this is a script made from the Fall 24-Spring 25 year and is now unnecessary to run in the current state of the pipeline. It was left here for convenience in case it becomes pertinent in later versions.
 

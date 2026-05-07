@@ -1,5 +1,5 @@
 # beam_geometry.py
-# Authors: Team Celestial Blue
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
 # Purpose: Utility functions for computing NEXRAD radar beam coverage
 #          at various altitudes. Used to select optimal radars for
 #          high-altitude PIREPs where the 5 closest stations may not

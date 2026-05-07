@@ -1,3 +1,10 @@
+# test_sigmet_coverage.py
+# Authors: Razzle Dazzle Rose Spring 26
+# Purpose: Gives overall summary of cleaned pireps and how many were associated
+#          with a sigmet.
+# Run with `python test_signmet_coverage.py`
+
+
 import os
 import pandas as pd
 

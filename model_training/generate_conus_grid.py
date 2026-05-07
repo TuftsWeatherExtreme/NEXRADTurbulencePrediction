@@ -1,6 +1,6 @@
 # generate_conus_grid.py
-# Team Celestial Blue
-# Spring 2025
+# Authors: Team Celestial Blue Spring 2025
+# Edited by Razzle Dazzle Rose Fall 25/Spring 26
 # Purpose: Generate a CSV of CONUS grid points formatted like a PIREP CSV
 #          so it can be piped directly into get_radars_for_pirep.py.
 #

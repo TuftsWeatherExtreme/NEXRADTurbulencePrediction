@@ -1,6 +1,5 @@
 # predict_radar_demo.py
-# Team Celestial Blue
-# Spring 2025
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
 # Purpose: Generate 16 GeoJSON files representing 8 hours of radar
 #          turbulence predictions at 30-minute intervals, for frontend demo.
 #          Pulls real NEXRAD radar data from AWS S3.
@@ -8,6 +7,7 @@
 # Usage: python -u predict_radar_demo.py --model-type resnet \
 #            --weights model.pth --output-dir demo_geojsons/ \
 #            [--start-time "2024-03-01T12:00:00"] [--alt 35000]
+# NOTE: WORK IN PROGRESS
 
 import argparse
 import json

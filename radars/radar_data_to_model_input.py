@@ -1,8 +1,8 @@
 # radar_data_to_model_input.py
-# This python program converts rows of a csv with radar and pirep data to 
-#   a model input file and outputs it as a netcdf file
-# Author: Team Celestial Blue
-# Last Modified: 5/7/2025
+# Authors: Team Celestial Blue Spring 2025
+# Edited by Razzle Dazzle Rose Fall 25/Spring 26
+# Purpose: Converts rows of a csv with radar and pirep data to a model input
+#          file and outputs it as a netcdf file
 
 from create_grid import create_grid
 import pandas as pd

@@ -1,8 +1,8 @@
 #!/bin/bash -l
 
 # generate_model_inputs.sh
-# Authors: Team Celestial Blue
-# Spring 2025
+# Authors: Team Celestial Blue Spring 2025
+# Edited by Razzle Dazzle Rose Fall 25/Spring 26
 # Overview: Generate all compressed model inputs by gridding radar data.
 # Each array job processes one month/year of PIREPs with radar data.
 # Note: YEARS and MONTHS must match those used in generate_radar_data.sh.

@@ -1,6 +1,6 @@
 # clean_pireps.py
-# Authors: Team Celestial Blue
-# Last Modified: 4/28/25
+# Authors: Team Celestial Blue Spring 2025
+# Edited by Razzle Dazzle Rose Fall 25/Spring 26
 # Purpose: This script takes an input pireps data file and cleans it to be a csv
 #          with only the pireps which contain reports of turbulence, removing
 #          extraneous columns, adding plane weight, and ensuring all location
@@ -16,7 +16,6 @@
 import sys
 
 import requests
-#from tqdm import tqdm
 import pandas as pd
 from io import StringIO
 import numpy as np
@@ -36,7 +35,6 @@ def usage():
 def read_command_line_args():
     global DIRNAME
     DIRNAME = os.path.dirname(sys.argv[0])
-    # Might need to change above to DIRNAME = os.path.dirname(os.path.abspath(__file__))
     month_str = None
     year = None
     month_idx = None

@@ -1,6 +1,6 @@
 # get_radars_for_pirep.py
-# Authors: Team Celestial Blue
-# Last Modified: 5/6/25
+# Authors: Team Celestial Blue Spring 2025
+# Edited by Razzle Dazzle Rose Fall 25/Spring 26
 # Purpose: This script takes an input pireps data file and cleans it to be a csv
 #          with only the pireps which contain reports of turbulence, removing
 #          extraneous columns, adding plane weight, and ensuring all location
@@ -24,9 +24,6 @@ from beam_geometry import score_radar_for_pirep, get_num_candidates
 
 MONTHS = ["january", "february", "march", "april", "may", "june", "july",
             "august", "september", "october", "november", "december"]
-            
-# RADAR_DIRNAME = os.path.dirname(sys.argv[0])
-# PIREP_DIRNAME = os.path.join(os.path.dirname(RADAR_DIRNAME), "pireps")
 
 RADAR_DIRNAME = os.path.dirname(os.path.abspath(__file__))
 PIREP_DIRNAME = os.path.join(os.path.dirname(RADAR_DIRNAME), "pireps")

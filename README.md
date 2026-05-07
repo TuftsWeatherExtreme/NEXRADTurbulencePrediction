@@ -1,12 +1,12 @@
 # NEXRADTurbulencePrediction
 
-#test
 ## Overview
 This repository hosts code and documentation originally created in the 2024-25 academic year by a team of Tufts Students, as part of a capstone project sponsored by WeatherExtreme Ltd. The aim of the project is to build a model that predicts clear-air turbulence (CAT) and displays that information on a website with a clean user interface. **Note that the code for 
 the web interface is available in [this separate Github repository](https://github.com/TuftsWeatherExtreme/TurbulencePredictionFrontend)**. That repository has all relevant documentation regarding the frontend's functionality, architecture, how it can be run, and more.
 
 ## Poster
-![Project Poster](poster.png)
+![Spring 2026 Project Poster](Poster_Spring26.png)
+![Spring 2025 Project Poster](Poster_Spring25.png)
 
 ## Directories
 
@@ -41,8 +41,6 @@ data to a NetCDF file. Some scripts in [HPC Scripts](/hpc_scripts) compress
 these outputs to save space for later use. These NetCDF files are ultimately
 combined to serve as the inputs to our Machine Learning Model.
 
-*Note: It's possible not all of the data in this folder was from radar scans that occurred prior to the pilot report. This was fixed later but not all data was regenerated.*
-
 ### Model Inputs
 The [Model Inputs](/model_inputs/) folder contains 3 example NetCDF files that we used for training our model.
 [Here](https://drive.google.com/drive/folders/1OT9lSk_fwXce2n7T9Yg8XN_Vt4FN7rBs?usp=share_link)
@@ -62,7 +60,17 @@ the models and scripts we wrote. The executables here are meant to be run on
 high-performance compute nodes. They all use SLURM and can be run with `sbatch`.
 
 ## Contacts
-For any questions, you can reach out to the creators of this project:  
+For any questions, you can reach out to the creators of this project:
+
+### Fall 2025 - Spring 2026
+* Eleanor Elkus - [eleanorelkus2003@gmail.com](mailto:eleanorelkus2003@gmail.com)
+* Nehir Ozden - [](mailto:)
+* Sophie Clemens - [](mailto:)
+* Luke Randolph - [](mailto:)
+* Reed Bodley - [](mailto:)
+* Javier Gonzalez Paterna - [](mailto:)
+
+### Fall 2024 - Spring 2025
 * Leo Kaluzhny (CS '25) - [leo.kaluzhny@gmail.com](mailto:leo.kaluzhny@gmail.com)
 * Sam Hecht (CS '25) - [shechtor18@gmail.com](mailto:shechtor18@gmail.com)
 * Julia Zelevinsky (CS '25) - [julia.zelevinsky@gmail.com](mailto:julia.zelevinsky@gmail.com)

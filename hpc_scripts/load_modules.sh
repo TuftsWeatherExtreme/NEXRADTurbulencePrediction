@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # load_modules.sh
-# Authors: Team Celestial Blue
-# Spring 2025
+# Authors: Team Celestial Blue Spring 2025
+# Edited by Razzle Dazzle Rose Fall 25/Spring 26
 # Overview: Load all modules and active specified environment.
 # Important: Must be run as `source load_modules.sh`
 

@@ -1,8 +1,11 @@
 # dataloader_class.py
-# Authors: Team Celestial Blue
-# Spring 2025
+# Authors: Team Celestial Blue Spring 2025
+# Edited by Razzle Dazzle Rose Fall 25/Spring 26
 # Overview: Defines a dataloader class to store all model inputs with fast access time
 # Note: assumes that filepath is to a directory of tar xz compressed model inputs
+
+# There are many debug print statements that are quite useful if any bugs come up.
+# They are commented out for now, but uncomment for a better log of what's happening.
 
 import torch 
 import glob
@@ -55,8 +58,8 @@ class RadarDataLoader(Dataset):
         print(f"Loaded {len(self.data)} old data points")
     count = 0
     tarfiles = glob.glob(f"{dir_path}/*.tar.xz")
-    # WORKING ON THIS
-    print("DEBUG tarfiles:", tarfiles)
+
+    # print("DEBUG tarfiles:", tarfiles)
     os.makedirs("decompressed", exist_ok=True)
     for tarfile in tarfiles:
         specific_dirname = os.path.join("decompressed", os.path.basename(tarfile).replace(".tar.xz", ""))
@@ -66,12 +69,12 @@ class RadarDataLoader(Dataset):
         
         for filename in os.listdir(specific_dirname):
             filepath = os.path.join(specific_dirname, filename)
-            print(f"DEBUG: found file: {filename}, is_file: {os.path.isfile(filepath)}")
+            # print(f"DEBUG: found file: {filename}, is_file: {os.path.isfile(filepath)}")
             if os.path.isfile(filepath):
                 try:
-                    print(f"DEBUG: opening {filename}")
+                    # print(f"DEBUG: opening {filename}")
                     nc_file = xr.open_dataset(filepath)
-                    print(f"DEBUG: opened, attrs: {list(nc_file.attrs.keys())}")
+                    # print(f"DEBUG: opened, attrs: {list(nc_file.attrs.keys())}")
                     # Here we are instead of just turning every attribute value 
                     # into numbers for the model, we are just checking if the file
                     # has LAT, LON, ALT, DELTA_T, and TURB. If it does, use only 
@@ -91,15 +94,15 @@ class RadarDataLoader(Dataset):
                         attrs_arr = np.array(list(a.values()))
                         meta = attrs_arr[:-1].astype(float)
                         label = float(attrs_arr[-1])
-                    print(f"DEBUG: meta shape: {meta.shape}")
+                    # print(f"DEBUG: meta shape: {meta.shape}")
                     flattened_data = np.concatenate([nc_file[var].values.flatten() for var in nc_file.data_vars])
-                    print(f"DEBUG: flattened_data shape: {flattened_data.shape}")
+                    # print(f"DEBUG: flattened_data shape: {flattened_data.shape}")
                     features = np.concatenate((meta, flattened_data))
-                    print(f"DEBUG: label: {label}")
+                    # print(f"DEBUG: label: {label}")
                     features = torch.tensor(features, dtype=torch.float32) 
                     features = torch.nan_to_num(features, nan=-32.0)
                     self.data.append((features, label))
-                    print(f"DEBUG: appended successfully")
+                    # print(f"DEBUG: appended successfully")
                     count += 1
                 except Exception as e:
                     print(f"ERROR loading {filename}: {e}")

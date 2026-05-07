@@ -2,7 +2,7 @@
 # This python file exports the function create_grid for use in other scripts
 # which can create a gridded lat/lon/alt XArray given radar(s) and ranges
 # in which to create the grid around a point of origin
-# Author: Sam Hecht
+# Author: Sam Hecht Celestial Blue
 # Date: 2/26/25
 
 # Import useful libraries

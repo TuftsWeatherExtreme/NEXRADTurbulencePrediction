@@ -1,6 +1,5 @@
 # train_heatmap.py
-# Team Celestial Blue
-# Spring 2025
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
 # Purpose: Train the heatmap U-Net model that predicts a 16x16 turbulence
 #          probability grid from radar reflectivity data.
 # Usage: python train_heatmap.py <seed>
@@ -8,6 +7,7 @@
 # Uses the same dataloader as the binary classification models.
 # For severe PIREPs (label=1), the target is a Gaussian centered at the PIREP
 # location within the grid. For non-severe (label=0), the target is all zeros.
+# NOTE: WORK IN PROGRESS
 
 import os
 import sys

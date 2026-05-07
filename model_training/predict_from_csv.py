@@ -1,12 +1,12 @@
 # predict_from_csv.py
-# Team Celestial Blue
-# Spring 2025
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
 # Purpose: Read a CSV with radar file paths (output of get_radars_for_pirep.py),
 #          download radar data, grid it, run model inference, output GeoJSON.
 #          This is Job B of the two-step CONUS prediction pipeline.
 #
 # Usage: python -u predict_from_csv.py --model-type resnet --weights model.pth \
 #            --input-csv grid_with_radars.csv --output predictions.geojson
+# NOTE: WORK IN PROGRESS
 
 import argparse
 import json

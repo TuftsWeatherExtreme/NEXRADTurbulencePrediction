@@ -1,3 +1,8 @@
+# test_radar_output.py
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
+# Purpose: This script gives a breakdown of the data in pirep_with_radar_data folder
+# Run with `python test_radar_output.py`
+
 import os
 import pandas as pd
 import ast

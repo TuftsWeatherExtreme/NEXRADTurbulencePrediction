@@ -1,5 +1,5 @@
 # get_sigmets.py
-# Authors: Team Razzle Dazzle Rose x Claude
+# Authors: Team Razzle Dazzle Rose x Claude Fall 25/Spring 26
 # Purpose: This script downloads Convective SIGMETs for a given month and year
 #          from the IEM AWC SIGMET archive, parses polygon geometry and altitude
 #          information, and outputs a CSV of SIGMETs that can be used to annotate

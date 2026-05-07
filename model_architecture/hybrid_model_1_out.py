@@ -1,6 +1,6 @@
 # hybrid_model_1_out.py
-# Team Celestial Blue
-# Spring 2025
+# Authors: Team Celestial Blue Spring 2025
+# Edited by Razzle Dazzle Rose Fall 25/Spring 26
 # Hybrid model: 3D CNN branch for radar grid + FC branch for metadata
 # Binary classification output (2 classes)
 

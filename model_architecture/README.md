@@ -50,3 +50,8 @@ The final output is a 10-class prediction corresponding to turbulence severity l
 While the architecture of the Hybrid Model may seem a little daunting at first
 glance, the [understand_hybrid.py](understand_hybrid.py) script is meant to
 help explain how the different layers of the model interact with one another.
+
+### Additional Architecures
+In the 2025-2026 year, two additional model architectures were made:
+1. [resnet3d_model.py](resnet3d_model.py)
+2. [headmap_model.py](heatmap_model.py) <-- This is a work in progress, it does not currently function correctly, but it is a good place to start for making a model that produces predictions better suited for a heatmap display

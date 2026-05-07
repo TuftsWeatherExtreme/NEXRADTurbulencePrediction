@@ -1,215 +1,178 @@
 # Radar Scripts
 
-## NEXRAD
+## Overview
+This directory contains scripts for processing NEXRAD (Next Generation Weather Radar) data to create machine learning model inputs for turbulence prediction. The pipeline matches PIREP (Pilot Report) turbulence observations with corresponding radar reflectivity data from the NEXRAD network.
 
-For our project, we used Next Generation Weather Radar Data (NEXRAD) as the
-input to our machine learning model. Specifically, we used the level 2 product
-**reflectivity**. To acquire this data, we had to perform several queries to
-the Amazon S3 bucket found 
-[here](https://unidata-nexrad-level2.s3.amazonaws.com/index.html). 
-*Most* of the data is stored in the following format:
-```
-{YEAR}/{MONTH}/{DAY}/{SITE_CODE}/{SITE_CODE}{YEAR}{MONTH}{DAY}_{HHMMSS}_VO6"
-```
-Where `YEAR`, `MONTH`, and `DAY` are numerical, e.g., `YEAR = 2025`, 
-`MONTH = 01`, and `DAY = 14` would be one possible setup. Site code is one of
-of the 159 NEXRAD site codes. These are all 4 capital letters that begin with
-'K'. For example, `KBUF` is the site code of the radar for Buffalo, New York.
+### Primary Pipeline Entry Point:
+All radar data processing is orchestrated through the [generate_radar_data.sh](/NEXRADTurbulencePrediction/hpc_scripts/data_processing/generate_radar_data.sh) SLURM job array script.
 
-## Processing the Data - [get_radars_for_pirep.py](get_radars_for_pirep.py)
-We wrote a helpful script called 
-[get_radars_for_pirep.py](get_radars_for_pirep.py) which accepts a CSV of pilot
-reports (produced from [clean_pireps.py](/pireps/clean_pireps.py)) and 
-determines the closest 5 radars to each pirep. This uses the 
-[nexrad_sites.csv](nexrad_sites.csv) to find the location of the 159
-NEXRAD sites in the Continental United States. One result of
-[get_radars_for_pirep.py](get_radars_for_pirep.py) is to add a column called 
-`nexrad_sites` to the CSV of pilot reports to store the site codes of the 5 
-closest radar sites.
+## NEXRAD Data
+We use NEXRAD Level 2 reflectivity data from the Amazon S3 bucket:
+s3://unidata-nexrad-level2/
+Important: The bucket URL was updated in Fall 2025. Old scripts referencing noaa-nexrad-level2 have been migrated to unidata-nexrad-level2.
 
-After determining the closest radars (spatially), we must determine the closest
-radar scan temporally. This requires listing the contents of the s3 bucket as found
-above and storing the filenames locally. We then use the times given in the
-filename (the `HHMMSS` portion) to determine the most recent radar scan for
-each pilot report, for each of the 5 spatially closest radars. Once we determine
-which file represents the most recent radar scan, we store the file path to the
-file in the s3 bucket in our CSV.
+### Data Format
+Most data is stored in the following structure:
+`{YEAR}/{MONTH}/{DAY}/{SITE_CODE}/{SITE_CODE}{YEAR}{MONTH}{DAY}_{HHMMSS}_V06`
+Where:
+* YEAR, MONTH, DAY are numerical (e.g., 2024, 01, 31)
+* SITE_CODE is a 4-letter code beginning with 'K' (e.g., KJGX for a radar near Brunswick, GA)
+* HHMMSS represents the scan time in UTC
+Example:
+`2024/01/31/KJGX/KJGX20240131_235419_V06`
 
-### Prerequisites
-This script needs to be able to perform AWS queries, and thus the user running
-this script must have set up AWS access keys. If not, an error will occur
-on the call to `list_objects_v2` during execution.
+There are 159 NEXRAD sites in the Continental United States. Site locations are stored in [nexrad_sites.csv](nexrad_sites.csv)
 
-### Usage
-Run with
-```
-python get_radars_for_pirep.py [-month MONTH] [-year YEAR] [-o {FILE/STDOUT}]
-```
-If month or year are not specified, this script expects a
-CSV filled with pireps through stdin. If they are both specified,
-this script searches in the [clean_pirep_data](/pireps/clean_pirep_data/) folder
-for the data for the given year and month. 
+## Current Pipeline Scripts
 
-The `-o` should be followed by either `FILE` or `STDOUT`, 
-and this indicates the location to output the new CSV to. If `FILE` is
-specified, this script will output to 
-[radars/pirep_with_radar_data/{YEAR}/{MONTH}.csv](/radars/pirep_with_radar_data/2024/02.csv).
-`MONTH` must be one of "january, february, ..., december", and year must be
-of the format `YYYY` (e.g., 2025). One example usage of the script would be:
-```
-python get_radars_for_pirep.py -month february -year 2024 -o FILE
-```
-The output of this run can be found in [02.csv](/radars/pirep_with_radar_data/2024/02.csv)
-Another example can be seen here:
-```
-cat pireps/clean_pirep_data/2025/03_turb_pireps.csv |
-python radars/get_radars_for_pirep.py -o STDOUT > radars/pirep_with_radar_data/2025/03.csv
-```
-This piping feature is useful and we use it in our [generate_csv_data.sh](/hpc_scripts/data_processing/generate_csv_data.sh)
+### 1. generate_radar_data.sh
+SLURM job array script [generate_radar_data.sh](/NEXRADTurbulencePrediction/hpc_scripts/data_processing/generate_radar_data.sh) that processes PIREPs month-by-month.
 
-### Example
-Here are some example values for the two columns the [get_radars_for_pirep.py](get_radars_for_pirep.py) script adds to the final CSV:
+What it does:
+* Runs as a job array across all year/month combinations (2008-2025)
+* Calls get_radars_for_pirep.py for each month/year to find radar sites and scan times
+* Outputs CSVs with nexrad_sites and aws_files columns to [pirep_with_radar_data/{YEAR}/{MONTH}.csv](/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/)
 
-```
-nexrad_sites: "('KJGX', 'KVAX', 'KFFC', 'KCLX', 'KTLH')",
-aws_files: "['s3://unidata-nexrad-level2/2024/01/31/KJGX/KJGX20240131_235419_V06',
-             's3://unidata-nexrad-level2/2024/01/31/KVAX/KVAX20240131_235731_V06', 
-             's3://unidata-nexrad-level2/2024/01/31/KFFC/KFFC20240131_235614_V06', 
-             's3://unidata-nexrad-level2/2024/01/31/KCLX/KCLX20240131_235840_V06', 
-             's3://unidata-nexrad-level2/2024/01/31/KTLH/KTLH20240131_235416_V06']"
-```
-As can be seen, for the given pilot report at 29500 feet, 
-32.40º latitude, and -83.21º longitude, the 5 closest radar sites are:
-```
-KJGX: Southeast of Atlanta
-KVAX: South Georgia
-KFFC: Atlanta
-KCLX: Charleston South Carolina
-KTLH: Tallahassee
-```
-The pilot report is in fact located southeast of Atlanta, and this specific
-report can be found on the first line of 
-[02.csv](/pireps/clean_pirep_data/2024/02.csv). This pilot report took place
-at midnight on February 1st 2024, so the closest radar scans in the past are:
-```
-KJGX: 20240131_235419_V06
-KVAX: 20240131_235731_V06
-KFFC: 20240131_235614_V06
-KCLX: 20240131_235840_V06
-KTLH: 20240131_235416_V06
-```
-That is, 23:54:19 on January 31st for the KJGX station.
+Note: YEARS and MONTHS arrays must match those used in generate_csv_data.sh (the PIREP cleaning pipeline).
+Usage: `sbatch generate_radar_data.sh`
 
-## Accessing the Data
-We use [PyART](https://arm-doe.github.io/pyart/index.html) to read NEXRAD data. 
-To install PyART, you can run `pip install arm_pyart` 
-(NOT `pip install pyart`!). PyART has a ton of useful functions and classes
-for manipulating, accessing, and visualizing the radar data. Some of these
-downloaded radar files can be found in 
-[raw_radar_data](raw_radar_data).
+### 2. get_radars_for_pirep.py
+Core radar matching script [get_radars_for_pirep.py](/NEXRADTurbulencePrediction/radars/get_radars_for_pirep.py) that finds the best candidate NEXRAD sites and closest scan times for each PIREP.
 
-### [reflect_over_cutoff.py](reflect_over_cutoff.py)
-To get our bearings with the `Radar` object provided by PyART, we wrote
-[reflect_over_cutoff.py](reflect_over_cutoff.py). This script takes takes a 
-NEXRAD VO6 file and a cutoff reflectivity value and creates a CSV file
-containing the longitude, latitude, and altitude of all instances of 
-reflectivity above this cutoff in the given VO6 file. 
+What it does:
+* Spatial Matching: Uses beam geometry scoring (not just distance) to find the 5 best radar sites for each PIREP
+    * Scores radars based on how well their beam pattern covers the PIREP's altitude, implemented in [beam_geometry.py](/NEXRADTurbulencePrediction/radars/beam_geometry.py)
+    * Pulls extra candidates for high-altitude PIREPs (beam spreads with distance)
+* Temporal Matching: Queries S3 to find the closest radar scan within ±30 minutes of each PIREP
+    * Uses asynchronous batch queries for efficiency (~5 minutes per month)
+    * Matches radar scans in the past (or within 30-min window if no past scan exists)
 
-#### Usage
-```
-python reflect_over_cutoff.py <input_file> <cutoff>
-```
-As an example, if we wanted to find all of the reflectivity values above **20**dBZ
-in the radar file `raw_radar_data/KJGX20240131_235419_V06`, we would run
-`python reflect_over_cutoff.py raw_radar_data/KJGX20240131_235419_V06 20`
+Key Features:
+* Beam Geometry Scoring: Altitude-aware ranking ensures radars actually "see" the turbulence
+* Distance Threshold: PIREPs with no radar within range are automatically dropped
+* Async S3 Queries: Batch processes thousands of S3 requests efficiently using aiobotocore
 
+Prerequisites:
+* AWS access to unidata-nexrad-level2 bucket (public, no credentials needed)
+* Input CSV from PIREP cleaning pipeline with columns: datetime, LAT, LON, FL, turbulence_intensity
 
-## Gridding the data - [radar_data_to_model_input.py](radar_data_to_model_input.py)
-The next step in our data pipeline involves gridding our NEXRAD data around
-a particular pilot report. After running 
-[clean_pireps.py](../pireps/clean_pireps.py) and sending the output to
-[get_radars_for_pirep.py](get_radars_for_pirep.py), we have the requisite
-data to grid our nexrad data around a pilot report to create an input to our
-machine learning model.
+Usage: `python get_radars_for_pirep.py -month <MONTH> -year <YEAR> -o FILE`
 
-### Prerequisites
-Before we can run [radar_data_to_model_input.py](radar_data_to_model_input.py),
-if we intend to leverage the Tufts HPC, it is important to combine and then 
-split all of the CSVs generated in [pirep_with_radar_data](pirep_with_radar_data)
-to be equally sized for parallel processing.
-The [collapse.sh](collapse.sh) script can be used to combine all of the CSVs
-into a single CSV (run with `bash collapse.sh`). Then, the 
-[split_csv.py](split_csv.py) script can be run to split the CSV into the
-desired number of even parts. This script can be run with the following 
-arguments:
-```
-python split_csv.py <input_file> <output_dir> <num_parts>
-```
-Once this has been completed, the data can be processed in parallel. An example
-output that has split the data for the 2 months in 
-[pirep_with_radar_data/](pirep_with_radar_data) into 10 parts can be found in 
-[split_radar_data/](split_radar_data).
+### 3. radar_data_to_model_input.py
+Gridding script [radar_data_to_model_input.py](/NEXRADTurbulencePrediction/radars/radar_data_to_model_input.py) that converts PIREP + radar data into NetCDF model inputs.
 
-### Usage
-To run the [radar_data_to_model_input.py](radar_data_to_model_input.py)
-program to create model inputs, it expects an input filename and output
-directory on the command line:
-```
-python radar_data_to_model_input.py <input_file> <output_dir>
-```
-This file will use the closest file to query AWS and download the radar
-object. Then, it will call the `create_grid` function exported from
-[create_grid.py](create_grid.py) to create a grid of reflectivity data around
-the pilot report we're computing on.
+What it does:
+* Downloads radar data from S3 using PyART
+* Grids reflectivity data around each PIREP location (16×16×10 grid)
+* Outputs NetCDF files with reflectivity and PIREP metadata to [model_inputs/compressed](/NEXRADTurbulencePrediction/model_inputs/compressed/)
 
-After calling `create_grid`, we will output the reflectivity data to a NetCDF
-file. Some of these files can be found in [model_inputs](model_inputs). If
-no reflectivity data is found around a particular pilot report, this script
-does not output a NetCDF file.
+Grid Configuration:
+* Spatial: 0.25° (lat) × 0.25° (lon) × 10,000 ft (alt)
+* Resolution: 16×16×10 = 2,560 grid cells
+* Field: Reflectivity (dBZ)
+* Quality Control: Skips grids with >90% NaN values
 
-### [create_grid.py](create_grid.py)
-This function is based on the PyART function 
-[grid_from_radars](https://arm-doe.github.io/pyart/API/generated/pyart.map.grid_from_radars.html)
-The [example_create_grid.py](example_create_grid.py) script demonstrates how
-the `create_grid` function can be called. This script is hardcoded to use
-the a pirep in the 
-[split_radar_data/part_001.csv](split_radar_data/part_001.csv) file for
-the example.
+Prerequisites:
+* Input CSV from [get_radars_for_pirep.py](/NEXRADTurbulencePrediction/radars/get_radars_for_pirep.py) with nexrad_sites and aws_files columns
 
-Our implementation of the function is very robust, but for the purposes of our
-project, we chose to use a grid of size 16x16x10 that represented
-a 0.25º (latitude) x 0.25º (longitude) x 10000ft (altitude) volume of air. 
+Usage: `python radar_data_to_model_input.py <input_file> <output_dir>`
+Preferred usage is on HPC through [generate_model_inputs.sh](/NEXRADTurbulencePrediction/hpc_scripts/data_processing/generate_model_inputs.sh) with `sbatch generate_model_inputs.sh`
 
-*Note: These decisions were somewhat arbitrary*
+Note on Data Sparsity:
+* Most grids are sparse (>90% NaN). This is expected due to:
+    1. Radar beam geometry (gaps between elevation angles)
+    2. Atmospheric conditions (clear air = no reflectivity)
+    3. Distance from radar (beam spreads at range)
+* Grids with >90% NaN are automatically excluded from output.
 
-Unfortunately, the vast majority of values in the cells of most grids are NAN.
-For the one in [example_create_grid.py](example_create_grid.py), only 25 of the
-2560 grid cells are populated with valid
-reflectivity values. This was the most populated grid we could find out of
-the first 20 pireps in the CSV.
+### 4. find_peak_turbulence_window.py
+Analysis tool [find_peak_turbulence_window.py](/NEXRADTurbulencePrediction/radars/find_peak_turbulence_window.py) for identifying periods of intense turbulence activity.
 
-One possible improvements could come from using *composite reflectivity* which
-finds the highest reflectivity in a column of altitude. 
-Additionally, we could choose to only
-use grids that are not so sparsely populated (however, the vast majority of grid
-were sparsely populated).
+What it does:
+* Scans PIREPs with confirmed radar data
+* Finds the 8-hour windows with the most severe turbulence reports (intensity ≥ 5)
+* Outputs top N windows with geographic/altitude statistics
 
-Given more time, this is an area we would focus our efforts on more, as having
-good input data to the model is crucial for it to be able to learn any patterns.
+Usage:
+* Scan all years: `python find_peak_turbulence_window.py`
+* Scan specific year: `python find_peak_turbulence_window.py --year 2024`
+* Show top 10 windows: `python find_peak_turbulence_window.py --top 10`
+* Custom data directory: `python find_peak_turbulence_window.py --data-dir /path/to/pirep_with_radar_data`
 
-Either way, since we call this `create_grid.py` function on
-every single pirep to create our input data, it was important to optimize this
-function. It was profiled and now runs in about 0.1-0.2s on a node on the HPC.
+Default Data Directory: [$REPO_PATH/radars/pirep_with_radar_data](/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/)
 
-### [quiet_pyart.py](quiet_pyart.py)
+### 5. test_radar_output.py
+Validation script [test_radar_output.py](/NEXRADTurbulencePrediction/radars/test_radar_output.py) for checking the quality of radar matching output.
 
-This file can be imported as PyART to silence the print statement that comes
-with importing PyART. For example:
-```
-import quiet_pyart as pyart
-```
-will effectively import PyART without the print statement.
+What it does:
+* Scans all CSVs in [pirep_with_radar_data/](/NEXRADTurbulencePrediction/radars/pirep_with_radar_data/)
+* Validates column presence, data types, and S3 path formatting
+* Reports statistics on radar matching success rate
+* Flags common errors (missing radars, malformed paths, site/radar count mismatches)
 
-### [plotting_example.ipynb](plotting_example.ipynb)
-This script was written by WeatherExtreme employee Ryan Purciel and provided to 
-us as an initial visualization tool for reflectivity data.
+Usage: `python test_radar_output.py`
+
+## Supporting Files
+
+### nexrad_sites.csv
+Reference file [nexrad_sites.csv](/NEXRADTurbulencePrediction/radars/nexrad_sites.csv) containing all 159 NEXRAD site locations.
+
+Columns:
+* Site Code: 4-letter identifier (e.g., KJGX)
+* Latitude, Longitude: Site coordinates (degrees)
+* Elevation: Site elevation (feet)
+
+Used by [get_radars_for_pirep.py](/NEXRADTurbulencePrediction/radars/get_radars_for_pirep.py) for spatial queries and by [radar_data_to_model_input.py](/NEXRADTurbulencePrediction/radars/radar_data_to_model_input.py) for longitude correction.
+
+### beam_geometry.py
+Script [beam_geometry.py](/NEXRADTurbulencePrediction/radars/beam_geometry.py) contains scoring functions for altitude-aware radar site ranking. Higher altitude PIREPs require more candidates because beam quality degrades with distance.
+
+### create_grid.py
+Gridding function [create_grid.py](/NEXRADTurbulencePrediction/radars/create_grid.py) used by [radar_data_to_model_input.py](/NEXRADTurbulencePrediction/radars/radar_data_to_model_input.py).
+
+Based on: PyART's grid_from_radars function, optimized for our use case.
+
+Grid Parameters:
+* Shape: (10, 16, 16) --> Z, Y, X
+* Altitude range: ±5,000 ft around PIREP
+* Lat/Lon range: ±0.125° around PIREP
+
+Returns: xarray.Dataset with reflectivity field and NaN fraction metadata.
+
+### quiet_pyart.py
+Wrapper to import PyART without its startup message, [quiet_pyart.py](/NEXRADTurbulencePrediction/radars/quiet_pyart.py)
+
+Usage: `python import quiet_pyart as pyart`
+
+## Deprecated / Old Scripts
+The following scripts are no longer part of the main pipeline and are kept for reference only
+
+### reflect_over_cutoff.py
+Status: Deprecated exploration tool
+Original Purpose: Extract all reflectivity values above a threshold from a single radar file.
+Usage (historical): `python reflect_over_cutoff.py raw_radar_data/KJGX20240131_235419_V06 20`
+Why deprecated: Useful for initial data exploration but not needed for the production pipeline.
+
+### collapse.sh
+Status: Utility script (not part of main pipeline)
+Purpose: Combines all CSVs from pirep_with_radar_data/ into a single file for downstream processing.
+Usage: `bash collapse.sh`
+When to use: Only if you need to prepare data for parallel gridding jobs. The main pipeline (generate_radar_data.sh) does not call this.
+
+### split_csv.py
+Status: Utility script (not part of main pipeline)
+Purpose: Splits a large CSV into equal-sized chunks for HPC job arrays.
+Usage: `python split_csv.py <input_file> <output_dir> <num_parts>`
+When to use: After running collapse.sh, before running radar_data_to_model_input.py in parallel on the HPC.
+
+### plotting_example.ipynb
+Status: Reference notebook
+Purpose: Jupyter notebook demonstrating NEXRAD reflectivity visualization.
+Author: Ryan Purciel (WeatherExtreme)
+When to use: Learning how to visualize radar data with PyART.
+
+### example_create_grid.py
+Status: Example/tutorial script
+Purpose: Demonstrates how to call the create_grid function.
+Hardcoded data: Uses split_radar_data/part_001.csv row 0.
+When to use: Understanding grid creation workflow before modifying radar_data_to_model_input.py.

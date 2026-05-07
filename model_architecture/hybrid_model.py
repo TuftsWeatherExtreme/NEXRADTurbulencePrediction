@@ -1,6 +1,6 @@
 # hybrid_model.py
-# Team Celestial Blue
-# Spring 2025
+# Authors: Team Celestial Blue Spring 2025
+# Edited by Razzle Dazzle Rose Fall 25/Spring 26
 
 import torch
 from torch import nn

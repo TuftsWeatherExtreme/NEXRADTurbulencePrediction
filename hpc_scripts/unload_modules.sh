@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # unload_modules.sh
-# Authors: Team Celestial Blue
-# Spring 2025
+# Authors: Team Celestial Blue Spring 2025
 # Overview: Purge all modules and deactive specified environment.
 # Run as `source unload_modules.sh`
 

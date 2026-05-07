@@ -1,8 +1,7 @@
 #!/bin/bash -l
 
 # predict_radar_demo.sh
-# Authors: Team Celestial Blue
-# Spring 2025
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
 # Overview: Generate GeoJSON files for radar predictions (demo).
 # Default: 1 step (single 30-min snapshot). Use --num-steps for more.
 # Usage: sbatch predict_radar_demo.sh <model_type> <weights_path> [start_time]

@@ -1,4 +1,5 @@
 # find_peak_turbulence_window.py
+# Authors: Razzle Dazzle Rose Spring 26
 # Purpose: Scan PIREP CSVs with confirmed radar data and find the 8-hour
 #          window with the highest count of severe turbulence reports.
 # Usage: python find_peak_turbulence_window.py [--year YEAR] [--data-dir PATH] [--top N]

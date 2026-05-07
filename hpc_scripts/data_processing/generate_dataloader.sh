@@ -1,8 +1,7 @@
 #!/bin/bash -l
 
 # generate_dataloader.sh
-# Authors: Team Celestial Blue
-# Spring 2025
+# Authors: Team Celestial Blue Spring 2025
 # Overview: Generate a dataloader by creating a dataset using all compressed model inputs
 # Usage: sbatch generate_datalodaer.sh <dataloader_name> [existing_dataloader]
 

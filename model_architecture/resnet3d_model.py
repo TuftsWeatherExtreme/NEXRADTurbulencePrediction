@@ -1,6 +1,5 @@
 # resnet3d_model.py
-# Team Celestial Blue
-# Spring 2025
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
 # ResNet-style 3D CNN for radar reflectivity grids
 # Uses residual connections to enable deeper networks without vanishing gradients
 

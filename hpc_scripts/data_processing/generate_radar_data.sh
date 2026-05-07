@@ -1,8 +1,7 @@
 #!/bin/bash -l
 
 # generate_radar_data.sh
-# Authors: Team Celestial Blue
-# Spring 2025
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
 # Overview: For each month/year of cleaned PIREP CSVs, find the best candidate
 # NEXRAD radar sites (using beam geometry scoring) and the closest radar scan
 # times from S3. Outputs CSVs with nexrad_sites and aws_files columns.

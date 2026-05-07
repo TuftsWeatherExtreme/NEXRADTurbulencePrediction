@@ -1,6 +1,6 @@
 # create_datasets.py
-# Authors: Team Celestial Blue
-# Spring 2025
+# Authors: Team Celestial Blue Spring 2025
+# Edited by Razzle Dazzle Rose Fall 25/Spring 26
 # Overview: 
 # Usage: python create_datasets.py <dataloder_name> [existing_dataloader]
 #       dataloader_name: Desired name for dataloader to generate
@@ -28,8 +28,7 @@ def main():
     else:
         usage()
 
-    # Trying new script location - WORKING ON THIS
-    # script_location = os.path.dirname(sys.argv[0])
+    # Trying new script location
     script_location = os.path.dirname(os.path.abspath(__file__))
 
     # Create an instance of the custom dataset 

@@ -5,6 +5,7 @@
 #          in pirep_with_radar_data into a single large output file 
 #          clean_pirep_data/cleaned_pireps.csv
 # Run with `bash collapse.sh`
+# NOTE: This script is no longer necessary to run in the current pipeline as of Spring 26
 
 DIRNAME=$(dirname "$0")
 CLEAN_PIREP_W_RADAR_PATH="$DIRNAME/pirep_with_radar_data"

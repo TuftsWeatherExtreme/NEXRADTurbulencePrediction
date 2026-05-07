@@ -3,6 +3,7 @@
 # in a given directory
 # Author: Sam Hecht + Claude AI
 # Last Modified: 5/7/2025
+# NOTE: This file is no longer relevant in the current data pipeline as of Spring 2026
 
 import pandas as pd
 import os

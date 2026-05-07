@@ -19,6 +19,7 @@ _Any of those parameters can be changed depending on what is desired. Those opti
 The following scripts are provided in each directory:
 - [Data Processing](./data_processing/)
   - [generate_csv_data.sh](./data_processing/generate_csv_data.sh)
+  - [generate_radar_data.sh](./data_processing/generate_radar_data.sh)
   - [generate_model_inputs.sh](./data_processing/generate_model_inputs.sh)
   - [generate_dataloader.sh](./data_processing/generate_dataloader.sh)
 - [Model Training](./model_training/)
@@ -51,17 +52,17 @@ Usage: `sbatch template.sh`, or more generally: `sbatch [script].sh`
 
 ## Setup
 
-To create an environment that matches ours, you can setup the conda environment listed in [env_req](#env_req). 
+For the full Tech Setup Guide, please see the Google Doc https://docs.google.com/document/d/1TpXVFvKOJJwh6hDFK9GU0aOpVQGVvaJRkTvm8C1XjRU/edit?tab=t.0 
 
 The following environment variables need to be set up for all scripts to work: 
 
 - **ENV_PATH**
-  -This is the path to the conda environment used for package management. For example, ours was `/cluster/tufts/capstone25celestialb/cbenv`. 
+  -This is the path to the conda environment used for package management. For example, ours was `/cluster/tufts/capstone25skyblue/condaenv26/nexrad_env`. 
   
   This can be added by running: `export ENV_PATH=" environment path here "` or appended to your bashrc to automatically be loaded in on login: `echo 'export ENV_PATH=" environment path here "' >> ~/.bashrc`
 
 - **REPO_PATH**
-  - This is the remote path to this repository on the HPC. For example, ours was `/cluster/tufts/capstone25celestialb/shared/NEXRADTurbulencePrediction`. 
+  - This is the remote path to this repository on the HPC. For example, ours was `/cluster/tufts/capstone25skyblue/<YOUR_UTLN>/NEXRADTurbulencePrediction`. 
   
   This can be added by running: `export REPO_PATH=" repository path here "` or appended to automatically be loaded in with your bash: `echo 'export REPO_PATH=" repository path here "' >> ~/.bashrc`
 
@@ -82,31 +83,8 @@ Usage: `source unload_modules.sh`
 
 Deactivates the conda environment and purges all loaded modules. Ideal as the final step of running a script as seen in [template.sh](./template.sh).
 
-### [env_req.txt](env_req.txt)
 
-This is the resulting file from running `module load miniforge/24.11.2-py312`, activating our conda environment (`source activate [env_path]`), and running  `conda list -e > env_req.txt`. This provides a list of the environment requirements.
-
-This could potentially be recreated using `conda create -n <environment-name> --file env_req.txt`
-
-If creating a new environment, a couple notable module installation notes:
-- PyTorch: Since PyTorch no longer supports conda installation, we used `pip install torch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 --index-url https://download.pytorch.org/whl/cu121` to install PyTorch into our environment.
-- PyArt: PyArt can be installed with `conda install -c conda-forge arm_pyart`
-- Cuda already exists as a module and should be loaded prior to environment activation with `module load cuda/12.2`
-
-## Interfacing with the HPC
-- To most effectively edit files directly on the HPC, we utilized the Remote-SSH extension in Visual Studio Code.
-- We utilized the following workflow:
-  - Connect to login node of HPC (`ssh jzelev01@login.pax.tufts.edu`)
-  - Request a compute node (`srun -p preempt -n 1 --mem=32g -t 1-0 --pty bash`)
-    - Upon success and resource allocation, you will have the hostname of the compute node that you've been allocated. An example of this would be `d1cmp002` - it will be visible as `jzelev01@d1cmp002` in the terminal dialogue
-  - Connect to that node with Remote SSH in VSCode 
-    - Press `F1` to bring up the Command Pallete, and start typing Remote-SSH. Select `Remote-SSH: Add New SSH Host...` and type: `ssh jzelev01@d1cmp002.pax.tufts.edu`, replacing the UTLN and node name as appropriate. 
-    - Note that it will then ask for your password, after which, a Duo Push notification will need be accepted if not on the Tufts VPN. 
-  - Open the appopriate folder for your cluster path (ex. `/cluster/tufts/capstone25celestialb/`) and then you can interact with any files and edit directly in VSCode. To run interactively, you can open a terminal (Terminal --> New Terminal) for command line access to the compute node.
--Additional resources for interfacing with the HPC, such as using a tunnel, can be found [here](https://rtguides.it.tufts.edu/hpc/application/40-vscode.html)
-
-
-## Additional Resources 
+## Additional Resources
 We accessed the following resources in order to guide our use of the HPC:
 - **Checkpointing**: We were provided [this guide](https://tufts.app.box.com/s/jav14xvd0m25hp7kij1yr908xt2byn9f) from Ryan Veiga, PhD, Data Science Specialist, from Tufts Technology Services. This applies specifically to using the preempt parition and provides insight into using checkpoints to restore work. For an example of checkpointing, see [train_and_test_model.py](/model_training/train_and_test_model.py).
 

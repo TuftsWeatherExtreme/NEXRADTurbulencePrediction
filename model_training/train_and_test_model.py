@@ -1,7 +1,6 @@
 # train_and_test_model.py
-# Team Celestial Blue
-# Spring 2025
-# Last Modified: 05/06/2025
+# Authors: Team Celestial Blue Spring 2025
+# Edited by Razzle Dazzle Rose Fall 25/Spring 26
 # Description: This script trains and evaluates a model using K-Fold 
 #   cross-validation.
 #   Features: 
@@ -40,9 +39,9 @@ import torch.nn.functional as F
 NUM_EPOCHS = 30
 BATCH_SIZE = 64
 NUM_FOLDS = 6
-# TODO: Set DATALOADER_PATH to dataloader we want to use for training
-DATALOADER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "eleanor_dataloader.pth")
-# DATALOADER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "nehir_dataloader.pth")
+
+# NOTE: CHANGE THIS TO YOUR DATALOADER NAME
+DATALOADER_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "DATALOADER_NAME_SHOULD_BE_CHANGED.pth")
 
 terminate_training = False
 loss_is_nll = False

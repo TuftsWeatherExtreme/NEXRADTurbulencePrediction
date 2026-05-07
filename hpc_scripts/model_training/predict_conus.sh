@@ -1,8 +1,7 @@
 #!/bin/bash -l
 
 # predict_conus.sh
-# Authors: Team Celestial Blue
-# Spring 2025
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
 # Overview: Two-step CONUS radar prediction pipeline.
 #   Step 1: Generate a CONUS grid CSV, pipe through get_radars_for_pirep.py
 #           to find nearest radar scans (uses proven aiobotocore S3 listing).

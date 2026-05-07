@@ -1,6 +1,5 @@
 # heatmap_model.py
-# Team Celestial Blue
-# Spring 2025
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
 # U-Net style encoder-decoder that takes a 10x16x16 radar reflectivity grid
 # and outputs a 16x16 turbulence probability heatmap.
 

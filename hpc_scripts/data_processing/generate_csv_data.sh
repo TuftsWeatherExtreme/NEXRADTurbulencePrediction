@@ -2,11 +2,11 @@
 
 # generate_csv_data.sh
 ########
-# ONCE THIS IS RUN ONCE, THE OUTPUT WILL BE IN CLEANED_PIREPS.csv,
+# ONCE THIS IS RUN ONCE, THE OUTPUT WILL BE IN pireps/clean_pirep_data
 # AND WILL NOT NEED TO BE RUN AGAIN
 #######
-# Authors: Team Celestial Blue
-# Spring 2025
+# Authors: Team Celestial Blue Spring 2025
+# Edited by Razzle Dazzle Rose Fall 25/Spring 26
 # Overview: Download and clean PIREP data, filtering to SEV+ turbulence only.
 # Outputs one CSV per month/year to pireps/clean_pirep_data/{year}/{month}_turb_pireps.csv
 # Note: YEARS and MONTHS can be changed to generate for all combinations specified.

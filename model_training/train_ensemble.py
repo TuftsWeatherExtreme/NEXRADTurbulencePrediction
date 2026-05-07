@@ -1,6 +1,5 @@
 # train_ensemble.py
-# Team Celestial Blue
-# Spring 2025
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
 # Purpose: Train a small ensemble model that combines radar and satellite
 #          predictions into a single turbulence probability.
 #
@@ -16,6 +15,7 @@
 #   - has_radar (1 if radar coverage exists, 0 otherwise)
 #   - lat, lon, alt
 # And outputs a combined turbulence probability.
+# NOTE: WORK IN PROGRESS
 
 import argparse
 import os

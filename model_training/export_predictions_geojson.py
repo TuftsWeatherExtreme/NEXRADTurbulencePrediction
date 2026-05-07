@@ -1,6 +1,6 @@
 # export_predictions_geojson.py
+# Authors: Razzle Dazzle Rose Fall 25/Spring 26
 # Load a trained NEXRAD model, run inference on NetCDF patches, write GeoJSON points.
-#
 # Usage:
 #   python export_predictions_geojson.py --model-type resnet --weights path/to/model.pth \
 #       --input-dir path/to/netcdfs --output predictions.geojson
