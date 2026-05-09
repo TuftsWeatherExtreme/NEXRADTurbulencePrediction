@@ -64,11 +64,11 @@ For any questions, you can reach out to the creators of this project:
 
 ### Fall 2025 - Spring 2026
 * Eleanor Elkus - [eleanorelkus2003@gmail.com](mailto:eleanorelkus2003@gmail.com)
-* Nehir Ozden - [](mailto:)
-* Sophie Clemens - [](mailto:)
-* Luke Randolph - [](mailto:)
-* Reed Bodley - [](mailto:)
-* Javier Gonzalez Paterna - [](mailto:)
+* Nehir Ozden - [nehirlaraozden@gmail.com](mailto:nehirlaraozden@gmail.com)
+* Sophie Clemens - [sophieclemens72@gmail.com](mailto:sophieclemens72@gmail.com)
+* Luke Randolph - [lgr226@gmail.com](mailto:lgr226@gmail.com)
+* Reed Bodley - [reedbodley@gmail.com](mailto:reedbodley@gmail.com)
+* Javier Gonzalez Paterna - [javiergonzalezpaterna@gmail.com](mailto:javiergonzalezpaterna@gmail.com)
 
 ### Fall 2024 - Spring 2025
 * Leo Kaluzhny (CS '25) - [leo.kaluzhny@gmail.com](mailto:leo.kaluzhny@gmail.com)
